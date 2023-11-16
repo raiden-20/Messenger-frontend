@@ -1,0 +1,44 @@
+.page {
+    height: 30%;
+
+    display: grid;
+    grid-template-rows: 20% 85%;
+    row-gap: 5%;
+}
+
+.page header {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    align-items: center;
+
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.page header img {
+    width: 100%;
+}
+
+.links{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 10% 10% 10% 10% 10% 10%;
+    row-gap: 8%;
+}
+
+.svg_link {
+    display: grid;
+    grid-template-columns: 20% 75%;
+    column-gap: 5%;
+}
+
+.svg_link img {
+    width: 70%;
+}
+
+.button_nav {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    font-size: 0.9em;
+}
