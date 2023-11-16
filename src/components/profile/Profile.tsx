@@ -19,8 +19,8 @@ const Profile = () => {
                                         <img src={cat} alt={'this is cat'}/>
                                     </figure>
                                     <section className={prof.name_and_status}>
-                                        <div>Другой челик</div>
-                                        <div>@name</div>
+                                        <div className={prof.name}>Другой Челик</div>
+                                        <div className={prof.userName}>@name</div>
                                     </section>
                                     <section>
 
