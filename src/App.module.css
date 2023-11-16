@@ -3,6 +3,8 @@
     width: 100vw;
     font-family: 'Inter', sans-serif;
     font-size: 1em;
+
+    background-color: rgba(246, 246, 254, 1);
 }
 
 .page {

@@ -7,6 +7,7 @@ import Profile from "./components/profile/Profile";
 import Friends from "./components/other_users/Friends";
 import Search from "./components/search/Search";
 import Settings from "./components/settings/Settings";
+import Navigation from "./components/navigation/Navigation";
 
 function App() {
     return (
