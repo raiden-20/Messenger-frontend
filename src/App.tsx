@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import app from './App.module.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Registration from "./components/registration/Registration";
 import Dialogs from "./components/dialogs/Dialogs";
@@ -10,17 +10,20 @@ import Settings from "./components/settings/Settings";
 
 function App() {
     return (
-        <div className="App">
-            <Router>
-                <Routes>
-                    <Route path='/*' element={<Registration/>}/>
-                    <Route path='/dialogs' element={<Dialogs/>}/>
-                    <Route path='/profile' element={<Profile/>}/>
-                    <Route path='/friends' element={<Friends/>}/>
-                    <Route path='/search' element={<Search/>}/>
-                    <Route path='/settings' element={<Settings/>}/>
-                </Routes>
-            </Router>
+        <div className={app.App}>
+            <section className={app.page}>
+                <Router>
+                    <Routes>
+                        <Route path='/*' element={<Registration/>}/>
+                        <Route path='/dialogs' element={<Dialogs/>}/>
+                        <Route path='/profile' element={<Profile/>}/>
+                        <Route path='/friends' element={<Friends/>}/>
+                        <Route path='/search' element={<Search/>}/>
+                        <Route path='/settings' element={<Settings/>}/>
+                    </Routes>
+                </Router>
+            </section>
+
         </div>
     );
 }
