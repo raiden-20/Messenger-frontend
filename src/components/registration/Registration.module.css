@@ -1,12 +1,11 @@
 .page {
     display: grid;
-    align-content: center;
+    align-items: center;
 }
 
 .main {
     width: 80%;
-    height: 60% ;
-
+    height: 55%;
     display: grid;
     justify-self: center;
 }
