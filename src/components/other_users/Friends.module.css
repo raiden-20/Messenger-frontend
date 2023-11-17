@@ -1,0 +1,110 @@
+div {
+    width: 70%;
+    max-height: 100vh;
+    display: grid;
+    justify-self: center;
+}
+
+.page {
+    padding-top: 2%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: 15% 83%;
+    column-gap: 2%;
+}
+
+.main {
+    height: 100%;
+    display: grid;
+
+    grid-template-columns: 70% 28%;
+    column-gap: 2%;
+
+}
+
+.friends {
+    display: grid;
+    grid-template-rows: 5% 95%;
+
+    border-radius: 20px 20px 0 0;
+    border-bottom: none;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+
+}
+
+.friends_searching {
+    display: grid;
+    grid-template-columns: 3% 96%;
+    column-gap: 2%;
+    align-content: center;
+    padding: 2% 5% 2% 5%;
+
+    border-bottom: 1px solid rgba(217, 217, 217, 1);
+}
+
+.friends_searching img {
+    display: grid;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+}
+
+.friends_searching input {
+    border: none;
+    background-color: rgba(246, 246, 254, 1);
+    font-size: 0.9em;
+}
+
+.friends_list {
+    display: grid;
+    row-gap: 20px;
+
+    padding: 15px 3% 15px 3%;
+}
+
+.one_friend {
+    height: 50px;
+    display: grid;
+    grid-template-columns: 10% 69% 15%;
+    column-gap: 3%;
+}
+
+.friend_ava {
+    border-radius: 100%;
+    background-color: #DDE3EB;
+}
+
+.friend_data {
+    display: grid;
+    grid-template-rows: 70% 25%;
+    row-gap: 5%;
+}
+
+.nav_friends {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    height: 8vh;
+    padding: 4% 0 4% 0;
+    border-radius: 15px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.nav_friends section {
+    display: grid;
+    align-content: center;
+}
+
+
+.nav_friends section button {
+    padding: 0 8% 0 8%;
+    text-align: left;
+    border: none;
+    background-color: rgba(246, 246, 254, 1);
+}
+
+.nav_friends button:focus {
+    background-color: #DDE3EB;
+}
+

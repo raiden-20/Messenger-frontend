@@ -2,8 +2,6 @@ div {
     width: 70%;
     display: grid;
     justify-self: center;
-
-    font-size: 1em;
 }
 
 .page {

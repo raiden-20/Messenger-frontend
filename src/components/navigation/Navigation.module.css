@@ -1,5 +1,6 @@
 .page {
-    height: 30%;
+    height: 30vh;
+    width: 100%;
 
     display: grid;
     grid-template-rows: 20% 85%;
