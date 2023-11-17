@@ -83,6 +83,12 @@ div {
     font-size: 0.9em;
 }
 
+.profile_icons {
+    width: 40%;
+    display: grid;
+    justify-self: end;
+}
+
 .info main {
     padding: 2% 4% 0 4%;
 
@@ -96,27 +102,63 @@ div {
 }
 
 .main aside {
-    height: 40%;
+    height: 45%;
 
     display: grid;
-    grid-template-rows: 40% 55%;
+    grid-template-rows: 35% 45% 10%;
     row-gap: 5%;
 }
 
-
-
-
-
 .friends {
-    padding: 10%;
+    padding: 8%;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
 
     border-radius: 15px;
 }
 
 .photo {
-    padding: 10%;
+    padding: 8%;
+
+    display: grid;
+    grid-template-rows: 15% 75%;
+    row-gap: 10%;
+
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.group_photo {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    column-gap: 2%;
+}
+
+.group_photo section {
+    width: 100%;
 
     border-radius: 15px;
+    background-color: #D9D9D9;
+}
+
+.main aside button section {
+    display: grid;
+    grid-template-columns: 40% 55%;
+    column-gap: 5%;
+    justify-items: left;
+    align-items: center;
+}
+
+.main aside button {
+    height: 100%;
+
+    background-color: #D9D9D9;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.main aside button img {
+    display: grid;
+    justify-self: end;
+    width: 25%;
 }

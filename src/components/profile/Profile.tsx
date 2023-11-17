@@ -2,6 +2,8 @@ import React from 'react';
 import Navigation from '../navigation/Navigation';
 import prof from './Profile.module.css'
 import cat from '../../assets/images/cat_registration.jpg'
+import create from '../../assets/images/other/create_post.svg'
+import profile_settings from '../../assets/images//other/profile_settings.svg'
 
 const Profile = () => {
     return (
@@ -19,11 +21,11 @@ const Profile = () => {
                                         <img src={cat} alt={'this is cat'}/>
                                     </figure>
                                     <section className={prof.name_and_status}>
-                                        <div className={prof.name}>Другой Челик</div>
+                                        <div className={prof.name}>Имя Фамилия</div>
                                         <div className={prof.userName}>@name</div>
                                     </section>
-                                    <section>
-
+                                    <section className={prof.profile_icons}>
+                                        <img src={profile_settings} alt={'settings'}/>
                                     </section>
                                 </section>
                                 <section>
@@ -48,9 +50,22 @@ const Profile = () => {
                             <section>
                                 Фото 6
                             </section>
-                            <section>
+                            <section className={prof.group_photo}>
+                                <section>
 
+                                </section>
+                                <section>
+
+                                </section>
                             </section>
+                        </section>
+                        <section>
+                            <button>
+                                <section>
+                                    <img src={create} alt={'create_icon'}/>
+                                    Создать
+                                </section>
+                            </button>
                         </section>
                     </aside>
                 </section>
