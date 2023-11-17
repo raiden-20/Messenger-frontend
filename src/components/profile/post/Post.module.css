@@ -1,0 +1,56 @@
+.all_page {
+    height: 100%;
+}
+
+.page {
+    padding: 20px 0 20px 0;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 50px auto;
+    row-gap: 5%;
+
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.page header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% 85%;
+    column-gap: 5%;
+}
+
+.name_and_status {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    justify-content: left;
+}
+
+.page header div {
+    width: 100%;
+}
+
+.name {
+    font-size: 0.9em;
+}
+.userName {
+    font-size: 0.9em;
+}
+
+.post {
+    display: grid;
+    grid-template-rows: 60% 35%;
+    row-gap: 5%;
+}
+
+.photo_post {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    column-gap: 2%;
+}
+
+.photo_post section {
+    width: 100%;
+
+    border-radius: 7px;
+    background-color: #D9D9D9;
+}
