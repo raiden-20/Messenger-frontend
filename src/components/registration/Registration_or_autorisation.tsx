@@ -1,16 +1,14 @@
 import React from "react";
-import reg from './Registration.module.css'
-import cat from '../../assets/images/cat_registration.jpg'
-import grr from '../../assets/images/hbqGTT8bDuU.jpg'
+import reg from './Registration_or_autorisation.module.css'
+import './css_options/Options.css'
+import './css_options/Page.css'
 
-const Registration = () => {
+const Registration_or_autorisation = () => {
     return (
-        <div className={reg.page}>
-            <section className={reg.main}>
-                <section className={reg.content}>
+        <div className={'page'}>
+            <section className={'main'}>
+                <section className={'content'}>
                     <aside>
-                        {/*<img src={cat} alt={'this is a cat'}/>*/}
-                        <img src={grr} alt={'this is a cat'}/>
                     </aside>
                     <main>
                         <header>СимОн</header>
@@ -20,16 +18,18 @@ const Registration = () => {
                                     <input placeholder={'Электронный адрес или никнейм'}/>
                                     <input placeholder={'Пароль'}/>
                                 </section>
-                                <button>Войти</button>
+                                <button className={'main_page_button'} type={'submit'}>Войти</button>
                             </form>
                             <section className={reg.other_buttons}>
                                 <button className={reg.forgot_button}>Забыли пароль?</button>
-                                <hr></hr>
+                                <section className={reg.or}>
+                                    <hr></hr>
+                                    или
+                                    <hr></hr>
+                                </section>
                                 <button className={reg.registration_button}>Зарегистрироваться</button>
                             </section>
                         </section>
-
-
                     </main>
                 </section>
             </section>
@@ -38,4 +38,4 @@ const Registration = () => {
     )
 }
 
-export default Registration
+export default Registration_or_autorisation

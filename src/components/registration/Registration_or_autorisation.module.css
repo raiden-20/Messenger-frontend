@@ -1,0 +1,74 @@
+.functional {
+    display: grid;
+    grid-template-rows: 58% 40%;
+    row-gap: 2%;
+}
+
+.functional form {
+    display: grid;
+    grid-template-rows: 60% 25%;
+    row-gap: 15%;
+
+    justify-items: center;
+}
+
+.inputs {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 45% 45%;
+    row-gap: 10%;
+}
+
+.content main button {
+    width: 100%;
+}
+
+.forgot_button {
+    background-color: rgba(246, 246, 254, 1);
+    border: none;
+
+    font-family: 'Inter', sans-serif;
+}
+
+.content form input::-webkit-input-placeholder {
+    color: #5F6E78;
+}
+
+.functional button {
+    border-radius: 10px;
+
+    font-family: 'Inter', sans-serif;
+}
+
+.other_buttons {
+    display: grid;
+    grid-template-rows: 20% 15% 40%;
+    row-gap: 7%;
+    font-size: 0.9em;
+}
+
+.registration_button {
+    background-color: #F7F5FF;
+    border: 2px solid #855BD9;
+    color: #855BD9;
+
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+}
+
+.or {
+    display: grid;
+    grid-template-columns: auto 7% auto;
+    column-gap: 2%;
+
+    align-items: center;
+}
+
+hr {
+    border: 0;
+    clear:both;
+    display:block;
+    width: 96%;
+    background-color: rgba(140, 143, 149, 1);
+    height: 1px;
+}

@@ -1,0 +1,25 @@
+input {
+    padding: 5%;
+    border-radius: 10px;
+    border: 1px solid #BBC4CE;
+    font-size: 0.9em;
+
+    font-family: 'Inter', sans-serif;
+    background-color: #F7F5FF;
+}
+
+header {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.main_page_button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: #855BD9;
+    color: #F7F5FF;
+    font-weight: 700;
+    font-size: 0.9em;
+}
