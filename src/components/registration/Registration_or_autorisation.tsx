@@ -7,7 +7,7 @@ const Registration_or_autorisation = () => {
     return (
         <div className={'page'}>
             <section className={'main'}>
-                <section className={'content'}>
+                <section className={'content' + ' '+ reg.content}>
                     <aside>
                     </aside>
                     <main>

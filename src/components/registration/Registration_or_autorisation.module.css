@@ -1,3 +1,7 @@
+.content {
+    max-height: 500px;
+}
+
 .functional {
     display: grid;
     grid-template-rows: 58% 40%;
@@ -19,7 +23,7 @@
     row-gap: 10%;
 }
 
-.content main button {
+main button {
     width: 100%;
 }
 
@@ -28,10 +32,6 @@
     border: none;
 
     font-family: 'Inter', sans-serif;
-}
-
-.content form input::-webkit-input-placeholder {
-    color: #5F6E78;
 }
 
 .functional button {
