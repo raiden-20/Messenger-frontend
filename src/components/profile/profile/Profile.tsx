@@ -115,8 +115,27 @@ const Profile = () => {
                 <section className={prof_setting.edit_prof_window}>
                     <form className={prof_setting.edit_form}>
                         <section className={prof_setting.bgc_and_ava}>
-                            <section className={prof_setting.bgc_profile}></section>
-                            <section className={prof_setting.ava}></section>
+                            <section tabIndex={0} className={prof_setting.bgc_profile}>
+                                <section className={prof_setting.det_delete_bgc}>
+                                    <section>
+                                        <div>Загрузить фото</div>
+                                    </section>
+                                    <section>
+                                        <div>Удалить</div>
+                                    </section>
+
+                                </section>
+                            </section>
+                            <section tabIndex={0} className={prof_setting.ava}>
+                                <section className={prof_setting.det_delete_ava}>
+                                    <section>
+                                        <div>Загрузить фото</div>
+                                    </section>
+                                    <section>
+                                        <div>Удалить</div>
+                                    </section>
+                                </section>
+                            </section>
                         </section>
                         <section className={prof_setting.form_cont}>
                             <main>
