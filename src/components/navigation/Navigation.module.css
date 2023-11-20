@@ -1,5 +1,5 @@
 .page {
-    height: 30vh;
+    height: 28vh;
     width: 100%;
 
     display: grid;
@@ -12,12 +12,12 @@
     grid-template-columns: 35% 65%;
     align-items: center;
 
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: 600;
 }
 
 .page header img {
-    width: 100%;
+    width: 80%;
 }
 
 .links{
@@ -31,9 +31,14 @@
     display: grid;
     grid-template-columns: 20% 75%;
     column-gap: 5%;
+    align-items: end;
 }
 
-.svg_link img {
+.svg_link:hover {
+    background-color: rgba(65, 72, 109, 0.2);
+}
+
+.img {
     width: 70%;
 }
 
@@ -41,5 +46,17 @@
     text-decoration: none;
     color: #000;
     font-weight: 600;
-    font-size: 0.9em;
+    font-size: 1rem;
+}
+
+.more_section {
+    display: grid;
+    grid-template-columns: 70% 25%;
+    column-gap: 5%;
+}
+
+.more_icon {
+    display: grid;
+    align-self: center;
+    justify-self: center;
 }

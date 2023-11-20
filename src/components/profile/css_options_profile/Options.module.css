@@ -1,0 +1,38 @@
+.bg_photo {
+    border-radius: 20px;
+    background-color: #D2C1F4;
+    height: 130%;
+}
+
+.name {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+.userName {
+    color: #8791A1;
+    font-size: 0.9em;
+}
+
+.figure {
+    width: 100%;
+    height: 220%;
+    position: relative;
+
+    top: -170%;
+    left: -45%;
+
+    border-radius: 50%;
+    border: 3px solid rgba(246, 246, 254, 1);
+    overflow: hidden;
+}
+
+.figure img {
+    width: 100%;
+}
+
+.photo_section {
+    width: 100%;
+
+    border-radius: 15px;
+    background-color: #D9D9D9;
+}

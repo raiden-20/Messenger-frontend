@@ -15,8 +15,9 @@
 .page header {
     width: 100%;
     display: grid;
-    grid-template-columns: 10% 85%;
-    column-gap: 5%;
+    grid-template-columns: 9% 87%;
+    column-gap: 3%;
+
 }
 
 .name_and_status {
@@ -27,6 +28,12 @@
 
 .page header div {
     width: 100%;
+}
+
+.post_author_img {
+    border-radius: 100%;
+    background-color: #DDE3EB;
+    overflow: hidden;
 }
 
 .name {

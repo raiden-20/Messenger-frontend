@@ -1,32 +1,35 @@
 import React from 'react';
-import Navigation from '../navigation/Navigation';
-import prof from './Profile.module.css'
-import cat from '../../assets/images/cat_registration.jpg'
-import create from '../../assets/images/other/create_post.svg'
-import profile_settings from '../../assets/images//other/profile_settings.svg'
-import post_css from "./post/Post.module.css";
+import Navigation from '../../navigation/Navigation';
+import prof_oth_us from './Profile_other_user.module.css'
+import cat from '../../../assets/images/cat_registration.jpg'
+import chatting from '../../../assets/images/other/chat_with_user.svg'
+import adding_to_friend from '../../../assets/images/other/adding_to_friend.svg'
+import post_css from "../post/Post.module.css";
+import page_prof from '../css_options_profile/Page.module.css'
+import options_prof from '../css_options_profile/Options.module.css'
 
-const Profile = () => {
+const Profile_other_user = () => {
     return (
-        <div>
-            <section className={prof.page}>
+        <div className={page_prof.div}>
+            <section className={page_prof.page}>
                 <Navigation/>
-                <section className={prof.main}>
-                    <section className={prof.info}>
-                        <section className={prof.bg_photo}>
+                <section className={page_prof.main}>
+                    <section className={page_prof.info}>
+                        <section className={options_prof.bg_photo}>
                         </section>
                         <main>
-                            <section className={prof.bio}>
-                                <section className={prof.bio_row}>
-                                    <figure>
+                            <section className={page_prof.bio}>
+                                <section className={prof_oth_us.bio_row}>
+                                    <figure className={options_prof.figure}>
                                         <img src={cat} alt={'this is cat'}/>
                                     </figure>
-                                    <section className={prof.name_and_status}>
-                                        <div className={prof.name}>Имя Фамилия</div>
-                                        <div className={prof.userName}>@name</div>
+                                    <section className={page_prof.name_and_status}>
+                                        <div className={options_prof.name}>Другой Челик</div>
+                                        <div className={options_prof.userName}>@name</div>
                                     </section>
-                                    <section className={prof.profile_icons}>
-                                        <img src={profile_settings} alt={'settings'}/>
+                                    <section className={prof_oth_us.profile_icons}>
+                                        <img src={chatting} alt={'chat'}/>
+                                        <img src={adding_to_friend} alt={'adding to friend'}/>
                                     </section>
                                 </section>
                                 <section>
@@ -34,11 +37,11 @@ const Profile = () => {
                                     Я в сети</p>
                                 </section>
                             </section>
-                            <section className={prof.posts}>
+                            <section className={page_prof.posts}>
                                 <section className={post_css.all_page}>
                                     <section className={post_css.page}>
                                         <header>
-                                            <section>
+                                            <section className={post_css.post_author_img}>
 
                                             </section>
                                             <section className={post_css.name_and_status}>
@@ -67,8 +70,8 @@ const Profile = () => {
                             </section>
                         </main>
                     </section>
-                    <aside>
-                        <section className={prof.friends}>
+                    <aside className={prof_oth_us.aside}>
+                        <section className={page_prof.friends}>
                             <section>
                                 Друзья 10
                             </section>
@@ -76,26 +79,18 @@ const Profile = () => {
 
                             </section>
                         </section>
-                        <section className={prof.photo}>
+                        <section className={page_prof.photo}>
                             <section>
                                 Фото 6
                             </section>
-                            <section className={prof.group_photo}>
-                                <section>
+                            <section className={page_prof.group_photo}>
+                                <section className={options_prof.photo_section}>
 
                                 </section>
-                                <section>
+                                <section className={options_prof.photo_section}>
 
                                 </section>
                             </section>
-                        </section>
-                        <section>
-                            <button>
-                                <section>
-                                    <img src={create} alt={'create_icon'}/>
-                                    Создать
-                                </section>
-                            </button>
                         </section>
                     </aside>
                 </section>
@@ -105,4 +100,4 @@ const Profile = () => {
     )
 }
 
-export default Profile
+export default Profile_other_user

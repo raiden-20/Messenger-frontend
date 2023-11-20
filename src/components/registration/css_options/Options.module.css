@@ -1,16 +1,16 @@
-input {
+.input {
     padding: 5%;
     border-radius: 10px;
     border: 1px solid #BBC4CE;
-    font-size: 0.9em;
+    font-size: 1.2em;
 
     font-family: 'Inter', sans-serif;
     background-color: #F7F5FF;
 }
 
-header {
+.header {
     text-align: center;
-    font-size: 2em;
+    font-size: 2.8em;
     font-weight: 700;
 }
 

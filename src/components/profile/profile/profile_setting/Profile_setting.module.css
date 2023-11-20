@@ -1,0 +1,168 @@
+.overflay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.2;
+
+    z-index: 0;
+}
+
+.location_edit_window {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.edit_prof_window {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 46%;
+    max-width: 671px;
+    height: 65%;
+    max-height: 652px;
+
+    background-color: rgba(247, 245, 255, 1);
+    box-shadow: 0 0 15px 0 rgba(95, 110, 120, 1);
+    border-radius: 20px;
+
+    z-index: 2;
+}
+
+.edit_form {
+    height: 88%;
+    padding: 6%;
+
+    display: grid;
+    grid-template-rows: 35% 64%;
+    row-gap: 1%;
+}
+
+.form_cont {
+    display: grid;
+    grid-template-rows: 78% 13%;
+    row-gap: 9%;
+}
+
+.bgc_and_ava {
+    display: grid;
+    grid-template-rows: 70% 30%;
+}
+
+.bgc_profile {
+    height: 100%;
+    border-radius: 20px;
+    background-color: rgba(210, 193, 244, 1);
+}
+
+.ava {
+    position: absolute;
+    top: 115px;
+    left: 60px;
+    height: 150%;
+    width: 100%;
+    max-height: 114px;
+    max-width: 114px;
+    background-color: rgba(221, 227, 235, 1);
+
+    border-radius: 50%;
+    border: 3px solid rgba(247, 245, 255, 1)
+}
+
+.edit_form main {
+    display: grid;
+    grid-template-areas:
+            'A  B'
+            'C  D'
+            'E  E';
+    grid-template-columns: 44% 44%;
+    column-gap: 12%;
+}
+.box1 {
+    grid-area: A;
+}
+.box2 {
+    grid-area: B;
+}
+.box3 {
+    grid-area: C;
+}
+.box4 {
+    grid-area: D;
+}
+.textAreaBox {
+    grid-area: E;
+
+    display: grid;
+    grid-template-rows: 20% 75%;
+    row-gap: 5%;
+}
+.textAreaBox textarea {
+    width: 94%;
+
+    padding: 3%;
+
+    border-radius: 20px;
+    border: 1px solid rgba(95, 110, 120, 1);
+    background-color: transparent;
+    resize: none;
+}
+
+.edit_form main section[class*="box"] {
+    display: grid;
+    grid-template-rows: 25% 70%;
+    row-gap: 5%;
+}
+
+.edit_form main input {
+    width: 94%;
+    padding: 0 3% 0 3%;
+    height: 70%;
+
+    border-radius: 10px;
+    border: 1px solid rgba(95, 110, 120, 1);
+    background-color: transparent;
+    font-size: 1em;
+}
+
+.edit_form main fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.edit_form legend {
+    font-weight: 600;
+}
+
+.edit_form footer {
+    display: grid;
+    grid-template-columns: 23% 23%;
+    column-gap: 54%;
+}
+
+.edit_form footer button {
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.cancel {
+    background-color: rgba(210, 193, 244, 1);
+    color: rgba(84, 49, 153, 1);
+}
+
+.save {
+    background-color: rgba(133, 91, 217, 1);
+    color: rgba(246, 246, 254, 1);
+}

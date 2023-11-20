@@ -1,17 +1,17 @@
 import reg_forgot_css from './Registration_forgot_password.module.css'
 import React from "react";
-import '../css_options/Options.css'
-import '../css_options/Page.css'
+import options_reg from '../css_options/Options.module.css'
+import page_reg from '../css_options/Page.module.css'
 
 const Registration_forgot_password = () => {
     return (
-        <div className={'page'}>
-            <section className={'main'}>
-                <section className={'content'}>
+        <div className={page_reg.page}>
+            <section className={page_reg.main}>
+                <section className={page_reg.content + ' ' + reg_forgot_css.content}>
                     <aside>
                     </aside>
-                    <main className={reg_forgot_css.main}>
-                        <header>СимОн</header>
+                    <main>
+                        <header className={options_reg.header}>СимОн</header>
                         <section className={reg_forgot_css.functional}>
                             <section className={reg_forgot_css.text}>
                                 <p><strong>Проблемы со входом?</strong></p>
@@ -19,9 +19,9 @@ const Registration_forgot_password = () => {
                             </section>
                             <form>
                                 <section className={reg_forgot_css.inputs}>
-                                    <input placeholder={'Электронный адрес или никнейм'}/>
+                                    <input className={options_reg.input} placeholder={'Электронный адрес или никнейм'}/>
                                 </section>
-                                <button className={'main_page_button'}>Сбросить пароль</button>
+                                <button className={options_reg.main_page_button}>Сбросить пароль</button>
                             </form>
                         </section>
                     </main>

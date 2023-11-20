@@ -1,35 +1,34 @@
-div {
-    width: 70%;
-    max-height: 100vh;
+.div {
+    width: 75%;
+    max-width: 1066px;
     display: grid;
     justify-self: center;
 }
 
 .page {
     padding-top: 2%;
-    height: 100%;
 
     display: grid;
     grid-template-columns: 15% 83%;
     column-gap: 2%;
 }
 
+
 .main {
-    height: 100%;
     display: grid;
 
     grid-template-columns: 70% 28%;
     column-gap: 2%;
-
 }
 
 .friends {
     display: grid;
     grid-template-rows: 5% 95%;
 
+    background-color: #F7F5FF;
     border-radius: 20px 20px 0 0;
+    border: 1px solid #DDE3EB;
     border-bottom: none;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
 
 }
 
@@ -51,9 +50,14 @@ div {
 }
 
 .friends_searching input {
+    height: 100%;
     border: none;
     background-color: rgba(246, 246, 254, 1);
-    font-size: 0.9em;
+    font-size: 1.1em;
+}
+
+.friends_searching input::-webkit-input-placeholder {
+    color: #DDE3EB;
 }
 
 .friends_list {
@@ -66,7 +70,7 @@ div {
 .one_friend {
     height: 50px;
     display: grid;
-    grid-template-columns: 10% 69% 15%;
+    grid-template-columns: 9% 69% 17%;
     column-gap: 3%;
 }
 
@@ -75,10 +79,27 @@ div {
     background-color: #DDE3EB;
 }
 
+.friend_nickname {
+    color: #8791A1;
+}
+
 .friend_data {
     display: grid;
     grid-template-rows: 70% 25%;
     row-gap: 5%;
+}
+
+.friend_functional {
+    display: grid;
+    width: 90%;
+    grid-template-columns: 48% 48%;
+    column-gap: 5%;
+    justify-self: end;
+    align-self: center;
+}
+
+.friend_functional img {
+    width: 80%;
 }
 
 .nav_friends {
@@ -88,7 +109,8 @@ div {
     height: 8vh;
     padding: 4% 0 4% 0;
     border-radius: 15px;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: #F7F5FF;
+    border: 1px solid #DDE3EB;
 }
 
 .nav_friends section {
@@ -102,6 +124,8 @@ div {
     text-align: left;
     border: none;
     background-color: rgba(246, 246, 254, 1);
+
+    font-size: 1em;
 }
 
 .nav_friends button:focus {
