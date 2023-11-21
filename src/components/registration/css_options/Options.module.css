@@ -5,7 +5,7 @@
     font-size: 1.2em;
 
     font-family: 'Inter', sans-serif;
-    background-color: #F7F5FF;
+    background-color: transparent;
 }
 
 .header {
@@ -14,12 +14,23 @@
     font-weight: 700;
 }
 
+
 .main_page_button {
-    width: 100%;
+    height: 100%;
     border: none;
     border-radius: 10px;
     background-color: #855BD9;
     color: #F7F5FF;
+    font-weight: 700;
+    font-size: 0.9em;
+}
+
+.cancel {
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(210, 193, 244, 1);
+    color: rgba(84, 49, 153, 1);
     font-weight: 700;
     font-size: 0.9em;
 }

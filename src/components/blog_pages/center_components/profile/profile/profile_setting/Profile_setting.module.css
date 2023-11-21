@@ -67,7 +67,7 @@
     transition: 1s;
 }
 .bgc_profile:hover {
-    background-image: url('../../../../assets/images/other/new_photo.svg');
+    background-image: url('../../../../../../assets/images/other/new_photo.svg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -114,7 +114,7 @@
     transition: 1s;
 }
 .ava:hover {
-    background-image: url('../../../../assets/images/other/new_ava.svg');
+    background-image: url('../../../../../../assets/images/other/new_ava.svg');
     background-repeat: no-repeat;
     background-size: cover;
 

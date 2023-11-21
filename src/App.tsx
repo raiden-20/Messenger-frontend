@@ -1,18 +1,13 @@
 import React from 'react';
 import app from './App.module.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Registration_or_autorisation from "./components/registration/registration_or_authorization/Registration_or_autorisation";
-import Registration from "./components/registration/registration/Registration";
-import Dialogs from "./components/dialogs/Dialogs";
-import Profile from "./components/profile/profile/Profile";
-import Friends from "./components/other_users/Friends";
-import Search from "./components/search/Search";
-import Settings from "./components/settings/Settings";
-import Registration_forgot_password
-    from "./components/registration/registration_forgot_password/Registration_forgot_password";
-import Registration_new_password
-    from "./components/registration/registration_new_password/Registration_new_password";
-import Profile_other_user from "./components/profile/profile_other_user/Profile_other_user";
+import Profile from "./components/blog_pages/center_components/profile/profile/Profile";
+import Search from "./components/blog_pages/center_components/search/Search";
+import Settings from "./components/blog_pages/center_components/settings/Settings";
+import Profile_other_user from "./components/blog_pages/center_components/profile/profile_other_user/Profile_other_user";
+import Dialogs from "./components/blog_pages/center_components/dialogs/Dialogs";
+import Friends from "./components/blog_pages/center_components/other_users/Friends";
+import Main_registration from "./components/registration/Main_registration";
 
 function App() {
     return (
@@ -20,10 +15,11 @@ function App() {
             <section className={app.page}>
                 <Router>
                     <Routes>
-                        <Route path='/*' element={<Registration_or_autorisation/>}/>
-                        <Route path='/registration' element={<Registration/>}/>
-                        <Route path='/registration_forgot_password' element={<Registration_forgot_password/>}/>
-                        <Route path='/registration_new_password' element={<Registration_new_password/>}/>
+                        <Route path='/*' element={<Main_registration/>}/>
+                        <Route path='/registration' element={<Main_registration/>}/>
+                        <Route path='/registration_forgot_password' element={<Main_registration/>}/>
+                        <Route path='/registration_new_password' element={<Main_registration/>}/>
+                        <Route path='/registration_restore_account' element={<Main_registration/>}/>
                         <Route path='/dialogs' element={<Dialogs/>}/>
                         <Route path='/profile' element={<Profile/>}/>
                         <Route path='/profile_other_user' element={<Profile_other_user/>}/>

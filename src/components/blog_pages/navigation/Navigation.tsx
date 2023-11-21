@@ -2,13 +2,13 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import nav from './Navigation.module.css';
 
-import simon from '../../assets/images/simon.svg'
-import profile from '../../assets/images/icons_navigation/profile.svg'
-import dialogs from '../../assets/images/icons_navigation/dialogs.svg'
-import friends from '../../assets/images/icons_navigation/friends.svg'
-import search from '../../assets/images/icons_navigation/search.svg'
-import settings from '../../assets/images/icons_navigation/settings.svg'
-import more from '../../assets/images/icons_navigation/more.svg'
+import simon from '../../../assets/images/simon.svg'
+import profile from '../../../assets/images/icons_navigation/profile.svg'
+import dialogs from '../../../assets/images/icons_navigation/dialogs.svg'
+import friends from '../../../assets/images/icons_navigation/friends.svg'
+import search from '../../../assets/images/icons_navigation/search.svg'
+import settings from '../../../assets/images/icons_navigation/settings.svg'
+import more from '../../../assets/images/icons_navigation/more.svg'
 
 const Navigation = () => {
     return (

@@ -1,10 +1,10 @@
 import React from 'react';
 import search_css from './Search.module.css'
-import friends_css from "../other_users/Friends.module.css";
-import Navigation from "../navigation/Navigation";
-import search_svg from "../../assets/images/friends/search.svg";
-import chatting from "../../assets/images/other/chat_with_user.svg";
-import adding_to_friend from "../../assets/images/other/adding_to_friend.svg";
+import friends_css from "../../other_users/Friends.module.css";
+import Navigation from "../../navigation/Navigation";
+import search_svg from "../../../../assets/images/friends/search.svg";
+import chatting from "../../../../assets/images/other/chat_with_user.svg";
+import adding_to_friend from "../../../../assets/images/other/adding_to_friend.svg";
 
 const Search = () => {
     let array = [0]

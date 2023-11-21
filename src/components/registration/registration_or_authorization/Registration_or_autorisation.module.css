@@ -1,11 +1,7 @@
-.content {
-    max-height: 500px;
-}
-
 .functional {
+    height: 35vh;
     display: grid;
-    grid-template-rows: 58% 40%;
-    row-gap: 2%;
+    grid-template-rows: 50% 40%;
 }
 
 .functional form {
@@ -23,11 +19,12 @@
     row-gap: 10%;
 }
 
-main button {
+.functional button {
     width: 100%;
 }
 
 .forgot_button {
+    height: 100%;
     background-color: rgba(246, 246, 254, 1);
     border: none;
 
@@ -40,6 +37,11 @@ main button {
     font-family: 'Inter', sans-serif;
 }
 
+.functional form a {
+    width: 100%;
+    height: 100%;
+}
+
 .other_buttons {
     display: grid;
     grid-template-rows: 20% 15% 40%;
@@ -47,7 +49,16 @@ main button {
     font-size: 0.9em;
 }
 
+.a {
+    display: grid;
+    align-items: end;
+
+    text-decoration: none;
+}
+
 .registration_button {
+
+    height: 80%;
     background-color: #F7F5FF;
     border: 2px solid #855BD9;
     color: #855BD9;

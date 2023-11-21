@@ -1,10 +1,11 @@
-.content {
-    max-height: 583px;
+.root {
+    height: 100%;
+    min-height: 31vh;
+    max-height: 295px;
 }
 
 .form {
     height: 100%;
-
     display: grid;
     grid-template-rows: 75% 15%;
     row-gap: 5%;
@@ -12,13 +13,13 @@
 
 .inputs {
     width: 100%;
+    max-height: 217px;
     display: grid;
     grid-template-rows: 20% 20% 20% 20%;
-    row-gap: 5%;
+    row-gap: 6%;
 }
 
 .main form button {
-    height: 90%;
     border: none;
     color: #F7F5FF;
     background-color: #855BD9;

@@ -1,9 +1,9 @@
 import React from 'react';
-import setting_pencil from '../../assets/images/other/setting_pencil.svg'
-import Navigation from "../navigation/Navigation";
-import search_svg from "../../assets/images/friends/search.svg";
-import chatting from "../../assets/images/other/chat_with_user.svg";
-import adding_to_friend from "../../assets/images/other/adding_to_friend.svg";
+import setting_pencil from '../../../../assets/images/other/setting_pencil.svg'
+import Navigation from "../../navigation/Navigation";
+import search_svg from "../../../../assets/images/friends/search.svg";
+import chatting from "../../../../assets/images/other/chat_with_user.svg";
+import adding_to_friend from "../../../../assets/images/other/adding_to_friend.svg";
 import settings_css from './Settings.module.css'
 
 const Settings = () => {
