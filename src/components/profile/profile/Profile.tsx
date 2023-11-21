@@ -111,7 +111,7 @@ const Profile = () => {
                 </section>
             </section>
 
-            <section className={prof_setting.overflay}></section>
+            {/*<section className={prof_setting.overflay}></section>*/}
 
             {/*<section className={prof_setting.location_edit_window}>*/}
             {/*    <section className={prof_setting.edit_prof_window}>*/}
@@ -173,18 +173,18 @@ const Profile = () => {
             {/*</section>*/}
 
 
-            <section className={prof_setting.location_edit_window}>
-                <section className={new_post_css.new_post_window}>
-                    <textarea placeholder={'Напишите что-нибудь'}></textarea>
-                    <footer>
-                        <button className={new_post_css.cancel}>Отменить</button>
-                        <section>
-                            <img src={add_photo_to_post}/>
-                            <button className={new_post_css.publish}>Опубликовать</button>
-                        </section>
-                    </footer>
-                </section>
-            </section>
+            {/*<section className={prof_setting.location_edit_window}>*/}
+            {/*    <section className={new_post_css.new_post_window}>*/}
+            {/*        <textarea placeholder={'Напишите что-нибудь'}></textarea>*/}
+            {/*        <footer>*/}
+            {/*            <button className={new_post_css.cancel}>Отменить</button>*/}
+            {/*            <section>*/}
+            {/*                <img src={add_photo_to_post}/>*/}
+            {/*                <button className={new_post_css.publish}>Опубликовать</button>*/}
+            {/*            </section>*/}
+            {/*        </footer>*/}
+            {/*    </section>*/}
+            {/*</section>*/}
 
         </div>
     )

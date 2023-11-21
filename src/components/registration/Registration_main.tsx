@@ -1,13 +1,13 @@
+import page_reg from "./css_options/Page.module.css";
+import reg from "./registration_or_authorization/Registration_or_autorisation.module.css";
+import options_reg from "./css_options/Options.module.css";
 import React from "react";
-import reg from './Registration_or_autorisation.module.css'
-import options_reg from './css_options/Options.module.css'
-import page_reg from './css_options/Page.module.css'
 
-const Registration_or_autorisation = () => {
+const Registration_main = () => {
     return (
         <div className={page_reg.page}>
             <section className={page_reg.main}>
-                <section className={page_reg.content + ' '+ reg.content}>
+                <section className={page_reg.content}>
                     <aside>
                     </aside>
                     <main>
@@ -38,4 +38,4 @@ const Registration_or_autorisation = () => {
     )
 }
 
-export default Registration_or_autorisation
+export default Registration_main

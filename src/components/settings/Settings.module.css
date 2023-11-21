@@ -1,0 +1,113 @@
+.div {
+    width: 75%;
+    max-width: 1066px;
+    display: grid;
+    justify-self: center;
+}
+
+.page {
+    padding-top: 2%;
+
+    display: grid;
+    grid-template-columns: 15% 83%;
+    column-gap: 2%;
+}
+
+.main {
+    display: grid;
+
+    grid-template-columns: 70% 28%;
+    column-gap: 2%;
+}
+
+.settings {
+    height: 27%;
+
+    display: grid;
+    grid-template-rows: 75% 20%;
+    row-gap: 5%;
+
+    background-color: #F7F5FF;
+    border-radius: 20px;
+    border: 1px solid #DDE3EB;
+
+}
+
+.settings main {
+    padding: 4% 4% 0 4%;
+    display: grid;
+    grid-template-rows: repeat(3, 33%);
+}
+
+.settings footer {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+
+    border-top: 1px solid rgba(221, 227, 235, 1);
+}
+
+.settings footer button {
+    border: none;
+    background-color: transparent;
+}
+
+.leg_container {
+    display: grid;
+    grid-template-columns: 35% 55%;
+    column-gap: 10%;
+}
+
+.section_and_edit {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+.section_and_edit img {
+    display: grid;
+    justify-self: center;
+}
+.section_and_edit img:focus {
+
+}
+
+
+.section_and_edit select {
+    height: 55%;
+    width: 47%;
+
+    border-radius: 5px;
+    border: 1px solid rgba(95, 110, 120, 1);
+    background-color: transparent;
+
+}
+
+.nav_settings {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    height: 8vh;
+    padding: 4% 0 4% 0;
+    border-radius: 15px;
+    background-color: #F7F5FF;
+    border: 1px solid #DDE3EB;
+}
+
+.nav_settings section {
+    display: grid;
+    align-content: center;
+}
+
+
+.nav_settings section button {
+    padding: 0 8% 0 8%;
+    text-align: left;
+    border: none;
+    background-color: rgba(246, 246, 254, 1);
+
+    font-size: 1em;
+}
+
+.nav_settings button:focus {
+    background-color: #DDE3EB;
+}

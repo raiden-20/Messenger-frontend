@@ -1,7 +1,7 @@
 import React from 'react';
 import app from './App.module.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Registration_or_autorisation from "./components/registration/Registration_or_autorisation";
+import Registration_or_autorisation from "./components/registration/registration_or_authorization/Registration_or_autorisation";
 import Registration from "./components/registration/registration/Registration";
 import Dialogs from "./components/dialogs/Dialogs";
 import Profile from "./components/profile/profile/Profile";
