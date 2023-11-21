@@ -4,10 +4,12 @@ import prof from './Profile.module.css'
 import cat from '../../../assets/images/cat_registration.jpg'
 import create from '../../../assets/images/other/create_post.svg'
 import profile_settings from '../../../assets/images/other/profile_settings.svg'
+import add_photo_to_post from '../../../assets/images/other/add_photo_to_post.svg'
 import post_css from "../post/Post.module.css";
 import page_prof from '../css_options_profile/Page.module.css'
 import options_prof from '../css_options_profile/Options.module.css'
 import prof_setting from './profile_setting/Profile_setting.module.css'
+import new_post_css from './profile_new_post/Profile_new_post.module.css'
 
 const Profile = () => {
 
@@ -111,67 +113,78 @@ const Profile = () => {
 
             <section className={prof_setting.overflay}></section>
 
+            {/*<section className={prof_setting.location_edit_window}>*/}
+            {/*    <section className={prof_setting.edit_prof_window}>*/}
+            {/*        <form className={prof_setting.edit_form}>*/}
+            {/*            <section className={prof_setting.bgc_and_ava}>*/}
+            {/*                <section tabIndex={0} className={prof_setting.bgc_profile}>*/}
+            {/*                    <section className={prof_setting.det_delete_bgc}>*/}
+            {/*                        <section>*/}
+            {/*                            <div>Загрузить фото</div>*/}
+            {/*                        </section>*/}
+            {/*                        <section>*/}
+            {/*                            <div>Удалить</div>*/}
+            {/*                        </section>*/}
+
+            {/*                    </section>*/}
+            {/*                </section>*/}
+            {/*                <section tabIndex={0} className={prof_setting.ava}>*/}
+            {/*                    <section className={prof_setting.det_delete_ava}>*/}
+            {/*                        <section>*/}
+            {/*                            <div>Загрузить фото</div>*/}
+            {/*                        </section>*/}
+            {/*                        <section>*/}
+            {/*                            <div>Удалить</div>*/}
+            {/*                        </section>*/}
+            {/*                    </section>*/}
+            {/*                </section>*/}
+            {/*            </section>*/}
+            {/*            <section className={prof_setting.form_cont}>*/}
+            {/*                <main>*/}
+            {/*                    <section className={prof_setting.box1}>*/}
+            {/*                        <legend>Имя</legend>*/}
+            {/*                        <input/>*/}
+            {/*                    </section>*/}
+            {/*                    <section className={prof_setting.box2}>*/}
+            {/*                        <legend>Фамилия</legend>*/}
+            {/*                        <input/>*/}
+            {/*                    </section>*/}
+            {/*                    <section className={prof_setting.box3}>*/}
+            {/*                        <legend>Никнейм</legend>*/}
+            {/*                        <input/>*/}
+            {/*                    </section>*/}
+            {/*                    <section className={prof_setting.box4}>*/}
+            {/*                        <legend>Дата рождения</legend>*/}
+            {/*                        <input type="date"/>*/}
+            {/*                    </section>*/}
+            {/*                    <section className={prof_setting.textAreaBox}>*/}
+            {/*                        <legend>О себе</legend>*/}
+            {/*                        <textarea></textarea>*/}
+            {/*                    </section>*/}
+            {/*                </main>*/}
+            {/*                <footer>*/}
+            {/*                    <button className={prof_setting.cancel}>Отменить</button>*/}
+            {/*                    <button className={prof_setting.save} type={'submit'}>Сохранить</button>*/}
+            {/*                </footer>*/}
+            {/*            </section>*/}
+
+            {/*        </form>*/}
+            {/*    </section>*/}
+            {/*</section>*/}
+
+
             <section className={prof_setting.location_edit_window}>
-                <section className={prof_setting.edit_prof_window}>
-                    <form className={prof_setting.edit_form}>
-                        <section className={prof_setting.bgc_and_ava}>
-                            <section tabIndex={0} className={prof_setting.bgc_profile}>
-                                <section className={prof_setting.det_delete_bgc}>
-                                    <section>
-                                        <div>Загрузить фото</div>
-                                    </section>
-                                    <section>
-                                        <div>Удалить</div>
-                                    </section>
-
-                                </section>
-                            </section>
-                            <section tabIndex={0} className={prof_setting.ava}>
-                                <section className={prof_setting.det_delete_ava}>
-                                    <section>
-                                        <div>Загрузить фото</div>
-                                    </section>
-                                    <section>
-                                        <div>Удалить</div>
-                                    </section>
-                                </section>
-                            </section>
+                <section className={new_post_css.new_post_window}>
+                    <textarea placeholder={'Напишите что-нибудь'}></textarea>
+                    <footer>
+                        <button className={new_post_css.cancel}>Отменить</button>
+                        <section>
+                            <img src={add_photo_to_post}/>
+                            <button className={new_post_css.publish}>Опубликовать</button>
                         </section>
-                        <section className={prof_setting.form_cont}>
-                            <main>
-                                <section className={prof_setting.box1}>
-                                    <legend>Имя</legend>
-                                    <input/>
-                                </section>
-                                <section className={prof_setting.box2}>
-                                    <legend>Фамилия</legend>
-                                    <input/>
-                                </section>
-                                <section className={prof_setting.box3}>
-                                    <legend>Никнейм</legend>
-                                    <input/>
-                                </section>
-                                <section className={prof_setting.box4}>
-                                    <legend>Дата рождения</legend>
-                                    <input type="date"/>
-                                </section>
-                                <section className={prof_setting.textAreaBox}>
-                                    <legend>О себе</legend>
-                                    <textarea></textarea>
-                                </section>
-                            </main>
-                            <footer>
-                                <button className={prof_setting.cancel}>Отменить</button>
-                                <button className={prof_setting.save} type={'submit'}>Сохранить</button>
-                            </footer>
-                        </section>
-
-                    </form>
+                    </footer>
                 </section>
             </section>
-
-
-
 
         </div>
     )
