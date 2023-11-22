@@ -1,21 +1,22 @@
 .root {
     padding-top: 3%;
+    padding-bottom: 3%;
     height: 231px;
 
     display: grid;
-    grid-template-rows: 10% 58% 15%;
+    grid-template-rows: 10% 50% 15%;
     row-gap: 10%;
 }
 
 .root main {
     display: grid;
-    grid-template-rows: 45% 40%;
+    grid-template-rows: 45% 30%;
     row-gap: 10%;
 }
 
 .ava_fio {
     display: grid;
-    grid-template-columns: 15% 82%;
+    grid-template-columns: 13% 80%;
     column-gap: 3%;
 }
 

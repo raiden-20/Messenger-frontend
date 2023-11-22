@@ -8,7 +8,7 @@ div {
     max-height: 540px;
     position: absolute;
     top: 25%;
-    left: 50%;
+    left: 55%;
 
     display: grid;
     grid-template-rows: 60px auto;
