@@ -1,0 +1,49 @@
+.root {
+    padding: 1% 0 3% 0;
+    height: 14vh;
+    width: 70%;
+
+    display: grid;
+    grid-template-rows: 50% 25%;
+    row-gap: 10%;
+}
+
+.root main {
+    padding: 0;
+    display: grid;
+    grid-template-rows: 45% 45%;
+    row-gap: 10%;
+}
+
+.root main input {
+    height: 90%;
+
+    background-color: transparent;
+    border: 1px solid rgba(179, 189, 199, 1);
+    border-radius: 5px;
+
+    padding: 0 5% 0 5%;
+}
+
+.root section {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    column-gap: 10%;
+}
+
+.root section button {
+    border: none;
+    border-radius: 5px;
+
+    font-weight: 600;
+}
+
+.button_save {
+    background-color: rgba(133, 91, 217, 1);
+    color: rgba(246, 246, 254, 1);
+}
+
+.button_cancel {
+    background-color: rgba(210, 193, 244, 1);
+    color: rgba(84, 49, 153, 1);
+}

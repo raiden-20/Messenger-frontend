@@ -84,13 +84,12 @@
 }
 
 .more:focus ~ .more_settings {
-    visibility: visible;
+    display: grid;
 }
 
 .more_settings {
     height: 100%;
-    display: grid;
-    visibility: hidden;
+    display: none;
     grid-template-rows: 40% 40%;
     row-gap: 20%;
 }

@@ -1,6 +1,10 @@
+.root {
+    height: 405px;
+}
+
 .settings {
     max-width: 615px;
-    height: 27%;
+    height: 405px;
 
     display: grid;
     grid-template-rows: 75% 20%;
@@ -13,9 +17,10 @@
 }
 
 .settings main {
-    padding: 4% 4% 0 4%;
+    height: 100%;
+    padding: 4% 3% 4% 3%;
     display: grid;
-    grid-template-rows: repeat(3, 33%);
+    row-gap: 15%;
 }
 
 .settings footer {
@@ -32,22 +37,22 @@
 }
 
 .leg_container {
+    min-height: 4vh;
     display: grid;
-    grid-template-columns: 35% 55%;
+    grid-template-columns: 30% 60%;
     column-gap: 10%;
 }
 
 .section_and_edit {
     display: grid;
     grid-template-columns: 80% 20%;
+
+    border: rgba(179, 189, 199, 1);
 }
 
 .section_and_edit img {
     display: grid;
     justify-self: center;
-}
-.section_and_edit img:focus {
-
 }
 
 

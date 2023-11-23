@@ -10,6 +10,7 @@ import {useLocation} from "react-router-dom";
 import Registration_new_password from "./registration_new_password/Registration_new_password";
 import Successful_registration from "./successful_registration_restoring/components/Successful_registration";
 import Successful_restoring from "./successful_registration_restoring/components/Successful_restoring";
+import Successful_change_email from "./successful_registration_restoring/components/Successful_change_email";
 
 const Registration_main = () => {
     const location = useLocation()
@@ -23,7 +24,8 @@ const Registration_main = () => {
                 location.pathname === '/registration_new_password' ? <Registration_new_password/> :
                 location.pathname === '/registration_restore_account' ? <Restore_account/> :
                 location.pathname === '/successful_registration' ? <Successful_registration/> :
-                location.pathname === '/successful_restoring' ? <Successful_restoring/> : null}
+                location.pathname === '/successful_restoring' ? <Successful_restoring/> :
+                location.pathname === '/successful_change_email' ? <Successful_change_email/> : null}
             </section>
         </div>
     )
