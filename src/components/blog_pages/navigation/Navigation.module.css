@@ -1,9 +1,9 @@
 .page {
-    height: 28vh;
+    height: 40vh;
     width: 100%;
 
     display: grid;
-    grid-template-rows: 20% 85%;
+    grid-template-rows: 50px auto;
     row-gap: 5%;
 }
 
@@ -23,8 +23,9 @@
 .links{
     height: 100%;
     display: grid;
-    grid-template-rows: 10% 10% 10% 10% 10% 10%;
-    row-gap: 8%;
+    grid-template-rows: 13% 13% 13% 13% 13% 13% 20%;
+
+    align-items: center;
 }
 
 .svg_link {
@@ -49,14 +50,80 @@
     font-size: 1rem;
 }
 
+.more {
+    justify-items: center;
+}
+
 .more_section {
     display: grid;
     grid-template-columns: 70% 25%;
     column-gap: 5%;
 }
 
+.more_section div {
+    width: 65%;
+    display: grid;
+    justify-self: end;
+}
+
 .more_icon {
+    width: 60%;
+    height: 100%;
     display: grid;
     align-self: center;
     justify-self: center;
+
+    background-image: url('../../../assets/images/icons_navigation/more_close.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.more_icon:focus{
+    background-image: url('../../../assets/images/icons_navigation/more_open.svg');
+    background-repeat: no-repeat;
+}
+
+.more:focus ~ .more_settings {
+    visibility: visible;
+}
+
+.more_settings {
+    height: 100%;
+    display: grid;
+    visibility: hidden;
+    grid-template-rows: 40% 40%;
+    row-gap: 20%;
+}
+
+.more_settings section {
+    display: grid;
+    grid-template-columns: 25% 70%;
+    column-gap: 5%;
+    align-content: end;
+}
+
+.button_set_theme {
+    background-color: transparent;
+    border: none;
+
+    display: grid;
+    align-self: end;
+    justify-self: start;
+    padding: 0;
+
+    color: rgba(135, 145, 161, 1);
+    font-size: 1em;
+}
+
+.button_exit {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+
+    font-weight: 600;
+
+    text-align: start;
+    padding: 0;
+
+    font-size: 1em;
 }

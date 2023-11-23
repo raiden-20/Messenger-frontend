@@ -38,12 +38,19 @@ const Navigation = () => {
                     <img className={nav.img} src={settings}/>
                     <NavLink className={nav.button_nav} to={"/settings"}>Настройки</NavLink>
                 </section>
-                <section className={nav.svg_link}>
+                <section tabIndex={0} className={nav.more}>
                     <section></section>
                     <section className={nav.more_section}>
-                        <NavLink className={nav.button_nav} to={"/settings"}>Еще</NavLink>
-                        <img className={nav.more_icon} src={more}/>
+                        <div className={nav.button_nav}>Еще</div>
+                        <section className={nav.more_icon} ></section>
                     </section>
+                </section>
+                <section className={nav.more_settings}>
+                    <section>
+                        <div><strong>Тема:</strong></div>
+                        <button className={nav.button_set_theme}>Светлая</button>
+                    </section>
+                    <button className={nav.button_exit}>Выйти из аккаунта</button>
                 </section>
             </section>
 
