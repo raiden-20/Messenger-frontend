@@ -6,9 +6,10 @@ import Registration from "./registration/Registration";
 import Registration_forgot_password from "./registration_forgot_password/Registration_forgot_password";
 import Restore_account from "./restore_account/Restore_account";
 
-import {BrowserRouter as Router, Route, Routes, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import Registration_new_password from "./registration_new_password/Registration_new_password";
-import {Box} from "@mui/joy";
+import Successful_registration from "./successful_registration_restoring/components/Successful_registration";
+import Successful_restoring from "./successful_registration_restoring/components/Successful_restoring";
 
 const Registration_main = () => {
     const location = useLocation()
@@ -20,7 +21,9 @@ const Registration_main = () => {
                 location.pathname === '/registration' ? <Registration/> :
                 location.pathname === '/registration_forgot_password' ? <Registration_forgot_password/> :
                 location.pathname === '/registration_new_password' ? <Registration_new_password/> :
-                location.pathname === '/registration_restore_account' ? <Restore_account/> : null}
+                location.pathname === '/registration_restore_account' ? <Restore_account/> :
+                location.pathname === '/successful_registration' ? <Successful_registration/> :
+                location.pathname === '/successful_restoring' ? <Successful_restoring/> : null}
             </section>
         </div>
     )

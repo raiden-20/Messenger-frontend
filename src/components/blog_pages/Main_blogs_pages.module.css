@@ -1,0 +1,14 @@
+.div {
+    width: 75%;
+    max-width: 1066px;
+    display: grid;
+    justify-self: center;
+}
+
+.page {
+    padding-top: 2%;
+
+    display: grid;
+    grid-template-columns: 15% 83%;
+    column-gap: 2%;
+}

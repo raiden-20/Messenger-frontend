@@ -1,21 +1,7 @@
-.bio_row {
-    display: grid;
-    grid-template-columns: 18% 60% 16%;
-    column-gap: 3%;
-}
-
 .profile_icons {
     display: grid;
     width: 100%;
     grid-template-columns: 48% 48%;
     column-gap: 5%;
     justify-self: end;
-}
-
-.aside {
-    height: 35%;
-
-    display: grid;
-    grid-template-rows: 40% 54%;
-    row-gap: 5%;
 }

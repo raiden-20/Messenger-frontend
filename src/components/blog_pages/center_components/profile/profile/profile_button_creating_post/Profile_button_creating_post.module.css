@@ -1,0 +1,25 @@
+.button section {
+    display: grid;
+    grid-template-columns: 40% 55%;
+    column-gap: 3%;
+    justify-items: left;
+    align-items: center;
+}
+
+.button {
+    height: 100%;
+    width: 100%;
+
+    background-color: #855BD9;
+    color: #F6F6FE;
+    border: none;
+    border-radius: 20px;
+
+    font-size: 1.2em;
+}
+
+.button img {
+    display: grid;
+    justify-self: end;
+    width: 30%;
+}

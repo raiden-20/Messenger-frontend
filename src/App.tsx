@@ -1,13 +1,10 @@
 import React from 'react';
-import app from './App.module.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Profile from "./components/blog_pages/center_components/profile/profile/Profile";
-import Search from "./components/blog_pages/center_components/search/Search";
-import Settings from "./components/blog_pages/center_components/settings/Settings";
-import Profile_other_user from "./components/blog_pages/center_components/profile/profile_other_user/Profile_other_user";
-import Dialogs from "./components/blog_pages/center_components/dialogs/Dialogs";
-import Friends from "./components/blog_pages/center_components/other_users/Friends";
+
 import Main_registration from "./components/registration/Main_registration";
+import Main_blog_pages from "./components/blog_pages/Main_blog_pages";
+
+import app from './App.module.css';
 
 function App() {
     return (
@@ -20,12 +17,14 @@ function App() {
                         <Route path='/registration_forgot_password' element={<Main_registration/>}/>
                         <Route path='/registration_new_password' element={<Main_registration/>}/>
                         <Route path='/registration_restore_account' element={<Main_registration/>}/>
-                        <Route path='/dialogs' element={<Dialogs/>}/>
-                        <Route path='/profile' element={<Profile/>}/>
-                        <Route path='/profile_other_user' element={<Profile_other_user/>}/>
-                        <Route path='/friends' element={<Friends/>}/>
-                        <Route path='/search' element={<Search/>}/>
-                        <Route path='/settings' element={<Settings/>}/>
+                        <Route path='/successful_registration' element={<Main_registration/>}/>
+                        <Route path='/successful_restoring' element={<Main_registration/>}/>
+                        <Route path='/dialogs' element={<Main_blog_pages/>}/>
+                        <Route path='/profile' element={<Main_blog_pages/>}/>
+                        <Route path='/profile/:id' element={<Main_blog_pages/>}/>
+                        <Route path='/friends' element={<Main_blog_pages/>}/>
+                        <Route path='/search' element={<Main_blog_pages/>}/>
+                        <Route path='/settings' element={<Main_blog_pages/>}/>
                     </Routes>
                 </Router>
             </section>

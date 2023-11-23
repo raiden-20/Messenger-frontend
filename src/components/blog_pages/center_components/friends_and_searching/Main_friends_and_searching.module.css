@@ -1,27 +1,5 @@
-.div {
-    width: 75%;
-    max-width: 1066px;
-    display: grid;
-    justify-self: center;
-}
-
-.page {
-    padding-top: 2%;
-
-    display: grid;
-    grid-template-columns: 15% 83%;
-    column-gap: 2%;
-}
-
-
-.main {
-    display: grid;
-
-    grid-template-columns: 70% 28%;
-    column-gap: 2%;
-}
-
 .friends {
+    max-width: 615px;
     display: grid;
     grid-template-rows: 5% 95%;
 

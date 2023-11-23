@@ -1,0 +1,40 @@
+.aside {
+    height: 45%;
+
+    display: grid;
+    grid-template-rows: 30% 42% 10%;
+    row-gap: 5%;
+}
+
+.friends {
+    padding: 8%;
+    border: 1px solid #DDE3EB;
+    background-color: #F7F5FF;
+
+    border-radius: 15px;
+}
+
+.photo {
+    padding: 8%;
+
+    display: grid;
+    grid-template-rows: 15% 75%;
+    row-gap: 10%;
+
+    background-color: #F7F5FF;
+    border: 1px solid #DDE3EB;
+    border-radius: 15px;
+}
+
+.group_photo {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    column-gap: 2%;
+}
+
+.photo_section {
+    width: 100%;
+
+    border-radius: 15px;
+    background-color: #D9D9D9;
+}

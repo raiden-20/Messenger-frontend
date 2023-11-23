@@ -1,0 +1,26 @@
+.profile_icons {
+    display: grid;
+    justify-self: end;
+}
+
+.bio_row {
+    display: grid;
+    grid-template-columns: 18% 60% 15%;
+    column-gap: 3%;
+}
+
+.aside {
+    height: 45%;
+
+    display: grid;
+    grid-template-rows: 30% 42% 10%;
+    row-gap: 5%;
+}
+
+.bgc_profile {
+
+}
+
+.ava {
+
+}
