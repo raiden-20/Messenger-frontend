@@ -9,15 +9,20 @@ import {
 } from "../redux/reducers/authReducer";
 import {Dispatch} from "redux";
 import {StateAuthReg} from "../redux/interfaces/auth/authRegistration";
+import {StateProfileNameSurname} from "../redux/interfaces/profile/profileAddNameSurname";
+import {setInputName, setInputSurname, setName, setSurname} from "../redux/reducers/profileReducer";
 
 
 
-const mapStateToProps = (state : StateAuthReg) => {
+const mapStateToProps = (state : StateAuthReg & StateProfileNameSurname) => {
     return {
         input_email: state.auth.input_email,
         input_nickname: state.auth.input_nickname,
         input_password: state.auth.input_password,
         input_confirmPassword: state.auth.input_confirmPassword,
+
+        input_name: state.profile.input_name,
+        input_surname: state.profile.input_surname
     }
 
 }
@@ -47,6 +52,19 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
         },
         setInputConfirmPassword : (input_confirmPassword : string) => {
             dispatch(setInputConfirmPassword(input_confirmPassword))
+        },
+
+        setName(name: string) {
+            dispatch(setName(name))
+        },
+        setSurname(surname: string) {
+            dispatch(setSurname(surname))
+        },
+        setInputName(name: string) {
+            dispatch(setInputName(name))
+        },
+        setInputSurname(surname: string) {
+            dispatch(setInputSurname(surname))
         }
     }
 }

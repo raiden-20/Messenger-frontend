@@ -6,11 +6,14 @@ import MainBlogPages from "./components/blog_pages/MainBlogPages";
 
 import app from './App.module.css';
 import {
+    ADD_NAME_SURNAME,
     AUTHORIZATION,
     REGISTRATION,
     REGISTRATION_FORGOT_PASSWORD,
     REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL
 } from "./components/paths/authPath";
+import RegistrationAddNameSurname
+    from "./components/registration/registration_set_name_surname/RegistrationAddNameSurname";
 
 const App = () => {
     return (
@@ -24,6 +27,7 @@ const App = () => {
                         <Route path={REGISTRATION_RESTORE_ACCOUNT} element={<MainRegistrationContainer/>}/>
                         <Route path={SUCCESSFUL_ACTIVATION} element={<MainRegistrationContainer/>}/>
                         <Route path={SUCCESSFUL_CHANGE_EMAIL} element={<MainRegistrationContainer/>}/>
+                        <Route path={ADD_NAME_SURNAME} element={<MainRegistrationContainer/>}/>
                         <Route path='/dialogs' element={<MainBlogPages/>}/>
                         <Route path='/profile' element={<MainBlogPages/>}/>
                         <Route path='/profile/:id' element={<MainBlogPages/>}/>

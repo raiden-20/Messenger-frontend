@@ -11,9 +11,9 @@ import {
     REGISTRATION_RESTORE_ACCOUNT
 } from "../../paths/authPath";
 
-let path = AUTHORIZATION
-
 class RegistrationOrAuthorisation extends Component<PropsAuthAuth, StateAuthAuth>{
+
+    path = AUTHORIZATION
 
     setInputEmail = (event : React.ChangeEvent<HTMLInputElement>) => {
         this.props.setInputEmail(event.target.value)
@@ -38,15 +38,15 @@ class RegistrationOrAuthorisation extends Component<PropsAuthAuth, StateAuthAuth
                     this.props.setNickname(this.props.input_nickname)
                     this.props.setPassword(this.props.input_password)
 
-                    path = PROFILE
+                    this.path = PROFILE
                     break
                 }
                 case 401 : {
-                    path =  AUTHORIZATION
+                    this.path =  AUTHORIZATION
                     break
                 }
                 case 403 : {
-                    path = REGISTRATION_RESTORE_ACCOUNT
+                    this.path = REGISTRATION_RESTORE_ACCOUNT
                     break
                 }
                 default:
@@ -65,7 +65,7 @@ class RegistrationOrAuthorisation extends Component<PropsAuthAuth, StateAuthAuth
                         <input type={'text'} className={options_reg.input} onChange={this.setInputPassword}
                                value={this.props.input_password} placeholder={'Пароль'}/>
                     </section>
-                    <NavLink to={path}>
+                    <NavLink to={this.path}>
                         <button className={options_reg.main_page_button} onClick={this.authorise} type={'submit'}>Войти</button>
                     </NavLink>
                 </form>

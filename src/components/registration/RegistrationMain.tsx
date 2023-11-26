@@ -12,13 +12,16 @@ import SuccessfulRegistration from "./registration/options/successful_registrati
 import SuccessfulChangeEmail from "./successful_registration_restoring/components/SuccessfulChangeEmail";
 import {PropsAuthReg} from "../../redux/interfaces/auth/authRegistration";
 import {
+    ADD_NAME_SURNAME,
     AUTHORIZATION,
     REGISTRATION,
     REGISTRATION_FORGOT_PASSWORD,
     REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL
 } from "../paths/authPath";
+import RegistrationAddNameSurname from "./registration_set_name_surname/RegistrationAddNameSurname";
+import {PropsProfileNameSurname} from "../../redux/interfaces/profile/profileAddNameSurname";
 
-const Registration_main = (props : PropsAuthReg) => {
+const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
     const location = useLocation()
     return (
         <div>
@@ -49,7 +52,13 @@ const Registration_main = (props : PropsAuthReg) => {
                                                                                                     setInputEmail={props.setInputEmail}/> :
                 location.pathname === REGISTRATION_RESTORE_ACCOUNT ? <RestoreAccount/> :
                 location.pathname === SUCCESSFUL_ACTIVATION ? <SuccessfulRegistration/> :
-                location.pathname === SUCCESSFUL_CHANGE_EMAIL ? <SuccessfulChangeEmail/> : null}
+                location.pathname === SUCCESSFUL_CHANGE_EMAIL ? <SuccessfulChangeEmail/> :
+                location.pathname === ADD_NAME_SURNAME ? <RegistrationAddNameSurname input_name={props.input_name}
+                                                                                     input_surname={props.input_surname}
+                                                                                     setInputName={props.setInputName}
+                                                                                     setInputSurname={props.setInputSurname}
+                                                                                     setName={props.setName}
+                                                                                     setSurname={props.setSurname}/>: null}
             </section>
         </div>
     )

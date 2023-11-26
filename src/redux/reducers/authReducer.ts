@@ -12,14 +12,14 @@ const SET_INPUT_PASSWORD_DATA = 'SET_INPUT_PASSWORD_DATA'
 const SET_INPUT_CONFIRM_PASSWORD_DATA = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
 
 const initialState = {
-    email: "",
-    nickname: "",
-    password: "",
+    email: null,
+    nickname: null,
+    password: null,
 
-    input_email: "",
-    input_nickname: "",
-    input_password: "",
-    input_confirmPassword : "",
+    input_email: null,
+    input_nickname: null,
+    input_password: null,
+    input_confirmPassword : null,
 }
 
 const authReducer = (state = initialState, action : any) => {

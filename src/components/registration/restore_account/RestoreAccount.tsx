@@ -35,9 +35,9 @@ class RestoreAccount extends Component {
                 </main>
 
                 <footer>
-                    <NavLink to={'/'} className={option_css.main_page_button + ' ' + restore_css.button_restore} onClick={this.restore}>
+                    <button className={option_css.main_page_button + ' ' + restore_css.button_restore} onClick={this.restore}>
                         Восстановить
-                    </NavLink>
+                    </button>
                     <NavLink to={'/'} className={option_css.cancel + ' ' + restore_css.button_cancel}>
                         Отменить
                     </NavLink>
