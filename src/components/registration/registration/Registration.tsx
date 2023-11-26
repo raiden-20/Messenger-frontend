@@ -2,6 +2,11 @@ import React, {Component} from "react";
 import reg_curr from './Registration.module.css'
 import options_reg from '../css_options/Options.module.css'
 import {PropsAuthReg, StateAuthReg} from "../../../redux/interfaces/auth/authRegistration";
+import {REGISTRATION} from "../../paths/authPath";
+import {NavLink} from "react-router-dom";
+import {PROFILE} from "../../paths/profilePath";
+
+let path = REGISTRATION
 
 class Registration extends Component<PropsAuthReg, StateAuthReg> {
 
@@ -26,18 +31,26 @@ class Registration extends Component<PropsAuthReg, StateAuthReg> {
             this.props.input_password != null && this.props.input_confirmPassword != null) {
             if (this.props.input_password === this.props.input_confirmPassword) {
                 //post
-                let code = 0
+                let code = 200
                 switch (code) {
-                    case 0 :
+                    case 200 : {
                         this.props.setEmail(this.props.input_email)
                         this.props.setNickname(this.props.input_nickname)
                         this.props.setPassword(this.props.input_password)
+
+                        path = PROFILE
+                        break
+                    }
+                    case 401 : {
+                        path = REGISTRATION
+                        break
+                    }
+                    default:
                 }
             }
             //else
         }
     }
-
     render() {
         return (
             <section>
@@ -53,9 +66,9 @@ class Registration extends Component<PropsAuthReg, StateAuthReg> {
                             <input type={'text'} className={options_reg.input} onChange={this.setInputConfirmPassword}
                                    value={this.props.input_confirmPassword} placeholder={'Подтвердите пароль'}/>
                         </section>
-                        <button type={'submit'} className={options_reg.main_page_button} onClick={this.register}>
+                        <NavLink to={path} type={'submit'} className={options_reg.main_page_button + ' ' + reg_curr.navlink} onClick={this.register} >
                             Зарегистрироваться
-                        </button>
+                        </NavLink>
                     </form>
                 </section>
             </section>

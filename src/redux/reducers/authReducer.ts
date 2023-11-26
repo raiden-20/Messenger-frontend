@@ -5,11 +5,11 @@ const SET_NICKNAME_DATA = 'SET_NICKNAME_DATA'
 const SET_PASSWORD_DATA = 'SET_PASSWORD_DATA'
 const SET_CONFIRM_PASSWORD_DATA = 'SET_CONFIRM_PASSWORD_DATA'
 
+
 const SET_INPUT_EMAIL_DATA = 'SET_INPUT_EMAIL_DATA'
 const SET_INPUT_NICKNAME_DATA = 'SET_INPUT_NICKNAME_DATA'
 const SET_INPUT_PASSWORD_DATA = 'SET_INPUT_PASSWORD_DATA'
 const SET_INPUT_CONFIRM_PASSWORD_DATA = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
-
 
 const initialState = {
     email: "",
@@ -19,7 +19,7 @@ const initialState = {
     input_email: "",
     input_nickname: "",
     input_password: "",
-    input_confirmPassword : ""
+    input_confirmPassword : "",
 }
 
 const authReducer = (state = initialState, action : any) => {

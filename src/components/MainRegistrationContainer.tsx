@@ -5,7 +5,7 @@ import {
     setInputEmail,
     setInputNickname, setInputPassword,
     setNickname,
-    setPassword,
+    setPassword
 } from "../redux/reducers/authReducer";
 import {Dispatch} from "redux";
 import {StateAuthReg} from "../redux/interfaces/auth/authRegistration";
@@ -17,7 +17,7 @@ const mapStateToProps = (state : StateAuthReg) => {
         input_email: state.auth.input_email,
         input_nickname: state.auth.input_nickname,
         input_password: state.auth.input_password,
-        input_confirmPassword: state.auth.input_confirmPassword
+        input_confirmPassword: state.auth.input_confirmPassword,
     }
 
 }

@@ -26,3 +26,11 @@
     font-weight: 700;
     font-size: 0.9em;
 }
+
+.navlink {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    text-decoration: none;
+}

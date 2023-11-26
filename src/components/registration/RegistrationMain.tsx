@@ -7,11 +7,16 @@ import page_reg from "./css_options/Page.module.css";
 import options_reg from './css_options/Options.module.css';
 import RegistrationOrAuthorisation from "./registration_or_authorization/RegistrationOrAuthorisation";
 import RegistrationForgotPassword from "./registration_forgot_password/RegistrationForgotPassword";
-import RegistrationNewPassword from "./registration_new_password/RegistrationNewPassword";
 import RestoreAccount from "./restore_account/RestoreAccount";
 import SuccessfulRegistration from "./registration/options/successful_registration/SuccessfulRegistration";
 import SuccessfulChangeEmail from "./successful_registration_restoring/components/SuccessfulChangeEmail";
 import {PropsAuthReg} from "../../redux/interfaces/auth/authRegistration";
+import {
+    AUTHORIZATION,
+    REGISTRATION,
+    REGISTRATION_FORGOT_PASSWORD,
+    REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL
+} from "../paths/authPath";
 
 const Registration_main = (props : PropsAuthReg) => {
     const location = useLocation()
@@ -19,7 +24,7 @@ const Registration_main = (props : PropsAuthReg) => {
         <div>
             <section className={page_reg.content}>
                 <header className={options_reg.header}>СимОн</header>
-                {location.pathname === '/' ? <RegistrationOrAuthorisation input_email={props.input_email}
+                {location.pathname === AUTHORIZATION ? <RegistrationOrAuthorisation input_email={props.input_email}
                                                                           input_nickname={props.input_nickname}
                                                                           input_password={props.input_password}
                                                                           setEmail={props.setEmail}
@@ -28,7 +33,7 @@ const Registration_main = (props : PropsAuthReg) => {
                                                                           setInputEmail={props.setInputEmail}
                                                                           setInputNickname={props.setInputNickname}
                                                                           setInputPassword={props.setInputPassword}/> :
-                location.pathname === '/registration' ? <Registration input_email={props.input_email}
+                location.pathname === REGISTRATION ? <Registration input_email={props.input_email}
                                                                       input_nickname={props.input_nickname}
                                                                       input_password={props.input_password}
                                                                       input_confirmPassword={props.input_confirmPassword}
@@ -40,11 +45,11 @@ const Registration_main = (props : PropsAuthReg) => {
                                                                       setInputNickname={props.setInputNickname}
                                                                       setInputPassword={props.setInputPassword}
                                                                       setInputConfirmPassword={props.setInputConfirmPassword}/> :
-                location.pathname === '/registration_forgot_password' ? <RegistrationForgotPassword input_email={props.input_email}
+                location.pathname === REGISTRATION_FORGOT_PASSWORD ? <RegistrationForgotPassword input_email={props.input_email}
                                                                                                     setInputEmail={props.setInputEmail}/> :
-                location.pathname === '/registration_restore_account' ? <RestoreAccount/> :
-                location.pathname === '/successful_activation' ? <SuccessfulRegistration/> :
-                location.pathname === '/successful_change_email' ? <SuccessfulChangeEmail/> : null}
+                location.pathname === REGISTRATION_RESTORE_ACCOUNT ? <RestoreAccount/> :
+                location.pathname === SUCCESSFUL_ACTIVATION ? <SuccessfulRegistration/> :
+                location.pathname === SUCCESSFUL_CHANGE_EMAIL ? <SuccessfulChangeEmail/> : null}
             </section>
         </div>
     )

@@ -5,6 +5,12 @@ import MainRegistrationContainer from "./components/MainRegistrationContainer";
 import MainBlogPages from "./components/blog_pages/MainBlogPages";
 
 import app from './App.module.css';
+import {
+    AUTHORIZATION,
+    REGISTRATION,
+    REGISTRATION_FORGOT_PASSWORD,
+    REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL
+} from "./components/paths/authPath";
 
 const App = () => {
     return (
@@ -12,13 +18,12 @@ const App = () => {
             <section className={app.page}>
                 <Router>
                     <Routes>
-                        <Route path='/*' element={<MainRegistrationContainer/>}/>
-                        <Route path='/registration' element={<MainRegistrationContainer/>}/>
-                        <Route path='/registration_forgot_password' element={<MainRegistrationContainer/>}/>
-                        <Route path='/registration_new_password' element={<MainRegistrationContainer/>}/>
-                        <Route path='/registration_restore_account' element={<MainRegistrationContainer/>}/>
-                        <Route path='/successful_registration' element={<MainRegistrationContainer/>}/>
-                        <Route path='/successful_restoring' element={<MainRegistrationContainer/>}/>
+                        <Route path={AUTHORIZATION} element={<MainRegistrationContainer/>}/>
+                        <Route path={REGISTRATION} element={<MainRegistrationContainer/>}/>
+                        <Route path={REGISTRATION_FORGOT_PASSWORD} element={<MainRegistrationContainer/>}/>
+                        <Route path={REGISTRATION_RESTORE_ACCOUNT} element={<MainRegistrationContainer/>}/>
+                        <Route path={SUCCESSFUL_ACTIVATION} element={<MainRegistrationContainer/>}/>
+                        <Route path={SUCCESSFUL_CHANGE_EMAIL} element={<MainRegistrationContainer/>}/>
                         <Route path='/dialogs' element={<MainBlogPages/>}/>
                         <Route path='/profile' element={<MainBlogPages/>}/>
                         <Route path='/profile/:id' element={<MainBlogPages/>}/>

@@ -22,4 +22,5 @@ export interface PropsAuthReg{
     setNickname(nickname : string): void;
     setPassword(password : string): void;
     setConfirmPassword(confirmPassword : string): void;
+
 }
