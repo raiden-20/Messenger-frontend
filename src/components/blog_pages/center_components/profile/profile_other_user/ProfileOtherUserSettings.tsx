@@ -1,11 +1,11 @@
 import React from 'react';
 
-import prof_oth_us from './Profile_other_user.module.css'
+import prof_oth_us from './ProfileOtherUser.module.css'
 
 import chatting from '../../../../../assets/images/other/chat_with_user.svg'
 import adding_to_friend from '../../../../../assets/images/other/adding_to_friend.svg'
 
-const Profile_other_user_settings = () => {
+const ProfileOtherUserSettings = () => {
     return (
         <section className={prof_oth_us.profile_icons}>
             <img src={chatting} alt={'chat'}/>
@@ -14,4 +14,4 @@ const Profile_other_user_settings = () => {
     )
 }
 
-export default Profile_other_user_settings
+export default ProfileOtherUserSettings

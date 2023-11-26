@@ -1,10 +1,10 @@
 import React from "react";
 
-import prof_butt_creat_post_css from './Profile_button_creating_post.module.css'
+import prof_butt_creat_post_css from './ProfileButtonCreatingPost.module.css'
 
 import create from "../../../../../../assets/images/other/create_post.svg";
 
-const Profile_button_creating_post = () => {
+const ProfileButtonCreatingPost = () => {
     return (
         <button className={prof_butt_creat_post_css.button}>
             <section>
@@ -15,4 +15,4 @@ const Profile_button_creating_post = () => {
     )
 }
 
-export default Profile_button_creating_post
+export default ProfileButtonCreatingPost

@@ -3,13 +3,13 @@ import React from 'react';
 import settings_css from './Settings.module.css'
 
 import setting_pencil from '../../../../assets/images/other/setting_pencil.svg'
-import Change_email from "./components/Change_email";
+import ChangeEmail from "./components/ChangeEmail";
 import Change_password_Email from "./components/Change_password_Email";
 
 let button_changed_email = false
 let button_changed_password = false
 
-const Main_setting = () => {
+const MainSetting = () => {
 
     return (
         <section className={settings_css.root}>
@@ -17,7 +17,7 @@ const Main_setting = () => {
                 <main>
                     <section className={settings_css.leg_container}>
                         <legend> <strong>Электронный адрес</strong> </legend>
-                        <Change_email/>
+                        <ChangeEmail/>
                         {/*<section>*/}
                         {/*    {*/}
                         {/*        !button_changed_email*/}
@@ -74,4 +74,4 @@ const Main_setting = () => {
     )
 }
 
-export default Main_setting
+export default MainSetting

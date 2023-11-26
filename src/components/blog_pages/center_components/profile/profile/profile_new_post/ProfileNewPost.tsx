@@ -1,9 +1,9 @@
-import new_post_css from './Profile_new_post.module.css'
-import prof_setting from '../profile_setting/Profile_setting.module.css'
+import new_post_css from './ProfileNewPost.module.css'
+import prof_setting from '../profile_setting/ProfileSetting.module.css'
 
 import add_photo_to_post from '../../../../../../assets/images/other/add_photo_to_post.svg'
 
-const Profile_new_post = () => {
+const ProfileNewPost = () => {
     return (
         <div>
             <section className={prof_setting.overflay}></section>
@@ -23,4 +23,4 @@ const Profile_new_post = () => {
 
     )
 }
-export default Profile_new_post
+export default ProfileNewPost

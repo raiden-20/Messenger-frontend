@@ -1,8 +1,8 @@
 import React from "react";
-import change_settings_elements_css from './Change_settings_elements.module.css'
+import change_settings_elements_css from './ChangeSettingsElements.module.css'
 
 
-const Change_email = () => {
+const ChangeEmail = () => {
     return (
         <form className={change_settings_elements_css.root}>
             <main>
@@ -17,4 +17,4 @@ const Change_email = () => {
     )
 }
 
-export default Change_email
+export default ChangeEmail

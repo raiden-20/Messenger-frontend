@@ -1,10 +1,10 @@
 import React from 'react';
 
-import profile_css from './Profile_user.module.css'
+import profile_css from './ProfileUser.module.css'
 
 import profile_settings from '../../../../../assets/images/other/profile_settings.svg'
 
-const Profile_user_settings = () => {
+const ProfileUserSettings = () => {
 
     return (
         <section className={profile_css.profile_icons}>
@@ -13,4 +13,4 @@ const Profile_user_settings = () => {
     )
 }
 
-export default Profile_user_settings
+export default ProfileUserSettings

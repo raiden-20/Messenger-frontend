@@ -3,11 +3,11 @@ import {useLocation} from "react-router-dom";
 
 import Navigation from './navigation/Navigation';
 import Dialogs from "./dialogs/Dialogs";
-import Main_center_components from "./center_components/Main_center_components";
+import MainCenterComponents from "./center_components/MainCenterComponents";
 
-import main_css from './Main_blogs_pages.module.css'
+import main_css from './MainBlogsPages.module.css'
 
-const Main_blog_pages = () => {
+const MainBlogPages = () => {
 
     const location = useLocation()
 
@@ -20,10 +20,10 @@ const Main_blog_pages = () => {
                 location.pathname === '/profile/:id' ||
                 location.pathname === '/friends' ||
                 location.pathname === '/search' ||
-                location.pathname === '/settings' ? <Main_center_components/> : null}
+                location.pathname === '/settings' ? <MainCenterComponents/> : null}
             </section>
         </div>
     )
 }
 
-export default Main_blog_pages
+export default MainBlogPages

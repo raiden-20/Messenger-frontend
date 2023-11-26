@@ -1,11 +1,11 @@
 import React from "react";
 import {useLocation} from "react-router-dom";
 
-import Profile_button_creating_post from "./profile/profile_button_creating_post/Profile_button_creating_post";
+import ProfileButtonCreatingPost from "./profile/profile_button_creating_post/ProfileButtonCreatingPost";
 
-import main_aside_css from "./main_profile_css/Main_profile_aside.module.css";
+import main_aside_css from "./main_profile_css/MainProfileAside.module.css";
 
-const Main_profile_Aside = () => {
+const MainProfileAside = () => {
 
     const location = useLocation()
 
@@ -33,10 +33,10 @@ const Main_profile_Aside = () => {
                 </section>
             </section>
             <section>
-                {location.pathname === '/profile' ? <Profile_button_creating_post/> : null}
+                {location.pathname === '/profile' ? <ProfileButtonCreatingPost/> : null}
             </section>
         </aside>
     )
 }
 
-export default Main_profile_Aside
+export default MainProfileAside

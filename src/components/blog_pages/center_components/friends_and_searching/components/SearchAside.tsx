@@ -1,8 +1,8 @@
 import React from 'react';
 
-import main_css from "../Main_friends_and_searching.module.css";
+import main_css from "../MainFriendsAndSearching.module.css";
 
-const Search_aside = () => {
+const SearchAside = () => {
     return (
         <aside className={main_css.nav_friends}>
             <section>
@@ -15,4 +15,4 @@ const Search_aside = () => {
     )
 }
 
-export default Search_aside
+export default SearchAside

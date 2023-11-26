@@ -1,6 +1,6 @@
 import React from "react";
 
-import main_css from "./Main_friends_and_searching.module.css";
+import main_css from "./MainFriendsAndSearching.module.css";
 
 import search_svg from "../../../../assets/images/friends/search.svg";
 import chatting from "../../../../assets/images/other/chat_with_user.svg";
@@ -8,7 +8,7 @@ import adding_to_friend from "../../../../assets/images/other/adding_to_friend.s
 
 let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
-const Main_friends_and_searching = () => {
+const MainFriendsAndSearching = () => {
     return (
         <section className={main_css.friends}>
             <section className={main_css.friends_searching}>
@@ -44,4 +44,4 @@ const Main_friends_and_searching = () => {
     )
 }
 
-export default Main_friends_and_searching
+export default MainFriendsAndSearching

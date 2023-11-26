@@ -1,6 +1,6 @@
-import prof_setting from './Profile_setting.module.css'
+import prof_setting from './ProfileSetting.module.css'
 
-const Profile_settings = () => {
+const ProfileSettings = () => {
     return (
         <div>
             <section className={prof_setting.overflay}></section>
@@ -67,4 +67,4 @@ const Profile_settings = () => {
 
     )
 }
-export default Profile_settings
+export default ProfileSettings

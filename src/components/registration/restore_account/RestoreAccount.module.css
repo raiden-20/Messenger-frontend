@@ -35,8 +35,19 @@
 .button_restore {
     width: 100%;
     border-radius: 5px;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    text-decoration: none;
 }
 .button_cancel {
     width: 42%;
     border-radius: 5px;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    text-decoration: none;
 }
