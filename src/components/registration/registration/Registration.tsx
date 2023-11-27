@@ -50,6 +50,10 @@ class Registration extends Component<PropsAuthReg, StateAuthReg> {
                     default:
                 }
             }
+            this.props.setInputEmail(null)
+            this.props.setInputNickname(null)
+            this.props.setInputPassword(null)
+            this.props.setInputConfirmPassword(null)
             //else
         }
     }

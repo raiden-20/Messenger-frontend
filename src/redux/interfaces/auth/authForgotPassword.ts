@@ -6,5 +6,5 @@ export interface StateAuthForgotPassword {
 
 export interface PropsAuthForgotPassword{
     input_email: string;
-    setInputEmail(input_email: string): void;
+    setInputEmail(input_email: string | null): void;
 }

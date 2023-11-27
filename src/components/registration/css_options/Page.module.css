@@ -5,6 +5,7 @@
 
 .content {
     width: 400px;
+    max-width: 450px;
     max-height: 540px;
     position: absolute;
     top: 25%;
@@ -14,7 +15,7 @@
     grid-template-rows: 60px auto;
     row-gap: 5%;
 
-    padding: 3% 5% 3% 5%;
+    padding: 3% 4% 3% 4%;
 
     border-radius: 20px;
     border: 1px solid #D5E0E5;

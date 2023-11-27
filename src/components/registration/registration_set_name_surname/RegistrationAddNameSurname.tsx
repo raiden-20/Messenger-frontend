@@ -37,6 +37,8 @@ class RegistrationAddNameSurname extends Component<PropsProfileNameSurname, Stat
                 }
                 default:
             }
+            this.props.setInputName(null)
+            this.props.setInputSurname(null)
         }
     }
     render() {

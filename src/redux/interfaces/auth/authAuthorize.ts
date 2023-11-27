@@ -11,9 +11,9 @@ export interface PropsAuthAuth{
     input_nickname: string;
     input_password: string;
 
-    setInputEmail(input_email: string): void;
-    setInputPassword(input_password: string): void;
-    setInputNickname(input_nickname: string): void;
+    setInputEmail(input_email: string | null): void;
+    setInputPassword(input_password: string | null): void;
+    setInputNickname(input_nickname: string | null): void;
 
     setEmail(email : string): void;
     setNickname(nickname : string): void;

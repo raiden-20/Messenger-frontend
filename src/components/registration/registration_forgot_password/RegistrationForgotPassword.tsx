@@ -12,8 +12,11 @@ class RegistrationForgotPassword extends Component<PropsAuthForgotPassword, Stat
         this.props.setInputEmail(event.target.value)
     }
     sendPassword = () => {
-        //post
 
+        if (this.props.input_email !== null) {
+            //post
+            this.props.setInputEmail(null)
+        }
     }
 
     render() {
@@ -26,7 +29,7 @@ class RegistrationForgotPassword extends Component<PropsAuthForgotPassword, Stat
                 <form>
                     <section className={reg_forgot_css.inputs}>
                         <input type={'text'} className={options_reg.input} onChange={this.setInputEmail}
-                               value={this.props.input_email} placeholder={'Электронный адрес или никнейм'}/>
+                               value={this.props.input_email} placeholder={'Электронный адрес'}/>
                     </section>
                     <button type={'submit'} className={options_reg.main_page_button} onClick={this.sendPassword}>Сбросить пароль</button>
                 </form>

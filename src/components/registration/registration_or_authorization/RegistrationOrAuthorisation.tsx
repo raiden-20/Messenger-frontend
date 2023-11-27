@@ -11,15 +11,17 @@ import {
     REGISTRATION_RESTORE_ACCOUNT
 } from "../../paths/authPath";
 
-class RegistrationOrAuthorisation extends Component<PropsAuthAuth, StateAuthAuth>{
+
+class RegistrationOrAuthorisation extends Component<PropsAuthAuth, StateAuthAuth> {
 
     path = AUTHORIZATION
+    code = 0
 
-    setInputEmail = (event : React.ChangeEvent<HTMLInputElement>) => {
+    setInputEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.props.setInputEmail(event.target.value)
         console.log(this.props.input_email)
     }
-    setInputPassword = (event : React.ChangeEvent<HTMLInputElement>) => {
+    setInputPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.props.setInputPassword(event.target.value)
     }
 
@@ -31,8 +33,8 @@ class RegistrationOrAuthorisation extends Component<PropsAuthAuth, StateAuthAuth
                 this.props.setInputEmail(this.props.input_email)
             }
             // пост запрос
-            let code = 200
-            switch (code) {
+            this.code = 403
+            switch (this.code) {
                 case 200 : {
                     this.props.setEmail(this.props.input_email)
                     this.props.setNickname(this.props.input_nickname)
@@ -42,7 +44,7 @@ class RegistrationOrAuthorisation extends Component<PropsAuthAuth, StateAuthAuth
                     break
                 }
                 case 401 : {
-                    this.path =  AUTHORIZATION
+                    this.path = AUTHORIZATION
                     break
                 }
                 case 403 : {
@@ -51,7 +53,10 @@ class RegistrationOrAuthorisation extends Component<PropsAuthAuth, StateAuthAuth
                 }
                 default:
             }
+            this.props.setInputEmail(null)
+            this.props.setInputPassword(null)
         }
+
         // else
     }
 
@@ -61,12 +66,14 @@ class RegistrationOrAuthorisation extends Component<PropsAuthAuth, StateAuthAuth
                 <form>
                     <section className={reg.inputs}>
                         <input type={'text'} className={options_reg.input} onChange={this.setInputEmail}
-                               value={this.props.input_email} placeholder={'Электронный адрес или никнейм'}/>
+                               value={this.props.input_email} placeholder={'Электронный адрес или никнейм'} required/>
                         <input type={'text'} className={options_reg.input} onChange={this.setInputPassword}
-                               value={this.props.input_password} placeholder={'Пароль'}/>
+                               value={this.props.input_password} placeholder={'Пароль'} required/>
                     </section>
                     <NavLink to={this.path}>
-                        <button className={options_reg.main_page_button} onClick={this.authorise} type={'submit'}>Войти</button>
+                        <button className={options_reg.main_page_button} onClick={this.authorise}
+                                type={'submit'}>Войти
+                        </button>
                     </NavLink>
                 </form>
                 <section className={reg.other_buttons}>

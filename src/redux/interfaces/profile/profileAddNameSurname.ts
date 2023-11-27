@@ -9,8 +9,8 @@ export interface PropsProfileNameSurname{
     input_name: string;
     input_surname: string;
 
-    setName(name: string): void
-    setSurname(surname: string): void
-    setInputName(name: string): void
-    setInputSurname(surname: string): void
+    setName(name: string | null): void
+    setSurname(surname: string  | null): void
+    setInputName(name: string  | null): void
+    setInputSurname(surname: string  | null): void
 }

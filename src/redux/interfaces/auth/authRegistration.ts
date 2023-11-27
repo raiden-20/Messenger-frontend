@@ -13,10 +13,10 @@ export interface PropsAuthReg{
     input_password: string;
     input_confirmPassword : string;
 
-    setInputEmail(input_email: string): void;
-    setInputPassword(input_password: string): void;
-    setInputNickname(input_nickname: string): void;
-    setInputConfirmPassword(input_confirmPassword : string): void;
+    setInputEmail(input_email: string | null): void;
+    setInputPassword(input_password: string | null): void;
+    setInputNickname(input_nickname: string | null): void;
+    setInputConfirmPassword(input_confirmPassword : string | null): void;
 
     setEmail(email : string): void;
     setNickname(nickname : string): void;
