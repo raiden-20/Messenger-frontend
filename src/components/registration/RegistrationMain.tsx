@@ -20,6 +20,7 @@ import {
 } from "../paths/authPath";
 import RegistrationAddNameSurname from "./registration_set_name_surname/RegistrationAddNameSurname";
 import {PropsProfileNameSurname} from "../../redux/interfaces/profile/profileAddNameSurname";
+import SuccessfulActivation from "./successful_registration_restoring/components/SuccessfulActivation";
 
 const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
     const location = useLocation()
@@ -51,7 +52,7 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                 location.pathname === REGISTRATION_FORGOT_PASSWORD ? <RegistrationForgotPassword input_email={props.input_email}
                                                                                                     setInputEmail={props.setInputEmail}/> :
                 location.pathname === REGISTRATION_RESTORE_ACCOUNT ? <RestoreAccount/> :
-                location.pathname === SUCCESSFUL_ACTIVATION ? <SuccessfulRegistration/> :
+                location.pathname === SUCCESSFUL_ACTIVATION ? <SuccessfulActivation/> :
                 location.pathname === SUCCESSFUL_CHANGE_EMAIL ? <SuccessfulChangeEmail/> :
                 location.pathname === ADD_NAME_SURNAME ? <RegistrationAddNameSurname input_name={props.input_name}
                                                                                      input_surname={props.input_surname}
