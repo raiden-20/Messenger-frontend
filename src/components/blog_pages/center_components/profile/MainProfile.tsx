@@ -9,11 +9,12 @@ import main_css from "./main_profile_css/MainProfile.module.css";
 import main_elements_css from "./main_profile_css/MainProfileElements.module.css";
 
 import cat from "../../../../assets/images/cat_registration.jpg";
+import {PropsUserProfile} from "../../../../redux/interfaces/profile/profileBase";
+import {PropsNickname} from "../../../../redux/interfaces/auth/authData";
 
 
 
-const MainProfile = () => {
-
+const MainProfile = (props: PropsUserProfile & PropsNickname) => {
     const location = useLocation()
 
     return(
@@ -27,15 +28,14 @@ const MainProfile = () => {
                             <img src={cat} alt={'this is cat'}/>
                         </figure>
                         <section className={main_css.name_and_status}>
-                            <div className={main_elements_css.name}>Имя Фамилия</div>
-                            <div className={main_elements_css.userName}>@name</div>
+                            <div className={main_elements_css.name}>{props.name + ' ' + props.surname}</div>
+                            <div className={main_elements_css.userName}>{props.nickname}</div>
                         </section>
                         {location.pathname === '/profile' ? <ProfileUserSettings/> :
                             location.pathname === '/profile/:id' ? <ProfileOtherUserSettings/> : null}
                     </section>
                     <section>
-                        <p>Целуйте мониторы!!!!
-                            Я в сети</p>
+                        <p>{props.bio}</p>
                     </section>
                 </section>
                 <section className={main_css.posts}>

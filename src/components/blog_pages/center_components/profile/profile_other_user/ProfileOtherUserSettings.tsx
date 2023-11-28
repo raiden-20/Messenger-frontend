@@ -3,13 +3,13 @@ import React from 'react';
 import prof_oth_us from './ProfileOtherUser.module.css'
 
 import chatting from '../../../../../assets/images/other/chat_with_user.svg'
-import adding_to_friend from '../../../../../assets/images/other/adding_to_friend.svg'
+import sub_app from '../../../../../assets/images/friends/submitted_application.svg'
 
 const ProfileOtherUserSettings = () => {
     return (
         <section className={prof_oth_us.profile_icons}>
             <img src={chatting} alt={'chat'}/>
-            <img src={adding_to_friend} alt={'adding to friend'}/>
+            <img src={sub_app} alt={'adding to friend'}/>
         </section>
     )
 }

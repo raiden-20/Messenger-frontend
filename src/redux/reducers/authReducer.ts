@@ -13,7 +13,7 @@ const SET_INPUT_CONFIRM_PASSWORD_DATA = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
 
 const initialState = {
     email: null,
-    nickname: null,
+    nickname: '@anastas',
     password: null,
 
     input_email: null,

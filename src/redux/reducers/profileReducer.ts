@@ -10,10 +10,11 @@ const SET_INPUT_USER_BIRTH_DATE = 'SET_INPUT_PASSWORD_DATA'
 const SET_INPUT_USER_ABOUT = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
 
 const initialState = {
-    name: null,
-    surname: null,
+    id : null,
+    name: 'Настя',
+    surname: 'Коробасникова',
     birthDate: null,
-    about: null,
+    bio: 'сосите хуй и будьте счастливы',
 
     input_name: null,
     input_surname: null,
@@ -44,7 +45,7 @@ const profileReducer = (state = initialState, action : any) => {
         }
 
         case SET_USER_ABOUT : {
-            stateCopy.about = action.about
+            stateCopy.bio = action.bio
 
             return stateCopy
         }

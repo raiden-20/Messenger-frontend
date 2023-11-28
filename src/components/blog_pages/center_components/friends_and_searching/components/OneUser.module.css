@@ -1,0 +1,42 @@
+.one_friend {
+    height: 50px;
+    display: grid;
+    grid-template-columns: 78% 17%;
+    column-gap: 3%;
+}
+
+.navlink {
+    text-decoration: none;
+    color: rgba(8, 7, 18, 1);
+    display: grid;
+    grid-template-columns: 11% auto;
+    column-gap: 3%;
+}
+
+.friend_ava {
+    border-radius: 100%;
+    background-color: #DDE3EB;
+}
+
+.friend_nickname {
+    color: #8791A1;
+}
+
+.friend_data {
+    display: grid;
+    grid-template-rows: 70% 25%;
+    row-gap: 5%;
+}
+
+.friend_functional {
+    display: grid;
+    width: 90%;
+    grid-template-columns: 48% 48%;
+    column-gap: 5%;
+    justify-self: end;
+    align-self: center;
+}
+
+.friend_functional img {
+    width: 80%;
+}

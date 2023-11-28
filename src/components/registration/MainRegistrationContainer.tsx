@@ -1,16 +1,16 @@
 import {connect} from "react-redux";
-import RegistrationMain from "./registration/RegistrationMain";
+import RegistrationMain from "./RegistrationMain";
 import {
     setEmail, setInputConfirmPassword,
     setInputEmail,
     setInputNickname, setInputPassword,
     setNickname,
     setPassword
-} from "../redux/reducers/authReducer";
+} from "../../redux/reducers/authReducer";
 import {Dispatch} from "redux";
-import {StateAuthReg} from "../redux/interfaces/auth/authRegistration";
-import {StateProfileNameSurname} from "../redux/interfaces/profile/profileAddNameSurname";
-import {setInputName, setInputSurname, setName, setSurname} from "../redux/reducers/profileReducer";
+import {StateAuthReg} from "../../redux/interfaces/auth/authRegistration";
+import {StateProfileNameSurname} from "../../redux/interfaces/profile/profileAddNameSurname";
+import {setInputName, setInputSurname, setName, setSurname} from "../../redux/reducers/profileReducer";
 
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
-import MainRegistrationContainer from "./components/MainRegistrationContainer";
+import MainRegistrationContainer from "./components/registration/MainRegistrationContainer";
 import MainBlogPages from "./components/blog_pages/MainBlogPages";
 
 import app from './App.module.css';
@@ -14,6 +14,7 @@ import {
 } from "./components/paths/authPath";
 import RegistrationAddNameSurname
     from "./components/registration/registration_set_name_surname/RegistrationAddNameSurname";
+import {PROFILE} from "./components/paths/profilePath";
 
 const App = () => {
     return (
@@ -29,8 +30,7 @@ const App = () => {
                         <Route path={SUCCESSFUL_CHANGE_EMAIL} element={<MainRegistrationContainer/>}/>
                         <Route path={ADD_NAME_SURNAME} element={<MainRegistrationContainer/>}/>
                         <Route path='/dialogs' element={<MainBlogPages/>}/>
-                        <Route path='/profile' element={<MainBlogPages/>}/>
-                        <Route path='/profile/:id' element={<MainBlogPages/>}/>
+                        <Route path='/profile/*' element={<MainBlogPages/>}/>
                         <Route path='/friends' element={<MainBlogPages/>}/>
                         <Route path='/search' element={<MainBlogPages/>}/>
                         <Route path='/settings' element={<MainBlogPages/>}/>
