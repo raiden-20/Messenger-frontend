@@ -29,18 +29,22 @@
 }
 
 .svg_link {
+    height: 100%;
     display: grid;
-    grid-template-columns: 20% 75%;
-    column-gap: 5%;
-    align-items: end;
+    grid-template-columns: 20% auto;
+    column-gap: 10%;
+    align-items: center;
 }
 
 .svg_link:hover {
-    background-color: rgba(65, 72, 109, 0.2);
+    background-color: rgba(196, 198, 205, 0.2);
+    border-radius: 10px;
 }
 
 .img {
     width: 70%;
+    display: grid;
+    justify-self: end;
 }
 
 .button_nav {
@@ -56,12 +60,12 @@
 
 .more_section {
     display: grid;
-    grid-template-columns: 70% 25%;
+    grid-template-columns: 80% 15%;
     column-gap: 5%;
 }
 
 .more_section div {
-    width: 65%;
+    width: 62%;
     display: grid;
     justify-self: end;
 }
