@@ -12,9 +12,9 @@ const SET_INPUT_PASSWORD_DATA = 'SET_INPUT_PASSWORD_DATA'
 const SET_INPUT_CONFIRM_PASSWORD_DATA = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
 
 const initialState = {
-    email: null,
+    email: 'an.korobas@hiu.poka',
     nickname: '@anastas',
-    password: null,
+    password: 12345678910,
 
     input_email: null,
     input_nickname: null,

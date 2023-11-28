@@ -36,7 +36,7 @@ const Navigation = () => {
                 </section>
                 <section className={nav.svg_link}>
                     <img className={nav.img} src={settings}/>
-                    <NavLink className={nav.button_nav} to={"/settings"}>Настройки</NavLink>
+                    <NavLink className={nav.button_nav} to={"/settings_account"}>Настройки</NavLink>
                 </section>
                 <section tabIndex={0} className={nav.more}>
                     <section></section>

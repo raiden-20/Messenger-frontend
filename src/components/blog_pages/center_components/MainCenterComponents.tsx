@@ -1,7 +1,6 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
 
-import MainSetting from "./settings/MainSetting";
 import MainProfileAside from "./profile/MainProfileAside";
 import MainSettingsAside from "./settings/MainSettingsAside";
 import MainFriendsAndSearchingAside from "./friends_and_searching/MainFriendsAndSearchingAside";
@@ -9,6 +8,7 @@ import MainFriendsAndSearchingAside from "./friends_and_searching/MainFriendsAnd
 import main_css from "./MainCenterComponents.module.css";
 import MainFriendsAndSearchingContainer from "./friends_and_searching/MainFriendsAndSearchingContainer";
 import MainProfileContainer from "./profile/MainProfileContainer";
+import MainSettingContainer from "./settings/MainSettingContainer";
 
 const MainCenterComponents = () => {
     const location = useLocation()
@@ -18,13 +18,13 @@ const MainCenterComponents = () => {
                 location.pathname === '/profile/:id' ? <MainProfileContainer/> :
                     location.pathname === '/friends' ? <MainFriendsAndSearchingContainer/> :
                         location.pathname === '/search' ? <MainFriendsAndSearchingContainer /> :
-                            location.pathname === '/settings' ? <MainSetting/> : null}
+                            location.pathname === '/settings_account' ? <MainSettingContainer/> : null}
 
             {location.pathname === '/profile' ? <MainProfileAside/> :
                 location.pathname === '/profile/:id' ? <MainProfileAside/> :
                     location.pathname === '/friends' ? <MainFriendsAndSearchingAside/> :
                         location.pathname === '/search' ? <MainFriendsAndSearchingAside/> :
-                            location.pathname === '/settings' ? <MainSettingsAside/> : null}
+                            location.pathname === '/settings_account' ? <MainSettingsAside/> : null}
 
         </section>
     )

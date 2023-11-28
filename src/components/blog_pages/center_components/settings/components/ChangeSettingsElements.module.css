@@ -1,4 +1,4 @@
-.root {
+.rootChangeEmail {
     padding: 1% 0 3% 0;
     height: 14vh;
     width: 70%;
@@ -7,7 +7,6 @@
     grid-template-rows: 50% 25%;
     row-gap: 10%;
 }
-
 .root main {
     padding: 0;
     display: grid;
@@ -37,6 +36,34 @@
 
     font-weight: 600;
 }
+
+.rootChangePassword {
+     padding: 1% 0 3% 0;
+     height: 16vh;
+     width: 70%;
+ }
+
+.setOldPassword {
+    display: grid;
+    grid-template-rows: 40% 55%;
+    row-gap: 5%;
+}
+
+.rootChangePassword footer {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 20%;
+}
+
+.rootChangeEmail main input {
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid #BBC4CE;
+
+    font-family: 'Inter', sans-serif;
+    background-color: transparent;
+}
+
 
 .button_save {
     background-color: rgba(133, 91, 217, 1);

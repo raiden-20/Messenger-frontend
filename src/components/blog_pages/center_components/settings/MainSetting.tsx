@@ -1,77 +1,32 @@
 import React from 'react';
+import {useLocation} from "react-router-dom";
+import SettingsAccount from "./settings_tab/SettingsAccount";
+import SettingsSecurity from "./settings_tab/SettingsSecurity";
+import {PropsChangePassword} from "../../../../redux/interfaces/settings/SettingsChangePassword";
+import {PropsChangeEmail} from "../../../../redux/interfaces/settings/SettingsChangeEmail";
 
-import settings_css from './Settings.module.css'
+const MainSetting = (props : PropsChangePassword & PropsChangeEmail) => {
+    let location = useLocation()
 
-import setting_pencil from '../../../../assets/images/other/setting_pencil.svg'
-import ChangeEmail from "./components/ChangeEmail";
-import Change_password_Email from "./components/Change_password_Email";
-
-let button_changed_email = false
-let button_changed_password = false
-
-const MainSetting = () => {
-
-    return (
-        <section className={settings_css.root}>
-            <section className={settings_css.settings}>
-                <main>
-                    <section className={settings_css.leg_container}>
-                        <legend> <strong>Электронный адрес</strong> </legend>
-                        <ChangeEmail/>
-                        {/*<section>*/}
-                        {/*    {*/}
-                        {/*        !button_changed_email*/}
-                        {/*        ?*/}
-                        {/*        <section className={settings_css.section_and_edit}>*/}
-                        {/*            simon@mail.com*/}
-                        {/*            <button onClick={() => button_changed_email ? button_changed_email = false : button_changed_email = true}>*/}
-                        {/*                <img tabIndex={0} src={setting_pencil} alt={'setting pencil'} />*/}
-                        {/*            </button>*/}
-                        {/*        </section>*/}
-                        {/*        : <Change_email/>*/}
-                        {/*    }*/}
-                        {/*</section>*/}
-                    </section>
-                    <section className={settings_css.leg_container}>
-                        <legend><strong>Пароль</strong></legend>
-                        <section>
-                            {
-                                !button_changed_password ?
-                                    <section className={settings_css.section_and_edit}>
-                                        ***************
-                                        <button onClick={() => button_changed_password ? button_changed_password = false : button_changed_password = true}>
-                                            <img src={setting_pencil} alt={'setting pencil'}/>
-                                        </button>
-
-                                    </section> :
-                                    <Change_password_Email/>
-                            }
-                            <section>
-
-                            </section>
-                        </section>
-
-                    </section>
-                    <section className={settings_css.leg_container}>
-                        <legend><strong>Язык</strong></legend>
-                        <section className={settings_css.section_and_edit}>
-                            <select>
-                                <option>Русский</option>
-                                <option>English</option>
-                                <option>한국어</option>
-                            </select>
-                            <section></section>
-                        </section>
-
-                    </section>
-                </main>
-                <footer>
-                    <button>Удалить учетную запись</button>
-                </footer>
-            </section>
-        </section>
-
-    )
+    return (location.pathname === '/settings_account' ? <SettingsAccount email={props.email}
+                                                                         password={props.password}
+                                                                         input_email={props.input_email}
+                                                                         input_password={props.input_password}
+                                                                         setInputPassword={props.setInputPassword}
+                                                                         setInputEmail={props.setInputEmail}
+                                                                         setPassword={props.setPassword}
+                                                                         setEmail={props.setEmail}
+                                                                         buttonChangeEmail={props.buttonChangeEmail}
+                                                                         input_code={props.input_code}
+                                                                         setButtonChangeEmailPressed={props.setButtonChangeEmailPressed}
+                                                                         setInputCode={props.setInputCode}
+                                                                         input_passwordConfirm={props.input_passwordConfirm}
+                                                                         setInputPasswordConfirm={props.setInputPasswordConfirm}
+                                                                         buttonChangePasswordFirstStep={props.buttonChangePasswordFirstStep}
+                                                                         buttonChangePasswordSecondStep={props.buttonChangePasswordSecondStep}
+                                                                         setButtonChangePasswordFirstStepPressed={props.setButtonChangePasswordFirstStepPressed}
+                                                                         setButtonChangePasswordSecondStepPressed={props.setButtonChangePasswordSecondStepPressed}/>
+                                                        : <SettingsSecurity/>)
 }
 
 export default MainSetting

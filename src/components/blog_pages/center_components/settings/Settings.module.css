@@ -1,10 +1,8 @@
 .root {
-    height: 405px;
 }
 
 .settings {
     max-width: 615px;
-    height: 405px;
 
     display: grid;
     grid-template-rows: 75% 20%;
@@ -20,7 +18,7 @@
     height: 100%;
     padding: 4% 3% 4% 3%;
     display: grid;
-    row-gap: 15%;
+    row-gap: 2vh;
 }
 
 .settings footer {
@@ -45,9 +43,14 @@
 
 .section_and_edit {
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 85% 15%;
 
     border: rgba(179, 189, 199, 1);
+}
+
+.section_and_edit button {
+    background-color: transparent;
+    border: none;
 }
 
 .section_and_edit img {

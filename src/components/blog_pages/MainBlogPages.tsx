@@ -20,7 +20,7 @@ const MainBlogPages = () => {
                 location.pathname === '/profile/:id' ||
                 location.pathname === '/friends' ||
                 location.pathname === '/search' ||
-                location.pathname === '/settings' ? <MainCenterComponents/> : null}
+                location.pathname === '/settings_account' ? <MainCenterComponents/> : null}
             </section>
         </div>
     )
