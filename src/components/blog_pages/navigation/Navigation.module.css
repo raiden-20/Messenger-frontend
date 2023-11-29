@@ -23,7 +23,7 @@
 .links{
     height: 100%;
     display: grid;
-    grid-template-rows: 13% 13% 13% 13% 13% 13% 20%;
+    grid-template-rows: repeat(6, 13%) 20%;
 
     align-items: center;
 }
@@ -37,14 +37,15 @@
 }
 
 .svg_link:hover {
-    background-color: rgba(196, 198, 205, 0.2);
-    border-radius: 10px;
+    background-color: rgba(221, 227, 235, 1);
+    border-radius: 5px;
 }
 
 .img {
     width: 70%;
     display: grid;
     justify-self: end;
+    align-self: center;
 }
 
 .button_nav {
@@ -60,40 +61,24 @@
 
 .more_section {
     display: grid;
-    grid-template-columns: 80% 15%;
+    grid-template-columns: 75% 20%;
     column-gap: 5%;
 }
 
 .more_section div {
-    width: 62%;
     display: grid;
-    justify-self: end;
+    justify-self: start;
 }
 
-.more_icon {
-    width: 60%;
-    height: 100%;
+.icon_more_op {
     display: grid;
+    justify-self: start;
     align-self: center;
-    justify-self: center;
-
-    background-image: url('../../../assets/images/icons_navigation/more_close.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.more_icon:focus{
-    background-image: url('../../../assets/images/icons_navigation/more_open.svg');
-    background-repeat: no-repeat;
-}
-
-.more:focus ~ .more_settings {
-    display: grid;
 }
 
 .more_settings {
     height: 100%;
-    display: none;
+    display: grid;
     grid-template-rows: 40% 40%;
     row-gap: 20%;
 }

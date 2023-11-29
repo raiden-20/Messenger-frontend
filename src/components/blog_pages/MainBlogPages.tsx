@@ -6,6 +6,7 @@ import Dialogs from "./dialogs/Dialogs";
 import MainCenterComponents from "./center_components/MainCenterComponents";
 
 import main_css from './MainBlogsPages.module.css'
+import NavigationContainer from "./navigation/NavigationContainer";
 
 const MainBlogPages = () => {
 
@@ -14,7 +15,7 @@ const MainBlogPages = () => {
     return (
         <div className={main_css.div}>
             <section className={main_css.page}>
-                <Navigation/>
+                <NavigationContainer/>
                 {location.pathname === '/dialogs' ? <Dialogs/> :
                 location.pathname === '/profile' ||
                 location.pathname === '/profile/:id' ||

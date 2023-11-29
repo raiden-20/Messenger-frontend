@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import nav from './Navigation.module.css';
 
@@ -9,53 +9,65 @@ import friends from '../../../assets/images/icons_navigation/friends.svg'
 import search from '../../../assets/images/icons_navigation/search.svg'
 import settings from '../../../assets/images/icons_navigation/settings.svg'
 import more from '../../../assets/images/icons_navigation/more.svg'
+import more_close from '../../../assets/images/icons_navigation/more_close.svg'
+import more_open from '../../../assets/images/icons_navigation/more_open.svg'
+import {PropsNavigation, StateNavigation} from "../../../redux/interfaces/navigation/navigationMain";
+import NavigationMoreSection from "./components/NavigationMoreSection";
 
-const Navigation = () => {
-    return (
-        <div className={nav.page}>
-            <header>
-                <img src={simon}/>
-                СимОн
-            </header>
-            <section className={nav.links}>
-                <section className={nav.svg_link}>
-                    <img className={nav.img} src={profile}/>
-                    <NavLink className={nav.button_nav} to={"/profile"}>Профиль</NavLink>
-                </section>
-                <section className={nav.svg_link}>
-                    <img className={nav.img} src={dialogs}/>
-                    <NavLink className={nav.button_nav} to={"/dialogs"}>Сообщения</NavLink>
-                </section>
-                <section className={nav.svg_link}>
-                    <img className={nav.img} src={friends}/>
-                    <NavLink className={nav.button_nav} to={"/friends"}>Друзья</NavLink>
-                </section>
-                <section className={nav.svg_link}>
-                    <img className={nav.img} src={search}/>
-                    <NavLink className={nav.button_nav} to={"/search"}>Поиск</NavLink>
-                </section>
-                <section className={nav.svg_link}>
-                    <img className={nav.img} src={settings}/>
-                    <NavLink className={nav.button_nav} to={"/settings_account"}>Настройки</NavLink>
-                </section>
-                <section tabIndex={0} className={nav.more}>
-                    <section></section>
-                    <section className={nav.more_section}>
-                        <div className={nav.button_nav}>Еще</div>
-                        <section className={nav.more_icon} ></section>
+class Navigation extends Component<PropsNavigation, StateNavigation> {
+    changeButtonNavStatus = () => {
+        if (this.props.buttonMoreSection) {
+            this.props.setButtonMoreSection(false)
+        } else {
+            this.props.setButtonMoreSection(true)
+        }
+    }
+    render() {
+        return (
+            <div className={nav.page}>
+                <header>
+                    <img src={simon}/>
+                    СимОн
+                </header>
+                <section className={nav.links}>
+                    <section className={nav.svg_link}>
+                        <img className={nav.img} src={profile}/>
+                        <NavLink className={nav.button_nav} to={"/profile"}>Профиль</NavLink>
                     </section>
-                </section>
-                <section className={nav.more_settings}>
-                    <section>
-                        <div><strong>Тема:</strong></div>
-                        <button className={nav.button_set_theme}>Светлая</button>
+                    <section className={nav.svg_link}>
+                        <img className={nav.img} src={dialogs}/>
+                        <NavLink className={nav.button_nav} to={"/dialogs"}>Сообщения</NavLink>
                     </section>
-                    <button className={nav.button_exit}>Выйти из аккаунта</button>
-                </section>
-            </section>
+                    <section className={nav.svg_link}>
+                        <img className={nav.img} src={friends}/>
+                        <NavLink className={nav.button_nav} to={"/friends"}>Друзья</NavLink>
+                    </section>
+                    <section className={nav.svg_link}>
+                        <img className={nav.img} src={search}/>
+                        <NavLink className={nav.button_nav} to={"/search"}>Поиск</NavLink>
+                    </section>
+                    <section className={nav.svg_link}>
+                        <img className={nav.img} src={settings}/>
+                        <NavLink className={nav.button_nav} to={"/settings_account"}>Настройки</NavLink>
+                    </section>
+                    <section className={nav.svg_link} onClick={this.changeButtonNavStatus}>
+                        <img className={nav.img} src={more}/>
+                        <section className={nav.more_section}>
+                            <div className={nav.button_nav}>Еще</div>
+                            {!this.props.buttonMoreSection ?
+                                <img className={nav.icon_more_op} src={more_close}
+                                     alt={'navigation more section close'}/> :
+                                <img className={nav.icon_more_op} src={more_open}
+                                     alt={'navigation more section open'}/>}
+                        </section>
+                    </section>
+                    {this.props.buttonMoreSection ? <NavigationMoreSection/> : null}
 
-        </div>
-    )
+                </section>
+
+            </div>
+        )
+    }
 }
 
 export default Navigation
