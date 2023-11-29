@@ -53,7 +53,7 @@ class Navigation extends Component<PropsNavigation, StateNavigation> {
                     <section className={nav.svg_link} onClick={this.changeButtonNavStatus}>
                         <img className={nav.img} src={more}/>
                         <section className={nav.more_section}>
-                            <div className={nav.button_nav}>Еще</div>
+                            <button className={nav.button_nav}>Еще</button>
                             {!this.props.buttonMoreSection ?
                                 <img className={nav.icon_more_op} src={more_close}
                                      alt={'navigation more section close'}/> :

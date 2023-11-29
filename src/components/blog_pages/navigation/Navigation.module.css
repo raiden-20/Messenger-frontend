@@ -65,9 +65,11 @@
     column-gap: 5%;
 }
 
-.more_section div {
-    display: grid;
-    justify-self: start;
+.more_section button {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    text-align: start;
 }
 
 .icon_more_op {
