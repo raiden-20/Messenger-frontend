@@ -1,67 +1,40 @@
-.rootChangeEmail {
-    padding: 1% 0 3% 0;
-    height: 14vh;
-    width: 70%;
 
-    display: grid;
-    grid-template-rows: 50% 25%;
-    row-gap: 10%;
-}
-.root main {
-    padding: 0;
-    display: grid;
-    grid-template-rows: 45% 45%;
-    row-gap: 10%;
+.section_and_edit_button {
+    border: none;
+    background-color: transparent;
 }
 
-.root main input {
+.section_and_edit_select {
+    width: 40%;
     height: 90%;
 
     background-color: transparent;
-    border: 1px solid rgba(179, 189, 199, 1);
+    border: 1px solid rgba(95, 110, 120, 1);
+    color: rgba(95, 110, 120, 1);
     border-radius: 5px;
-
-    padding: 0 5% 0 5%;
 }
 
-.root section {
-    display: grid;
-    grid-template-columns: 45% 45%;
-    column-gap: 10%;
-}
-
-.root section button {
-    border: none;
-    border-radius: 5px;
-
-    font-weight: 600;
-}
-
-.rootChangePassword {
-     padding: 1% 0 3% 0;
-     height: 16vh;
-     width: 70%;
- }
-
-.setOldPassword {
-    display: grid;
-    grid-template-rows: 40% 55%;
-    row-gap: 5%;
-}
-
-.rootChangePassword footer {
-    display: grid;
-    grid-template-columns: 40% 40%;
-    column-gap: 20%;
-}
-
-.rootChangeEmail main input {
+.input {
     height: 100%;
     border-radius: 5px;
     border: 1px solid #BBC4CE;
 
     font-family: 'Inter', sans-serif;
     background-color: transparent;
+
+    padding: 0 5% 0 5%;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    column-gap: 10%;
+}
+
+.button {
+    height: 100%;
+    border: none;
+    border-radius: 5px;
 }
 
 

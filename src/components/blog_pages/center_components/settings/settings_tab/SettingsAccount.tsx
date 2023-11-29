@@ -1,13 +1,15 @@
 import React, {Component} from "react";
 import settings_css from "../Settings.module.css";
-import ChangeEmail from "../components/ChangeEmail";
+import ChangeEmail from "../components/change_email/ChangeEmail";
 
 import {
     PropsChangePassword,
     StateChangePassword
 } from "../../../../../redux/interfaces/settings/SettingsChangePassword";
 import {PropsChangeEmail, StateChangeEmail} from "../../../../../redux/interfaces/settings/SettingsChangeEmail";
-import ChangePassword from "../components/ChangePassword";
+import ChangePassword from "../components/change_password/ChangePassword";
+import ChangeLanguage from "../components/change_language/ChangeLanguage";
+import DeleteAccount from "../components/DeleteAccount";
 
 class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail, StateChangePassword & StateChangeEmail> {
     
@@ -18,7 +20,6 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail, 
                     <main>
                         <section className={settings_css.leg_container}>
                             <legend> <strong>Электронный адрес</strong> </legend>
-                            <section>
                                 <ChangeEmail email={this.props.email}
                                              password={this.props.password}
                                              input_email={this.props.input_email}
@@ -29,12 +30,11 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail, 
                                              setEmail={this.props.setEmail}
                                              buttonChangeEmail={this.props.buttonChangeEmail}
                                              setButtonChangeEmailPressed={this.props.setButtonChangeEmailPressed}
-                                             buttonChangePasswordFirstStep={this.props.buttonChangePasswordFirstStep}/>
-                            </section>
+                                             buttonChangePasswordFirstStep={this.props.buttonChangePasswordFirstStep}
+                                             buttonChangePasswordSecondStep={this.props.buttonChangePasswordSecondStep}/>
                         </section>
                         <section className={settings_css.leg_container}>
                             <legend><strong>Пароль</strong></legend>
-                            <section>
                                 <ChangePassword buttonChangeEmail={this.props.buttonChangeEmail}
                                                 password={this.props.password}
                                                 input_password={this.props.input_password}
@@ -48,24 +48,15 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail, 
                                                 buttonChangePasswordSecondStep={this.props.buttonChangePasswordSecondStep}
                                                 setButtonChangePasswordFirstStepPressed={this.props.setButtonChangePasswordFirstStepPressed}
                                                 setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}/>
-                            </section>
 
                         </section>
                         <section className={settings_css.leg_container}>
                             <legend><strong>Язык</strong></legend>
-                            <section className={settings_css.section_and_edit}>
-                                <select>
-                                    <option>Русский</option>
-                                    <option>English</option>
-                                    <option>한국어</option>
-                                </select>
-                                <section></section>
-                            </section>
-
+                            <ChangeLanguage/>
                         </section>
                     </main>
                     <footer>
-                        <button>Удалить учетную запись</button>
+                        <DeleteAccount/>
                     </footer>
                 </section>
             </section>

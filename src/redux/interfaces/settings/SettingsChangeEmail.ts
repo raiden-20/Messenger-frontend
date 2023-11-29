@@ -2,6 +2,7 @@ export interface StateChangeEmail{
     settings : {
         buttonChangeEmail: boolean;
         buttonChangePasswordFirstStep: boolean;
+        buttonChangePasswordSecondStep: boolean;
 
         input_email: string;
         input_password: string;
@@ -15,6 +16,7 @@ export interface StateChangeEmail{
 export interface PropsChangeEmail{
     buttonChangeEmail: boolean;
     buttonChangePasswordFirstStep: boolean;
+    buttonChangePasswordSecondStep: boolean;
 
     email: string;
     password: string;

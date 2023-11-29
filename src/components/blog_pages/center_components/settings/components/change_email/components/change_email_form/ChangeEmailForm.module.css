@@ -1,0 +1,20 @@
+.rootChangeEmail {
+    padding: 0 0 3% 0;
+    height: 12vh;
+    width: 70%;
+}
+
+.rootChangeEmail form {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 60% 35%;
+    row-gap: 10%;
+}
+
+.rootChangeEmail form main {
+    height: 100%;
+    padding: 0;
+    display: grid;
+    grid-template-rows: 45% 45%;
+    row-gap: 10%;
+}

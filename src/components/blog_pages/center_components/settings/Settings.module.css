@@ -2,11 +2,12 @@
 }
 
 .settings {
+    margin: 0;
     max-width: 615px;
+    min-height: 33vh;
 
     display: grid;
-    grid-template-rows: 75% 20%;
-    row-gap: 5%;
+
 
     background-color: #F7F5FF;
     border-radius: 20px;
@@ -15,13 +16,13 @@
 }
 
 .settings main {
-    height: 100%;
-    padding: 4% 3% 4% 3%;
+    padding: 6% 2% 4% 4%;
     display: grid;
-    row-gap: 2vh;
+    row-gap: 4vh;
 }
 
 .settings footer {
+    height: 7vh;
     display: grid;
     justify-items: center;
     align-items: center;
@@ -48,27 +49,6 @@
     border: rgba(179, 189, 199, 1);
 }
 
-.section_and_edit button {
-    background-color: transparent;
-    border: none;
-}
-
-.section_and_edit img {
-    display: grid;
-    justify-self: center;
-}
-
-
-.section_and_edit select {
-    height: 55%;
-    width: 47%;
-
-    border-radius: 5px;
-    border: 1px solid rgba(95, 110, 120, 1);
-    background-color: transparent;
-
-}
-
 .nav_settings {
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -90,7 +70,7 @@
     padding: 0 8% 0 8%;
     text-align: left;
     border: none;
-    background-color: rgba(246, 246, 254, 1);
+    background-color: transparent;
 
     font-size: 1em;
 }
