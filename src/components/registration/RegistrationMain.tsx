@@ -8,7 +8,6 @@ import options_reg from './css_options/Options.module.css';
 import RegistrationOrAuthorisation from "./registration_or_authorization/RegistrationOrAuthorisation";
 import RegistrationForgotPassword from "./registration_forgot_password/RegistrationForgotPassword";
 import RestoreAccount from "./restore_account/RestoreAccount";
-import SuccessfulRegistration from "./registration/options/successful_registration/SuccessfulRegistration";
 import SuccessfulChangeEmail from "./successful_registration_restoring/components/SuccessfulChangeEmail";
 import {PropsAuthReg} from "../../redux/interfaces/auth/authRegistration";
 import {
@@ -29,28 +28,38 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
             <section className={page_reg.content}>
                 <header className={options_reg.header}>СимОн</header>
                 {location.pathname === AUTHORIZATION ? <RegistrationOrAuthorisation input_email={props.input_email}
-                                                                          input_nickname={props.input_nickname}
-                                                                          input_password={props.input_password}
-                                                                          setEmail={props.setEmail}
-                                                                          setNickname={props.setNickname}
-                                                                          setPassword={props.setPassword}
-                                                                          setInputEmail={props.setInputEmail}
-                                                                          setInputNickname={props.setInputNickname}
-                                                                          setInputPassword={props.setInputPassword}/> :
+                                                                                    input_nickname={props.input_nickname}
+                                                                                    input_password={props.input_password}
+                                                                                    setEmail={props.setEmail}
+                                                                                    setNickname={props.setNickname}
+                                                                                    setPassword={props.setPassword}
+                                                                                    setInputEmail={props.setInputEmail}
+                                                                                    setInputNickname={props.setInputNickname}
+                                                                                    setInputPassword={props.setInputPassword}
+                                                                                    message={props.message}
+                                                                                    setMessage={props.setMessage}
+                                                                                    input_emailOrNickname={props.input_emailOrNickname}
+                                                                                    setInputEmailOrNickname={props.setInputEmailOrNickname}/> :
                 location.pathname === REGISTRATION ? <Registration input_email={props.input_email}
-                                                                      input_nickname={props.input_nickname}
-                                                                      input_password={props.input_password}
-                                                                      input_confirmPassword={props.input_confirmPassword}
-                                                                      setEmail={props.setEmail}
-                                                                      setNickname={props.setNickname}
-                                                                      setPassword={props.setPassword}
-                                                                      setConfirmPassword={props.setConfirmPassword}
-                                                                      setInputEmail={props.setInputEmail}
-                                                                      setInputNickname={props.setInputNickname}
-                                                                      setInputPassword={props.setInputPassword}
-                                                                      setInputConfirmPassword={props.setInputConfirmPassword}/> :
+                                                                   input_nickname={props.input_nickname}
+                                                                   input_password={props.input_password}
+                                                                   input_confirmPassword={props.input_confirmPassword}
+                                                                   setEmail={props.setEmail}
+                                                                   setNickname={props.setNickname}
+                                                                   setPassword={props.setPassword}
+                                                                   setConfirmPassword={props.setConfirmPassword}
+                                                                   setInputEmail={props.setInputEmail}
+                                                                   setInputNickname={props.setInputNickname}
+                                                                   setInputPassword={props.setInputPassword}
+                                                                   setInputConfirmPassword={props.setInputConfirmPassword}
+                                                                   message={props.message}
+                                                                   setMessage={props.setMessage}
+                                                                   input_emailOrNickname={props.input_emailOrNickname}
+                                                                   setInputEmailOrNickname={props.setInputEmailOrNickname}/> :
                 location.pathname === REGISTRATION_FORGOT_PASSWORD ? <RegistrationForgotPassword input_email={props.input_email}
-                                                                                                    setInputEmail={props.setInputEmail}/> :
+                                                                                                 setInputEmail={props.setInputEmail}
+                                                                                                 message={props.message}
+                                                                                                 setMessage={props.setMessage}/> :
                 location.pathname === REGISTRATION_RESTORE_ACCOUNT ? <RestoreAccount/> :
                 location.pathname === SUCCESSFUL_ACTIVATION ? <SuccessfulActivation/> :
                 location.pathname === SUCCESSFUL_CHANGE_EMAIL ? <SuccessfulChangeEmail/> :
@@ -59,7 +68,9 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                                      setInputName={props.setInputName}
                                                                                      setInputSurname={props.setInputSurname}
                                                                                      setName={props.setName}
-                                                                                     setSurname={props.setSurname}/>: null}
+                                                                                     setSurname={props.setSurname}
+                                                                                     message={props.message}
+                                                                                     setMessage={props.setMessage}/>: null}
             </section>
         </div>
     )

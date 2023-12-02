@@ -2,8 +2,8 @@ import {connect} from "react-redux";
 import RegistrationMain from "./RegistrationMain";
 import {
     setEmail, setInputConfirmPassword,
-    setInputEmail,
-    setInputNickname, setInputPassword,
+    setInputEmail, setInputEmailOrNickname,
+    setInputNickname, setInputPassword, setMessage,
     setNickname,
     setPassword
 } from "../../redux/reducers/authReducer";
@@ -21,8 +21,12 @@ const mapStateToProps = (state : StateAuthReg & StateProfileNameSurname) => {
         input_password: state.auth.input_password,
         input_confirmPassword: state.auth.input_confirmPassword,
 
+        input_emailOrNickname: state.auth.input_emailOrNickname,
+
         input_name: state.profile.input_name,
-        input_surname: state.profile.input_surname
+        input_surname: state.profile.input_surname,
+
+        message: state.auth.message
     }
 
 }
@@ -47,6 +51,9 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
         setInputNickname : (input_nickname : string) => {
             dispatch(setInputNickname(input_nickname))
         },
+        setInputEmailOrNickname : (input_emailOrNickname : string) => {
+            dispatch(setInputEmailOrNickname(input_emailOrNickname))
+        },
         setInputPassword : (input_password : string) => {
             dispatch(setInputPassword(input_password))
         },
@@ -65,6 +72,10 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
         },
         setInputSurname(surname: string) {
             dispatch(setInputSurname(surname))
+        },
+
+        setMessage(message: string) {
+            dispatch(setMessage(message))
         }
     }
 }

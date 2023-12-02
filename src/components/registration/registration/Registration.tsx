@@ -2,8 +2,10 @@ import React, {Component} from "react";
 import reg_curr from './Registration.module.css'
 import options_reg from '../css_options/Options.module.css'
 import {PropsAuthReg, StateAuthReg} from "../../../redux/interfaces/auth/authRegistration";
-import {ADD_NAME_SURNAME, REGISTRATION} from "../../paths/authPath";
+import {ADD_NAME_SURNAME, AUTHORIZATION, REGISTRATION} from "../../paths/authPath";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
+import {PROFILE} from "../../paths/profilePath";
 
 class Registration extends Component<PropsAuthReg, StateAuthReg> {
 
@@ -12,7 +14,7 @@ class Registration extends Component<PropsAuthReg, StateAuthReg> {
     setInputEmail = (event : React.ChangeEvent<HTMLInputElement>) => {
         if (this.props.input_email != null) {
             if (!this.props.input_email.split('').includes('@')) {
-                //обводить красным контуром
+                // todo обводить красным контуром
             }
         }
         this.props.setInputEmail(event.target.value)
@@ -28,27 +30,61 @@ class Registration extends Component<PropsAuthReg, StateAuthReg> {
         this.props.setInputConfirmPassword(event.target.value)
     }
 
-    register = () => {
+    authentication = () => {
         if (this.props.input_email != null && this.props.input_nickname != null &&
             this.props.input_password != null && this.props.input_confirmPassword != null) {
             if (this.props.input_password === this.props.input_confirmPassword) {
-                //post
-                let code = 200
-                switch (code) {
-                    case 200 : {
-                        this.props.setEmail(this.props.input_email)
-                        this.props.setNickname(this.props.input_nickname)
-                        this.props.setPassword(this.props.input_password)
+                axios.post('http://localhost:8000/auth/registration', {
+                    email: this.props.input_email,
+                    nickname: this.props.input_nickname,
+                    password: this.props.input_password,
+                    confirmPassword: this.props.input_confirmPassword
+                }).then(response => {
+                    switch (response.data.code) {
+                        case 200 : {
+                            this.props.setEmail(this.props.input_email)
+                            this.props.setNickname(this.props.input_nickname)
+                            this.props.setPassword(this.props.input_password)
 
-                        this.path = ADD_NAME_SURNAME
-                        break
+                            this.path = ADD_NAME_SURNAME
+                            break
+                        }
+                        default:
                     }
-                    case 401 : {
-                        this.path = REGISTRATION
-                        break
+                    this.props.setInputEmail(null)
+                    this.props.setInputPassword(null)
+                }).catch(error => {
+                    console.dir(error)
+                    debugger
+                    this.props.setMessage(error.message)
+                    switch (error.response.status) {
+                        case 200 : {
+                            this.props.setEmail(this.props.input_email)
+                            this.props.setNickname(this.props.input_nickname)
+                            this.props.setPassword(this.props.input_password)
+
+                            this.path = ADD_NAME_SURNAME
+                            break
+                        }
+                        case 400 : {
+                            this.props.setMessage('Пароли не соответствуют')
+                            this.path = AUTHORIZATION
+                            break
+                        }
+                        case 409 : {
+                            if (error.response.data === "This email is already in use") {
+                                this.props.setMessage('Данный пароль уже используется')
+                            }else if (error.response.data === 'This nickname is already in use') {
+                                this.props.setMessage('Имя пользователя уже занято')
+                            }
+                            this.path = REGISTRATION
+                            break
+                        }
+                        default:
                     }
-                    default:
-                }
+                    this.props.setInputEmail(null)
+                    this.props.setInputPassword(null)
+                })
             }
             this.props.setInputEmail(null)
             this.props.setInputNickname(null)
@@ -72,10 +108,13 @@ class Registration extends Component<PropsAuthReg, StateAuthReg> {
                             <input type={'text'} className={options_reg.input} onChange={this.setInputConfirmPassword}
                                    value={this.props.input_confirmPassword} placeholder={'Подтвердите пароль'}/>
                         </section>
-                        <NavLink to={this.path} type={'submit'} className={options_reg.main_page_button + ' ' + reg_curr.navlink} onClick={this.register} >
+                        <NavLink to={this.path} type={'submit'} className={options_reg.main_page_button + ' ' + reg_curr.navlink} onClick={this.authentication} >
                             Зарегистрироваться
                         </NavLink>
                     </form>
+                </section>
+                <section>
+                    {this.props.message}
                 </section>
             </section>
         )

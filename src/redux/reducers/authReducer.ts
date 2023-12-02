@@ -8,8 +8,11 @@ const SET_CONFIRM_PASSWORD_DATA = 'SET_CONFIRM_PASSWORD_DATA'
 
 const SET_INPUT_EMAIL_DATA = 'SET_INPUT_EMAIL_DATA'
 const SET_INPUT_NICKNAME_DATA = 'SET_INPUT_NICKNAME_DATA'
+const SET_INPUT_EMAIL_OR_NICKNAME_DATA = 'SET_INPUT_EMAIL_OR_NICKNAME_DATA'
 const SET_INPUT_PASSWORD_DATA = 'SET_INPUT_PASSWORD_DATA'
 const SET_INPUT_CONFIRM_PASSWORD_DATA = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
+
+const SET_MESSAGE = 'SET_MESSAGE'
 
 const initialState = {
     email: 'an.korobas@hiu.poka',
@@ -18,8 +21,11 @@ const initialState = {
 
     input_email: null,
     input_nickname: null,
+    input_emailOrNickname: '',
     input_password: null,
     input_confirmPassword : null,
+
+    message: ''
 }
 
 const authReducer = (state = initialState, action : any) => {
@@ -65,6 +71,12 @@ const authReducer = (state = initialState, action : any) => {
             return stateCopy
         }
 
+        case SET_INPUT_EMAIL_OR_NICKNAME_DATA : {
+            stateCopy.input_emailOrNickname = action.input_emailOrNickname
+
+            return stateCopy
+        }
+
         case SET_INPUT_PASSWORD_DATA : {
             stateCopy.input_password = action.password
 
@@ -73,6 +85,11 @@ const authReducer = (state = initialState, action : any) => {
 
         case SET_INPUT_CONFIRM_PASSWORD_DATA : {
             stateCopy.input_confirmPassword = action.confirmPassword
+
+            return stateCopy
+        }
+        case SET_MESSAGE : {
+            stateCopy.message = action.message
 
             return stateCopy
         }
@@ -113,6 +130,11 @@ export const setInputNickname = (nickname : string) => {
         type: SET_INPUT_NICKNAME_DATA, nickname
     }
 }
+export const setInputEmailOrNickname = (input_emailOrNickname : string) => {
+    return {
+        type: SET_INPUT_EMAIL_OR_NICKNAME_DATA, input_emailOrNickname
+    }
+}
 export const setInputPassword = (password : string) => {
     return {
         type: SET_INPUT_PASSWORD_DATA, password
@@ -123,5 +145,13 @@ export const setInputConfirmPassword = (confirmPassword : string) => {
         type: SET_INPUT_CONFIRM_PASSWORD_DATA, confirmPassword
     }
 }
+
+export const setMessage = (message : string) => {
+    return {
+        type: SET_MESSAGE, message
+    }
+}
+
+
 
 export default authReducer
