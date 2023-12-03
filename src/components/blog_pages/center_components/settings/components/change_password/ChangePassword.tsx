@@ -18,14 +18,22 @@ class ChangePassword extends Component<PropsChangePassword, StateChangePassword>
                                      setInputPassword={this.props.setInputPassword}
                                      setInputPasswordConfirm={this.props.setInputPasswordConfirm}
                                      setInputCode={this.props.setInputCode}
-                                     setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}/>
+                                     setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}
+                                     token={this.props.token}
+                                     message={this.props.message}
+                                     setMessage={this.props.setMessage}
+                                     setPassword={this.props.setPassword}/>
                     : !this.props.buttonChangePasswordFirstStep ?
                             <DefaultSeePassword buttonChangeEmail={this.props.buttonChangeEmail}
                                                 setButtonChangePasswordFirstStepPressed={this.props.setButtonChangePasswordFirstStepPressed}/>
                             : <ChangeOldPasswordForm input_password={this.props.input_password}
                                                      setButtonChangePasswordFirstStepPressed={this.props.setButtonChangePasswordFirstStepPressed}
                                                      setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}
-                                                     setInputPassword={this.props.setInputPassword}/>
+                                                     setInputPassword={this.props.setInputPassword}
+                                                     password={this.props.password}
+                                                     token={this.props.token}
+                                                     message={this.props.message}
+                                                     setMessage={this.props.setMessage}/>
                 }
             </div>
         )

@@ -4,14 +4,14 @@
     width: 70%;
 }
 
-.rootChangeEmail form {
+.form {
     height: 100%;
     display: grid;
     grid-template-rows: 60% 35%;
     row-gap: 10%;
 }
 
-.rootChangeEmail form main {
+.form main {
     height: 100%;
     padding: 0;
     display: grid;

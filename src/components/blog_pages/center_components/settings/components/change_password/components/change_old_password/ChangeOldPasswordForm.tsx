@@ -2,8 +2,13 @@ import change_el_css from "../../../ChangeSettingsElements.module.css";
 import change_private_css from './ChangeOldPassword.module.css'
 import React from "react";
 import {PropsOldPassword} from "../../../../../../../../redux/interfaces/settings/settings_for_components/password/SettingsChangePassword";
+import axios from "axios";
 
 const ChangeOldPasswordForm = (props : PropsOldPassword) => {
+    const config = {
+        headers: { Authorization: `Bearer ${props.token}` }
+    };
+
     const sendInputPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         props.setInputPassword(event.target.value)
     }
@@ -14,17 +19,58 @@ const ChangeOldPasswordForm = (props : PropsOldPassword) => {
 
     const saveButtonActionFirstStep = () => {
         if (props.input_password != null) {
-            // post и если код 200, тогда что ниже
-            props.setInputPassword(null)
-            props.setButtonChangePasswordFirstStepPressed(false)
-            props.setButtonChangePasswordSecondStepPressed(true)
+            if (props.input_password === props.password) {
+                axios.post('http://localhost:8000/auth/change/password', {
+                    token: props.token,
+                    password: props.input_password,
+                }, config).then(response => {
+                    debugger
+                    switch (response.status) {
+                        case 200 : {
+                            if (response.data === "Check your mailbox to confirm new password") {
+                                props.setMessage('На Вашу почту был отправлен одноразовый код')
+                            }
+
+                            props.setInputPassword(null)
+                            props.setButtonChangePasswordFirstStepPressed(false)
+                            props.setButtonChangePasswordSecondStepPressed(true)
+                            break
+                        }
+                        default:
+                    }
+                    props.setInputPassword(null)
+                }).catch(error => {
+                    debugger
+                    console.dir(error)
+                    props.setMessage(error.message)
+                    switch (error.response.status) {
+                        case 400 : {
+                            if (error.response.data === "User doesn't exist") {
+                                props.setMessage('Пользователя не существует')
+                            } else if (error.response.data === "Password mismatch") {
+                                props.setMessage('Неверный пароль')
+                            }
+                            break
+                        }
+                        case 409 : {
+                            if (error.response.data === "The password was changed less than 5 minutes ago, please try again later") {
+                                props.setMessage('Пароль был изменен менее 5 минут назад, попробуйте позже')
+                            }
+                            break
+                        }
+                        default:
+                    }
+                    props.setInputPassword('')
+                })
+            }
+
         }
 
     }
 
     return (
         <div className={change_private_css.rootChangePassword}>
-            <form className={change_private_css.setOldPassword}>
+            <section className={change_private_css.setOldPassword}>
                 <legend>Подтвердите Ваш пароль. Вам будет выслан код на электронный адрес бла бла бла
                 </legend>
                 <main>
@@ -39,7 +85,10 @@ const ChangeOldPasswordForm = (props : PropsOldPassword) => {
                         </button>
                     </section>
                 </main>
-            </form>
+                <section>
+                    {props.message}
+                </section>
+            </section>
         </div>
     )
 }

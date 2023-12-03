@@ -8,7 +8,6 @@ import options_reg from './css_options/Options.module.css';
 import RegistrationOrAuthorisation from "./registration_or_authorization/RegistrationOrAuthorisation";
 import RegistrationForgotPassword from "./registration_forgot_password/RegistrationForgotPassword";
 import RestoreAccount from "./restore_account/RestoreAccount";
-import SuccessfulChangeEmail from "./successful_registration_restoring/components/SuccessfulChangeEmail";
 import {PropsAuthReg} from "../../redux/interfaces/auth/authRegistration";
 import {
     ADD_NAME_SURNAME,
@@ -19,7 +18,7 @@ import {
 } from "../paths/authPath";
 import RegistrationAddNameSurname from "./registration_set_name_surname/RegistrationAddNameSurname";
 import {PropsProfileNameSurname} from "../../redux/interfaces/profile/profileAddNameSurname";
-import SuccessfulActivation from "./successful_registration_restoring/components/SuccessfulActivation";
+import MainSuccess from "./successful_registration_restoring/MainSuccess";
 
 const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
     const location = useLocation()
@@ -39,7 +38,9 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                                     message={props.message}
                                                                                     setMessage={props.setMessage}
                                                                                     input_emailOrNickname={props.input_emailOrNickname}
-                                                                                    setInputEmailOrNickname={props.setInputEmailOrNickname}/> :
+                                                                                    setInputEmailOrNickname={props.setInputEmailOrNickname}
+                                                                                    setToken={props.setToken}
+                                                                                    token={props.token}/> :
                 location.pathname === REGISTRATION ? <Registration input_email={props.input_email}
                                                                    input_nickname={props.input_nickname}
                                                                    input_password={props.input_password}
@@ -55,14 +56,23 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                    message={props.message}
                                                                    setMessage={props.setMessage}
                                                                    input_emailOrNickname={props.input_emailOrNickname}
-                                                                   setInputEmailOrNickname={props.setInputEmailOrNickname}/> :
+                                                                   setInputEmailOrNickname={props.setInputEmailOrNickname}
+                                                                   setToken={props.setToken} // todo no need
+                                                                   token={props.token}/> : // todo no need
                 location.pathname === REGISTRATION_FORGOT_PASSWORD ? <RegistrationForgotPassword input_email={props.input_email}
                                                                                                  setInputEmail={props.setInputEmail}
                                                                                                  message={props.message}
                                                                                                  setMessage={props.setMessage}/> :
                 location.pathname === REGISTRATION_RESTORE_ACCOUNT ? <RestoreAccount/> :
-                location.pathname === SUCCESSFUL_ACTIVATION ? <SuccessfulActivation/> :
-                location.pathname === SUCCESSFUL_CHANGE_EMAIL ? <SuccessfulChangeEmail/> :
+                location.pathname === SUCCESSFUL_ACTIVATION ? <MainSuccess message={props.message}
+                                                                           setMessage={props.setMessage}
+                                                                           setEmail={props.setEmail}
+                                                                           newEmail={props.newEmail}
+                                                                           token={props.token}/> :
+                location.pathname === SUCCESSFUL_CHANGE_EMAIL ? <MainSuccess message={props.message}
+                                                                             setMessage={props.setMessage} setEmail={props.setEmail}
+                                                                             newEmail={props.newEmail}
+                                                                             token={props.token}/> :
                 location.pathname === ADD_NAME_SURNAME ? <RegistrationAddNameSurname input_name={props.input_name}
                                                                                      input_surname={props.input_surname}
                                                                                      setInputName={props.setInputName}

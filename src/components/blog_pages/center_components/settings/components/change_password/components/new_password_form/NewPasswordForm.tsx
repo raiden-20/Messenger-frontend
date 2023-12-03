@@ -5,8 +5,13 @@ import {
 
 import change_el_css from "../../../ChangeSettingsElements.module.css";
 import change_private_css from './NewPasswordForm.module.css'
+import axios from "axios";
 
 const NewPasswordForm = (props : PropsNewPassword) => {
+    const config = {
+        headers: { Authorization: `Bearer ${props.token}` }
+    };
+
     const sendInputPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         props.setInputPassword(event.target.value)
     }
@@ -19,13 +24,46 @@ const NewPasswordForm = (props : PropsNewPassword) => {
     const saveButtonActionSecondStep = () => {
         if (props.input_password != null && props.input_passwordConfirm != null &&
             props.input_password === props.input_passwordConfirm) {
-            // post и если код 200, тогда что ниже
-            // this.props.setPassword(this.props.input_password)
-            // this.props.setInputPassword(null)
-            // this.props.setInputPasswordConfirm(null)
-            // this.props.setInputCode(null)
-
-            props.setButtonChangePasswordSecondStepPressed(false)
+            axios.put('http://localhost:8000/auth/confirm/password', {
+                token: props.token,
+                oneTimeCode: props.input_code,
+                newPassword: props.input_password
+            }, config).then(response => {
+                debugger
+                switch (response.status) {
+                    case 200 : {
+                        if (response.data === "Password changed") {
+                            props.setMessage('Пароль был изменен')
+                            props.setPassword(props.input_password)
+                        }
+                        props.setInputPassword('')
+                        break
+                    }
+                    default:
+                }
+                props.setInputPassword('')
+            }).catch(error => {
+                debugger
+                console.dir(error)
+                props.setMessage(error.message)
+                switch (error.response.status) {
+                    case 400 : {
+                        if (error.response.data === "User doesn't exist") {
+                            props.setMessage('Пользователя не существует')
+                        } else if (error.response.data === "Code doesn't match") {
+                            props.setMessage('Неверный код')
+                        } else if (error.response.data === "The code is not relevant") {
+                            props.setMessage('Истекло время использования кода')
+                        }
+                        break
+                    }
+                    default:
+                }
+                props.setInputPassword('')
+            })
+            props.setInputPassword('')
+            props.setInputPasswordConfirm('')
+            props.setInputCode('')
         }
 
     }

@@ -6,7 +6,8 @@ import Navigation from "./Navigation";
 
 const mapStateToProps = (state : PropsNavigation & StateNavigation) => {
     return {
-        buttonMoreSection: state.navigation.buttonMoreSection
+        buttonMoreSection: state.navigation.buttonMoreSection,
+        token: state.auth.token
     }
 }
 

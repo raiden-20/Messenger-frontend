@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {NavLink} from 'react-router-dom';
 import nav from './Navigation.module.css';
 
@@ -11,19 +11,18 @@ import settings from '../../../assets/images/icons_navigation/settings.svg'
 import more from '../../../assets/images/icons_navigation/more.svg'
 import more_close from '../../../assets/images/icons_navigation/more_close.svg'
 import more_open from '../../../assets/images/icons_navigation/more_open.svg'
-import {PropsNavigation, StateNavigation} from "../../../redux/interfaces/navigation/navigationMain";
+import {PropsNavigation} from "../../../redux/interfaces/navigation/navigationMain";
 import NavigationMoreSection from "./components/NavigationMoreSection";
 
-class Navigation extends Component<PropsNavigation, StateNavigation> {
-    changeButtonNavStatus = () => {
-        if (this.props.buttonMoreSection) {
-            this.props.setButtonMoreSection(false)
+const Navigation = (props: PropsNavigation) => {
+    const changeButtonNavStatus = () => {
+        if (props.buttonMoreSection) {
+            props.setButtonMoreSection(false)
         } else {
-            this.props.setButtonMoreSection(true)
+            props.setButtonMoreSection(true)
         }
     }
-    render() {
-        return (
+    return (
             <div className={nav.page}>
                 <header>
                     <img src={simon}/>
@@ -50,24 +49,24 @@ class Navigation extends Component<PropsNavigation, StateNavigation> {
                         <img className={nav.img} src={settings}/>
                         <NavLink className={nav.button_nav} to={"/settings_account"}>Настройки</NavLink>
                     </section>
-                    <section className={nav.svg_link} onClick={this.changeButtonNavStatus}>
+                    <section className={nav.svg_link} onClick={changeButtonNavStatus}>
                         <img className={nav.img} src={more}/>
                         <section className={nav.more_section}>
                             <button className={nav.button_nav}>Еще</button>
-                            {!this.props.buttonMoreSection ?
+                            {!props.buttonMoreSection ?
                                 <img className={nav.icon_more_op} src={more_close}
                                      alt={'navigation more section close'}/> :
                                 <img className={nav.icon_more_op} src={more_open}
                                      alt={'navigation more section open'}/>}
                         </section>
                     </section>
-                    {this.props.buttonMoreSection ? <NavigationMoreSection/> : null}
+                    {props.buttonMoreSection ? (
+                        <NavigationMoreSection token={props.token}/> ): null}
 
                 </section>
 
             </div>
         )
-    }
 }
 
 export default Navigation

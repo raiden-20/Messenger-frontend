@@ -1,7 +1,6 @@
 import reg_forgot_css from './RegistrationForgotPassword.module.css'
 import React, {Component} from "react";
 import options_reg from '../css_options/Options.module.css'
-import {PropsAuthReg, StateAuthReg} from "../../../redux/interfaces/auth/authRegistration";
 import {PropsAuthForgotPassword, StateAuthForgotPassword} from "../../../redux/interfaces/auth/authForgotPassword";
 
 class RegistrationForgotPassword extends Component<PropsAuthForgotPassword, StateAuthForgotPassword>{

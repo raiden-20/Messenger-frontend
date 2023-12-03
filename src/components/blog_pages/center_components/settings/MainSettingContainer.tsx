@@ -1,17 +1,18 @@
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import MainSetting from "./MainSetting";
-import {setEmail, setPassword} from "../../../../redux/reducers/authReducer";
+import {setMessage, setNewEmail, setPassword, setToken} from "../../../../redux/reducers/authReducer";
 import {
     setButtonChangeEmailPressed, setButtonChangePasswordFirstStepPressed, setButtonChangePasswordSecondStepPressed,
     setInputCode, setInputPasswordConfirm, setInputPassword, setInputEmail
 } from "../../../../redux/reducers/settingsReducer";
 import {StateChangeEmail} from "../../../../redux/interfaces/settings/SettingsChangeEmail";
 import {StateChangePassword} from "../../../../redux/interfaces/settings/SettingsChangePassword";
+import {StateDeleteAccount} from "../../../../redux/interfaces/settings/settings_for_components/SettingsDeleteAccount";
 
 
 
-const mapStateToProps = (state : StateChangeEmail & StateChangePassword) => {
+const mapStateToProps = (state : StateChangeEmail & StateChangePassword & StateDeleteAccount) => {
     return {
         email: state.auth.email,
         password: state.auth.password,
@@ -20,6 +21,9 @@ const mapStateToProps = (state : StateChangeEmail & StateChangePassword) => {
         input_password: state.settings.input_password,
         input_passwordConfirm: state.settings.input_passwordConfirm,
         input_code: state.settings.input_code,
+
+        token: state.auth.token,
+        message: state.auth.message,
 
         buttonChangeEmail: state.settings.buttonChangeEmail,
         buttonChangePasswordFirstStep: state.settings.buttonChangePasswordFirstStep,
@@ -45,8 +49,14 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
         setPassword(password : string) {
             dispatch(setPassword(password))
         },
-        setEmail(email : string) {
-            dispatch(setEmail(email))
+        setNewEmail(newEmail : string) {
+            dispatch(setNewEmail(newEmail))
+        },
+        setMessage(message: string) {
+            dispatch(setMessage(message))
+        },
+        setToken(token: string) {
+            dispatch(setToken(token))
         },
 
         setButtonChangeEmailPressed(buttonChangeEmail: boolean) {

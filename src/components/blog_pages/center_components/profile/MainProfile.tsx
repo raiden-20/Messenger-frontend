@@ -29,7 +29,7 @@ const MainProfile = (props: PropsUserProfile & PropsNickname) => {
                         </figure>
                         <section className={main_css.name_and_status}>
                             <div className={main_elements_css.name}>{props.name + ' ' + props.surname}</div>
-                            <div className={main_elements_css.userName}>{props.nickname}</div>
+                            <div className={main_elements_css.userName}>{'@' + props.nickname}</div>
                         </section>
                         {location.pathname === '/profile' ? <ProfileUserSettings/> :
                             location.pathname === '/profile/:id' ? <ProfileOtherUserSettings/> : null}

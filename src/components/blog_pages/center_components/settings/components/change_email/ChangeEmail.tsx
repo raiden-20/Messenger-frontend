@@ -18,7 +18,11 @@ class ChangeEmail extends Component<PropsChangeEmail, StateChangeEmail> {
                                        input_password={this.props.input_password}
                                        setButtonChangeEmailPressed={this.props.setButtonChangeEmailPressed}
                                        setInputPassword={this.props.setInputPassword}
-                                       setInputEmail={this.props.setInputEmail}/>
+                                       setInputEmail={this.props.setInputEmail}
+                                       token={this.props.token}
+                                       message={this.props.message}
+                                       setMessage={this.props.setMessage}
+                                       setNewEmail={this.props.setNewEmail}/>
                 }
             </div>
         )

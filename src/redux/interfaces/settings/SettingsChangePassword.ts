@@ -10,6 +10,8 @@ export interface StateChangePassword{
     }
     auth : {
         password: string;
+        token: string;
+        message: string
     }
 }
 
@@ -23,12 +25,16 @@ export interface PropsChangePassword{
     input_passwordConfirm: string;
     input_code: string;
 
+    token: string;
+    message: string
+
     setButtonChangePasswordFirstStepPressed(buttonChangePasswordFirstStep : boolean) : void;
     setButtonChangePasswordSecondStepPressed(buttonChangePasswordSecondStep : boolean) : void;
     setInputPassword(input_password : string | null) : void;
     setInputPasswordConfirm(input_passwordConfirm : string | null) : void;
     setPassword(password : string | null) : void;
     setInputCode(input_code : string | null) : void;
+    setMessage(message : string) : void;
 
 }
 

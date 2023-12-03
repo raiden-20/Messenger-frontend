@@ -4,8 +4,9 @@ import SettingsAccount from "./settings_tab/SettingsAccount";
 import SettingsSecurity from "./settings_tab/SettingsSecurity";
 import {PropsChangePassword} from "../../../../redux/interfaces/settings/SettingsChangePassword";
 import {PropsChangeEmail} from "../../../../redux/interfaces/settings/SettingsChangeEmail";
+import {PropsDeleteAccount} from "../../../../redux/interfaces/settings/settings_for_components/SettingsDeleteAccount";
 
-const MainSetting = (props : PropsChangePassword & PropsChangeEmail) => {
+const MainSetting = (props : PropsChangePassword & PropsChangeEmail & PropsDeleteAccount) => {
     let location = useLocation()
 
     return (location.pathname === '/settings_account' ? <SettingsAccount email={props.email}
@@ -15,7 +16,6 @@ const MainSetting = (props : PropsChangePassword & PropsChangeEmail) => {
                                                                          setInputPassword={props.setInputPassword}
                                                                          setInputEmail={props.setInputEmail}
                                                                          setPassword={props.setPassword}
-                                                                         setEmail={props.setEmail}
                                                                          buttonChangeEmail={props.buttonChangeEmail}
                                                                          input_code={props.input_code}
                                                                          setButtonChangeEmailPressed={props.setButtonChangeEmailPressed}
@@ -25,7 +25,12 @@ const MainSetting = (props : PropsChangePassword & PropsChangeEmail) => {
                                                                          buttonChangePasswordFirstStep={props.buttonChangePasswordFirstStep}
                                                                          buttonChangePasswordSecondStep={props.buttonChangePasswordSecondStep}
                                                                          setButtonChangePasswordFirstStepPressed={props.setButtonChangePasswordFirstStepPressed}
-                                                                         setButtonChangePasswordSecondStepPressed={props.setButtonChangePasswordSecondStepPressed}/>
+                                                                         setButtonChangePasswordSecondStepPressed={props.setButtonChangePasswordSecondStepPressed}
+                                                                         token={props.token}
+                                                                         message={props.message}
+                                                                         setMessage={props.setMessage}
+                                                                         setToken={props.setToken}
+                                                                         setNewEmail={props.setNewEmail}/>
                                                         : <SettingsSecurity/>)
 }
 

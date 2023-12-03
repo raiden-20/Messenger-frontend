@@ -1,6 +1,7 @@
 const SET_USER_DATA = 'SET_USER_DATA'
 
 const SET_EMAIL_DATA = 'SET_EMAIL_DATA'
+const SET_NEW_EMAIL = 'SET_NEW_EMAIL'
 const SET_NICKNAME_DATA = 'SET_NICKNAME_DATA'
 const SET_PASSWORD_DATA = 'SET_PASSWORD_DATA'
 const SET_CONFIRM_PASSWORD_DATA = 'SET_CONFIRM_PASSWORD_DATA'
@@ -13,9 +14,13 @@ const SET_INPUT_PASSWORD_DATA = 'SET_INPUT_PASSWORD_DATA'
 const SET_INPUT_CONFIRM_PASSWORD_DATA = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
 
 const SET_MESSAGE = 'SET_MESSAGE'
+const SET_TOKEN = 'SET_TOKEN'
 
 const initialState = {
+    token: '',
+
     email: 'an.korobas@hiu.poka',
+    newEmail: '',
     nickname: '@anastas',
     password: 12345678910,
 
@@ -43,6 +48,12 @@ const authReducer = (state = initialState, action : any) => {
 
         case SET_EMAIL_DATA : {
             stateCopy.email = action.email
+
+            return stateCopy
+        }
+        case SET_NEW_EMAIL : {
+            debugger
+            stateCopy.newEmail = action.newEmail
 
             return stateCopy
         }
@@ -93,6 +104,11 @@ const authReducer = (state = initialState, action : any) => {
 
             return stateCopy
         }
+        case SET_TOKEN : {
+            stateCopy.token = action.token
+
+            return stateCopy
+        }
 
         default : {
             return stateCopy
@@ -103,6 +119,11 @@ const authReducer = (state = initialState, action : any) => {
 export const setEmail = (email : string) => {
     return {
         type: SET_EMAIL_DATA, email
+    }
+}
+export const setNewEmail = (newEmail : string) => {
+    return {
+        type: SET_NEW_EMAIL, newEmail
     }
 }
 export const setNickname = (nickname : string) => {
@@ -149,6 +170,11 @@ export const setInputConfirmPassword = (confirmPassword : string) => {
 export const setMessage = (message : string) => {
     return {
         type: SET_MESSAGE, message
+    }
+}
+export const setToken = (token : string) => {
+    return {
+        type: SET_TOKEN, token
     }
 }
 

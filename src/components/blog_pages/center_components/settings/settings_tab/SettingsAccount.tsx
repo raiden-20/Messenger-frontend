@@ -9,9 +9,12 @@ import {
 import {PropsChangeEmail, StateChangeEmail} from "../../../../../redux/interfaces/settings/SettingsChangeEmail";
 import ChangePassword from "../components/change_password/ChangePassword";
 import ChangeLanguage from "../components/change_language/ChangeLanguage";
-import DeleteAccount from "../components/DeleteAccount";
+import DeleteAccount from "../components/delete_account/DeleteAccount";
+import {
+    PropsDeleteAccount, StateDeleteAccount
+} from "../../../../../redux/interfaces/settings/settings_for_components/SettingsDeleteAccount";
 
-class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail, StateChangePassword & StateChangeEmail> {
+class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail & PropsDeleteAccount, StateChangePassword & StateChangeEmail & StateDeleteAccount> {
     
     render() {
         return (
@@ -27,11 +30,14 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail, 
                                              setInputPassword={this.props.setInputPassword}
                                              setInputEmail={this.props.setInputEmail}
                                              setPassword={this.props.setPassword}
-                                             setEmail={this.props.setEmail}
                                              buttonChangeEmail={this.props.buttonChangeEmail}
                                              setButtonChangeEmailPressed={this.props.setButtonChangeEmailPressed}
                                              buttonChangePasswordFirstStep={this.props.buttonChangePasswordFirstStep}
-                                             buttonChangePasswordSecondStep={this.props.buttonChangePasswordSecondStep}/>
+                                             buttonChangePasswordSecondStep={this.props.buttonChangePasswordSecondStep}
+                                             token={this.props.token}
+                                             message={this.props.message}
+                                             setMessage={this.props.setMessage}
+                                             setNewEmail={this.props.setNewEmail}/>
                         </section>
                         <section className={settings_css.leg_container}>
                             <legend><strong>Пароль</strong></legend>
@@ -47,7 +53,10 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail, 
                                                 buttonChangePasswordFirstStep={this.props.buttonChangePasswordFirstStep}
                                                 buttonChangePasswordSecondStep={this.props.buttonChangePasswordSecondStep}
                                                 setButtonChangePasswordFirstStepPressed={this.props.setButtonChangePasswordFirstStepPressed}
-                                                setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}/>
+                                                setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}
+                                                token={this.props.token}
+                                                message={this.props.message}
+                                                setMessage={this.props.setMessage}/>
 
                         </section>
                         <section className={settings_css.leg_container}>
@@ -56,7 +65,11 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail, 
                         </section>
                     </main>
                     <footer>
-                        <DeleteAccount/>
+                        <DeleteAccount password={this.props.password}
+                                       setToken={this.props.setToken}
+                                       token={this.props.token}
+                                       setMessage={this.props.setMessage}
+                                       message={this.props.message}/>
                     </footer>
                 </section>
             </section>

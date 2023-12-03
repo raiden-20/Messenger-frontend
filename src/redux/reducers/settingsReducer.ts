@@ -52,7 +52,7 @@ const settingsReducer = (state = initialState, action : any) => {
             return stateCopy
         }
         case SET_INPUT_EMAIL : {
-            stateCopy.input_code = action.input_email
+            stateCopy.input_email = action.input_email
             return stateCopy
 
         }case SET_INPUT_CODE : {

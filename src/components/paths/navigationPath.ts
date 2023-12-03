@@ -1,0 +1,1 @@
+export const SETTINGS : string ='/settings_account'
