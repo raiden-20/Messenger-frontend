@@ -43,7 +43,6 @@ const NewPasswordForm = (props : PropsNewPassword) => {
                 }
                 props.setInputPassword('')
             }).catch(error => {
-                debugger
                 console.dir(error)
                 props.setMessage(error.message)
                 switch (error.response.status) {
