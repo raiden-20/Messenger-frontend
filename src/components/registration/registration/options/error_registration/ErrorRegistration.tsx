@@ -1,12 +1,13 @@
 import React from "react";
 import error_css from './ErrorRegistration.module.css'
+import {PropsSuccessError} from "../../../../../redux/interfaces/auth/authSuccessError";
 
-const ErrorRegistration = () => {
+const ErrorRegistration = (props: PropsSuccessError) => {
     return (
         <section className={error_css.root}>
             <section className={error_css.main}>
                 <section>
-                    Сообщение об ошибке (ник занят, почта некорректная бла бла бла)
+                    {props.message}
                 </section>
             </section>
         </section>

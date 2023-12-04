@@ -6,12 +6,16 @@ import {useNavigate} from "react-router-dom";
 import NavigationMoreSectionComponent from "./NavigationMoreSectionComponent";
 
 const NavigationMoreSection = (props: PropsExit) => {
+    const config = {
+        headers: { Authorization: `Bearer ${props.token}` }
+    };
+
     const navigation = useNavigate()
     const enter = () => {
         debugger
         axios.post('http://localhost:8000/auth/exit', {
             token: props.token,
-        }).then(response => {
+        }, config).then(response => {
             debugger
             switch (response.status) {
                 case 200 : {

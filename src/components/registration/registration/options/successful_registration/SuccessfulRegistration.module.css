@@ -1,3 +1,18 @@
 .root {
-    padding: 4% 0 4% 0;
+    padding: 4% 0 13% 0;
+}
+
+.main {
+    display: grid;
+    justify-items: center;
+
+    padding: 5% 3% 5% 3%;
+    background-color: #B4FAC5;
+    border-radius: 10px;
+    color: #0D8F43;
+}
+
+.main section {
+    width: 85%;
+    font-size: 1.1em;
 }

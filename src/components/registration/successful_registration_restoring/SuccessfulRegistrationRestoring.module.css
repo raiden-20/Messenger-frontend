@@ -1,3 +1,19 @@
 .root {
-    text-align: center;
+    height: 12vh;
+    display: grid;
+    grid-template-rows: 40% 45%;
+    row-gap: 15%;
+    justify-items: center;
+}
+.root p {
+    margin: 0;
+}
+
+.button {
+    border: none;
+    background-color: #855BD9;
+    color: #FFFFFF;
+
+    width: 25%;
+    border-radius: 20px;
 }

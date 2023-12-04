@@ -58,7 +58,9 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                    input_emailOrNickname={props.input_emailOrNickname}
                                                                    setInputEmailOrNickname={props.setInputEmailOrNickname}
                                                                    setToken={props.setToken} // todo no need
-                                                                   token={props.token}/> : // todo no need
+                                                                   token={props.token}
+                                                                   code={props.code}
+                                                                   setCode={props.setCode}/> : // todo no need
                 location.pathname === REGISTRATION_FORGOT_PASSWORD ? <RegistrationForgotPassword input_email={props.input_email}
                                                                                                  setInputEmail={props.setInputEmail}
                                                                                                  message={props.message}

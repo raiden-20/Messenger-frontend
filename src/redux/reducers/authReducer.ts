@@ -15,6 +15,7 @@ const SET_INPUT_CONFIRM_PASSWORD_DATA = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
 
 const SET_MESSAGE = 'SET_MESSAGE'
 const SET_TOKEN = 'SET_TOKEN'
+const SET_CODE = 'SET_CODE'
 
 const initialState = {
     token: '',
@@ -30,7 +31,8 @@ const initialState = {
     input_password: null,
     input_confirmPassword : null,
 
-    message: ''
+    message: '',
+    code: 0
 }
 
 const authReducer = (state = initialState, action : any) => {
@@ -109,6 +111,11 @@ const authReducer = (state = initialState, action : any) => {
 
             return stateCopy
         }
+        case SET_CODE : {
+            stateCopy.code = action.code
+
+            return stateCopy
+        }
 
         default : {
             return stateCopy
@@ -175,6 +182,11 @@ export const setMessage = (message : string) => {
 export const setToken = (token : string) => {
     return {
         type: SET_TOKEN, token
+    }
+}
+export const setCode = (code : number) => {
+    return {
+        type: SET_CODE, code
     }
 }
 

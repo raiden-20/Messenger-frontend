@@ -5,10 +5,11 @@ import {
     PropsSuccessfulActivation,
     StateSuccessfulSmth
 } from "../../../../redux/interfaces/auth/authSuccessfulActivation";
+import SuccessfulActivationComponent from "./SuccessfulActivationComponent";
 class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuccessfulSmth>{
     componentDidMount() {
         axios.put('http://localhost:8000/auth/active/account', {
-            "id": "00736719-3483-4139-a572-28f03f05c3b7"
+            "id": "b85e636e-c9c6-4531-8011-d58eecc54854"
         })
             .then(response => {
                 debugger
@@ -16,7 +17,7 @@ class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuc
                 switch (response.status) {
                     case 200 : {
                         if (response.data === "Account activated") {
-                            this.props.setMessage('Ваш аккаунт был успешно активирован!')
+                            this.props.setMessage('Ваш аккаунт был успешно активирован! Для продолжения войдите в аккаунт')
                         }
                         break
                     }
@@ -40,12 +41,14 @@ class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuc
             });
     }
 
+    toProfile = () => {
+
+    }
+
     render() {
-        return (
-            <div className={success_reg_res_css.root}>
-                <p>{this.props.message}</p>
-            </div>
-        )
+        return <SuccessfulActivationComponent message={this.props.message}
+                                              token={this.props.token}
+                                              setMessage={this.props.setMessage}/>
     }
 
 

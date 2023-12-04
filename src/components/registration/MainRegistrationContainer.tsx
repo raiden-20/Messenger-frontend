@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 import RegistrationMain from "./RegistrationMain";
 import {
+    setCode,
     setEmail, setInputConfirmPassword,
     setInputEmail, setInputEmailOrNickname,
     setInputNickname, setInputPassword, setMessage,
@@ -28,6 +29,7 @@ const mapStateToProps = (state : StateAuthReg & StateProfileNameSurname) => {
 
         message: state.auth.message,
         token: state.auth.token,
+        code: state.auth.code,
 
         newEmail: state.auth.newEmail
     }
@@ -82,6 +84,9 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
         },
         setToken(token: string) {
             dispatch(setToken(token))
+        },
+        setCode(code: number) {
+            dispatch(setCode(code))
         }
     }
 }
