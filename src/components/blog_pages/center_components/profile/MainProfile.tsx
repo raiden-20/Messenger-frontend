@@ -3,7 +3,6 @@ import {PropsUserProfile, StateUserProfile} from "../../../../redux/interfaces/p
 import MainProfileComponent from "./MainProfileComponent";
 import axios from "axios";
 
-
 class MainProfile extends Component<PropsUserProfile, StateUserProfile>{
     config = {
         headers: {
