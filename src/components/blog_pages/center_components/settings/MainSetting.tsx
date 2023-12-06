@@ -30,7 +30,8 @@ const MainSetting = (props : PropsChangePassword & PropsChangeEmail & PropsDelet
                                                                          message={props.message}
                                                                          setMessage={props.setMessage}
                                                                          setToken={props.setToken}
-                                                                         setNewEmail={props.setNewEmail}/>
+                                                                         setNewEmail={props.setNewEmail}
+                                                                         setEmail={props.setEmail}/>
                                                         : <SettingsSecurity/>)
 }
 

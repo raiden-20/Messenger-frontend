@@ -4,9 +4,7 @@ import {PropsAuthAuth} from "../../../redux/interfaces/auth/authAuthorize";
 import {PROFILE} from "../../paths/profilePath";
 import {
     AUTHORIZATION,
-    REGISTRATION,
-    REGISTRATION_FORGOT_PASSWORD,
-    REGISTRATION_RESTORE_ACCOUNT
+    REGISTRATION
 } from "../../paths/authPath";
 import axios from "axios";
 import RegistrationOrAuthorisationComponent from "./RegistrationOrAuthorisationComponent";
@@ -23,9 +21,9 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
                 switch (response.status) {
                     case 200 : {
                         props.setToken(response.data)
-                        props.setEmail(props.input_email)
-                        props.setNickname(props.input_nickname)
-                        props.setPassword(props.input_password)
+                        localStorage.setItem('token', response.data)
+                        localStorage.setItem('password', props.input_password)
+                        localStorage.setItem('id', 'c5c389b5-0bf2-4deb-866f-6b34bbfa3b88')
 
                         cleanMessageAndChangePath()
 

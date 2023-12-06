@@ -10,6 +10,8 @@ export interface StateAuthReg {
         message: string;
         token: string
         code: number
+        id: string
+        email: string
 
         newEmail: string
     }
@@ -26,6 +28,8 @@ export interface PropsAuthReg{
     message: string;
     token: string
     code: number
+    id: string
+    email: string
 
     newEmail: string
 
@@ -44,6 +48,7 @@ export interface PropsAuthReg{
     setMessage(message: string): void;
     setToken(token: string): void;
     setCode(code: number): void
+    setId(id: string): void
 }
 
 export interface PropsAuthRegReg{
@@ -55,7 +60,6 @@ export interface PropsAuthRegReg{
     input_emailOrNickname: string
 
     message: string;
-    token: string;
     code: number;
 
     setInputEmail(input_email: string | null): void;
@@ -71,7 +75,6 @@ export interface PropsAuthRegReg{
     setConfirmPassword(confirmPassword : string): void;
 
     setMessage(message: string): void;
-    setToken(token: string): void;
     setCode(code: number): void
 }
 
@@ -84,7 +87,6 @@ export interface PropsAuthRegComponent{
     input_emailOrNickname: string
 
     message: string;
-    token: string
     code: number
 
     setInputEmail(input_email: string | null): void;
@@ -95,7 +97,6 @@ export interface PropsAuthRegComponent{
     setInputEmailOrNickname(input_emailOrNickname: string): void;
 
     setMessage(message: string): void;
-    setToken(token: string): void;
 
     authentication(): void
 }

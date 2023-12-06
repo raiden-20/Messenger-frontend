@@ -13,7 +13,8 @@ class ChangeEmail extends Component<PropsChangeEmail, StateChangeEmail> {
                                      buttonChangePasswordFirstStep={this.props.buttonChangePasswordFirstStep}
                                      email={this.props.email}
                                      setButtonChangeEmailPressed={this.props.setButtonChangeEmailPressed}
-                                     buttonChangePasswordSecondStep={this.props.buttonChangePasswordSecondStep}/>
+                                     buttonChangePasswordSecondStep={this.props.buttonChangePasswordSecondStep}
+                                     setEmail={this.props.setEmail}/>
                     : <ChangeEmailForm input_email={this.props.input_email}
                                        input_password={this.props.input_password}
                                        setButtonChangeEmailPressed={this.props.setButtonChangeEmailPressed}
@@ -22,7 +23,8 @@ class ChangeEmail extends Component<PropsChangeEmail, StateChangeEmail> {
                                        token={this.props.token}
                                        message={this.props.message}
                                        setMessage={this.props.setMessage}
-                                       setNewEmail={this.props.setNewEmail}/>
+                                       setNewEmail={this.props.setNewEmail}
+                                       setToken={this.props.setToken}/>
                 }
             </div>
         )

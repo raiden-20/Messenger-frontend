@@ -14,17 +14,17 @@ const ChangeOldPasswordForm = (props : PropsOldPassword) => {
     }
     const cancelButtonActionFirstStep = () => {
         props.setInputPassword(null)
+        props.setMessage('')
         props.setButtonChangePasswordFirstStepPressed(false)
     }
 
     const saveButtonActionFirstStep = () => {
         if (props.input_password != null) {
-            if (props.input_password === props.password) {
+            if (props.input_password === localStorage.getItem('password')) {
                 axios.post('http://localhost:8000/auth/change/password', {
-                    token: props.token,
+                    token: localStorage.getItem('token'),
                     password: props.input_password,
                 }, config).then(response => {
-                    debugger
                     switch (response.status) {
                         case 200 : {
                             if (response.data === "Check your mailbox to confirm new password") {
@@ -62,6 +62,9 @@ const ChangeOldPasswordForm = (props : PropsOldPassword) => {
                     }
                     props.setInputPassword('')
                 })
+            } else {
+                props.setMessage('Неправильный пароль')
+                props.setInputPassword('')
             }
 
         }

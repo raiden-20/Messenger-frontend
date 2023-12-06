@@ -13,6 +13,12 @@ const DefaultSeeEmail = (props : PropsChangeEmail) => {
         }
     }
 
+    const getEmail = () => {
+        debugger
+        // id запрос на получение email
+        return // email
+    }
+
     return (
         <section className={settings_css.section_and_edit}>
             {props.email}

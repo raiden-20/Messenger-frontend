@@ -11,18 +11,22 @@ class SuccessfulChangeEmail extends Component<PropsSuccessfulEmail, StateSuccess
         headers: { Authorization: `Bearer ${this.props.token}` }
     };
     componentDidMount() {
+        this.props.setToken(localStorage.getItem('token'))
         debugger
         axios.put('http://localhost:8000/auth/confirm/email', {
-            "token": this.props.token,
-            "email": this.props.newEmail
+            "token": localStorage.getItem('token'),
+            "email": this.props.email
         }, this.config)
             .then(response => {
+                debugger
                 this.props.setMessage(response.data.message)
                 switch (response.status) {
                     case 200 : {
                         if (response.data === "Email confirmed") {
                             this.props.setMessage('Пароль был успешно изменен!')
                             this.props.setEmail(this.props.newEmail)
+                            this.props.setToken('')
+
                         }
                         break
                     }
@@ -30,6 +34,7 @@ class SuccessfulChangeEmail extends Component<PropsSuccessfulEmail, StateSuccess
                 }
             })
             .catch(error => {
+                debugger
                 console.dir(error)
                 this.props.setMessage(error.message)
                 switch (error.response.status) {

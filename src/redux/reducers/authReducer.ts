@@ -1,3 +1,4 @@
+const SET_ID = 'SET_ID'
 const SET_USER_DATA = 'SET_USER_DATA'
 
 const SET_EMAIL_DATA = 'SET_EMAIL_DATA'
@@ -18,9 +19,10 @@ const SET_TOKEN = 'SET_TOKEN'
 const SET_CODE = 'SET_CODE'
 
 const initialState = {
+    id: '',
     token: '',
 
-    email: 'an.korobas@hiu.poka',
+    email: 'an.korobeynikova@gmail.com',
     newEmail: '',
     nickname: '@anastas',
     password: 12345678910,
@@ -39,6 +41,12 @@ const authReducer = (state = initialState, action : any) => {
     let stateCopy = {...state}
     switch (action.type) {
 
+        case SET_ID : {
+            stateCopy.id = action.id
+
+            return stateCopy
+        }
+
         case SET_USER_DATA : {
             let data = {...action.data}
             stateCopy.email = data.email
@@ -54,7 +62,6 @@ const authReducer = (state = initialState, action : any) => {
             return stateCopy
         }
         case SET_NEW_EMAIL : {
-            debugger
             stateCopy.newEmail = action.newEmail
 
             return stateCopy
@@ -123,6 +130,11 @@ const authReducer = (state = initialState, action : any) => {
     }
 }
 
+export const setId = (id : string) => {
+    return {
+        type: SET_ID, id
+    }
+}
 export const setEmail = (email : string) => {
     return {
         type: SET_EMAIL_DATA, email

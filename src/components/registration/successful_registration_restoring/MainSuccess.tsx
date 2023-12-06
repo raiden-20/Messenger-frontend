@@ -16,12 +16,18 @@ const MainSuccess = (props : PropsSuccessfulEmail & PropsSuccessfulActivation) =
             <main>
                 {location.pathname === '/successful_activation' ? <SuccessfulActivation message={props.message}
                                                                                         setMessage={props.setMessage}
-                                                                                        token={props.token}/> :
+                                                                                        token={props.token}
+                                                                                        id={props.id}
+                                                                                        setId={props.setId}/> :
                 location.pathname === '/successful_change_email' ? <SuccessfulChangeEmail message={props.message}
                                                                                           setMessage={props.setMessage}
                                                                                           setEmail={props.setEmail}
                                                                                           newEmail={props.newEmail}
-                                                                                          token={props.token}/> : null}
+                                                                                          token={props.token}
+                                                                                          id={props.id}
+                                                                                          setId={props.setId}
+                                                                                          setToken={props.setToken}
+                                                                                          email={props.email}/> : null}
             </main>
         </div>
     )

@@ -52,6 +52,9 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
         setNewEmail(newEmail : string) {
             dispatch(setNewEmail(newEmail))
         },
+        setEmail(email : string) {
+            dispatch(setNewEmail(email))
+        },
         setMessage(message: string) {
             dispatch(setMessage(message))
         },

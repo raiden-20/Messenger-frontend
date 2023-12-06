@@ -20,8 +20,9 @@ const ChangeEmailForm = (props : PropsChangeEmail) => {
     const saveButtonAction = () => {
         debugger
         if (props.input_email !== null && props.input_password !== null) {
+            props.setToken(localStorage.getItem('token'))
             axios.post('http://localhost:8000/auth/change/email', { //todo не робит (bad request)
-                "token": props.token,
+                "token": localStorage.getItem('token'),
                 "password": props.input_password,
                 "newEmail": props.input_email
             }, config).then(response => {

@@ -33,7 +33,9 @@ export interface PropsChangeEmail{
     setInputEmail(input_email : string | null) : void;
     setPassword(password : string | null) : void;
     setNewEmail(email : string | null) : void;
+    setEmail(email : string | null) : void;
     setMessage(message: string) : void;
+    setToken(token: string) : void;
 
 }
 

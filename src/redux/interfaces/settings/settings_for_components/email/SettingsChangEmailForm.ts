@@ -10,5 +10,6 @@ export interface PropsChangeEmail{
     setInputEmail(input_email : string | null) : void;
     setMessage(message: string) : void;
     setNewEmail(newEmail: string) : void;
+    setToken(token: string | null) : void;
 }
 

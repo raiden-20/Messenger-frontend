@@ -22,62 +22,66 @@ const NewPasswordForm = (props : PropsNewPassword) => {
         props.setInputCode(event.target.value)
     }
     const saveButtonActionSecondStep = () => {
-        if (props.input_password != null && props.input_passwordConfirm != null &&
-            props.input_password === props.input_passwordConfirm) {
-            axios.put('http://localhost:8000/auth/confirm/password', {
-                token: props.token,
-                oneTimeCode: props.input_code,
-                newPassword: props.input_password
-            }, config).then(response => {
-                debugger
-                switch (response.status) {
-                    case 200 : {
-                        if (response.data === "Password changed") {
-                            props.setMessage('Пароль был изменен')
-                            props.setPassword(props.input_password)
+        if (props.input_password != null && props.input_passwordConfirm != null) {
+            if (props.input_password === props.input_passwordConfirm) {
+                axios.put('http://localhost:8000/auth/confirm/password', {
+                    token: props.token,
+                    oneTimeCode: props.input_code,
+                    newPassword: props.input_password
+                }, config).then(response => {
+                    debugger
+                    switch (response.status) {
+                        case 200 : {
+                            if (response.data === "Password changed") {
+                                props.setMessage('Пароль был изменен')
+                                props.setPassword(props.input_password)
+                                localStorage.setItem('password', props.input_password)
+                            }
+                            props.setInputPassword('')
+                            break
                         }
-                        props.setInputPassword('')
-                        break
+                        default:
                     }
-                    default:
-                }
-                props.setInputPassword('')
-            }).catch(error => {
-                console.dir(error)
-                props.setMessage(error.message)
-                switch (error.response.status) {
-                    case 400 : {
-                        if (error.response.data === "User doesn't exist") {
-                            props.setMessage('Пользователя не существует')
-                        } else if (error.response.data === "Code doesn't match") {
-                            props.setMessage('Неверный код')
-                        } else if (error.response.data === "The code is not relevant") {
-                            props.setMessage('Истекло время использования кода')
+                    props.setInputPassword('')
+                }).catch(error => {
+                    console.dir(error)
+                    props.setMessage(error.message)
+                    switch (error.response.status) {
+                        case 400 : {
+                            if (error.response.data === "User doesn't exist") {
+                                props.setMessage('Пользователя не существует')
+                            } else if (error.response.data === "Code doesn't match") {
+                                props.setMessage('Неверный код')
+                            } else if (error.response.data === "The code is not relevant") {
+                                props.setMessage('Истекло время использования кода')
+                            }
+                            break
                         }
-                        break
+                        default:
                     }
-                    default:
-                }
+                    props.setInputPassword('')
+                })
                 props.setInputPassword('')
-            })
-            props.setInputPassword('')
-            props.setInputPasswordConfirm('')
-            props.setInputCode('')
+                props.setInputPasswordConfirm('')
+                props.setInputCode('')
+            } else {
+                props.setMessage('Пароли не совпадают')
+            }
         }
-
     }
 
     const cancelButtonActionSecondStep = () => {
-        props.setInputPassword(null)
-        props.setInputPasswordConfirm(null)
-        props.setInputCode(null)
+        props.setInputPassword('')
+        props.setInputPasswordConfirm('')
+        props.setInputCode('')
+        props.setMessage('')
 
         props.setButtonChangePasswordSecondStepPressed(false)
     }
 
     return (
         <div className={change_private_css.rootNewPassword}>
-            <form className={change_private_css.newPasswordForm}>
+            <section className={change_private_css.newPasswordForm}>
                 <section className={change_private_css.newPasswordInputs}>
                     <input placeholder={'Код'} onChange={sendInputCode}
                            className={change_el_css.input} required/>
@@ -94,8 +98,8 @@ const NewPasswordForm = (props : PropsNewPassword) => {
                         Отменить
                     </button>
                 </section>
-            </form>
-
+            </section>
+            {props.message}
         </div>
     )
 }

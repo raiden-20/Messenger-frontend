@@ -57,8 +57,6 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                    setMessage={props.setMessage}
                                                                    input_emailOrNickname={props.input_emailOrNickname}
                                                                    setInputEmailOrNickname={props.setInputEmailOrNickname}
-                                                                   setToken={props.setToken} // todo no need
-                                                                   token={props.token}
                                                                    code={props.code}
                                                                    setCode={props.setCode}/> : // todo no need
                 location.pathname === REGISTRATION_FORGOT_PASSWORD ? <RegistrationForgotPassword input_email={props.input_email}
@@ -70,11 +68,19 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                            setMessage={props.setMessage}
                                                                            setEmail={props.setEmail}
                                                                            newEmail={props.newEmail}
-                                                                           token={props.token}/> :
+                                                                           token={props.token}
+                                                                           id={props.id}
+                                                                           setId={props.setId}
+                                                                           setToken={props.setToken}
+                                                                           email={props.email}/> :
                 location.pathname === SUCCESSFUL_CHANGE_EMAIL ? <MainSuccess message={props.message}
                                                                              setMessage={props.setMessage} setEmail={props.setEmail}
                                                                              newEmail={props.newEmail}
-                                                                             token={props.token}/> :
+                                                                             token={props.token}
+                                                                             id={props.id}
+                                                                             setId={props.setId}
+                                                                             setToken={props.setToken}
+                                                                             email={props.email}/> :
                 location.pathname === ADD_NAME_SURNAME ? <RegistrationAddNameSurname input_name={props.input_name}
                                                                                      input_surname={props.input_surname}
                                                                                      setInputName={props.setInputName}

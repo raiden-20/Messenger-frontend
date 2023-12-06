@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import success_reg_res_css from '../SuccessfulRegistrationRestoring.module.css'
 import axios from "axios";
 import {
     PropsSuccessfulActivation,
@@ -8,8 +7,10 @@ import {
 import SuccessfulActivationComponent from "./SuccessfulActivationComponent";
 class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuccessfulSmth>{
     componentDidMount() {
+        // todo this.props.seId(localStorage.getItem('id'))
+        this.props.setId('f671bd03-df5d-439e-8c4f-633fbf1b5456')
         axios.put('http://localhost:8000/auth/active/account', {
-            "id": "b85e636e-c9c6-4531-8011-d58eecc54854"
+            "id": 'f671bd03-df5d-439e-8c4f-633fbf1b5456'
         })
             .then(response => {
                 debugger
@@ -25,6 +26,7 @@ class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuc
                 }
             })
             .catch(error => {
+                debugger
                 console.dir(error)
                 this.props.setMessage(error.message)
                 switch (error.response.status) {
@@ -41,13 +43,8 @@ class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuc
             });
     }
 
-    toProfile = () => {
-
-    }
-
     render() {
         return <SuccessfulActivationComponent message={this.props.message}
-                                              token={this.props.token}
                                               setMessage={this.props.setMessage}/>
     }
 

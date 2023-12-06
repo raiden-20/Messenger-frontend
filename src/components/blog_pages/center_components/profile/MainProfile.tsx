@@ -1,49 +1,55 @@
-import React from 'react';
-import {useLocation} from "react-router-dom";
-
-import ProfileOtherUserSettings from "./profile_other_user/ProfileOtherUserSettings";
-import ProfileUserSettings from "./profile/ProfileUserSettings";
-import Post from "./post/Post";
-
-import main_css from "./main_profile_css/MainProfile.module.css";
-import main_elements_css from "./main_profile_css/MainProfileElements.module.css";
-
-import cat from "../../../../assets/images/cat_registration.jpg";
-import {PropsUserProfile} from "../../../../redux/interfaces/profile/profileBase";
-import {PropsNickname} from "../../../../redux/interfaces/auth/authData";
+import React, {Component} from 'react';
+import {PropsUserProfile, StateUserProfile} from "../../../../redux/interfaces/profile/profileBase";
+import MainProfileComponent from "./MainProfileComponent";
+import axios from "axios";
 
 
 
-const MainProfile = (props: PropsUserProfile & PropsNickname) => {
-    const location = useLocation()
+class MainProfile extends Component<PropsUserProfile, StateUserProfile>{
+    config = {
+        headers: {
+            Authorization: `Bearer ${this.props.token}`
+        }
+    };
+    componentDidMount() {
+        this.props.setId('08c928b2-86cf-43b9-9250-427fa113b5f6')
+        axios.put(`http://localhost:8000/auth/data/${this.props.id}`, null, this.config)
+            .then(response => {
+            switch (response.status) {
+                case 200 : {
+                    debugger
+                    this.props.setNickname(response.data.nickname)
+                    break
+                }
+                default:
+            }
+        }).catch(error => {
+            this.props.setMessage(error.message)
+            switch (error.response.status) {
+                case 400 : {
+                    break
+                }
+                default:
+            }
+        })
+    }
 
-    return(
-        <section className={main_css.info}>
-            <section className={main_elements_css.bg_photo}>
-            </section>
-            <main>
-                <section className={main_css.bio}>
-                    <section className={main_css.bio_row}>
-                        <figure className={main_elements_css.figure}>
-                            <img src={cat} alt={'this is cat'}/>
-                        </figure>
-                        <section className={main_css.name_and_status}>
-                            <div className={main_elements_css.name}>{props.name + ' ' + props.surname}</div>
-                            <div className={main_elements_css.userName}>{'@' + props.nickname}</div>
-                        </section>
-                        {location.pathname === '/profile' ? <ProfileUserSettings/> :
-                            location.pathname === '/profile/:id' ? <ProfileOtherUserSettings/> : null}
-                    </section>
-                    <section>
-                        <p>{props.bio}</p>
-                    </section>
-                </section>
-                <section className={main_css.posts}>
-                    <Post/>
-                </section>
-            </main>
-        </section>
-    )
+    render() {
+        return <MainProfileComponent
+            id={this.props.id}
+            name={this.props.name}
+            surname={this.props.surname}
+            nickname={this.props.nickname}
+            birthDate={this.props.birthDate}
+            bio={this.props.bio}
+            message={this.props.message}
+            setMessage={this.props.setMessage}
+            setName={this.props.setName}
+            setNickname={this.props.setNickname}
+            setSurname={this.props.setSurname}
+            setId={this.props.setId}
+            token={this.props.token}/>
+    }
 }
 
 export default MainProfile

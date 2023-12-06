@@ -37,7 +37,9 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail &
                                              token={this.props.token}
                                              message={this.props.message}
                                              setMessage={this.props.setMessage}
-                                             setNewEmail={this.props.setNewEmail}/>
+                                             setNewEmail={this.props.setNewEmail}
+                                             setToken={this.props.setToken}
+                                             setEmail={this.props.setEmail}/>
                         </section>
                         <section className={settings_css.leg_container}>
                             <legend><strong>Пароль</strong></legend>
