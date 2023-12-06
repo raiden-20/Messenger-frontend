@@ -3,7 +3,6 @@ import {PropsUserProfile, StateUserProfile} from "../../../../redux/interfaces/p
 import MainProfileComponent from "./MainProfileComponent";
 import axios from "axios";
 
-
 class MainProfile extends Component<PropsUserProfile, StateUserProfile>{
     config = {
         headers: {
@@ -15,7 +14,6 @@ class MainProfile extends Component<PropsUserProfile, StateUserProfile>{
             .then(response => {
             switch (response.status) {
                 case 200 : {
-                    debugger
                     this.props.setNickname(response.data.nickname)
                     break
                 }
@@ -26,6 +24,9 @@ class MainProfile extends Component<PropsUserProfile, StateUserProfile>{
             this.props.setMessage(error.message)
             switch (error.response.status) {
                 case 400 : {
+                    if (error.response.data === "Bad token") {
+                        this.props.setMessage('Плохой токен')
+                    }
                     break
                 }
                 default:

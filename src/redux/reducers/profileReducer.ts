@@ -1,7 +1,8 @@
-const SET_USER_NAME = 'SET_USER_DATA'
-const SET_USER_SURNAME = 'SET_EMAIL_DATA'
-const SET_USER_BIRTH_DATE = 'SET_NICKNAME_DATA'
-const SET_USER_ABOUT = 'SET_PASSWORD_DATA'
+const SET_USER_DATA = 'SET_USER_DATA'
+const SET_USER_NAME = 'SET_USER_NAME'
+const SET_USER_SURNAME = 'SET_USER_SURNAME'
+const SET_USER_BIRTH_DATE = 'SET_USER_BIRTH_DATE'
+const SET_USER_ABOUT = 'SET_USER_ABOUT'
 
 
 const SET_INPUT_USER_NAME = 'SET_INPUT_EMAIL_DATA'
@@ -10,16 +11,15 @@ const SET_INPUT_USER_BIRTH_DATE = 'SET_INPUT_PASSWORD_DATA'
 const SET_INPUT_USER_ABOUT = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
 
 const initialState = {
-    id : null,
     name: 'Настя',
     surname: 'Коробасникова',
-    birthDate: null,
+    birthDate: '',
     bio: 'сосите хуй и будьте счастливы',
 
-    input_name: null,
-    input_surname: null,
-    input_birthDate: null,
-    input_about : null,
+    input_name: '',
+    input_surname: '',
+    input_birthDate: '',
+    input_bio : '',
 }
 
 const profileReducer = (state = initialState, action : any) => {
@@ -69,7 +69,7 @@ const profileReducer = (state = initialState, action : any) => {
         }
 
         case SET_INPUT_USER_ABOUT : {
-            stateCopy.input_about = action.input_about
+            stateCopy.input_bio = action.input_about
 
             return stateCopy
         }
@@ -115,7 +115,7 @@ export const setInputBirthDate = (input_birthDate : string) => {
         type: SET_INPUT_USER_BIRTH_DATE, input_birthDate
     }
 }
-export const setInputAbout = (input_about : string) => {
+export const setInputBio = (input_about : string) => {
     return {
         type: SET_INPUT_USER_ABOUT, input_about
     }

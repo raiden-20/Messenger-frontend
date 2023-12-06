@@ -1,4 +1,3 @@
-import {PROFILE, PROFILE_USER} from "../../../../paths/profilePath";
 import main_css from "./OneUser.module.css";
 import chatting from "../../../../../assets/images/other/chat_with_user.svg";
 import submit_app from "../../../../../assets/images/friends/submitted_application.svg";

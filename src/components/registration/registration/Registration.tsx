@@ -16,7 +16,7 @@ const Registration = (props: PropsAuthRegReg) => {
                         password: props.input_password,
                         confirmPassword: props.input_confirmPassword
                     }).then(response => {
-                        debugger
+                        props.setShowMessage(true)
                         props.setCode(response.status)
                         switch (response.status) {
                             case 201 : {
@@ -24,10 +24,6 @@ const Registration = (props: PropsAuthRegReg) => {
                                     props.setMessage('На Вашу почту было отправлено письмо с подтверждением бла бла бла')
                                     localStorage.setItem('id', response.data)
                                 }
-                                // props.setEmail(props.input_email)
-                                // props.setNickname(props.input_nickname)
-                                // props.setPassword(props.input_password)
-
                                 break
                             }
                             default:
@@ -37,7 +33,7 @@ const Registration = (props: PropsAuthRegReg) => {
                         props.setInputPassword('')
                         props.setInputConfirmPassword('')
                     }).catch(error => {
-                        console.dir(error)
+                        props.setShowMessage(true)
                         props.setCode(error.response.status)
                         props.setMessage(error.message)
                         switch (error.response.status) {
@@ -81,7 +77,9 @@ const Registration = (props: PropsAuthRegReg) => {
                                       setInputEmailOrNickname={props.setInputEmailOrNickname}
                                       setMessage={props.setMessage}
                                       authentication={authentication}
-                                      code={props.code}/>
+                                      code={props.code}
+                                      buttonShowMessage={props.buttonShowMessage}
+                                      setShowMessage={props.setShowMessage}/>
 }
 
 export default Registration

@@ -13,6 +13,7 @@ import more_close from '../../../assets/images/icons_navigation/more_close.svg'
 import more_open from '../../../assets/images/icons_navigation/more_open.svg'
 import {PropsNavigation} from "../../../redux/interfaces/navigation/navigationMain";
 import NavigationMoreSection from "./components/NavigationMoreSection";
+import {PROFILE_USER} from "../../paths/profilePath";
 
 const Navigation = (props: PropsNavigation) => {
     const changeButtonNavStatus = () => {
@@ -31,7 +32,7 @@ const Navigation = (props: PropsNavigation) => {
                 <section className={nav.links}>
                     <section className={nav.svg_link}>
                         <img className={nav.img} src={profile}/>
-                        <NavLink className={nav.button_nav} to={"/profile"}>Профиль</NavLink>
+                        <NavLink className={nav.button_nav} to={PROFILE_USER}>Профиль</NavLink>
                     </section>
                     <section className={nav.svg_link}>
                         <img className={nav.img} src={dialogs}/>
@@ -47,7 +48,7 @@ const Navigation = (props: PropsNavigation) => {
                     </section>
                     <section className={nav.svg_link}>
                         <img className={nav.img} src={settings}/>
-                        <NavLink className={nav.button_nav} to={"/settings_account"}>Настройки</NavLink>
+                        <NavLink className={nav.button_nav} to={"/settings"}>Настройки</NavLink>
                     </section>
                     <section className={nav.svg_link} onClick={changeButtonNavStatus}>
                         <img className={nav.img} src={more}/>
@@ -61,7 +62,9 @@ const Navigation = (props: PropsNavigation) => {
                         </section>
                     </section>
                     {props.buttonMoreSection ? (
-                        <NavigationMoreSection token={props.token}/> ): null}
+                        <NavigationMoreSection token={props.token}
+                                               setToken={props.setToken}
+                                               setData={props.setData}/> ): null}
 
                 </section>
 

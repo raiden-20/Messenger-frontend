@@ -1,5 +1,5 @@
 .root {
-    padding: 4% 0 13% 0;
+    padding: 0 0 0% 0;
 }
 
 .main {
@@ -15,4 +15,10 @@
 .main section {
     width: 85%;
     font-size: 1.1em;
+}
+
+@media screen and (max-height: 850px){
+    .root {
+        padding-bottom: 20%;
+    }
 }

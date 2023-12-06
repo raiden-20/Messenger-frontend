@@ -4,6 +4,7 @@ import {useLocation} from "react-router-dom";
 import ProfileButtonCreatingPost from "./profile/profile_button_creating_post/ProfileButtonCreatingPost";
 
 import main_aside_css from "./main_profile_css/MainProfileAside.module.css";
+import {PROFILE_USER} from "../../../paths/profilePath";
 
 const MainProfileAside = () => {
 
@@ -33,7 +34,7 @@ const MainProfileAside = () => {
                 </section>
             </section>
             <section>
-                {location.pathname === '/profile' ? <ProfileButtonCreatingPost/> : null}
+                {location.pathname === PROFILE_USER ? <ProfileButtonCreatingPost/> : null}
             </section>
         </aside>
     )

@@ -33,6 +33,8 @@ class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuc
                             this.props.setMessage('Такого пользователя не существует')
                         }else if (error.response.data === 'Account has already been activated') {
                             this.props.setMessage('Аккаунт уже активирован')
+                        }else if (error.response.data === "Bad token") {
+                            this.props.setMessage('Плохой токен')
                         }
                         break
                     }

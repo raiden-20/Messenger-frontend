@@ -6,10 +6,14 @@ import {
 import change_el_css from "../../../ChangeSettingsElements.module.css";
 import change_private_css from './NewPasswordForm.module.css'
 import axios from "axios";
+import {AUTHORIZATION} from "../../../../../../../paths/authPath";
+import {useNavigate} from "react-router-dom";
 
 const NewPasswordForm = (props : PropsNewPassword) => {
+    const navigate = useNavigate()
+
     const config = {
-        headers: { Authorization: `Bearer ${props.token}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     };
 
     const sendInputPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +40,10 @@ const NewPasswordForm = (props : PropsNewPassword) => {
                                 props.setMessage('Пароль был изменен')
                                 props.setPassword(props.input_password)
                                 localStorage.setItem('password', props.input_password)
+                                localStorage.setItem('token', '')
+                                localStorage.setItem('id', '')
+                                localStorage.setItem('password', '')
+                                navigate(AUTHORIZATION)
                             }
                             props.setInputPassword('')
                             break
@@ -54,6 +62,8 @@ const NewPasswordForm = (props : PropsNewPassword) => {
                                 props.setMessage('Неверный код')
                             } else if (error.response.data === "The code is not relevant") {
                                 props.setMessage('Истекло время использования кода')
+                            }else if (error.response.data === "Bad token") {
+                                props.setMessage('Плохой токен')
                             }
                             break
                         }

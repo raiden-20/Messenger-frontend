@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import {PropsAuthAuth} from "../../../redux/interfaces/auth/authAuthorize";
-import {PROFILE, PROFILE_USER} from "../../paths/profilePath";
+import {PROFILE_USER} from "../../paths/profilePath";
 import {
     AUTHORIZATION,
-    REGISTRATION
+    REGISTRATION, REGISTRATION_FORGOT_PASSWORD, REGISTRATION_RESTORE_ACCOUNT
 } from "../../paths/authPath";
 import axios from "axios";
 import RegistrationOrAuthorisationComponent from "./RegistrationOrAuthorisationComponent";
@@ -12,15 +12,16 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
 
     const navigate = useNavigate()
     const authorise = () => {
-        if (props.input_emailOrNickname != null && props.input_password != null) {
+        if (props.input_emailOrNickname != '' && props.input_password != '') {
             axios.post('http://localhost:8000/auth/login', {
                 email: props.input_email,
                 nickname: props.input_nickname,
                 password: props.input_password,
             }).then(response => {
+                props.setCode(response.status)
+                props.setShowMessage(false)
                 switch (response.status) {
                     case 200 : {
-                        debugger
                         props.setToken(response.data)
                         localStorage.setItem('token', response.data.token)
                         localStorage.setItem('id', response.data.id)
@@ -36,7 +37,8 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
                 props.setInputEmail(null)
                 props.setInputPassword(null)
             }).catch(error => {
-                debugger
+                props.setShowMessage(true)
+                props.setCode(error.response.status)
                 console.dir(error)
                 props.setMessage(error.message)
                 switch (error.response.status) {
@@ -49,11 +51,10 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
                         navigate(AUTHORIZATION)
                         break
                     }
-                    case 409 : {
-                        if (error.response.data === "Account has already been blocked") {
-                            props.setMessage('Аккаунт заблокирован')
-                        }
-                        navigate(AUTHORIZATION)
+                    case 403 : {
+                        props.setMessage('Аккаунт не активирован')
+                        localStorage.setItem('id', error.response.data)
+                        navigate(REGISTRATION_RESTORE_ACCOUNT)
                         break
                     }
                     default:
@@ -67,9 +68,15 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
         // else
     }
 
+    const forgotPassword = () => {
+        props.setShowMessage(false)
+        navigate(REGISTRATION_FORGOT_PASSWORD)
+    }
+
     const cleanMessageAndChangePath = () => {
         props.setMessage('')
         props.setInputEmailOrNickname('')
+        props.setShowMessage(false)
         navigate(REGISTRATION)
     }
 
@@ -86,7 +93,12 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
                                                  setMessage={props.setMessage}
                                                  setToken={props.setToken}
                                                  authorise={authorise}
-                                                 cleanMessageAndChangePath={cleanMessageAndChangePath}/>
+                                                 cleanMessageAndChangePath={cleanMessageAndChangePath}
+                                                 forgotPassword={forgotPassword}
+                                                 code={props.code}
+                                                 setCode={props.setCode}
+                                                 buttonShowMessage={props.buttonShowMessage}
+                                                 setShowMessage={props.setShowMessage}/>
 }
 
 export default RegistrationOrAuthorisation

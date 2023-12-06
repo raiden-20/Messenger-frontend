@@ -41,6 +41,8 @@ class SuccessfulChangeEmail extends Component<PropsSuccessfulEmail, StateSuccess
                     case 400 : {
                         if (error.response.data === "User doesn't exist") {
                             this.props.setMessage('Такого пользователя не существует')
+                        }else if (error.response.data === "Bad token") {
+                            this.props.setMessage('Плохой токен')
                         }
                         break
                     }

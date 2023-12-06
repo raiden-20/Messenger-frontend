@@ -11,7 +11,6 @@ const ErrorRegistration = (props: PropsSuccessError) => {
                 </section>
             </section>
         </section>
-
     )
 }
 

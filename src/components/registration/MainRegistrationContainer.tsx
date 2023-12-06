@@ -6,7 +6,7 @@ import {
     setInputEmail, setInputEmailOrNickname,
     setInputNickname, setInputPassword, setMessage,
     setNickname,
-    setPassword, setToken
+    setPassword, setShowMessage, setToken
 } from "../../redux/reducers/authReducer";
 import {Dispatch} from "redux";
 import {StateAuthReg} from "../../redux/interfaces/auth/authRegistration";
@@ -28,6 +28,7 @@ const mapStateToProps = (state : StateAuthReg & StateProfileNameSurname) => {
         input_surname: state.profile.input_surname,
 
         message: state.auth.message,
+        buttonShowMessage: state.auth.buttonShowMessage,
         token: state.auth.token,
         code: state.auth.code,
         id: state.auth.id,
@@ -83,6 +84,9 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
 
         setMessage(message: string) {
             dispatch(setMessage(message))
+        },
+        setShowMessage(buttonShowMessage: boolean) {
+            dispatch(setShowMessage(buttonShowMessage))
         },
         setToken(token: string) {
             dispatch(setToken(token))

@@ -46,9 +46,9 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
                 </section>
             </section>
             <section>
-                {props.code !== 0 ? props.code === 200 || props.code === 201 ?
+                {props.buttonShowMessage ? props.code !== 0 ? props.code === 200 || props.code === 201 ?
                 <SuccessfulRegistration message={props.message}/> :
-                <ErrorRegistration message={props.message}/> : null}
+                <ErrorRegistration message={props.message}/> : null : null}
             </section>
         </section>
     )

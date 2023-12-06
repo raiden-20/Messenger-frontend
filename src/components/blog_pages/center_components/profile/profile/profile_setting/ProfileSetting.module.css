@@ -98,11 +98,11 @@
     background-color: rgba(65, 72, 109, 0.2);
 }
 
-.ava {
-    position: absolute;
-    top: 115px;
-    left: 60px;
-    height: 150%;
+.edit_prof_window .ava {
+    position: relative;
+    top: -70px;
+    left: 20px;
+    height: 250%;
     width: 100%;
     max-height: 114px;
     max-width: 114px;

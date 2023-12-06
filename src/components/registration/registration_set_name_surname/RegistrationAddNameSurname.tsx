@@ -7,7 +7,7 @@ import reg_set_name_surname from "./RegistrationSetNameSurname.module.css";
 import options_reg from "../css_options/Options.module.css";
 import {NavLink} from "react-router-dom";
 import {ADD_NAME_SURNAME} from "../../paths/authPath";
-import {PROFILE} from "../../paths/profilePath";
+import {PROFILE_USER} from "../../paths/profilePath";
 
 class RegistrationAddNameSurname extends Component<PropsProfileNameSurname, StateProfileNameSurname>{
 
@@ -28,7 +28,7 @@ class RegistrationAddNameSurname extends Component<PropsProfileNameSurname, Stat
                     this.props.setName(this.props.input_name)
                     this.props.setSurname(this.props.input_surname)
 
-                    this.path = PROFILE
+                    this.path = PROFILE_USER
                     break
                 }
                 case 401 : {

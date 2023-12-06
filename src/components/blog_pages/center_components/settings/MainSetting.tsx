@@ -5,11 +5,12 @@ import SettingsSecurity from "./settings_tab/SettingsSecurity";
 import {PropsChangePassword} from "../../../../redux/interfaces/settings/SettingsChangePassword";
 import {PropsChangeEmail} from "../../../../redux/interfaces/settings/SettingsChangeEmail";
 import {PropsDeleteAccount} from "../../../../redux/interfaces/settings/settings_for_components/SettingsDeleteAccount";
+import {PROFILE_USER_SETTINGS} from "../../../paths/profilePath";
 
 const MainSetting = (props : PropsChangePassword & PropsChangeEmail & PropsDeleteAccount) => {
     let location = useLocation()
 
-    return (location.pathname === '/settings_account' ? <SettingsAccount email={props.email}
+    return (location.pathname === '/settings' ? <SettingsAccount email={props.email}
                                                                          password={props.password}
                                                                          input_email={props.input_email}
                                                                          input_password={props.input_password}

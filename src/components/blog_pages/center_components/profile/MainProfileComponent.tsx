@@ -9,6 +9,8 @@ import main_elements_css from "./main_profile_css/MainProfileElements.module.css
 
 import cat from "../../../../assets/images/cat_registration.jpg";
 import {PropsUserProfile} from "../../../../redux/interfaces/profile/profileBase";
+import ProfileUserSettings from "./profile/ProfileUserSettings";
+import {PROFILE_USER} from "../../../paths/profilePath";
 
 
 
@@ -29,9 +31,7 @@ const MainProfileComponent = (props: PropsUserProfile) => {
                             <div className={main_elements_css.name}>{props.name + ' ' + props.surname}</div>
                             <div className={main_elements_css.userName}>{'@' + props.nickname}</div>
                         </section>
-                        {/*{location.pathname === '/profile' ? <ProfileUserSettings/> :*/}
-                        {/*    location.pathname === '/profile/:id' ? <ProfileOtherUserSettings/> : null}*/}
-                        <ProfileOtherUserSettings/>
+                        {location.pathname === PROFILE_USER ? <ProfileUserSettings/> : <ProfileOtherUserSettings/>}
                     </section>
                     <section>
                         <p>{props.bio}</p>

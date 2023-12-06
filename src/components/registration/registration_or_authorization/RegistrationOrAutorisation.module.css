@@ -1,13 +1,14 @@
 .functional {
-    height: 35vh;
     display: grid;
-    grid-template-rows: 50% 40%;
+    height: 27vh;
+    padding-bottom: 3%;
+    grid-template-rows: 60% 40%;
 }
 
 .form {
     display: grid;
-    grid-template-rows: 60% 25%;
-    row-gap: 15%;
+    grid-template-rows: 57% 28%;
+    row-gap: 10%;
 
     justify-items: center;
 }
@@ -44,8 +45,8 @@
 
 .other_buttons {
     display: grid;
-    grid-template-rows: 20% 15% 40%;
-    row-gap: 7%;
+    grid-template-rows: 20% 15% 45%;
+    row-gap: 8%;
     font-size: 0.9em;
 }
 
@@ -58,7 +59,6 @@
 
 .registration_button {
 
-    height: 80%;
     background-color: #F7F5FF;
     border: 2px solid #855BD9;
     color: #855BD9;

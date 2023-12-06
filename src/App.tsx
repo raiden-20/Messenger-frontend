@@ -12,7 +12,7 @@ import {
     REGISTRATION_FORGOT_PASSWORD,
     REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL
 } from "./components/paths/authPath";
-import {PROFILE_USER} from "./components/paths/profilePath";
+import {PROFILE_USER, PROFILE_USER_SETTINGS} from "./components/paths/profilePath";
 
 const App = () => {
     return (
@@ -29,9 +29,10 @@ const App = () => {
                         <Route path={ADD_NAME_SURNAME} element={<MainRegistrationContainer/>}/>
                         <Route path='/dialogs' element={<MainBlogPages/>}/>
                         <Route path={PROFILE_USER} element={<MainBlogPages/>}/>
+                        <Route path={PROFILE_USER_SETTINGS} element={<MainBlogPages/>}/>
                         <Route path='/friends' element={<MainBlogPages/>}/>
                         <Route path='/search' element={<MainBlogPages/>}/>
-                        <Route path='/settings_account' element={<MainBlogPages/>}/>
+                        <Route path={'/settings'} element={<MainBlogPages/>}/>
                     </Routes>
                 </Router>
             </section>

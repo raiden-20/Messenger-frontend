@@ -1,21 +1,22 @@
 .div {
     height: 100%;
-    width: 100%;
+    width: 70%;
+
+    display: grid;
+    justify-self: center;
+
 }
 
 .content {
     width: 400px;
     max-width: 450px;
-    max-height: 540px;
-    position: absolute;
-    top: 25%;
-    left: 55%;
-
     display: grid;
+    justify-self: end;
+    align-self: center;
     grid-template-rows: 60px auto;
     row-gap: 5%;
 
-    padding: 3% 4% 3% 4%;
+    padding: 3% 4% 5% 4%;
 
     border-radius: 20px;
     border: 1px solid #D5E0E5;

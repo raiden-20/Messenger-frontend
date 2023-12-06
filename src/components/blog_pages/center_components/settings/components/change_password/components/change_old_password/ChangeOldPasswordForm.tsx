@@ -6,7 +6,7 @@ import axios from "axios";
 
 const ChangeOldPasswordForm = (props : PropsOldPassword) => {
     const config = {
-        headers: { Authorization: `Bearer ${props.token}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     };
 
     const sendInputPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +19,8 @@ const ChangeOldPasswordForm = (props : PropsOldPassword) => {
     }
 
     const saveButtonActionFirstStep = () => {
+        const a = localStorage.getItem('token')
+        console.log(a)
         if (props.input_password != null) {
             if (props.input_password === localStorage.getItem('password')) {
                 axios.post('http://localhost:8000/auth/change/password', {
@@ -49,6 +51,8 @@ const ChangeOldPasswordForm = (props : PropsOldPassword) => {
                                 props.setMessage('Пользователя не существует')
                             } else if (error.response.data === "Password mismatch") {
                                 props.setMessage('Неверный пароль')
+                            }else if (error.response.data === "Bad token") {
+                                props.setMessage('Плохой токен')
                             }
                             break
                         }

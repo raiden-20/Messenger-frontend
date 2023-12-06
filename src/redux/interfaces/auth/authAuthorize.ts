@@ -7,7 +7,9 @@ export interface StateAuthAuth {
         input_emailOrNickname: string
 
         message: string
+        buttonShowMessage: boolean;
         token: string
+        code: number
     }
 }
 
@@ -19,7 +21,9 @@ export interface PropsAuthAuth{
     input_emailOrNickname: string
 
     message: string
+    buttonShowMessage: boolean;
     token: string
+    code: number
 
     setInputEmail(input_email: string | null): void;
     setInputPassword(input_password: string | null): void;
@@ -31,7 +35,9 @@ export interface PropsAuthAuth{
     setPassword(password : string): void;
 
     setMessage(message : string): void;
+    setShowMessage(buttonShowMessage: boolean): void;
     setToken(token : string): void;
+    setCode(code: number): void
 }
 
 export interface PropsAuthAuthComponent{
@@ -42,7 +48,9 @@ export interface PropsAuthAuthComponent{
     input_emailOrNickname: string
 
     message: string
+    buttonShowMessage: boolean;
     token: string
+    code: number
 
     setInputEmail(input_email: string | null): void;
     setInputPassword(input_password: string | null): void;
@@ -50,8 +58,11 @@ export interface PropsAuthAuthComponent{
     setInputEmailOrNickname(input_emailOrNickname: string): void;
 
     setMessage(message : string): void;
+    setShowMessage(buttonShowMessage: boolean): void;
     setToken(token : string): void;
+    setCode(code: number): void
 
     authorise(): void;
+    forgotPassword(): void;
     cleanMessageAndChangePath(): void;
 }

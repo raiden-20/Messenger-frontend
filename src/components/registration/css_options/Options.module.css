@@ -1,5 +1,6 @@
 .input {
-    padding: 5%;
+    padding: 4%;
+    min-height: 1vh;
     border-radius: 10px;
     border: 1px solid #BBC4CE;
     font-size: 1.2em;
@@ -12,6 +13,14 @@
     text-align: center;
     font-size: 2.8em;
     font-weight: 700;
+}
+
+.button_header {
+    border: none;
+    background-color: transparent;
+    font-family: 'Inter', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
 }
 
 

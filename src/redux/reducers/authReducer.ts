@@ -15,6 +15,7 @@ const SET_INPUT_PASSWORD_DATA = 'SET_INPUT_PASSWORD_DATA'
 const SET_INPUT_CONFIRM_PASSWORD_DATA = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
 
 const SET_MESSAGE = 'SET_MESSAGE'
+const SET_SHOW_MESSAGE = 'SET_SHOW_MESSAGE'
 const SET_TOKEN = 'SET_TOKEN'
 const SET_CODE = 'SET_CODE'
 
@@ -28,12 +29,13 @@ const initialState = {
     password: 12345678910,
 
     input_email: null,
-    input_nickname: null,
+    input_nickname: '',
     input_emailOrNickname: '',
-    input_password: null,
-    input_confirmPassword : null,
+    input_password: '',
+    input_confirmPassword : '',
 
     message: '',
+    buttonShowMessage: false,
     code: 0
 }
 
@@ -49,6 +51,7 @@ const authReducer = (state = initialState, action : any) => {
 
         case SET_USER_DATA : {
             let data = {...action.data}
+            stateCopy.id = data.id
             stateCopy.email = data.email
             stateCopy.nickname = data.nickname
             stateCopy.password = data.password
@@ -80,13 +83,13 @@ const authReducer = (state = initialState, action : any) => {
         }
 
         case SET_INPUT_EMAIL_DATA : {
-            stateCopy.input_email = action.email
+            stateCopy.input_email = action.input_email
 
             return stateCopy
         }
 
         case SET_INPUT_NICKNAME_DATA : {
-            stateCopy.input_nickname = action.nickname
+            stateCopy.input_nickname = action.input_nickname
 
             return stateCopy
         }
@@ -98,18 +101,23 @@ const authReducer = (state = initialState, action : any) => {
         }
 
         case SET_INPUT_PASSWORD_DATA : {
-            stateCopy.input_password = action.password
+            stateCopy.input_password = action.input_password
 
             return stateCopy
         }
 
         case SET_INPUT_CONFIRM_PASSWORD_DATA : {
-            stateCopy.input_confirmPassword = action.confirmPassword
+            stateCopy.input_confirmPassword = action.input_confirmPassword
 
             return stateCopy
         }
         case SET_MESSAGE : {
             stateCopy.message = action.message
+
+            return stateCopy
+        }
+        case SET_SHOW_MESSAGE : {
+            stateCopy.buttonShowMessage = action.buttonShowMessage
 
             return stateCopy
         }
@@ -130,6 +138,11 @@ const authReducer = (state = initialState, action : any) => {
     }
 }
 
+export const setData = (data : object) => {
+    return {
+        type: SET_USER_DATA, data
+    }
+}
 export const setId = (id : string) => {
     return {
         type: SET_ID, id
@@ -160,14 +173,14 @@ export const setConfirmPassword = (password : string) => {
         type: SET_CONFIRM_PASSWORD_DATA, password
     }
 }
-export const setInputEmail = (email : string) => {
+export const setInputEmail = (input_email : string) => {
     return {
-        type: SET_INPUT_EMAIL_DATA, email
+        type: SET_INPUT_EMAIL_DATA, input_email
     }
 }
-export const setInputNickname = (nickname : string) => {
+export const setInputNickname = (input_nickname : string) => {
     return {
-        type: SET_INPUT_NICKNAME_DATA, nickname
+        type: SET_INPUT_NICKNAME_DATA, input_nickname
     }
 }
 export const setInputEmailOrNickname = (input_emailOrNickname : string) => {
@@ -175,20 +188,25 @@ export const setInputEmailOrNickname = (input_emailOrNickname : string) => {
         type: SET_INPUT_EMAIL_OR_NICKNAME_DATA, input_emailOrNickname
     }
 }
-export const setInputPassword = (password : string) => {
+export const setInputPassword = (input_password : string) => {
     return {
-        type: SET_INPUT_PASSWORD_DATA, password
+        type: SET_INPUT_PASSWORD_DATA, input_password
     }
 }
-export const setInputConfirmPassword = (confirmPassword : string) => {
+export const setInputConfirmPassword = (input_confirmPassword : string) => {
     return {
-        type: SET_INPUT_CONFIRM_PASSWORD_DATA, confirmPassword
+        type: SET_INPUT_CONFIRM_PASSWORD_DATA, input_confirmPassword
     }
 }
 
 export const setMessage = (message : string) => {
     return {
         type: SET_MESSAGE, message
+    }
+}
+export const setShowMessage = (buttonShowMessage : boolean) => {
+    return {
+        type: SET_SHOW_MESSAGE, buttonShowMessage
     }
 }
 export const setToken = (token : string) => {

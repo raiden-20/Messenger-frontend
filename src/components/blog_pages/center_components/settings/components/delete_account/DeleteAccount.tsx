@@ -6,18 +6,24 @@ import {useNavigate} from "react-router-dom";
 import {AUTHORIZATION} from "../../../../../paths/authPath";
 
 const DeleteAccount = (props: PropsDeleteAccount) => {
+    const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    };
+
     const navigation = useNavigate()
     const deleteAccount = () => {
         axios.put('http://localhost:8000/auth/block', {
-            token: props.token,
-            password: props.password
-        }).then(response => {
-            debugger
+            token: localStorage.getItem('token'),
+            password: localStorage.getItem('password')
+        }, config).then(response => {
             switch (response.status) {
                 case 200 : {
                     if (response.data === "Account is blocked") {
                         props.setMessage('')
                         props.setToken('')
+                        localStorage.setItem('email', '')
+                        localStorage.setItem('token', '')
+                        localStorage.setItem('password', '') // в общем все зачистить
                         navigation(AUTHORIZATION)
                     }
                     break
@@ -34,6 +40,8 @@ const DeleteAccount = (props: PropsDeleteAccount) => {
                         props.setMessage('Пользователя не существует')
                     } else if (error.response.data === "Code doesn't match") {
                         props.setMessage('Неверный код')
+                    } else if (error.response.data === "Bad token") {
+                        props.setMessage('Плохой токен')
                     }
                     break
                 }
