@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import {PropsAuthAuth} from "../../../redux/interfaces/auth/authAuthorize";
-import {PROFILE} from "../../paths/profilePath";
+import {PROFILE, PROFILE_USER} from "../../paths/profilePath";
 import {
     AUTHORIZATION,
     REGISTRATION
@@ -20,14 +20,15 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
             }).then(response => {
                 switch (response.status) {
                     case 200 : {
+                        debugger
                         props.setToken(response.data)
-                        localStorage.setItem('token', response.data)
+                        localStorage.setItem('token', response.data.token)
+                        localStorage.setItem('id', response.data.id)
                         localStorage.setItem('password', props.input_password)
-                        localStorage.setItem('id', 'c5c389b5-0bf2-4deb-866f-6b34bbfa3b88')
 
                         cleanMessageAndChangePath()
 
-                        navigate(PROFILE)
+                        navigate(PROFILE_USER)
                         break
                     }
                     default:
@@ -35,6 +36,7 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
                 props.setInputEmail(null)
                 props.setInputPassword(null)
             }).catch(error => {
+                debugger
                 console.dir(error)
                 props.setMessage(error.message)
                 switch (error.response.status) {
@@ -67,6 +69,7 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
 
     const cleanMessageAndChangePath = () => {
         props.setMessage('')
+        props.setInputEmailOrNickname('')
         navigate(REGISTRATION)
     }
 

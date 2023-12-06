@@ -27,7 +27,7 @@ export interface PropsSuccessfulActivation {
     id: string
 
     setMessage(message: string): void
-    setId(id: string): void
+    setId(id: string | null): void
 }
 
 export interface PropsSuccessfulActivationComponent {

@@ -1,12 +1,12 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
 
-import Navigation from './navigation/Navigation';
 import Dialogs from "./dialogs/Dialogs";
 import MainCenterComponents from "./center_components/MainCenterComponents";
 
 import main_css from './MainBlogsPages.module.css'
 import NavigationContainer from "./navigation/NavigationContainer";
+import {PROFILE_USER} from "../paths/profilePath";
 
 const MainBlogPages = () => {
 
@@ -17,8 +17,8 @@ const MainBlogPages = () => {
             <section className={main_css.page}>
                 <NavigationContainer/>
                 {location.pathname === '/dialogs' ? <Dialogs/> :
-                location.pathname === '/profile' ||
-                location.pathname === '/profile/:id' ||
+                // location.pathname === '/profile' ||
+                location.pathname === PROFILE_USER ||
                 location.pathname === '/friends' ||
                 location.pathname === '/search' ||
                 location.pathname === '/settings_account' ? <MainCenterComponents/> : null}

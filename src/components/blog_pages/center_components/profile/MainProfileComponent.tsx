@@ -2,7 +2,6 @@ import React from 'react';
 import {useLocation} from "react-router-dom";
 
 import ProfileOtherUserSettings from "./profile_other_user/ProfileOtherUserSettings";
-import ProfileUserSettings from "./profile/ProfileUserSettings";
 import Post from "./post/Post";
 
 import main_css from "./main_profile_css/MainProfile.module.css";
@@ -30,8 +29,9 @@ const MainProfileComponent = (props: PropsUserProfile) => {
                             <div className={main_elements_css.name}>{props.name + ' ' + props.surname}</div>
                             <div className={main_elements_css.userName}>{'@' + props.nickname}</div>
                         </section>
-                        {location.pathname === '/profile' ? <ProfileUserSettings/> :
-                            location.pathname === '/profile/:id' ? <ProfileOtherUserSettings/> : null}
+                        {/*{location.pathname === '/profile' ? <ProfileUserSettings/> :*/}
+                        {/*    location.pathname === '/profile/:id' ? <ProfileOtherUserSettings/> : null}*/}
+                        <ProfileOtherUserSettings/>
                     </section>
                     <section>
                         <p>{props.bio}</p>

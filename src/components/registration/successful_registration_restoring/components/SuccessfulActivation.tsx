@@ -7,13 +7,11 @@ import {
 import SuccessfulActivationComponent from "./SuccessfulActivationComponent";
 class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuccessfulSmth>{
     componentDidMount() {
-        // todo this.props.seId(localStorage.getItem('id'))
-        this.props.setId('f671bd03-df5d-439e-8c4f-633fbf1b5456')
+        this.props.setId(localStorage.getItem('id'))
         axios.put('http://localhost:8000/auth/active/account', {
-            "id": 'f671bd03-df5d-439e-8c4f-633fbf1b5456'
+            "id": localStorage.getItem('id')
         })
             .then(response => {
-                debugger
                 this.props.setMessage(response.data.message)
                 switch (response.status) {
                     case 200 : {

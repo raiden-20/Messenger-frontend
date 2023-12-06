@@ -12,8 +12,7 @@ class MainProfile extends Component<PropsUserProfile, StateUserProfile>{
         }
     };
     componentDidMount() {
-        this.props.setId('08c928b2-86cf-43b9-9250-427fa113b5f6')
-        axios.put(`http://localhost:8000/auth/data/${this.props.id}`, null, this.config)
+        axios.put(`http://localhost:8000/auth/data/${localStorage.getItem('id')}`, null, this.config)
             .then(response => {
             switch (response.status) {
                 case 200 : {
@@ -24,6 +23,7 @@ class MainProfile extends Component<PropsUserProfile, StateUserProfile>{
                 default:
             }
         }).catch(error => {
+            debugger
             this.props.setMessage(error.message)
             switch (error.response.status) {
                 case 400 : {

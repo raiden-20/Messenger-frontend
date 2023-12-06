@@ -24,7 +24,7 @@ const initialState = {
 
     email: 'an.korobeynikova@gmail.com',
     newEmail: '',
-    nickname: '@anastas',
+    nickname: 'anastas',
     password: 12345678910,
 
     input_email: null,

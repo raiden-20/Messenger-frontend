@@ -16,12 +16,13 @@ const Registration = (props: PropsAuthRegReg) => {
                         password: props.input_password,
                         confirmPassword: props.input_confirmPassword
                     }).then(response => {
+                        debugger
                         props.setCode(response.status)
                         switch (response.status) {
                             case 201 : {
-                                if (response.data === "Check your mailbox to activate your account") {
+                                if (response.data !== null) {
                                     props.setMessage('На Вашу почту было отправлено письмо с подтверждением бла бла бла')
-                                    // todo localStorage.setItem('id', )
+                                    localStorage.setItem('id', response.data)
                                 }
                                 // props.setEmail(props.input_email)
                                 // props.setNickname(props.input_nickname)
