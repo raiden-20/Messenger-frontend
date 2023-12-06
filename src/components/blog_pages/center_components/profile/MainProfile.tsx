@@ -12,7 +12,7 @@ class MainProfile extends Component<PropsUserProfile, StateUserProfile>{
         }
     };
     componentDidMount() {
-        axios.put(`http://localhost:8000/auth/data/${localStorage.getItem('id')}`, null, this.config)
+        axios.get(`http://localhost:8000/auth/data/${localStorage.getItem('id')}`, this.config)
             .then(response => {
             switch (response.status) {
                 case 200 : {
