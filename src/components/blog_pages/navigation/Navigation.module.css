@@ -1,5 +1,5 @@
 .page {
-    height: 40vh;
+    height: 320px;
     width: 100%;
 
     display: grid;
@@ -23,7 +23,7 @@
 .links{
     height: 100%;
     display: grid;
-    grid-template-rows: repeat(6, 13%) 20%;
+    grid-template-rows: repeat(5, 15%) 20%;
 
     align-items: center;
 }
@@ -34,6 +34,14 @@
     grid-template-columns: 20% auto;
     column-gap: 10%;
     align-items: center;
+}
+
+.svg_link button {
+    border: none;
+    text-align: start;
+    background-color: transparent;
+
+    padding: 0;
 }
 
 .svg_link:hover {
@@ -79,6 +87,7 @@
 }
 
 .more_settings {
+    padding-left: 10px;
     height: 100%;
     display: grid;
     grid-template-rows: 40% 40%;

@@ -3,11 +3,10 @@ import ProfileSetting from "./ProfileSetting";
 import {StateProfileSettings} from "../../../../../../redux/interfaces/profile/settings/profileSettings";
 import {Dispatch} from "redux";
 import {
-    setBirthDate,
+    setBirthDate, setInputAvatarUrl,
     setInputBio,
-    setInputBirthDate, setInputName, setInputSurname,
-    setName,
-    setSurname
+    setInputBirthDate, setInputCoverUrl, setInputName,
+    setName
 } from "../../../../../../redux/reducers/profileReducer";
 import {setId, setInputNickname, setMessage, setNickname, setToken} from "../../../../../../redux/reducers/authReducer";
 
@@ -17,9 +16,10 @@ const mapStateToProps = (state: StateProfileSettings) => {
         id: state.auth.id,
         input_nickname: state.auth.input_nickname,
         input_name: state.profile.input_name,
-        input_surname: state.profile.input_surname,
         input_birthDate: state.profile.input_birthDate,
         input_bio: state.profile.input_bio,
+        input_avatarUrl: state.profile.input_avatarUrl,
+        input_coverUrl: state.profile.input_coverUrl
     }
 }
 
@@ -30,9 +30,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         setName(name: string) {
             dispatch(setName(name))
-        },
-        setSurname(surname: string) {
-            dispatch(setSurname(surname))
         },
         setNickname(nickname: string) {
             dispatch(setNickname(nickname))
@@ -55,12 +52,16 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         setInputName(input_name: string) {
             dispatch(setInputName(input_name))
         },
-        setInputSurname(input_surname: string) {
-            dispatch(setInputSurname(input_surname))
-        },
         setInputNickname(input_nickname: string) {
             dispatch(setInputNickname(input_nickname))
         },
+        setInputAvatarUrl(input_avatarUrl: File) {
+            dispatch(setInputAvatarUrl(input_avatarUrl))
+        },
+        setInputCoverUrl(input_coverUrl: File) {
+            dispatch(setInputCoverUrl(input_coverUrl))
+        },
+
         setToken(token: string) {
             dispatch(setToken(token))
         }

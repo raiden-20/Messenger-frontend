@@ -12,7 +12,9 @@ import {
     REGISTRATION_FORGOT_PASSWORD,
     REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL
 } from "./components/paths/authPath";
-import {PROFILE_USER, PROFILE_USER_SETTINGS} from "./components/paths/profilePath";
+import {PROFILE_OTHER_USER, PROFILE_USER, PROFILE_USER_SETTINGS} from "./components/paths/profilePath";
+import {SETTINGS} from "./components/paths/navigationPath";
+import {FRIENDS_USER, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "./components/paths/usersPath";
 
 const App = () => {
     return (
@@ -26,13 +28,14 @@ const App = () => {
                         <Route path={REGISTRATION_RESTORE_ACCOUNT} element={<MainRegistrationContainer/>}/>
                         <Route path={SUCCESSFUL_ACTIVATION} element={<MainRegistrationContainer/>}/>
                         <Route path={SUCCESSFUL_CHANGE_EMAIL} element={<MainRegistrationContainer/>}/>
-                        <Route path={ADD_NAME_SURNAME} element={<MainRegistrationContainer/>}/>
                         <Route path='/dialogs' element={<MainBlogPages/>}/>
                         <Route path={PROFILE_USER} element={<MainBlogPages/>}/>
+                        <Route path={PROFILE_OTHER_USER} element={<MainBlogPages/>}/>
                         <Route path={PROFILE_USER_SETTINGS} element={<MainBlogPages/>}/>
-                        <Route path='/friends' element={<MainBlogPages/>}/>
-                        <Route path='/search' element={<MainBlogPages/>}/>
-                        <Route path={'/settings'} element={<MainBlogPages/>}/>
+                        <Route path={FRIENDS_USER} element={<MainBlogPages/>}/>
+                        <Route path={SUBSCRIBERS_USER} element={<MainBlogPages/>}/>
+                        <Route path={SUBSCRIPTIONS_USER} element={<MainBlogPages/>}/>
+                        <Route path={SETTINGS} element={<MainBlogPages/>}/>
                     </Routes>
                 </Router>
             </section>

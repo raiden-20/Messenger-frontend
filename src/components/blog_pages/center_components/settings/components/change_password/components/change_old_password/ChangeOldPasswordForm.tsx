@@ -81,7 +81,7 @@ const ChangeOldPasswordForm = (props : PropsOldPassword) => {
                 <legend>Подтвердите Ваш пароль. Вам будет выслан код на электронный адрес бла бла бла
                 </legend>
                 <main>
-                    <input value={props.input_password} onChange={sendInputPassword}
+                    <input value={props.input_password.replace(/./g, '*')} onChange={sendInputPassword}
                            className={change_el_css.input} placeholder={'Пароль'} required/>
                     <section>
                         <button onClick={saveButtonActionFirstStep} className={change_el_css.button_save + ' ' + change_el_css.button}>

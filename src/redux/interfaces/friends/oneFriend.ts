@@ -1,20 +1,24 @@
 export interface StateOneFriend {
-    id: number,
+    id: string,
     name: string,
-    surname: string,
     nickname: string,
     bio: string,
-    followed: boolean
+    avatarUrl: string
 }
 
 export interface PropsOneFriend{
-    id: number,
+    id: string,
     name: string,
-    surname: string,
+    nickname: string,
+    bio: string
+    avatarUrl: string
+}
+
+export interface PropsOneFriendComponent{
+    id: string,
+    name: string,
     nickname: string,
     bio: string,
-    followed: boolean
-
-    setFollow(userId: number): void
-    setUnfollow(userId: number): void
+    avatarUrl: string,
+    changeFriendStatus(): void
 }

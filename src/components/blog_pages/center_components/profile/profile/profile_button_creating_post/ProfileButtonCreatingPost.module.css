@@ -21,5 +21,6 @@
 .button img {
     display: grid;
     justify-self: end;
-    width: 30%;
+    width: 25px;
+    height: 25px;
 }

@@ -6,7 +6,10 @@ import MainCenterComponents from "./center_components/MainCenterComponents";
 
 import main_css from './MainBlogsPages.module.css'
 import NavigationContainer from "./navigation/NavigationContainer";
-import {PROFILE_USER, PROFILE_USER_SETTINGS} from "../paths/profilePath";
+import {PROFILE_OTHER_USER, PROFILE_USER, PROFILE_USER_SETTINGS} from "../paths/profilePath";
+import {SETTINGS} from "../paths/navigationPath";
+import {FRIENDS_USER, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "../paths/usersPath";
+import MainUsersContainer from "./friends_and_searching/MainUsersContainer";
 
 const MainBlogPages = () => {
 
@@ -17,12 +20,13 @@ const MainBlogPages = () => {
             <section className={main_css.page}>
                 <NavigationContainer/>
                 {location.pathname === '/dialogs' ? <Dialogs/> :
-                // location.pathname === '/profile' ||
+                    (location.pathname === FRIENDS_USER) ||
+                    (location.pathname === SUBSCRIBERS_USER) ||
+                    (location.pathname === SUBSCRIPTIONS_USER) ? <MainUsersContainer/> :
                 location.pathname === PROFILE_USER ||
+                location.pathname === PROFILE_OTHER_USER ||
                 location.pathname === PROFILE_USER_SETTINGS ||
-                location.pathname === '/friends' ||
-                location.pathname === '/search' ||
-                location.pathname === '/settings' ? <MainCenterComponents/> : null}
+                location.pathname === SETTINGS ? <MainCenterComponents/> : null}
             </section>
         </div>
     )

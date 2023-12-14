@@ -1,21 +1,51 @@
 export interface User {
-    id: number,
+    id: string,
     name: string,
-    surname: string,
     nickname: string,
-    bio: string,
-    followed: boolean
+    bio: string
+    avatarUrl: string
 }
 
-export interface StateFriends {
+export interface StateUsers {
     users : {
-        users : []
+        users : [],
+        countFriends: number,
+        countSubscriptions: number,
+        countSubscribers: number
     }
 }
 
-export interface PropsFriends{
+export interface PropsUsers {
     users : []
+    countFriends: number,
+    countSubscriptions: number,
+    countSubscribers: number
 
-    setFollow(userId: number): void
-    setUnfollow(userId: number): void
+    setUsers(users: []):void
+
+
+}
+
+export interface PropsUsersComponent {
+    users : []
+    countFriends: number
+    countSubscribers: number
+    countSubscriptions: number
+
+    getFriends(): void
+    getSubscribers(): void
+    getSubscriptions(): void
+}
+
+export interface PropsFriendsComponent{
+    users : []
+    countFriends: number
+}
+export interface PropsSubscribersComponent{
+    users : []
+    countSubscribers: number
+}
+export interface PropsSubscriptionsComponent{
+    users : []
+    countSubscriptions: number
 }

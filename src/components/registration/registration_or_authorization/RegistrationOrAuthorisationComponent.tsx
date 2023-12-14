@@ -41,7 +41,7 @@ const RegistrationOrAuthorisationComponent = (props: PropsAuthAuthComponent) => 
                         <input type={'text'} className={options_reg.input} onChange={setInputEmailOrNickname}
                                value={props.input_emailOrNickname} placeholder={'Электронный адрес или никнейм'}/>
                         <input type={'text'} className={options_reg.input} onChange={setInputPassword}
-                               value={props.input_password} placeholder={'Пароль'}/>
+                               value={props.input_password.replace(/./g, '*')} placeholder={'Пароль'}/>
                     </section>
                     <button className={options_reg.main_page_button} onClick={props.authorise}
                             type={'submit'}>Войти

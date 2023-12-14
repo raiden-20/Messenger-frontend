@@ -6,7 +6,7 @@ import {
 } from "../../../../redux/interfaces/auth/authSuccessfulActivation";
 import axios from "axios";
 
-class SuccessfulChangeEmail extends Component<PropsSuccessfulEmail, StateSuccessfulSmth>{ //todo обнуляются данные
+class SuccessfulChangeEmail extends Component<PropsSuccessfulEmail, StateSuccessfulSmth>{
     config = {
         headers: { Authorization: `Bearer ${this.props.token}` }
     };
@@ -20,18 +20,10 @@ class SuccessfulChangeEmail extends Component<PropsSuccessfulEmail, StateSuccess
             .then(response => {
                 debugger
                 this.props.setMessage(response.data.message)
-                switch (response.status) {
-                    case 200 : {
-                        if (response.data === "Email confirmed") {
-                            this.props.setMessage('Пароль был успешно изменен!')
-                            this.props.setEmail(this.props.newEmail)
-                            this.props.setToken('')
-
-                        }
-                        break
-                    }
-                    default:
-                }
+                this.props.setMessage('Пароль был успешно изменен!')
+                this.props.setEmail(this.props.newEmail)
+                this.props.setToken(response.data)
+                localStorage.setItem('token', response.data)
             })
             .catch(error => {
                 debugger

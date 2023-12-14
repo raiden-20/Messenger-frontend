@@ -33,26 +33,16 @@ const NewPasswordForm = (props : PropsNewPassword) => {
                     oneTimeCode: props.input_code,
                     newPassword: props.input_password
                 }, config).then(response => {
-                    debugger
-                    switch (response.status) {
-                        case 200 : {
-                            if (response.data === "Password changed") {
-                                props.setMessage('Пароль был изменен')
-                                props.setPassword(props.input_password)
-                                localStorage.setItem('password', props.input_password)
-                                localStorage.setItem('token', '')
-                                localStorage.setItem('id', '')
-                                localStorage.setItem('password', '')
-                                navigate(AUTHORIZATION)
-                            }
-                            props.setInputPassword('')
-                            break
-                        }
-                        default:
-                    }
+
+                    props.setMessage('Пароль был изменен')
+                    props.setPassword(props.input_password)
+                    localStorage.setItem('password', props.input_password)
+                    localStorage.setItem('token', response.data)
+
+                    navigate(AUTHORIZATION)
                     props.setInputPassword('')
+
                 }).catch(error => {
-                    console.dir(error)
                     props.setMessage(error.message)
                     switch (error.response.status) {
                         case 400 : {
@@ -69,7 +59,6 @@ const NewPasswordForm = (props : PropsNewPassword) => {
                         }
                         default:
                     }
-                    props.setInputPassword('')
                 })
                 props.setInputPassword('')
                 props.setInputPasswordConfirm('')
@@ -94,8 +83,10 @@ const NewPasswordForm = (props : PropsNewPassword) => {
             <section className={change_private_css.newPasswordForm}>
                 <section className={change_private_css.newPasswordInputs}>
                     <input placeholder={'Код'} onChange={sendInputCode}
+                           value={props.input_code.replace(/./g, '*')}
                            className={change_el_css.input} required/>
                     <input placeholder={'Новый пароль'} onChange={sendInputPassword}
+                           value={props.input_password.replace(/./g, '*')}
                            className={change_el_css.input} required/>
                     <input placeholder={'Подтвердить новый пароль'} onChange={sendInputPasswordConfirm}
                            className={change_el_css.input} required/>

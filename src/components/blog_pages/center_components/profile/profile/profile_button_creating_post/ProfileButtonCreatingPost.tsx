@@ -12,7 +12,7 @@ const ProfileButtonCreatingPost = () => {
         <button className={prof_butt_creat_post_css.button} onClick={() => navigate(PROFILE_USER_SETTINGS)}>
             <section>
                 <img src={create} alt={'create_icon'}/>
-                Создать
+                <strong>Создать</strong>
             </section>
         </button>
     )

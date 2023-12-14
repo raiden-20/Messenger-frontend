@@ -1,12 +1,15 @@
 .aside {
-    height: 45%;
+    height: 378px;
 
     display: grid;
-    grid-template-rows: 30% 42% 10%;
-    row-gap: 5%;
+    grid-template-rows: 149px 134px 45px;
+    row-gap: 6%;
 }
 
 .friends {
+    display: grid;
+    grid-template-rows: 25% 65%;
+    row-gap: 10%;
     padding: 8%;
     border: 1px solid #DDE3EB;
     background-color: #F7F5FF;
@@ -14,11 +17,33 @@
     border-radius: 15px;
 }
 
+.friendsSector {
+    height: 100%;
+    display: grid;
+    align-items: center;
+}
+
+.friendsAva {
+    height: 58%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.friendPhoto {
+    margin: 0;
+    padding: 0;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(221, 227, 235, 1);
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
 .photo {
     padding: 8%;
 
     display: grid;
-    grid-template-rows: 15% 75%;
+    grid-template-rows: 25% 65%;
     row-gap: 10%;
 
     background-color: #F7F5FF;
@@ -28,13 +53,14 @@
 
 .group_photo {
     display: grid;
-    grid-template-columns: 49% 49%;
-    column-gap: 2%;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 5%;
 }
 
 .photo_section {
-    width: 100%;
+    width: 65px;
+    height: 65px;
 
-    border-radius: 15px;
-    background-color: #D9D9D9;
+    border-radius: 3px;
+    background-color: #DDE3EB;
 }

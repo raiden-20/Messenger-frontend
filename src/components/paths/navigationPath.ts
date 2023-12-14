@@ -1,1 +1,1 @@
-export const SETTINGS : string ='/settings_account'
+export const SETTINGS : string ='/settings'

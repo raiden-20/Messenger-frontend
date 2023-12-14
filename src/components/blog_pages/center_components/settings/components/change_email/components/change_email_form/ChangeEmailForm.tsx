@@ -28,27 +28,16 @@ const ChangeEmailForm = (props : PropsChangeEmail) => {
                 "password": props.input_password,
                 "newEmail": props.input_email
             }, config).then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        if (response.data.message === "Check your mailbox to confirm email") {
-                            props.setMessage('На Вашу почту было отправлено письмо с подтверждением бла бла бла')
-                            // localStorage.setItem('token', response.data.token)
-                            // props.setToken(response.data.token)
-                            // props.setNewEmail(props.input_email)
-                            localStorage.setItem('token', '')
-                            localStorage.setItem('id', '')
-                            localStorage.setItem('password', '')
-                            navigate(AUTHORIZATION)
-                        }
-                        break
-                    }
-                    default:
-                        
-                }
+                props.setMessage('На Вашу почту было отправлено письмо с подтверждением бла бла бла')
+                localStorage.setItem('token', response.data)
+                props.setToken(response.data)
+                props.setNewEmail(props.input_email)
+
+                navigate(AUTHORIZATION)
+
                 props.setInputEmail('')
                 props.setInputPassword('')
             }).catch(error => {
-                debugger
                 console.dir(error)
                 props.setMessage(error.message)
                 switch (error.response.status) {

@@ -12,21 +12,36 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
     };
 
     setData = () => {
+        let formData = new FormData()
+        formData.append('avatarUrl', this.props.input_avatarUrl)
+        formData.append('coverUrl', this.props.input_coverUrl)
+
+
         axios.post('http://localhost:8000/auth/change/nickname', {
             "token": localStorage.getItem('token'),
             "nickname": this.props.input_nickname
         }, this.config).then(response => {
-            this.props.setMessage('Никнейм изменен')
+
             this.props.setNickname(this.props.input_nickname)
             localStorage.setItem('token', response.data)
 
+            axios.post('http://localhost:8000/social/data', {
+                name: this.props.input_name,
+                birthDate: this.props.input_birthDate,
+                formData,
+                bio: this.props.input_bio}, this.config)
+                .then(response => {
+                    switch (response.status) {
+                        case 200 : {
+
+                        }
+                    }
+                })
             this.props.setInputNickname('')
             this.props.setInputName('')
-            this.props.setInputSurname('')
             this.props.setInputBirthDate('')
             this.props.setInputBio('')
         }).catch(error => {
-            console.dir(error)
             this.props.setMessage(error.message)
             switch (error.response.status) {
                 case 400 : {
@@ -44,7 +59,6 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
                 default:
             }
             this.props.setInputName('')
-            this.props.setInputSurname('')
             this.props.setInputBirthDate('')
             this.props.setInputBio('')
         })
@@ -53,23 +67,16 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
     render() {
         return <ProfileSettingComponent id={this.props.id}
                                         message={this.props.message}
-                                        setName={this.props.setName}
-                                        setSurname={this.props.setSurname}
-                                        setNickname={this.props.setNickname}
-                                        setMessage={this.props.setMessage}
-                                        setId={this.props.setId}
                                         input_bio={this.props.input_bio}
                                         input_birthDate={this.props.input_birthDate}
                                         input_name={this.props.input_name}
-                                        input_surname={this.props.input_surname}
-                                        setBirthDate={this.props.setBirthDate}
                                         setInputBio={this.props.setInputBio}
                                         setInputBirthDate={this.props.setInputBirthDate}
                                         setInputName={this.props.setInputName}
-                                        setInputSurname={this.props.setInputSurname}
-                                        setToken={this.props.setToken}
                                         input_nickname={this.props.input_nickname}
                                         setInputNickname={this.props.setInputNickname}
+                                        setInputAvatarUrl={this.props.setInputAvatarUrl}
+                                        setInputCoverUrl={this.props.setInputCoverUrl}
                                         setData={this.setData}/>
     }
 }

@@ -28,7 +28,7 @@ const initialState = {
     nickname: 'anastas',
     password: 12345678910,
 
-    input_email: null,
+    input_email: '',
     input_nickname: '',
     input_emailOrNickname: '',
     input_password: '',
@@ -95,6 +95,7 @@ const authReducer = (state = initialState, action : any) => {
         }
 
         case SET_INPUT_EMAIL_OR_NICKNAME_DATA : {
+
             stateCopy.input_emailOrNickname = action.input_emailOrNickname
 
             return stateCopy

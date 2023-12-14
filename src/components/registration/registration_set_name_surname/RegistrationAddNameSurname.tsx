@@ -16,17 +16,13 @@ class RegistrationAddNameSurname extends Component<PropsProfileNameSurname, Stat
     setInputName = (event : React.ChangeEvent<HTMLInputElement>) => {
         this.props.setInputName(event.target.value)
     }
-    setInputSurname = (event : React.ChangeEvent<HTMLInputElement>) => {
-        this.props.setInputSurname(event.target.value)
-    }
     setData = () => {
-        if (this.props.input_name != null && this.props.input_surname != null) {
+        if (this.props.input_name !== '') {
             //put
             let code = 200
             switch (code) {
                 case 200 : {
                     this.props.setName(this.props.input_name)
-                    this.props.setSurname(this.props.input_surname)
 
                     this.path = PROFILE_USER
                     break
@@ -37,8 +33,7 @@ class RegistrationAddNameSurname extends Component<PropsProfileNameSurname, Stat
                 }
                 default:
             }
-            this.props.setInputName(null)
-            this.props.setInputSurname(null)
+            this.props.setInputName('')
         }
     }
     render() {
@@ -49,8 +44,6 @@ class RegistrationAddNameSurname extends Component<PropsProfileNameSurname, Stat
                     <section className={reg_set_name_surname.inputs}>
                         <input className={options_reg.input} onChange={this.setInputName}
                                value={this.props.input_name} placeholder={'Имя'}/>
-                        <input className={options_reg.input} onChange={this.setInputSurname}
-                               value={this.props.input_surname} placeholder={'Фамилия'}/>
                     </section>
                 </section>
                 <NavLink to={this.path} className={options_reg.main_page_button + ' ' + reg_set_name_surname.navlink} onClick={this.setData} >

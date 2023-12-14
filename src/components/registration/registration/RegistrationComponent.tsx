@@ -18,6 +18,9 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
     const setInputNickname = (event : React.ChangeEvent<HTMLInputElement>) => {
         props.setInputNickname(event.target.value)
     }
+    const setInputName = (event : React.ChangeEvent<HTMLInputElement>) => {
+        props.setInputName(event.target.value)
+    }
     const setInputPassword = (event : React.ChangeEvent<HTMLInputElement>) => {
         props.setInputPassword(event.target.value)
     }
@@ -32,12 +35,14 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
                     <section className={reg_curr.inputs}>
                         <input type={'text'} className={options_reg.input} onChange={setInputNickname}
                                value={props.input_nickname}  placeholder={'Никнейм'}/>
+                        <input type={'text'} className={options_reg.input} onChange={setInputName}
+                               value={props.input_name} placeholder={'Имя'}/>
                         <input type={'text'} className={options_reg.input} onChange={setInputEmail}
                                value={props.input_email} placeholder={'Электронный адрес'}/>
                         <input type={'text'} className={options_reg.input} onChange={setInputPassword}
-                               value={props.input_password} placeholder={'Пароль'}/>
+                               value={props.input_password.replace(/./g, '*')} placeholder={'Пароль'}/>
                         <input type={'text'} className={options_reg.input} onChange={setInputConfirmPassword}
-                               value={props.input_confirmPassword} placeholder={'Подтвердите пароль'}/>
+                               value={props.input_confirmPassword.replace(/./g, '*')} placeholder={'Подтвердите пароль'}/>
                     </section>
                     <button className={options_reg.main_page_button + ' ' + reg_curr.button}
                             onClick={props.authentication} >

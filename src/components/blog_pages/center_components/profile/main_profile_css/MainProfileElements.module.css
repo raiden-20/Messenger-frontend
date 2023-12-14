@@ -4,6 +4,18 @@
     height: 130%;
 }
 
+.bg_photo {
+    width: 100%;
+    height: 130%;
+}
+
+.bg_photo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
 .name {
     font-size: 1.2em;
     font-weight: 600;
@@ -14,12 +26,12 @@
 }
 
 .figure {
-    width: 100%;
-    height: 220%;
-    position: relative;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    margin: 0;
 
-    top: -170%;
-    left: -45%;
+    top: 10%;
 
     border-radius: 50%;
     border: 3px solid rgba(246, 246, 254, 1);
@@ -28,4 +40,8 @@
 
 .figure img {
     width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    object-position: center;
 }

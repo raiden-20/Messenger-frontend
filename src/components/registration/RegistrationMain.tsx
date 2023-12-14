@@ -10,13 +10,11 @@ import RegistrationForgotPassword from "./registration_forgot_password/Registrat
 import RestoreAccount from "./restore_account/RestoreAccount";
 import {PropsAuthReg} from "../../redux/interfaces/auth/authRegistration";
 import {
-    ADD_NAME_SURNAME,
     AUTHORIZATION,
     REGISTRATION,
     REGISTRATION_FORGOT_PASSWORD,
     REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL
 } from "../paths/authPath";
-import RegistrationAddNameSurname from "./registration_set_name_surname/RegistrationAddNameSurname";
 import {PropsProfileNameSurname} from "../../redux/interfaces/profile/profileAddNameSurname";
 import MainSuccess from "./successful_registration_restoring/MainSuccess";
 
@@ -27,6 +25,11 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
         props.setCode(0)
         props.setShowMessage(false)
         navigate(AUTHORIZATION)
+
+        props.setInputEmail('')
+        props.setInputNickname('')
+        props.setInputPassword('')
+        props.setInputConfirmPassword('')
     }
 
     const location = useLocation()
@@ -76,7 +79,10 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                    code={props.code}
                                                                    setCode={props.setCode}
                                                                    buttonShowMessage={props.buttonShowMessage}
-                                                                   setShowMessage={props.setShowMessage}/> :
+                                                                   setShowMessage={props.setShowMessage}
+                                                                   input_name={props.input_name}
+                                                                   setName={props.setName}
+                                                                   setInputName={props.setInputName}/> :
                 location.pathname === REGISTRATION_FORGOT_PASSWORD ? <RegistrationForgotPassword input_email={props.input_email}
                                                                                                  setInputEmail={props.setInputEmail}
                                                                                                  message={props.message}
@@ -104,15 +110,7 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                              id={props.id}
                                                                              setId={props.setId}
                                                                              setToken={props.setToken}
-                                                                             email={props.email}/> :
-                location.pathname === ADD_NAME_SURNAME ? <RegistrationAddNameSurname input_name={props.input_name}
-                                                                                     input_surname={props.input_surname}
-                                                                                     setInputName={props.setInputName}
-                                                                                     setInputSurname={props.setInputSurname}
-                                                                                     setName={props.setName}
-                                                                                     setSurname={props.setSurname}
-                                                                                     message={props.message}
-                                                                                     setMessage={props.setMessage}/>: null}
+                                                                             email={props.email}/> : null}
             </section>
         </div>
     )

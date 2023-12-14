@@ -76,6 +76,8 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
     const cleanMessageAndChangePath = () => {
         props.setMessage('')
         props.setInputEmailOrNickname('')
+        props.setInputNickname('')
+        props.setInputPassword('')
         props.setShowMessage(false)
         navigate(REGISTRATION)
     }

@@ -9,7 +9,7 @@ const NavigationMoreSectionComponent = (props: PropsExitComponent) => {
                 <div><strong>Тема:</strong></div>
                 <button className={nav.button_set_theme}>Светлая</button>
             </section>
-            <button className={nav.button_exit} onClick={props.enter}>Выйти из аккаунта</button>
+            <button className={nav.button_exit} onClick={props.enter}>Выйти</button>
         </section>
     )
 }

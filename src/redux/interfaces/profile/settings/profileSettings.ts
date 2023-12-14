@@ -1,9 +1,11 @@
 export interface StateProfileSettings {
     profile : {
         input_name: string;
-        input_surname: string;
         input_birthDate: string;
         input_bio: string;
+        input_avatarUrl: File;
+        input_coverUrl: File;
+
     }
     auth: {
         id: string
@@ -17,24 +19,25 @@ export interface PropsProfileSettings{
 
     id: string
     input_name: string;
-    input_surname: string;
     input_nickname: string;
     input_birthDate: string;
     input_bio: string;
+    input_avatarUrl: File;
+    input_coverUrl: File;
 
     setName(name: string): void
-    setSurname(surname: string): void
     setNickname(nickname: string): void
     setBirthDate(nickname: string): void
     setNickname(nickname: string): void
     setMessage(message: string): void
     setInputName(input_name: string): void
-    setInputSurname(input_surname: string): void
     setInputBirthDate(input_birthDate: string): void
     setInputNickname(input_nickname: string): void
     setInputBio(input_bio: string): void
     setId(id: string | null): void
     setToken(id: string | null): void
+    setInputAvatarUrl(input_avatarUrl : File): void
+    setInputCoverUrl(input_coverUrl : File): void
 }
 
 
@@ -43,23 +46,15 @@ export interface PropsProfileSettingsComponent{
 
     id: string
     input_name: string;
-    input_surname: string;
     input_nickname: string;
     input_birthDate: string;
     input_bio: string;
 
-    setName(name: string): void
-    setSurname(surname: string): void
-    setNickname(nickname: string): void
-    setBirthDate(nickname: string): void
-    setNickname(nickname: string): void
-    setMessage(message: string): void
     setInputName(input_name: string): void
-    setInputSurname(input_surname: string): void
     setInputBirthDate(input_birthDate: string): void
     setInputNickname(input_nickname: string): void
     setInputBio(input_bio: string): void
-    setId(id: string | null): void
-    setToken(id: string | null): void
+    setInputAvatarUrl(input_avatarUrl : File | null): void
+    setInputCoverUrl(input_coverUrl : File | null): void
     setData(): void
 }

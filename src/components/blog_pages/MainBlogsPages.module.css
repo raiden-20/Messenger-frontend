@@ -9,6 +9,6 @@
     padding-top: 2%;
 
     display: grid;
-    grid-template-columns: 15% 83%;
+    grid-template-columns: 160px 885px;
     column-gap: 2%;
 }

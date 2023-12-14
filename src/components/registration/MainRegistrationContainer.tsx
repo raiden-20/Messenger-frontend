@@ -11,7 +11,7 @@ import {
 import {Dispatch} from "redux";
 import {StateAuthReg} from "../../redux/interfaces/auth/authRegistration";
 import {StateProfileNameSurname} from "../../redux/interfaces/profile/profileAddNameSurname";
-import {setInputName, setInputSurname, setName, setSurname} from "../../redux/reducers/profileReducer";
+import {setInputName, setName} from "../../redux/reducers/profileReducer";
 
 
 
@@ -25,7 +25,6 @@ const mapStateToProps = (state : StateAuthReg & StateProfileNameSurname) => {
         input_emailOrNickname: state.auth.input_emailOrNickname,
 
         input_name: state.profile.input_name,
-        input_surname: state.profile.input_surname,
 
         message: state.auth.message,
         buttonShowMessage: state.auth.buttonShowMessage,
@@ -72,14 +71,8 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
         setName(name: string) {
             dispatch(setName(name))
         },
-        setSurname(surname: string) {
-            dispatch(setSurname(surname))
-        },
         setInputName(name: string) {
             dispatch(setInputName(name))
-        },
-        setInputSurname(surname: string) {
-            dispatch(setInputSurname(surname))
         },
 
         setMessage(message: string) {

@@ -1,6 +1,6 @@
 .main {
     display: grid;
 
-    grid-template-columns: 70% 28%;
-    column-gap: 2%;
+    grid-template-columns: 615px 255px;
+    column-gap: 1.5%;
 }
