@@ -6,13 +6,12 @@ import MainBlogPages from "./components/blog_pages/MainBlogPages";
 
 import app from './App.module.css';
 import {
-    ADD_NAME_SURNAME,
     AUTHORIZATION,
     REGISTRATION,
     REGISTRATION_FORGOT_PASSWORD,
     REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL
 } from "./components/paths/authPath";
-import {PROFILE_OTHER_USER, PROFILE_USER, PROFILE_USER_SETTINGS} from "./components/paths/profilePath";
+import {PROFILE_OTHER_USER, PROFILE_USER} from "./components/paths/profilePath";
 import {SETTINGS} from "./components/paths/navigationPath";
 import {FRIENDS_USER, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "./components/paths/usersPath";
 

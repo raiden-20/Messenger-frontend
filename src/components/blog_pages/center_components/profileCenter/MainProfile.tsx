@@ -11,7 +11,7 @@ class MainProfile extends Component<PropsUserProfile, StateUserProfile> {
     };
 
     componentDidMount() {
-        axios.get(`'http://localhost:8000/social/data/${localStorage.getItem('id')}'`, this.config)
+        axios.get(`'http://localhost:8080/social/data/${localStorage.getItem('id')}'`, this.config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {

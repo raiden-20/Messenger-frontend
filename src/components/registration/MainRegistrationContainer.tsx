@@ -11,7 +11,7 @@ import {
 import {Dispatch} from "redux";
 import {StateAuthReg} from "../../redux/interfaces/auth/authRegistration";
 import {StateProfileNameSurname} from "../../redux/interfaces/profile/profileAddNameSurname";
-import {setInputName, setName} from "../../redux/reducers/profileReducer";
+import {setBirthDate, setInputBirthDate, setInputName, setName} from "../../redux/reducers/profileReducer";
 
 
 
@@ -21,10 +21,10 @@ const mapStateToProps = (state : StateAuthReg & StateProfileNameSurname) => {
         input_nickname: state.auth.input_nickname,
         input_password: state.auth.input_password,
         input_confirmPassword: state.auth.input_confirmPassword,
-
         input_emailOrNickname: state.auth.input_emailOrNickname,
 
         input_name: state.profile.input_name,
+        input_birthDate: state.profile.input_birthDate,
 
         message: state.auth.message,
         buttonShowMessage: state.auth.buttonShowMessage,
@@ -73,6 +73,12 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
         },
         setInputName(name: string) {
             dispatch(setInputName(name))
+        },
+        setInputBirthDate(input_birthDate : string) {
+            dispatch(setInputBirthDate(input_birthDate))
+        },
+        setBirthDate(birthDate : string) {
+            dispatch(setBirthDate(birthDate))
         },
 
         setMessage(message: string) {

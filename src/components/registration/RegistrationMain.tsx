@@ -82,7 +82,10 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                    setShowMessage={props.setShowMessage}
                                                                    input_name={props.input_name}
                                                                    setName={props.setName}
-                                                                   setInputName={props.setInputName}/> :
+                                                                   setInputName={props.setInputName}
+                                                                   input_birthDate={props.input_birthDate}
+                                                                   setBirthDate={props.setBirthDate}
+                                                                   setInputBirthDate={props.setInputBirthDate}/> :
                 location.pathname === REGISTRATION_FORGOT_PASSWORD ? <RegistrationForgotPassword input_email={props.input_email}
                                                                                                  setInputEmail={props.setInputEmail}
                                                                                                  message={props.message}

@@ -9,6 +9,10 @@
     background-color: transparent;
 }
 
+.input_date::placeholder {
+    color: #5F6E78;
+}
+
 .header {
     text-align: center;
     font-size: 2.8em;
@@ -25,7 +29,7 @@
 
 
 .main_page_button {
-    height: 100%;
+    height: 45px;
     border: none;
     border-radius: 10px;
     background-color: #855BD9;

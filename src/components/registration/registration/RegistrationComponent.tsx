@@ -27,6 +27,9 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
     const setInputConfirmPassword = (event : React.ChangeEvent<HTMLInputElement>) => {
         props.setInputConfirmPassword(event.target.value)
     }
+    const setInputBirthDate = (event : React.ChangeEvent<HTMLInputElement>) => {
+        props.setInputBirthDate(event.target.value)
+    }
 
     return (
         <section>
@@ -37,12 +40,16 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
                                value={props.input_nickname}  placeholder={'Никнейм'}/>
                         <input type={'text'} className={options_reg.input} onChange={setInputName}
                                value={props.input_name} placeholder={'Имя'}/>
+                        <input type={'date'} className={options_reg.input + ' ' + options_reg.input_date} onChange={setInputBirthDate}
+                               value={props.input_birthDate} placeholder={'Дата рождения'}/>
                         <input type={'text'} className={options_reg.input} onChange={setInputEmail}
                                value={props.input_email} placeholder={'Электронный адрес'}/>
                         <input type={'text'} className={options_reg.input} onChange={setInputPassword}
-                               value={props.input_password.replace(/./g, '*')} placeholder={'Пароль'}/>
+                               value={props.input_password.replace(/./g, '*')}
+                               placeholder={'Пароль'}/>
                         <input type={'text'} className={options_reg.input} onChange={setInputConfirmPassword}
-                               value={props.input_confirmPassword.replace(/./g, '*')} placeholder={'Подтвердите пароль'}/>
+                               value={props.input_confirmPassword.replace(/./g, '*')}
+                               placeholder={'Подтвердите пароль'}/>
                     </section>
                     <button className={options_reg.main_page_button + ' ' + reg_curr.button}
                             onClick={props.authentication} >

@@ -2,12 +2,8 @@ import React from "react";
 import {PropsAuthRegReg} from "../../../redux/interfaces/auth/authRegistration";
 import axios from "axios";
 import RegistrationComponent from "./RegistrationComponent";
-import {response} from "express";
 
 const Registration = (props: PropsAuthRegReg) => {
-
-    let flag = false
-
     const authentication = () => {
         if (props.input_name !== '') {
             if (props.input_email !== '' && props.input_nickname !== '' &&
@@ -16,13 +12,12 @@ const Registration = (props: PropsAuthRegReg) => {
                 if (props.input_password.length > 8) {
                     if (props.input_email.split('').includes('@')) {
                         if (props.input_password === props.input_confirmPassword) {
-                            axios.post('http://localhost:8000/auth/registration', {
+                            axios.post('http://localhost:8080/auth/registration', {
                                 email: props.input_email,
                                 nickname: props.input_nickname,
                                 password: props.input_password,
                                 confirmPassword: props.input_confirmPassword
                             }).then(response => {
-                                flag = true
                                 props.setShowMessage(true)
                                 props.setCode(response.status)
                                 switch (response.status) {
@@ -30,6 +25,18 @@ const Registration = (props: PropsAuthRegReg) => {
                                         if (response.data !== null) {
                                             props.setMessage('На Вашу почту было отправлено письмо с подтверждением бла бла бла')
                                             localStorage.setItem('id', response.data)
+                                            axios.post('http://localhost:8080/social/registration', { // todo изменить везде порт на сошиале
+                                                id: localStorage.getItem('id'),
+                                                name: props.input_name,
+                                                birthDate: props.input_birthDate
+                                            }).then(response => {
+                                                switch (response.status) {
+                                                    case 200 : {
+                                                    }
+                                                }
+                                            }).catch(error => {
+
+                                            })
                                         }
                                         break
                                     }
@@ -81,19 +88,6 @@ const Registration = (props: PropsAuthRegReg) => {
             props.setShowMessage(true)
             props.setMessage('Введите имя')
         }
-
-        if (flag) {
-            axios.post('http://localhost:8000/social/registration', { // todo изменить везде порт на сошиале
-                name: props.input_name
-            }).then(response => {
-                switch (response.status) {
-                    case 200 : {
-                    }
-                }
-            }).catch(error => {
-
-            })
-        }
     }
         return <RegistrationComponent input_email={props.input_email}
                                       input_nickname={props.input_nickname}
@@ -111,7 +105,9 @@ const Registration = (props: PropsAuthRegReg) => {
                                       setShowMessage={props.setShowMessage}
                                       input_name={props.input_name}
                                       setInputName={props.setInputName}
-                                      setName={props.setName}/>
+                                      setName={props.setName}
+                                      input_birthDate={props.input_birthDate}
+                                      setInputBirthDate={props.setInputBirthDate}/>
 }
 
 export default Registration

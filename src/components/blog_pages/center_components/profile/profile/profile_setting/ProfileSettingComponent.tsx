@@ -25,34 +25,38 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
     const setCover = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files !== null) {
             const file = event.target.files[0];
-            const reader = new FileReader();
+            if (event.target.files[0].size <= 2097152) {
+                const reader = new FileReader();
 
-            reader.onload = (event) => {
-                if (event.target !== null && event.target.result !== null) {
-                    setImageCoverSrc(event.target.result.toString());
-                }
+                reader.onload = (event) => {
+                    if (event.target !== null && event.target.result !== null) {
+                        setImageCoverSrc(event.target.result.toString());
+                    }
 
-            };
+                };
 
-            reader.readAsDataURL(file);
-            props.setInputCoverUrl(event.target.files[0])
+                reader.readAsDataURL(file);
+                props.setInputCoverUrl(event.target.files[0])
+            }
+
         }
 
     }
     const setAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files !== null) {
             const file = event.target.files[0];
-            const reader = new FileReader();
+            if (event.target.files[0].size <= 2097152) {
+                const reader = new FileReader();
 
-            reader.onload = (event) => {
-                if (event.target !== null && event.target.result !== null) {
-                    setImageAvatarSrc(event.target.result.toString());
-                }
+                reader.onload = (event) => {
+                    if (event.target !== null && event.target.result !== null) {
+                        setImageAvatarSrc(event.target.result.toString());
+                    }
 
-            };
-
-            reader.readAsDataURL(file);
-            props.setInputAvatarUrl(event.target.files[0])
+                };
+                reader.readAsDataURL(file);
+                props.setInputAvatarUrl(event.target.files[0])
+            }
         }
 
     }

@@ -16,6 +16,9 @@ export interface StateAuthReg {
 
         newEmail: string
     }
+    profile : {
+        input_birthDate : string
+    }
 }
 
 export interface PropsAuthReg{
@@ -24,6 +27,7 @@ export interface PropsAuthReg{
     input_password: string;
     input_confirmPassword : string;
 
+    input_birthDate : string
     input_emailOrNickname: string
 
     message: string;
@@ -39,6 +43,8 @@ export interface PropsAuthReg{
     setInputPassword(input_password: string | null): void;
     setInputNickname(input_nickname: string | null): void;
     setInputConfirmPassword(input_confirmPassword : string | null): void;
+    setInputBirthDate(input_birthDate : string): void;
+    setBirthDate(birthDate : string): void;
 
     setInputEmailOrNickname(input_emailOrNickname: string): void;
 
@@ -61,6 +67,7 @@ export interface PropsAuthRegReg{
     input_password: string;
     input_confirmPassword : string;
 
+    input_birthDate : string
     input_emailOrNickname: string
 
     buttonShowMessage: boolean
@@ -71,6 +78,8 @@ export interface PropsAuthRegReg{
     setInputPassword(input_password: string | null): void;
     setInputNickname(input_nickname: string | null): void;
     setInputConfirmPassword(input_confirmPassword : string | null): void;
+    setInputBirthDate(input_birthDate : string): void;
+    setBirthDate(birthDate : string): void;
 
     setInputEmailOrNickname(input_emailOrNickname: string): void;
 
@@ -93,13 +102,14 @@ export interface PropsAuthRegComponent{
     input_password: string;
     input_confirmPassword : string;
 
-
+    input_birthDate : string
     buttonShowMessage: boolean
     message: string;
     code: number
 
     setName(name : string): void;
     setInputName(input_name: string): void
+    setInputBirthDate(input_birthDate : string): void;
     setInputEmail(input_email: string | null): void;
     setInputPassword(input_password: string | null): void;
     setInputNickname(input_nickname: string | null): void;

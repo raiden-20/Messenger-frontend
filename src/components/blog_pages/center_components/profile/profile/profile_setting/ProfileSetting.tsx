@@ -17,7 +17,7 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
         formData.append('coverUrl', this.props.input_coverUrl)
 
 
-        axios.post('http://localhost:8000/auth/change/nickname', {
+        axios.post('http://localhost:8080/auth/change/nickname', {
             "token": localStorage.getItem('token'),
             "nickname": this.props.input_nickname
         }, this.config).then(response => {
@@ -25,7 +25,7 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
             this.props.setNickname(this.props.input_nickname)
             localStorage.setItem('token', response.data)
 
-            axios.post('http://localhost:8000/social/data', {
+            axios.post('http://localhost:8080/social/data', {
                 name: this.props.input_name,
                 birthDate: this.props.input_birthDate,
                 formData,
@@ -46,13 +46,13 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
             switch (error.response.status) {
                 case 400 : {
                     if (error.response.data === "User doesn't exist") {
-                        this.props.setMessage('Пользователя с такой почтой не существует')
+                        this.props.setMessage('Пользователя не существует')
                     }
                     break
                 }
                 case 409 : {
                     if (error.response.data === "This nickname is already in use") {
-                        this.props.setMessage('Данный ийнейм уже используется')
+                        this.props.setMessage('Данный никнейм уже используется')
                     }
                     break
                 }
