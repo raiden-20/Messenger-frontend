@@ -3,13 +3,10 @@ import {
     PropsProfileSettingsComponent
 } from "../../../../../../redux/interfaces/profile/settings/profileSettings";
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {PROFILE_USER} from "../../../../../paths/profilePath";
 import default_ava from '../../../../../../assets/images/default_ava.jpg'
 import default_cover from '../../../../../../assets/images/default_cover.jpg'
 
 const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
-    const navigation = useNavigate()
     const [imageAvatarSrc, setImageAvatarSrc] = useState('');
     const [imageCoverSrc, setImageCoverSrc] = useState('');
 
@@ -70,7 +67,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
     }
 
     const cancel = () => {
-        navigation(PROFILE_USER)
+        props.setButtonSettingPressed(false)
     }
 
 
@@ -109,7 +106,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                             </section>
                         </section>
                         <section className={prof_setting.form_cont}>
-                            <main>
+                            <section className={prof_setting.form}>
                                 <section className={prof_setting.box1}>
                                     <legend>Имя</legend>
                                     <input value={props.input_name} onChange={setName}/>
@@ -126,7 +123,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                                     <legend>О себе</legend>
                                     <textarea value={props.input_bio} onChange={setBio}></textarea>
                                 </section>
-                            </main>
+                            </section>
                             <footer>
                                 <button className={prof_setting.cancel} onClick={cancel}>Отменить</button>
                                 <button className={prof_setting.save} type={'submit'} onClick={props.setData}>Сохранить</button>

@@ -31,7 +31,6 @@ const App = () => {
                         <Route path='/dialogs' element={<MainBlogPages/>}/>
                         <Route path={PROFILE_USER} element={<MainBlogPages/>}/>
                         <Route path={PROFILE_OTHER_USER} element={<MainBlogPages/>}/>
-                        <Route path={PROFILE_USER_SETTINGS} element={<MainBlogPages/>}/>
                         <Route path={FRIENDS_USER} element={<MainBlogPages/>}/>
                         <Route path={SUBSCRIBERS_USER} element={<MainBlogPages/>}/>
                         <Route path={SUBSCRIPTIONS_USER} element={<MainBlogPages/>}/>

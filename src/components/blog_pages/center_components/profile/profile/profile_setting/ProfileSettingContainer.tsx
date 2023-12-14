@@ -3,7 +3,7 @@ import ProfileSetting from "./ProfileSetting";
 import {StateProfileSettings} from "../../../../../../redux/interfaces/profile/settings/profileSettings";
 import {Dispatch} from "redux";
 import {
-    setBirthDate, setInputAvatarUrl,
+    setBirthDate, setButtonSettingPressed, setInputAvatarUrl,
     setInputBio,
     setInputBirthDate, setInputCoverUrl, setInputName,
     setName
@@ -60,6 +60,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setInputCoverUrl(input_coverUrl: File) {
             dispatch(setInputCoverUrl(input_coverUrl))
+        },
+        setButtonSettingPressed(isButtonSettingPressed :boolean) {
+            dispatch(setButtonSettingPressed(isButtonSettingPressed))
         },
 
         setToken(token: string) {

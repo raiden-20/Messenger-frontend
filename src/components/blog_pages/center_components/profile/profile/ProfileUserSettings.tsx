@@ -3,20 +3,23 @@ import React from 'react';
 import profile_css from './ProfileUser.module.css'
 
 import profile_settings from '../../../../../assets/images/other/profile_settings.svg'
-import {useNavigate} from "react-router-dom";
-import {PROFILE_USER_SETTINGS} from "../../../../paths/profilePath";
+import ProfileSettingContainer from "./profile_setting/ProfileSettingContainer";
+import {
+    PropsButtonPressed
+} from "../../../../../redux/interfaces/profile/settings/profileSettings";
 
-const ProfileUserSettings = () => {
-    const navigation = useNavigate()
+const ProfileUserSettings = (props: PropsButtonPressed) => {
 
-    const navToUserSettings = () => {
-        navigation(PROFILE_USER_SETTINGS)
+    const showSettings = () => {
+        props.setButtonSettingPressed(true)
     }
+
 
 
     return (
         <section className={profile_css.profile_icons}>
-            <img src={profile_settings} alt={'settings'} onClick={navToUserSettings}/>
+            <img src={profile_settings} alt={'settings'} onClick={showSettings}/>
+            {props.isButtonSettingPressed? <ProfileSettingContainer/> : null}
         </section>
     )
 }

@@ -77,7 +77,8 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
                                         setInputNickname={this.props.setInputNickname}
                                         setInputAvatarUrl={this.props.setInputAvatarUrl}
                                         setInputCoverUrl={this.props.setInputCoverUrl}
-                                        setData={this.setData}/>
+                                        setData={this.setData}
+                                        setButtonSettingPressed={this.props.setButtonSettingPressed}/>
     }
 }
 

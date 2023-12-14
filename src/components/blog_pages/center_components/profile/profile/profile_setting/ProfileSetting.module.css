@@ -184,7 +184,7 @@
     background-color: transparent;
 }
 
-.edit_form main {
+.form {
     display: grid;
     grid-template-areas:
             'A  B'
@@ -223,13 +223,13 @@
     resize: none;
 }
 
-.edit_form main section[class*="box"] {
+.form section[class*="box"] {
     display: grid;
     grid-template-rows: 25% 70%;
     row-gap: 5%;
 }
 
-.edit_form main input {
+.form input {
     width: 94%;
     padding: 0 3% 0 3%;
     height: 70%;
@@ -240,7 +240,7 @@
     font-size: 1em;
 }
 
-.edit_form main fieldset {
+.form fieldset {
     border: none;
     padding: 0;
     margin: 0;

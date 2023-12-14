@@ -17,7 +17,6 @@ const MainCenterComponents = () => {
         <section className={main_css.main}>
             {location.pathname === PROFILE_USER ? <MainProfileContainer/> :
             location.pathname === PROFILE_OTHER_USER ? <MainProfileContainer/> :
-                location.pathname === PROFILE_USER_SETTINGS ? <ProfileSettingContainer/> :
                     location.pathname === SETTINGS ? <MainSettingContainer/> : null}
 
             {location.pathname === PROFILE_USER ? <MainProfileAsideContainer/> :

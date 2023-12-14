@@ -1,3 +1,15 @@
+export interface StateButtonPressed {
+    profile : {
+        isButtonSettingPressed : boolean
+    }
+}
+export interface PropsButtonPressed {
+    isButtonSettingPressed : boolean
+    setButtonSettingPressed(isButtonSettingPressed: boolean): void
+}
+
+
+
 export interface StateProfileSettings {
     profile : {
         input_name: string;
@@ -38,6 +50,7 @@ export interface PropsProfileSettings{
     setToken(id: string | null): void
     setInputAvatarUrl(input_avatarUrl : File): void
     setInputCoverUrl(input_coverUrl : File): void
+    setButtonSettingPressed(isButtonSettingPressed :boolean): void
 }
 
 
@@ -57,4 +70,5 @@ export interface PropsProfileSettingsComponent{
     setInputAvatarUrl(input_avatarUrl : File | null): void
     setInputCoverUrl(input_coverUrl : File | null): void
     setData(): void
+    setButtonSettingPressed(isButtonSettingPressed :boolean): void
 }

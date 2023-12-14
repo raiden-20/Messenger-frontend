@@ -25,7 +25,6 @@ const MainBlogPages = () => {
                     (location.pathname === SUBSCRIPTIONS_USER) ? <MainUsersContainer/> :
                 location.pathname === PROFILE_USER ||
                 location.pathname === PROFILE_OTHER_USER ||
-                location.pathname === PROFILE_USER_SETTINGS ||
                 location.pathname === SETTINGS ? <MainCenterComponents/> : null}
             </section>
         </div>

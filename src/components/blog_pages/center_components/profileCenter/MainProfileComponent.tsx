@@ -12,6 +12,7 @@ import {PropsUserProfileComponent} from "../../../../redux/interfaces/profile/pr
 import ProfileUserSettings from "../profile/profile/ProfileUserSettings";
 import {PROFILE_USER} from "../../../paths/profilePath";
 import PostContainer from "../profile/post/PostContainer";
+import ProfileUserSettingsContainer from "../profile/profile/ProfileUserSettingsContainer";
 
 
 
@@ -35,7 +36,7 @@ const MainProfileComponent = (props: PropsUserProfileComponent) => {
                             <div className={main_elements_css.name}>{props.name}</div>
                             <div className={main_elements_css.userName}>{'@' + props.nickname}</div>
                         </section>
-                        {location.pathname === PROFILE_USER ? <ProfileUserSettings/> : <ProfileOtherUserSettings/>}
+                        {location.pathname === PROFILE_USER ? <ProfileUserSettingsContainer/> : <ProfileOtherUserSettings/>}
                     </section>
                     <section>
                         <p>{props.bio}</p>

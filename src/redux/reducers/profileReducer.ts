@@ -1,3 +1,5 @@
+import {buttonClasses} from "@mui/joy";
+
 const SET_USER_DATA = 'SET_USER_DATA'
 const SET_USER_NAME = 'SET_USER_NAME'
 const SET_USER_BIRTH_DATE = 'SET_USER_BIRTH_DATE'
@@ -12,6 +14,8 @@ const SET_INPUT_USER_BIRTH_DATE = 'SET_INPUT_PASSWORD_DATA'
 const SET_INPUT_USER_ABOUT = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
 const SET_INPUT_USER_AVATAR_URL = 'SET_INPUT_USER_AVATAR_URL'
 const SET_INPUT_USER_COVER_URL = 'SET_INPUT_USER_COVER_URL'
+
+const SET_BUTTON_SETTING_PRESSED = 'SET_BUTTON_SETTING_PRESSED'
 const initialState = {
     name: 'Настя',
     birthDate: '',
@@ -24,7 +28,8 @@ const initialState = {
     input_avatarUrl: File,
     input_coverUrl: File,
     input_birthDate: '',
-    input_bio : ''
+    input_bio : '',
+    isButtonSettingPressed: false
 }
 
 const profileReducer = (state = initialState, action : any) => {
@@ -96,6 +101,11 @@ const profileReducer = (state = initialState, action : any) => {
 
             return stateCopy
         }
+        case SET_BUTTON_SETTING_PRESSED : {
+            stateCopy.isButtonSettingPressed = action.isButtonSettingPressed
+
+            return stateCopy
+        }
 
         default : {
             return stateCopy
@@ -156,6 +166,11 @@ export const setInputAvatarUrl = (input_avatarUrl : File) => {
 export const setInputCoverUrl = (input_coverUrl : File) => {
     return {
         type: SET_INPUT_USER_COVER_URL, input_coverUrl
+    }
+}
+export const setButtonSettingPressed = (isButtonSettingPressed : boolean) => {
+    return {
+        type: SET_BUTTON_SETTING_PRESSED, isButtonSettingPressed
     }
 }
 
