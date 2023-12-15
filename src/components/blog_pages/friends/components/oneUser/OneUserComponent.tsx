@@ -5,11 +5,14 @@ import React from "react";
 import {PropsOneFriendComponent} from "../../../../../redux/interfaces/friends/oneFriend";
 import {useNavigate} from "react-router-dom";
 import {PROFILE_OTHER_USER} from "../../../../paths/profilePath";
+import default_ava from '../../../../../assets/images/default_profile_ava.svg'
 
 const OneUserComponent = (props : PropsOneFriendComponent) => {
     const navigation = useNavigate()
     const toProfile = () => {
+        debugger
         localStorage.setItem('idUser', props.id)
+        console.log(PROFILE_OTHER_USER)
         navigation(PROFILE_OTHER_USER)
     }
 
@@ -17,7 +20,7 @@ const OneUserComponent = (props : PropsOneFriendComponent) => {
         <section className={main_css.one_friend}>
             <section className={main_css.navlink} onClick={toProfile}>
                 <section className={main_css.friend_ava}>
-
+                    <img src={props.avatarUrl === '' ? default_ava : props.avatarUrl} alt={'user ava'}/>
                 </section>
                 <section className={main_css.friend_data}>
                     <section className={main_css.name_nick_header}>
@@ -25,7 +28,7 @@ const OneUserComponent = (props : PropsOneFriendComponent) => {
                             {props.name}
                         </section>
                         <section className={main_css.friend_nickname}>
-                            {props.nickname}
+                            {'@' + props.nickname}
                         </section>
                     </section>
                     <section className={main_css.friend_description}>

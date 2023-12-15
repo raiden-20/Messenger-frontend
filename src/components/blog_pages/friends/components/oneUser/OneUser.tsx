@@ -3,9 +3,11 @@ import {PropsOneFriend, StateOneFriend} from "../../../../../redux/interfaces/fr
 import OneUserComponent from "./OneUserComponent";
 
 class OneUser extends Component<PropsOneFriend, StateOneFriend>{
+
     changeFriendStatus = () => {
-        // todo post
+        this.props.changeFriendStatus(this.props.id)
     }
+
     render() {
         return <OneUserComponent id={this.props.id}
                                  name={this.props.name}

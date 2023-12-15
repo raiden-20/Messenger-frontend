@@ -11,12 +11,12 @@ class MainProfile extends Component<PropsUserProfile, StateUserProfile> {
     };
 
     componentDidMount() {
-        axios.get(`'http://localhost:8080/social/data/${localStorage.getItem('id')}'`, this.config)
+        axios.get(`'http://localhost:8080/social/data/${localStorage.getItem('idUser')}'`, this.config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
                         this.props.setNickname(response.data.nickname)
-                        axios.get(`http://localhost:8000/auth/data/${localStorage.getItem('id')}`, this.config)
+                        axios.get(`http://localhost:8000/auth/data/${localStorage.getItem('idUser')}`, this.config)
                             .then(response => {
                                 switch (response.status) {
                                     case 200 : {

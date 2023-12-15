@@ -3,9 +3,7 @@ import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {
     setUserFriendsCount,
-    setUsers,
-    setUserSubscribersCount,
-    setUserSubscriptionsCount
+    setUsers
 } from "../../../../redux/reducers/usersReducer";
 import MainProfileAside from "./MainProfileAside";
 
@@ -13,9 +11,7 @@ import MainProfileAside from "./MainProfileAside";
         return {
             users: state.users.users,
 
-            countSubscriptions: state.users.countSubscriptions,
-            countFriends: state.users.countFriends,
-            countSubscribers: state.users.countSubscribers
+            countFriends: state.users.countFriends
         }
     }
 
@@ -24,14 +20,8 @@ import MainProfileAside from "./MainProfileAside";
             setUsers(users: []) {
                 dispatch(setUsers(users))
             },
-            setUserSubscriptionsCount(countSubscriptions: number) {
-                dispatch(setUserSubscriptionsCount(countSubscriptions))
-            },
             setUserFriendsCount(countFriends: number) {
                 dispatch(setUserFriendsCount(countFriends))
-            },
-            setUserSubscribersCount(countSubscribers: number) {
-                dispatch(setUserSubscribersCount(countSubscribers))
             },
         }
     }

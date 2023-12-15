@@ -9,7 +9,7 @@ import NavigationContainer from "./navigation/NavigationContainer";
 import {PROFILE_OTHER_USER, PROFILE_USER, PROFILE_USER_SETTINGS} from "../paths/profilePath";
 import {SETTINGS} from "../paths/navigationPath";
 import {FRIENDS_USER, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "../paths/usersPath";
-import MainUsersContainer from "./friends_and_searching/MainUsersContainer";
+import MainUsersContainer from "./friends/MainUsersContainer";
 
 const MainBlogPages = () => {
 

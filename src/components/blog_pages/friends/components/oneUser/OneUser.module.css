@@ -5,10 +5,10 @@
     column-gap: 3%;
 
     margin: 10px 0 15px 0;
-    padding: 2px;
 }
 
 .navlink {
+
     text-decoration: none;
     color: rgba(8, 7, 18, 1);
     display: grid;
@@ -17,8 +17,18 @@
 }
 
 .friend_ava {
+    width: 60px;
+    height: 60px;
+
     border-radius: 100%;
     background-color: #DDE3EB;
+}
+
+.friend_ava img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
 }
 
 .friend_nickname {

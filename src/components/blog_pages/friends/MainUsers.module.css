@@ -17,16 +17,28 @@
 
 }
 
-.friends header {
-    width: 45%;
+.header {
+    width: 100%;
     height: 55%;
     display: grid;
+    grid-template-columns: 45% auto;
     align-self: center;
     justify-self: stretch;
+}
+
+.header section {
+    display: grid;
     grid-template-columns: repeat(3, auto);
     column-gap: 8%;
-
 }
+
+.header img {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    justify-self: end;
+}
+
 
 .friends header button {
     padding: 0;

@@ -9,7 +9,6 @@ import main_elements_css from "../profile/main_profile_css/MainProfileElements.m
 import default_profile_ava from "../../../../assets/images/default_profile_ava.svg";
 import default_profile_cover from "../../../../assets/images/default_profile_cover.svg";
 import {PropsUserProfileComponent} from "../../../../redux/interfaces/profile/profileBase";
-import ProfileUserSettings from "../profile/profile/ProfileUserSettings";
 import {PROFILE_USER} from "../../../paths/profilePath";
 import PostContainer from "../profile/post/PostContainer";
 import ProfileUserSettingsContainer from "../profile/profile/ProfileUserSettingsContainer";

@@ -51,18 +51,28 @@ export interface PropsUserProfileComponent{
     token: string
 }
 
-export interface PropsUserProfileAsideComponent {
+export interface PropsUserProfileAside {
     users : []
-    countSubscriptions: number
     countFriends: number
-    countSubscribers: number
+
+    setUsers(users: []): void
+    setUserFriendsCount(countFriends: number): void
 }
+
 export interface StateUserProfileAside {
     users : {
         users : [],
-        countSubscriptions: number
         countFriends: number
-        countSubscribers: number
     }
+}
+
+export interface StateUserProfileAsideComponent {
+    users : [],
+    countFriends: number
+}
+
+export interface PropsUserProfileAsideComponent {
+    users : []
+    countFriends: number
 }
 

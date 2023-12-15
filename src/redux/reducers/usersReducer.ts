@@ -4,11 +4,13 @@ const SET_USERS_SUBSCRIPTIONS_COUNT = 'SET_USERS_SUBSCRIPTIONS_COUNT'
 const SET_USERS_SUBSCRIBERS_COUNT = 'SET_USERS_SUBSCRIBERS_COUNT'
 
 const initialState = {
-    users : [
-        {id : 1, followed: false, name: 'боже', surname: 'помоги', bio: 'митя фомин все будет хорошо', nickname: '@pizza'},
-        {id : 2, followed: false, name: 'бог не', surname: 'поможеь', bio: 'пока', nickname: '@pizzazz'},
-        {id : 3, followed: false, name: 'боже', surname: 'помоги', bio: 'митя фомин все будет хорошо', nickname: '@pizza'},
-        {id : 4, followed: false, name: 'боже', surname: 'помоги', bio: 'митя фомин все будет хорошо', nickname: '@pizza'},
+    usersShortInfo : [
+        {id : 1, name: 'боже', bio: 'митя фомин все будет хорошо', nickname: 'pizza', avatarUrl: '', coverUrl: ''},
+        {id : 2, name: 'боже', bio: 'митя фомин все будет хорошо', nickname: 'pizza', avatarUrl: '', coverUrl: ''},
+        {id : 3, name: 'боже', bio: 'митя фомин все будет хорошо', nickname: 'pizza', avatarUrl: '', coverUrl: ''},
+        {id : 4, name: 'боже', bio: 'митя фомин все будет хорошо', nickname: 'pizza', avatarUrl: '', coverUrl: ''},
+        {id : 5, name: 'боже', bio: 'митя фомин все будет хорошо', nickname: 'pizza', avatarUrl: '', coverUrl: ''},
+        {id : 6, name: 'боже', bio: 'митя фомин все будет хорошо', nickname: 'pizza', avatarUrl: '', coverUrl: ''},
         // {id : 5, followed: false, name: 'боже', surname: 'помоги', bio: 'митя фомин все будет хорошо', nickname: '@pizza'},
         // {id : 6, followed: false, name: 'боже', surname: 'помоги', bio: 'митя фомин все будет хорошо', nickname: '@pizza'},
         // {id : 7, followed: false, name: 'боже', surname: 'помоги', bio: 'митя фомин все будет хорошо', nickname: '@pizza'},
@@ -31,11 +33,11 @@ const initialState = {
 }
 
 const usersReducer = (state = initialState, action : any) => {
-    let stateCopy = {...state, users: state.users.map(u => u)}
+    let stateCopy = {...state, users: state.usersShortInfo.map(u => u)}
     switch (action.type) {
 
         case SET_USERS : {
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: [...state.usersShortInfo, ...action.users]}
         }
         case SET_USERS_FRIENDS_COUNT : {
             stateCopy.countFriends = action.countFriends
