@@ -13,10 +13,13 @@ const SET_INPUT_USER_ABOUT = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
 const SET_INPUT_USER_AVATAR_URL = 'SET_INPUT_USER_AVATAR_URL'
 const SET_INPUT_USER_COVER_URL = 'SET_INPUT_USER_COVER_URL'
 
+const SET_DELETE_AVATAR_FLAG = 'SET_DELETE_AVATAR_FLAG'
+const SET_DELETE_COVER_FLAG = 'SET_DELETE_COVER_FLAG'
+
 const SET_BUTTON_SETTING_PRESSED = 'SET_BUTTON_SETTING_PRESSED'
 const initialState = {
     name: 'Настя',
-    birthDate: '',
+    birthDate: '2023-02-13',
     bio: 'будьте счастливы',
     avatarUrl: '',
     coverUrl: '',
@@ -27,7 +30,10 @@ const initialState = {
     input_coverUrl: File,
     input_birthDate: '',
     input_bio : '',
-    isButtonSettingPressed: false
+    isButtonSettingPressed: false,
+
+    deleteAvatarFlag: false,
+    deleteCoverFlag: false
 }
 
 const profileReducer = (state = initialState, action : any) => {
@@ -104,6 +110,16 @@ const profileReducer = (state = initialState, action : any) => {
 
             return stateCopy
         }
+        case SET_DELETE_AVATAR_FLAG : {
+            stateCopy.deleteAvatarFlag = action.deleteAvatarFlag
+
+            return stateCopy
+        }
+        case SET_DELETE_COVER_FLAG : {
+            stateCopy.deleteCoverFlag = action.deleteCoverFlag
+
+            return stateCopy
+        }
 
         default : {
             return stateCopy
@@ -169,6 +185,16 @@ export const setInputCoverUrl = (input_coverUrl : File) => {
 export const setButtonSettingPressed = (isButtonSettingPressed : boolean) => {
     return {
         type: SET_BUTTON_SETTING_PRESSED, isButtonSettingPressed
+    }
+}
+export const setDeleteAvatarFlag = (deleteAvatarFlag : boolean) => {
+    return {
+        type: SET_DELETE_AVATAR_FLAG, deleteAvatarFlag
+    }
+}
+export const setDeleteCoverFlag = (deleteCoverFlag : boolean) => {
+    return {
+        type: SET_DELETE_COVER_FLAG, deleteCoverFlag
     }
 }
 

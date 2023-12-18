@@ -6,12 +6,14 @@ import {
     setUsers
 } from "../../../../redux/reducers/usersReducer";
 import MainProfileAside from "./MainProfileAside";
+import {setCountPhoto} from "../../../../redux/reducers/photoReducer";
 
     const mapStateToProps = (state : StateUserProfileAside) => {
         return {
             users: state.users.users,
+            countFriends: state.users.countFriends,
 
-            countFriends: state.users.countFriends
+            countPhoto: state.photo.countPhoto
         }
     }
 
@@ -22,6 +24,9 @@ import MainProfileAside from "./MainProfileAside";
             },
             setUserFriendsCount(countFriends: number) {
                 dispatch(setUserFriendsCount(countFriends))
+            },
+            setCountPhoto(countPhoto: number) {
+                dispatch(setCountPhoto(countPhoto))
             },
         }
     }

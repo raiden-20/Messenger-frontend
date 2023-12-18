@@ -1,11 +1,14 @@
 import main_css from "./OneUser.module.css";
 import chatting from "../../../../../assets/images/other/chat_with_user.svg";
-import submit_app from "../../../../../assets/images/friends/submitted_application.svg";
 import React from "react";
 import {PropsOneFriendComponent} from "../../../../../redux/interfaces/friends/oneFriend";
 import {useNavigate} from "react-router-dom";
 import {PROFILE_OTHER_USER} from "../../../../paths/profilePath";
 import default_ava from '../../../../../assets/images/default_profile_ava.svg'
+import delete_icon from '.././../../../../assets/images/friends/delete.svg'
+import add_icon from '.././../../../../assets/images/friends/accept.svg'
+import create_icon from '.././../../../../assets/images/friends/create.svg'
+import reject_icon from '.././../../../../assets/images/friends/reject.svg'
 
 const OneUserComponent = (props : PropsOneFriendComponent) => {
     const navigation = useNavigate()
@@ -42,7 +45,10 @@ const OneUserComponent = (props : PropsOneFriendComponent) => {
                     <img src={chatting} alt={'chat'}/>
                 </button>
                 <button onClick={props.changeFriendStatus}>
-                    <img src={submit_app} alt={'submit'}/>
+                    <img src={props.whoOpened === 'friends' ? delete_icon :
+                                props.whoOpened === 'subscriptions' ? add_icon :
+                                props.whoOpened === 'subscribers' ? reject_icon :
+                                props.whoOpened === 'search' ? create_icon : ''} alt={'icon'}/>
                 </button>
 
             </section>

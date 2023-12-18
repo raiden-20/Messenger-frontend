@@ -28,6 +28,7 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
         props.setInputConfirmPassword(event.target.value)
     }
     const setInputBirthDate = (event : React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event.target.value)
         props.setInputBirthDate(event.target.value)
     }
 

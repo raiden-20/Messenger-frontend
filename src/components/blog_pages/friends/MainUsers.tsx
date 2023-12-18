@@ -206,7 +206,9 @@ class MainUsers extends Component<PropsUsers, StateUsers> {
                                    countSubscribers={this.props.countSubscribers}
                                    countSubscriptions={this.props.countSubscriptions}
                                    actionRequest={this.actionRequest}
-                                   getSearch={this.getSearch}/>
+                                   getSearch={this.getSearch}
+                                   whoOpened={this.props.whoOpened}
+                                   setWhoOpened={this.props.setWhoOpened}/>
     }
 }
 

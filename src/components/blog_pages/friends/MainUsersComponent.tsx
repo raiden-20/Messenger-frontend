@@ -16,18 +16,22 @@ const MainUsersComponent = (props: PropsUsersComponent) => {
     const navigation = useNavigate()
 
     const toFriends = () => {
+        props.setWhoOpened('friends')
         props.getFriends()
         navigation(FRIENDS_USER)
     }
     const toSubscriptions = () => {
+        props.setWhoOpened('subscriptions')
         props.getSubscriptions()
         navigation(SUBSCRIPTIONS_USER)
     }
     const toSubscribers = () => {
+        props.setWhoOpened('subscribers')
         props.getSubscribers()
         navigation(SUBSCRIBERS_USER)
     }
     const toSearch = () => {
+        props.setWhoOpened('search')
         props.getSearch()
         navigation(SEARCH)
     }
@@ -37,9 +41,15 @@ const MainUsersComponent = (props: PropsUsersComponent) => {
             <section className={main_css.friends}>
                 <header className={main_css.header}>
                     <section>
-                        <button onClick={toFriends}><strong>Друзья</strong> {props.countFriends}</button>
-                        <button onClick={toSubscriptions}><strong>Подписки</strong> {props.countSubscriptions}</button>
-                        <button onClick={toSubscribers}><strong>Подписчики</strong> {props.countSubscribers}</button>
+                        <button onClick={toFriends} className={main_css.selected}>
+                            <strong>Друзья</strong> {props.countFriends}
+                        </button>
+                        <button onClick={toSubscriptions} className={props.whoOpened === 'subscriptions' ? main_css.selected : ''}>
+                            <strong>Подписки</strong> {props.countSubscriptions}
+                        </button>
+                        <button onClick={toSubscribers} className={props.whoOpened === 'subscribers' ? main_css.selected : ''}>
+                            <strong>Подписчики</strong> {props.countSubscribers}
+                        </button>
                     </section>
                     <img src={search_header} alt={'searching friend'} onClick={toSearch}/>
                 </header>
@@ -49,15 +59,19 @@ const MainUsersComponent = (props: PropsUsersComponent) => {
                 </section>
                 {location.pathname === FRIENDS_USER ? <MainFriendsComponent users={props.users}
                                                                             countFriends={props.countFriends}
-                                                                            actionRequest={props.actionRequest}/> :
+                                                                            actionRequest={props.actionRequest}
+                                                                            whoOpened={props.whoOpened}/> :
                 location.pathname === SUBSCRIPTIONS_USER ? <MainSubscriptionsComponent users={props.users}
                                                                                        countSubscriptions={props.countSubscriptions}
-                                                                                       actionRequest={props.actionRequest}/> :
+                                                                                       actionRequest={props.actionRequest}
+                                                                                       whoOpened={props.whoOpened}/> :
                 location.pathname === SUBSCRIBERS_USER ? <MainSubscribersComponent users={props.users}
                                                                                    countSubscribers={props.countSubscribers}
-                                                                                   actionRequest={props.actionRequest}/> :
+                                                                                   actionRequest={props.actionRequest}
+                                                                                   whoOpened={props.whoOpened}/> :
                     location.pathname === SEARCH ? <MainSearchComponent users={props.users}
-                                                                        actionRequest={props.actionRequest}/> : null}
+                                                                        actionRequest={props.actionRequest}
+                                                                        whoOpened={props.whoOpened}/> : null}
             </section>
         </div>
     )

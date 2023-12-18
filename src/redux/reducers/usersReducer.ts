@@ -2,6 +2,7 @@ const SET_USERS = 'SET_USERS'
 const SET_USERS_FRIENDS_COUNT = 'SET_USERS_FRIENDS_COUNT'
 const SET_USERS_SUBSCRIPTIONS_COUNT = 'SET_USERS_SUBSCRIPTIONS_COUNT'
 const SET_USERS_SUBSCRIBERS_COUNT = 'SET_USERS_SUBSCRIBERS_COUNT'
+const SET_WHO_OPENED = 'SET_WHO_OPENED'
 
 const initialState = {
     usersShortInfo : [
@@ -29,7 +30,8 @@ const initialState = {
     ],
     countFriends: 0,
     countSubscriptions: 5,
-    countSubscribers: 0
+    countSubscribers: 0,
+    whoOpened: 'friends'
 }
 
 const usersReducer = (state = initialState, action : any) => {
@@ -49,6 +51,10 @@ const usersReducer = (state = initialState, action : any) => {
         }
         case SET_USERS_SUBSCRIPTIONS_COUNT : {
             stateCopy.countSubscriptions = action.countSubscriptions
+            return stateCopy
+        }
+        case SET_WHO_OPENED : {
+            stateCopy.whoOpened = action.whoOpened
             return stateCopy
         }
         default:
@@ -74,6 +80,11 @@ export const setUserFriendsCount = (countFriends : number) => {
 export const setUserSubscribersCount = (countSubscribers : number) => {
     return {
         type: SET_USERS_SUBSCRIBERS_COUNT, countSubscribers
+    }
+}
+export const setWhoOpened = (whoOpened : string) => {
+    return {
+        type: SET_WHO_OPENED, whoOpened
     }
 }
 

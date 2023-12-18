@@ -1,0 +1,1 @@
+export const PROFILE_USER_PHOTO : string = '/photo/' + localStorage.getItem('idUser')

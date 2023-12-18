@@ -13,7 +13,8 @@ import {
 } from "./components/paths/authPath";
 import {PROFILE_OTHER_USER, PROFILE_USER} from "./components/paths/profilePath";
 import {SETTINGS} from "./components/paths/navigationPath";
-import {FRIENDS_USER, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "./components/paths/usersPath";
+import {FRIENDS_USER, SEARCH, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "./components/paths/usersPath";
+import {PROFILE_USER_PHOTO} from "./components/paths/photoPath";
 
 const App = () => {
     return (
@@ -29,10 +30,12 @@ const App = () => {
                         <Route path={SUCCESSFUL_CHANGE_EMAIL} element={<MainRegistrationContainer/>}/>
                         <Route path='/dialogs' element={<MainBlogPages/>}/>
                         <Route path={PROFILE_USER} element={<MainBlogPages/>}/>
+                        <Route path={PROFILE_USER_PHOTO} element={<MainBlogPages/>}/>
                         <Route path={PROFILE_OTHER_USER} element={<MainBlogPages/>}/>
                         <Route path={FRIENDS_USER} element={<MainBlogPages/>}/>
                         <Route path={SUBSCRIBERS_USER} element={<MainBlogPages/>}/>
                         <Route path={SUBSCRIPTIONS_USER} element={<MainBlogPages/>}/>
+                        <Route path={SEARCH} element={<MainBlogPages/>}/>
                         <Route path={SETTINGS} element={<MainBlogPages/>}/>
                     </Routes>
                 </Router>

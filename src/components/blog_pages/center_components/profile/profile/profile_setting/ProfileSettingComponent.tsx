@@ -3,12 +3,12 @@ import {
     PropsProfileSettingsComponent
 } from "../../../../../../redux/interfaces/profile/settings/profileSettings";
 import React, {useState} from "react";
-import default_ava from '../../../../../../assets/images/default_ava.jpg'
+import default_ava from '../../../../../../assets/images/default_profile_ava.svg'
 import default_cover from '../../../../../../assets/images/default_cover.jpg'
 
 const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
-    const [imageAvatarSrc, setImageAvatarSrc] = useState('');
-    const [imageCoverSrc, setImageCoverSrc] = useState('');
+    const [imageAvatarSrc, setImageAvatarSrc] = useState(props.avatarUrl);
+    const [imageCoverSrc, setImageCoverSrc] = useState(props.coverUrl);
 
 
 
@@ -37,6 +37,9 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
 
                 reader.readAsDataURL(file);
                 props.setInputCoverUrl(event.target.files[0])
+                props.setDeleteCoverFlag(false)
+            } else {
+                //todo вывод ошибки
             }
 
         }
@@ -56,22 +59,37 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                 };
                 reader.readAsDataURL(file);
                 props.setInputAvatarUrl(event.target.files[0])
+                props.setDeleteAvatarFlag(false)
+            } else {
+                //todo вывод ошибки
             }
         }
+    }
 
+    const setBirthDate = (event: React.ChangeEvent<HTMLInputElement>) => {
+        props.setInputBirthDate(event.target.value)
     }
 
     const deleteInputCover = () => {
         setImageCoverSrc('')
         props.setInputCoverUrl(null)
+        props.setDeleteCoverFlag(true)
     }
     const deleteInputAvatar = () => {
         setImageAvatarSrc('')
         props.setInputAvatarUrl(null)
+        props.setDeleteAvatarFlag(true)
     }
 
     const cancel = () => {
         props.setButtonSettingPressed(false)
+        props.setInputName('')
+        props.setInputNickname('')
+        props.setInputBirthDate('')
+        props.setInputBio('')
+
+        props.setDeleteCoverFlag(false)
+        props.setDeleteAvatarFlag(false)
     }
 
 
@@ -121,7 +139,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                                 </section>
                                 <section className={prof_setting.box3}>
                                     <legend>Дата рождения</legend>
-                                    <input type="date"/>
+                                    <input type="date" value={props.input_birthDate} onChange={setBirthDate}/>
                                 </section>
                                 <section className={prof_setting.textAreaBox}>
                                     <legend>О себе</legend>
@@ -135,6 +153,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                         </section>
 
                     </section>
+                    {props.message}
                 </section>
             </section>
         </div>

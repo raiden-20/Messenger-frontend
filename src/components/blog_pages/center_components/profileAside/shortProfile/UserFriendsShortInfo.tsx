@@ -1,9 +1,9 @@
 import {Component} from "react";
-import {PropsOneFriend2, StateOneFriend} from "../../../../../redux/interfaces/friends/oneFriend";
+import {PropsOneFriend2, StateOneFriend2} from "../../../../../redux/interfaces/friends/oneFriend";
 import UserFriendsShortInfoComponent from "./UserFriendsShortInfoComponent";
 import axios from "axios";
 
-class UserFriendsShortInfo extends Component<PropsOneFriend2, StateOneFriend> {
+class UserFriendsShortInfo extends Component<PropsOneFriend2, StateOneFriend2> {
     config = {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`

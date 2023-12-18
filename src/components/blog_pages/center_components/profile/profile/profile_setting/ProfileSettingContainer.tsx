@@ -3,7 +3,7 @@ import ProfileSetting from "./ProfileSetting";
 import {StateProfileSettings} from "../../../../../../redux/interfaces/profile/settings/profileSettings";
 import {Dispatch} from "redux";
 import {
-    setBirthDate, setButtonSettingPressed, setInputAvatarUrl,
+    setBirthDate, setButtonSettingPressed, setDeleteAvatarFlag, setDeleteCoverFlag, setInputAvatarUrl,
     setInputBio,
     setInputBirthDate, setInputCoverUrl, setInputName,
     setName
@@ -15,11 +15,20 @@ const mapStateToProps = (state: StateProfileSettings) => {
         message: state.auth.message,
         id: state.auth.id,
         input_nickname: state.auth.input_nickname,
+        nickname: state.auth.nickname,
         input_name: state.profile.input_name,
+        name: state.profile.name,
         input_birthDate: state.profile.input_birthDate,
+        birthDate: state.profile.birthDate,
         input_bio: state.profile.input_bio,
+        bio: state.profile.bio,
         input_avatarUrl: state.profile.input_avatarUrl,
-        input_coverUrl: state.profile.input_coverUrl
+        avatarUrl: state.profile.avatarUrl,
+        input_coverUrl: state.profile.input_coverUrl,
+        coverUrl: state.profile.coverUrl,
+
+        deleteAvatarFlag: state.profile.deleteAvatarFlag,
+        deleteCoverFlag: state.profile.deleteCoverFlag
     }
 }
 
@@ -63,6 +72,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setButtonSettingPressed(isButtonSettingPressed :boolean) {
             dispatch(setButtonSettingPressed(isButtonSettingPressed))
+        },
+        setDeleteAvatarFlag (deleteAvatarFlag : boolean) {
+            dispatch(setDeleteAvatarFlag(deleteAvatarFlag))
+        },
+        setDeleteCoverFlag (deleteCoverFlag : boolean) {
+            dispatch(setDeleteCoverFlag(deleteCoverFlag))
         },
 
         setToken(token: string) {

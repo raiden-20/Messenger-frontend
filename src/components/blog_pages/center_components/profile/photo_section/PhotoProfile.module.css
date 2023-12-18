@@ -1,0 +1,40 @@
+.div {
+    width: 885px;
+    height: 98%;
+    background-color: #FFFFFF;
+
+    border-radius: 20px;
+}
+
+.main {
+    margin: 0 15px 15px 15px;
+    display: grid;
+    grid-template-rows: 63px auto;
+    row-gap: 20px;
+}
+
+.main header {
+    display: grid;
+    grid-template-columns:  30px auto;
+    column-gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid #DDE3EB;
+}
+
+.main header img {
+    height: 20px;
+    width: 24px;
+    display: grid;
+    justify-self: center;
+}
+
+.main header section {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 5px;
+}
+
+.userPhoto {
+    max-height: 300px;
+    max-width: 400px;
+}

@@ -1,10 +1,10 @@
-import {PropsOneFriendComponent} from "../../../../../redux/interfaces/friends/oneFriend";
+import {PropsOneFriendComponent2} from "../../../../../redux/interfaces/friends/oneFriend";
 import profileShort from './UserFriendsShortInfo.module.css'
 import default_ava from '../../../../../assets/images/default_profile_ava.svg'
 import dialog from '../../../../../assets/images/other/chat_with_user.svg'
 import addToFriend from '../../../../../assets/images/friends/add_to_friend.svg'
 import emptyPhoto from '../../../../../assets/images/other/empty_photo.svg'
-const UserFriendsShortInfoComponent = (props: PropsOneFriendComponent) => {
+const UserFriendsShortInfoComponent = (props: PropsOneFriendComponent2) => {
     return (
         <section className={profileShort.page}>
             <header className={profileShort.header}>

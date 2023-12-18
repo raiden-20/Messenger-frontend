@@ -54,9 +54,11 @@ export interface PropsUserProfileComponent{
 export interface PropsUserProfileAside {
     users : []
     countFriends: number
+    countPhoto: number
 
     setUsers(users: []): void
     setUserFriendsCount(countFriends: number): void
+    setCountPhoto(countPhoto: number): void
 }
 
 export interface StateUserProfileAside {
@@ -64,15 +66,21 @@ export interface StateUserProfileAside {
         users : [],
         countFriends: number
     }
+    photo: {
+        countPhoto: number
+    }
 }
 
 export interface StateUserProfileAsideComponent {
     users : [],
     countFriends: number
+    countPhoto: number
+
 }
 
 export interface PropsUserProfileAsideComponent {
     users : []
     countFriends: number
+    countPhoto: number
 }
 

@@ -16,6 +16,17 @@ class MainProfileAside extends Component<PropsUserProfileAside, StateUserProfile
     };
 
     componentDidMount() {
+        //photo
+        axios.get(`http://localhost:8080/blog/photo/count/${localStorage.getItem('idUser')}`, this.config) //todo исправить на правильный урл
+            .then(response =>{
+                switch (response.status) {
+                    case 200 : {
+                        this.props.setCountPhoto(response.data)
+                    }
+                }
+            })
+
+        //friends
         axios.get(`http://localhost:8080/social/friends/random/${localStorage.getItem('idUser')}`, this.config)
             .then(response => {
                 switch (response.status) {
@@ -49,7 +60,8 @@ class MainProfileAside extends Component<PropsUserProfileAside, StateUserProfile
 
     render() {
         return <MainProfileAsideComponent users={this.props.users}
-                                          countFriends={this.props.countFriends}/>;
+                                          countFriends={this.props.countFriends}
+                                          countPhoto={this.props.countPhoto}/>;
     }
 
 

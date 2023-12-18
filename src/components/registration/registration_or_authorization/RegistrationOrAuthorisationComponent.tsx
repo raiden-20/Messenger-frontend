@@ -12,10 +12,8 @@ const RegistrationOrAuthorisationComponent = (props: PropsAuthAuthComponent) => 
         props.setInputEmailOrNickname(event.target.value)
         if (!event.target.value.split('').includes('@')) {
             props.setInputNickname(event.target.value)
-            props.setInputEmail('')
         } else {
             props.setInputEmail(event.target.value)
-            props.setInputNickname('')
         }
     }
     const setInputPassword = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -18,7 +18,8 @@ const MainSubscriptionsComponent = (props: PropsSubscriptionsComponent) => {
                                                       nickname={user.nickname}
                                                       avatarUrl={user.avatarUrl}
                                                       id={user.id}
-                                                      changeFriendStatus={changeFriendStatus}/>)}
+                                                      changeFriendStatus={changeFriendStatus}
+                                                      whoOpened={props.whoOpened}/>)}
         </section>
     )
 }

@@ -14,7 +14,8 @@ class OneUser extends Component<PropsOneFriend, StateOneFriend>{
                                  nickname={this.props.nickname}
                                  bio={this.props.bio}
                                  changeFriendStatus={this.changeFriendStatus}
-                                 avatarUrl={this.props.avatarUrl}/>
+                                 avatarUrl={this.props.avatarUrl}
+                                 whoOpened={this.props.whoOpened}/>
     }
 }
 

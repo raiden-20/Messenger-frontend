@@ -13,6 +13,7 @@ import default_profile_ava from '../../../../assets/images/default_profile_ava.s
 
 import './ProfileAsideFriends.css'
 import UserFriendsShortInfo from "./shortProfile/UserFriendsShortInfo";
+import {PROFILE_USER_PHOTO} from "../../../paths/photoPath";
 
 const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
 
@@ -23,9 +24,9 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
     // @ts-ignore
     return (
         <aside className={main_aside_css.aside}>
-            <section className={main_aside_css.photo}>
+            <section className={main_aside_css.photo} onClick={() => navigation(PROFILE_USER_PHOTO)}>
                 <section>
-                    <strong>Фото</strong> 6
+                    <strong>Фото</strong> {props.countPhoto}
                 </section>
                 <section className={main_aside_css.group_photo}>
                     <section className={main_aside_css.photo_section}>

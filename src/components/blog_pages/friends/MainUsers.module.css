@@ -17,6 +17,11 @@
 
 }
 
+.selected {
+    border-radius: 15px;
+    background-color: #F6F6F6;
+}
+
 .header {
     width: 100%;
     height: 55%;
