@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.div {
+    height: 100%;
+}
+
 .button {
     height: 100%;
     width: 100%;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
 import ProfileButtonCreatingPost from "../profile/profile/profile_button_creating_post/ProfileButtonCreatingPost";
@@ -17,11 +17,9 @@ import {PROFILE_USER_PHOTO} from "../../../paths/photoPath";
 
 const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
 
-
     const location = useLocation()
     const navigation = useNavigate()
 
-    // @ts-ignore
     return (
         <aside className={main_aside_css.aside}>
             <section className={main_aside_css.photo} onClick={() => navigation(PROFILE_USER_PHOTO)}>

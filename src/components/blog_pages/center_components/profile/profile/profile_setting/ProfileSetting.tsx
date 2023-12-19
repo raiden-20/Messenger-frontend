@@ -35,18 +35,44 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
         }
     }
 
-    setData = () => {
-        let formData = new FormData()
-        formData.append('avatar', this.props.input_avatarUrl)
-        formData.append('cover', this.props.input_coverUrl)
-        let userUpdate = {
-            name: this.props.input_name,
-            birthDate: this.props.input_birthDate,
-            bio: this.props.input_bio,
-            deleteAvatarFlag: this.props.deleteAvatarFlag,
-            deleteCoverFlag: this.props.deleteCoverFlag
+    setPhotoToServer = (formData: FormData) => {
+
+        if (this.props.deleteCoverFlag) {
+            axios.delete('http://localhost:8080/file', {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+                data: {
+                    formData
+                }
+            }).then()
+        } else {
+            axios.post('http://localhost:8080/file', {
+                formData
+            }, this.config).then()
         }
-        formData.append('updateUserDTO', JSON.stringify(userUpdate))
+    }
+
+    setData = () => {
+        let formDataCover = new FormData()
+        formDataCover.append('cover', this.props.input_coverUrl)
+        let userUpdateCover = {
+            url: this.props.coverUrl,
+            source: 'COVER',
+            postId: ''
+        }
+        formDataCover.append('data', JSON.stringify(userUpdateCover))
+
+        let formDataAvatar = new FormData()
+        formDataCover.append('avatar', this.props.input_avatarUrl)
+        let userUpdateAvatar = {
+            url: this.props.avatarUrl,
+            source: 'AVATAR',
+            postId: ''
+        }
+        formDataCover.append('data', JSON.stringify(userUpdateAvatar))
+
+        this.setPhotoToServer(formDataCover) // запрос на смену ковра
+        this.setPhotoToServer(formDataAvatar)// на смену авы
+
 
         axios.post('http://localhost:8080/auth/change/nickname', {
             "token": localStorage.getItem('token'),
@@ -57,7 +83,9 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
             localStorage.setItem('token', response.data)
 
             axios.post('http://localhost:8080/social/data', {
-                formData
+                name: this.props.input_name,
+                birthDate: this.props.input_birthDate,
+                bio: this.props.input_bio,
             }, this.config)
                 .then(response => {
                     switch (response.status) {

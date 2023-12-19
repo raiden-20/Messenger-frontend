@@ -1,44 +1,54 @@
+.section {
+    display: grid;
+    grid-template-rows: 75% 25%;
+
+    height: 78%;
+    margin: 5%;
+}
+
 .new_post_window {
     position: relative;
     top: 0;
     left: 0;
-    width: 40%;
-    max-width: 572px;
-    height: 35%;
-    max-height: 307px;
+    width: 600px;
+    height: 270px;
 
     background-color: rgba(247, 245, 255, 1);
     box-shadow: 0 0 15px 0 rgba(95, 110, 120, 1);
     border-radius: 20px;
 
     z-index: 2;
-
-    display: grid;
-    grid-template-rows: 80% 20%;
 }
 
+
 .new_post_window textarea {
-    padding: 7%;
+
+    padding: 1%;
 
     border-radius: 20px 20px 0 0;
     border: none;
-    border-bottom: 1px solid rgba(221, 227, 235, 1);
     resize: none;
     background-color: transparent;
     font-size: 1.1em;
 }
 
 .new_post_window footer {
-    padding: 2% 7% 2% 7%;
+    padding: 2% 0 0 0;
+    border-top: 1px solid rgba(221, 227, 235, 1);
     display: grid;
     grid-template-columns: 50% 50%;
 }
 
 .new_post_window footer section {
     display: grid;
-    grid-template-columns: 22% 71%;
+    grid-template-columns: 33% 60%;
     column-gap: 7%;
     justify-items: end;
+}
+
+.label {
+    display: grid;
+    align-items: center;
 }
 
 .new_post_window footer section img {
@@ -47,7 +57,7 @@
 }
 
 .cancel {
-    width: 55%;
+    width: 49%;
     border-radius: 25px;
     border: none;
     background-color: rgba(210, 193, 244, 1);
