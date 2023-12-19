@@ -4,8 +4,8 @@ import OneUserComponent from "./OneUserComponent";
 
 class OneUser extends Component<PropsOneFriend, StateOneFriend>{
 
-    changeFriendStatus = () => {
-        this.props.changeFriendStatus(this.props.id)
+    changeFriendStatus = (action: string) => {
+        this.props.changeFriendStatus(this.props.id, action)
     }
 
     render() {

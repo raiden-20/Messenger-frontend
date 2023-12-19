@@ -22,7 +22,7 @@ export interface PropsOneFriend{
     bio: string
     avatarUrl: string
     whoOpened: string
-    changeFriendStatus(idOtherUser: string): void
+    changeFriendStatus(idOtherUser: string, action: string): void
 }
 
 export interface PropsOneFriend2{
@@ -40,7 +40,7 @@ export interface PropsOneFriendComponent{
     bio: string,
     avatarUrl: string,
     whoOpened: string
-    changeFriendStatus(): void
+    changeFriendStatus(action: string): void
 }
 
 export interface PropsOneFriendComponent2{

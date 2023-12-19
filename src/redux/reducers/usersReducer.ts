@@ -3,6 +3,7 @@ const SET_USERS_FRIENDS_COUNT = 'SET_USERS_FRIENDS_COUNT'
 const SET_USERS_SUBSCRIPTIONS_COUNT = 'SET_USERS_SUBSCRIPTIONS_COUNT'
 const SET_USERS_SUBSCRIBERS_COUNT = 'SET_USERS_SUBSCRIBERS_COUNT'
 const SET_WHO_OPENED = 'SET_WHO_OPENED'
+const SET_USERS_NICKNAME = 'SET_USERS_NICKNAME'
 
 const initialState = {
     usersShortInfo : [
@@ -41,6 +42,10 @@ const usersReducer = (state = initialState, action : any) => {
         case SET_USERS : {
             return {...state, users: [...state.usersShortInfo, ...action.users]}
         }
+        case SET_USERS_NICKNAME : {
+            stateCopy.usersShortInfo.map((user, i) => user.nickname = action.nicknames[i])
+            return {...state, users: [...state.usersShortInfo, ...action.users]}
+        }
         case SET_USERS_FRIENDS_COUNT : {
             stateCopy.countFriends = action.countFriends
             return stateCopy
@@ -65,6 +70,11 @@ const usersReducer = (state = initialState, action : any) => {
 export const setUsers = (users : []) => {
     return {
         type: SET_USERS, users
+    }
+}
+export const setUsersNicknames = (nicknames : []) => {
+    return {
+        type: SET_USERS, nicknames
     }
 }
 export const setUserSubscriptionsCount = (countSubscriptions : number) => {

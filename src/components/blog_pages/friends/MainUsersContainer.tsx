@@ -2,7 +2,7 @@ import {StateUsers} from "../../../redux/interfaces/friends/friends";
 import {Dispatch} from "redux";
 import {
     setUserFriendsCount,
-    setUsers,
+    setUsers, setUsersNicknames,
     setUserSubscribersCount,
     setUserSubscriptionsCount, setWhoOpened
 } from "../../../redux/reducers/usersReducer";
@@ -23,6 +23,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         setUsers(users: []) {
             dispatch(setUsers(users))
+        },
+        setUsersNicknames(nicknames: []) {
+            dispatch(setUsersNicknames(nicknames))
         },
         setUserSubscriptionsCount(countSubscriptions: number) {
             dispatch(setUserSubscriptionsCount(countSubscriptions))

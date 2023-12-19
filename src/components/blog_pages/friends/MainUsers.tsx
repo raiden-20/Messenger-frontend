@@ -138,35 +138,29 @@ class MainUsers extends Component<PropsUsers, StateUsers> {
         })
     }
     getSearch() { //todo прописать запрос search
-        // axios.get(`http://localhost:8080/social/subscribers/${localStorage.getItem('idUser')}`, this.config)
-        //     .then(response => {
-        //         switch (response.status) {
-        //             case 200 : {
-        //                 this.props.setUsers(response.data)
-        //
-        //                 axios.get(`http://localhost:8080/social/count/subscribers/${localStorage.getItem('idUser')}`, this.config)
-        //                     .then(response => {
-        //                         switch (response.status) {
-        //                             case 200 : {
-        //                                 this.props.setUserSubscribersCount(response.data)
-        //                             }
-        //                         }
-        //                     }).catch(error => {
-        //                     switch (error.response.status) {
-        //                         case 403: {
-        //                             //плохой токен
-        //                         }
-        //                     }
-        //                 })
-        //             }
-        //         }
-        //     }).catch(error => {
-        //     switch (error.response.status) {
-        //         case 403 : {
-        //
-        //         }
-        //     }
-        // })
+        axios.get(`http://localhost:8080/social/users}`, this.config)
+            .then(response => {
+                switch (response.status) {
+                    case 200 : {
+                        this.props.setUsers(response.data)
+
+                    }
+                }
+            }).catch(error => {
+            switch (error.response.status) {
+                case 403 : {
+
+                }
+            }
+        })
+        axios.get(`http://localhost:8080/фгер/users}`, this.config)
+            .then(response => {
+                switch (response.status) {
+                    case 200 : {
+                        this.props.setUsersNicknames(response.data)
+                    }
+                }
+            })
     }
 
     actionRequest = (idOtherUser: string, action : string) => {
