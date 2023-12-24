@@ -2,18 +2,14 @@ import {Component} from "react";
 import {PropsOneFriend2, StateOneFriend2} from "../../../../../redux/interfaces/friends/oneFriend";
 import UserFriendsShortInfoComponent from "./UserFriendsShortInfoComponent";
 import axios from "axios";
+import config from "../../../../paths/config";
 
-class UserFriendsShortInfo extends Component<PropsOneFriend2, StateOneFriend2> {
-    config = {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-    };
+class UserFriendsShortInfoClass extends Component<PropsOneFriend2, StateOneFriend2> {
 
     changeFriendStatus = () => {
         axios.post(`http://localhost:8080/social/delete`, {
             id: this.props.id
-        }, this.config)
+        }, config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
@@ -47,4 +43,4 @@ class UserFriendsShortInfo extends Component<PropsOneFriend2, StateOneFriend2> {
     }
 }
 
-export default UserFriendsShortInfo
+export default UserFriendsShortInfoClass

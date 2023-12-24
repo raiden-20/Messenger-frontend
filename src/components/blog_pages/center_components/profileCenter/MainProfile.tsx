@@ -2,21 +2,17 @@ import React, {Component} from 'react';
 import {PropsUserProfile, StateUserProfile} from "../../../../redux/interfaces/profile/profileBase";
 import MainProfileComponent from "./MainProfileComponent";
 import axios from "axios";
+import config from "../../../paths/config";
 
 class MainProfile extends Component<PropsUserProfile, StateUserProfile> {
-    config = {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-    };
 
     componentDidMount() {
-        axios.get(`'http://localhost:8080/social/data/${localStorage.getItem('idUser')}'`, this.config)
+        axios.get(`http://localhost:8080/auth/data/${localStorage.getItem('idUser')}`, config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
                         this.props.setNickname(response.data.nickname)
-                        axios.get(`http://localhost:8080/auth/data/${localStorage.getItem('idUser')}`, this.config)
+                        axios.get(`'http://localhost:8080/social/data/${localStorage.getItem('idUser')}'`, config)
                             .then(response => {
                                 switch (response.status) {
                                     case 200 : {

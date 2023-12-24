@@ -34,7 +34,9 @@ class Post extends Component<PropsPost, StatePostsClass> {
                               setInputPostPhotoUrl={this.props.setInputPostPhotoUrl}
                               setInputPostText={this.props.setInputPostText}
                               setButtonEditPostClick={this.props.setButtonEditPostClick}
-                              buttonEditPost={this.props.buttonEditPost}/>
+                              buttonEditPost={this.props.buttonEditPost}
+                              input_comment={this.props.input_comment}
+                              setInputPostComment={this.props.setInputPostComment}/>
     }
 }
 

@@ -13,7 +13,9 @@ class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
             })
     }
     like = () => {
-        axios.put('http://localhost:8080/blog/post/like', config)
+        axios.put('http://localhost:8080/blog/post/like', {
+            idPost: this.props.post.idPost
+        }, config)
             .then(response => {
 
             }).catch(error => {
@@ -84,7 +86,9 @@ class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
                                  deletePost={this.deletePost}
                                  editPost={this.editPost}
                                  setButtonEditPostClick={this.props.setButtonEditPostClick}
-                                 buttonEditPost={this.props.buttonEditPost}/>
+                                 buttonEditPost={this.props.buttonEditPost}
+                                 input_comment={this.props.input_comment}
+                                 setInputPostComment={this.props.setInputPostComment}/>
     }
 }
 

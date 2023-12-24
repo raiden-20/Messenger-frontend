@@ -58,8 +58,8 @@ const ProfileNewPostComponent = (props: PropsCreatePostButtonComponent) => {
 
     return (
         <div>
-            <section className={prof_setting.overflay}></section>
             <section className={prof_setting.location_edit_window}>
+                <section className={prof_setting.overflay} onClick={() => props.setButtonCreatPostPressed(false)}></section>
                 <section className={new_post_css.new_post_window}>
                     <section className={new_post_css.section}>
                         <textarea placeholder={'Напишите что-нибудь'} value={props.input_postText} onChange={setText}></textarea>

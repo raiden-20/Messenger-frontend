@@ -5,7 +5,7 @@ import {
     setUserFriendsCount,
     setUsers
 } from "../../../../redux/reducers/usersReducer";
-import MainProfileAside from "./MainProfileAside";
+import MainProfileAsideClass from "./MainProfileAsideClass";
 import {setCountPhoto} from "../../../../redux/reducers/photoReducer";
 
     const mapStateToProps = (state : StateUserProfileAside) => {
@@ -31,6 +31,6 @@ import {setCountPhoto} from "../../../../redux/reducers/photoReducer";
         }
     }
 
-const MainProfileAsideContainer = connect(mapStateToProps, mapDispatchToProps)(MainProfileAside)
+const MainProfileAsideContainer = connect(mapStateToProps, mapDispatchToProps)(MainProfileAsideClass)
 
 export default MainProfileAsideContainer

@@ -20,7 +20,6 @@ const OnePostComponent = (props: OnePost & Post) => {
     }
 
     const edit = () => {
-        debugger
         props.editPost()
         props.setButtonEditPostClick(true)
     }
@@ -75,14 +74,13 @@ const OnePostComponent = (props: OnePost & Post) => {
             <footer className={post_css.footer}>
                 <section className={post_css.like_comment}>
                     <section className={post_css.icon_count}>
-                        {props.isLiked ?
                             <button onClick={like_button} className={post_css.button}>
-                                <img src={like_isLiked} className={post_css.icon} alt={'like is liked'}/>
-                            </button> :
-                            <button onClick={like_button} className={post_css.button}>
-                                <img src={like_notLiked} className={post_css.icon} alt={'like is not liked'}/>
+                                {props.isLiked ?
+                                    <img src={like_isLiked} className={post_css.icon} alt={'like is liked'}/>
+                                :
+                                    <img src={like_notLiked} className={post_css.icon} alt={'like is not liked'}/>
+                                }
                             </button>
-                        }
                         {props.likesCount}
                     </section>
                     <section className={post_css.icon_count}>
@@ -103,7 +101,12 @@ const OnePostComponent = (props: OnePost & Post) => {
                                                                  buttonEditPost={props.buttonEditPost}
                                                                  message={props.message}
                                                                  name={props.name}
-                                                                 nickname={props.nickname}/> : null}
+                                                                 nickname={props.nickname}
+                                                                 deletePost={props.deletePost}
+                                                                 edit={edit}
+                                                                 like_button={like_button}
+                                                                 input_comment={props.input_comment}
+                                                                 setInputPostComment={props.setInputPostComment}/> : null}
                         {props.commentCount}
                     </section>
                 </section>

@@ -10,7 +10,7 @@ import {PropsOneFriend} from "../../../../redux/interfaces/friends/oneFriend";
 import default_profile_ava from '../../../../assets/images/default_profile_ava.svg'
 
 import './ProfileAsideFriends.css'
-import UserFriendsShortInfo from "./shortProfile/UserFriendsShortInfo";
+import UserFriendsShortInfoClass from "./shortProfile/UserFriendsShortInfoClass";
 import {PROFILE_USER_PHOTO} from "../../../paths/photoPath";
 import ProfileButtonCreatingPostContainer
     from "../profile/profile/profile_button_creating_post/ProfileButtonCreatingPostContainer";
@@ -44,16 +44,16 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
                 </section>
                 <section className={main_aside_css.friendsSector}>
                     <section className={main_aside_css.friendsAva}>
-                        {props.users.map( (user:PropsOneFriend, i) =>
+                        {props.users.map( (user:PropsOneFriend, i) => // todo никнейм
                             <section className={main_aside_css.friendPhoto + ' friendPhotoSection' + i}>
                                 <img src={user.avatarUrl === '' ? default_profile_ava : user.avatarUrl}
                                      className={'friendPhoto' + i} alt={'user_ava'}/>
                                 <section className={main_aside_css.shortInfoSection + ' friendMiniProfile' + i}>
-                                    <UserFriendsShortInfo id={user.id}
-                                                          name={user.name}
-                                                          nickname={user.nickname}
-                                                          bio={user.bio}
-                                                          avatarUrl={user.avatarUrl}/>
+                                    <UserFriendsShortInfoClass id={user.id}
+                                                               name={user.name}
+                                                               nickname={user.nickname}
+                                                               bio={user.bio}
+                                                               avatarUrl={user.avatarUrl}/>
                                 </section>
                             </section>)}
                     </section>

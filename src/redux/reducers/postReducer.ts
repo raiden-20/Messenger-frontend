@@ -5,6 +5,7 @@ const SET_POST_INPUT_PHOTO = 'SET_POST_INPUT_PHOTO'
 const SET_POST_INPUT_PHOTO_DELETE = 'SET_POST_INPUT_PHOTO_DELETE'
 const SET_POST_INPUT_ALL_PHOTO_DELETE = 'SET_POST_INPUT_ALL_PHOTO_DELETE'
 const SET_POST_INPUT_PHOTO_URL = 'SET_POST_INPUT_PHOTO_URL'
+const SET_POST_INPUT_COMMENT = 'SET_POST_INPUT_COMMENT'
 const SET_POST_INPUT_TEXT = 'SET_POST_INPUT_TEXT'
 
 const SET_BUTTON_EDIT_POST = 'SET_BUTTON_EDIT_POST'
@@ -15,12 +16,14 @@ const initialState = {
     ],
 
     userComments: [
+        {user_id: 2, text: 'cat is so awesome', createdAt: '2023-12-16', countLikes: 3, isLiked: true},
         {user_id: 2, text: 'cat is so awesome', createdAt: '2023-12-16', countLikes: 3, isLiked: true}
     ],
 
     input_postPhoto: [],
     input_postPhotoUrl: [],
     input_postText: '',
+    input_comment: '',
 
     buttonEditPost: false
 }
@@ -79,6 +82,11 @@ const postReducer = (state = initialState, action: any) => {
 
             return stateCopy
         }
+        case SET_POST_INPUT_COMMENT : {
+            stateCopy.input_comment = action.input_comment
+
+            return stateCopy
+        }
 
         case SET_BUTTON_EDIT_POST : {
             stateCopy.buttonEditPost = action.buttonEditPost
@@ -124,6 +132,11 @@ export const setInputPostPhotoUrl = (input_postPhotoUrl: string) => {
 export const setInputPostText = (input_postText: string) => {
     return {
         type: SET_POST_INPUT_TEXT, input_postText
+    }
+}
+export const setInputPostComment = (input_comment: string) => {
+    return {
+        type: SET_POST_INPUT_COMMENT, input_comment
     }
 }
 

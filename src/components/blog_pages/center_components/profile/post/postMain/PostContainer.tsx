@@ -4,7 +4,7 @@ import {StatePost} from "../../../../../../redux/interfaces/profile/post/post";
 import Post from "./Post";
 import {setMessage} from "../../../../../../redux/reducers/authReducer";
 import {
-    setButtonEditPostClick,
+    setButtonEditPostClick, setInputPostComment,
     setInputPostPhoto,
     setInputPostPhotoUrl, setInputPostText,
     setPosts,
@@ -20,6 +20,7 @@ const mapStateToProps = (state : StatePost) => {
         userComments: state.post.userComments,
         posts: state.post.posts,
         buttonEditPost: state.post.buttonEditPost,
+        input_comment: state.post.input_comment
     }
 }
 
@@ -42,6 +43,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setInputPostText(input_postText: string) {
             dispatch(setInputPostText(input_postText))
+        },
+        setInputPostComment(input_comment: string) {
+            dispatch(setInputPostComment(input_comment))
         },
         setButtonEditPostClick(flag: boolean) {
             dispatch(setButtonEditPostClick(flag))

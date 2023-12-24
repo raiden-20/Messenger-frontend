@@ -156,6 +156,9 @@
 }
 
 .button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     padding: 0;
     background-color: transparent;
     border: none;

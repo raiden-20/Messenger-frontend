@@ -8,12 +8,12 @@ import {
 } from "../../paths/authPath";
 import axios from "axios";
 import RegistrationOrAuthorisationComponent from "./RegistrationOrAuthorisationComponent";
-const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
+const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
 
     const navigate = useNavigate()
     const authorise = () => {
         if (props.input_emailOrNickname != '' && props.input_password != '') {
-            axios.post('http://localhost:8080/auth/login', {
+            axios.post('http://localhost:8000/auth/login', {
                 email: props.input_email,
                 nickname: props.input_nickname,
                 password: props.input_password,
@@ -25,6 +25,7 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
                         props.setToken(response.data)
                         localStorage.setItem('token', response.data.token)
                         localStorage.setItem('id', response.data.id)
+                        localStorage.setItem('idUser', response.data.id)
                         localStorage.setItem('password', props.input_password)
 
                         cleanMessageAndChangePath()
@@ -37,6 +38,7 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
                 props.setInputEmail(null)
                 props.setInputPassword(null)
             }).catch(error => {
+                debugger
                 props.setShowMessage(true)
                 props.setCode(error.response.status)
                 console.dir(error)
@@ -104,4 +106,4 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
                                                  setShowMessage={props.setShowMessage}/>
 }
 
-export default RegistrationOrAuthorisation
+export default RegistrationOrAuthorisationClass

@@ -1,3 +1,5 @@
+import {setInputPostComment} from "../../../reducers/postReducer";
+
 export interface StatePost {
     auth : {
         nickname: string
@@ -12,6 +14,7 @@ export interface StatePost {
         posts: [],
         userComments: [],
         buttonEditPost: boolean
+        input_comment: string
     }
 }
 
@@ -22,6 +25,7 @@ export interface PropsPost {
     message: string
     posts: []
     userComments: [],
+    input_comment: string
     buttonEditPost: boolean
 
     setMessage(message: string): void
@@ -31,6 +35,7 @@ export interface PropsPost {
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostText(input_postText: string): void
     setInputPostPhoto(input_postPhoto: File): void
+    setInputPostComment(input_comment: string): void
 
     setButtonEditPostClick(flag: boolean): void
 }
@@ -42,6 +47,7 @@ export interface StatePostsClass {
     posts: []
     userComments: [],
     message: string
+    input_comment: string
     buttonEditPost: boolean
 }
 
@@ -52,6 +58,7 @@ export interface PropsPostComponent {
     posts: []
     userComments: [],
     message: string
+    input_comment: string
     buttonEditPost: boolean
 
     setMessage(message: string): void
@@ -59,6 +66,7 @@ export interface PropsPostComponent {
 
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostText(input_postText: string): void
+    setInputPostComment(input_comment: string): void
     setInputPostPhoto(input_postPhoto: File): void
 
     setButtonEditPostClick(flag: boolean): void
@@ -71,6 +79,7 @@ export interface StateOnePostClass {
     message: string
     post: Post
     userComments: [],
+    input_comment: string
     buttonEditPost: boolean
 }
 export interface PropsOnePostClass {
@@ -80,12 +89,14 @@ export interface PropsOnePostClass {
     message: string
     post: Post
     userComments: [],
+    input_comment: string
     buttonEditPost: boolean
     setMessage(message: string): void
     setUserComments(userComments: []): void
 
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostText(input_postText: string): void
+    setInputPostComment(input_comment: string): void
     setInputPostPhoto(input_postPhoto: File): void
 
     setButtonEditPostClick(flag: boolean): void
@@ -98,6 +109,7 @@ export interface OnePostClass {
     avatarUrl: string
     message: string
     userComments: [],
+    input_comment: string
     setMessage(message: string): void
     setUserComments(userComments: []): void
 
@@ -107,6 +119,7 @@ export interface OnePostClass {
 
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostText(input_postText: string): void
+    setInputPostComment(input_comment: string): void
     setInputPostPhoto(input_postPhoto: File): void
 }
 
@@ -116,9 +129,11 @@ export interface OnePost {
     avatarUrl: string
     message: string
     userComments: [],
+    input_comment: string
     buttonEditPost: boolean
     setMessage(message: string): void
     setUserComments(userComments: []): void
+    setInputPostComment(input_comment: string): void
 
     like(): void
     comment(): void

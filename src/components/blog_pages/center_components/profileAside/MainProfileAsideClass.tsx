@@ -8,7 +8,7 @@ import './ProfileAsideFriends.css'
 import MainProfileAsideComponent from "./MainProfileAsideComponent";
 import axios from "axios";
 
-class MainProfileAside extends Component<PropsUserProfileAside, StateUserProfileAsideComponent>{
+class MainProfileAsideClass extends Component<PropsUserProfileAside, StateUserProfileAsideComponent>{
     config = {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -67,4 +67,4 @@ class MainProfileAside extends Component<PropsUserProfileAside, StateUserProfile
 
 }
 
-export default MainProfileAside
+export default MainProfileAsideClass

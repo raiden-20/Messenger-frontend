@@ -1,0 +1,78 @@
+.comment {
+    max-height: 66px;
+    margin-right: 10px;
+    display: grid;
+    grid-template-columns: 50px auto;
+    column-gap: 10px;
+}
+
+.comment img {
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+}
+
+.headerComment {
+    display: grid;
+    grid-template-columns: auto 30px;
+    column-gap: 10px;
+}
+
+.name_nick {
+    display: flex;
+    gap: 5px;
+}
+
+.nickname {
+    color: #5F6E78;
+}
+
+.headerComment img {
+    height: 6px;
+    width: 28px;
+    display: grid;
+    align-self: start;
+}
+
+.bodyComment {
+    display: grid;
+    grid-template-rows: 20px auto 20px;
+    row-gap: 5px;
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.time {
+    display: grid;
+    justify-self: start;
+}
+
+.footer img {
+    width: 20px;
+    height: 20px;
+}
+
+.likes {
+    display: grid;
+    justify-self: end;
+}
+
+.deleteComment {
+    position: relative;
+    left: -70px;
+    top: 10px;
+    width: 100px;
+    height: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 4px 0 #00000040;
+    border-radius: 15px;
+
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}

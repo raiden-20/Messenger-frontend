@@ -5,7 +5,7 @@ import Registration from "./registration/Registration";
 
 import page_reg from "./css_options/Page.module.css";
 import options_reg from './css_options/Options.module.css';
-import RegistrationOrAuthorisation from "./registration_or_authorization/RegistrationOrAuthorisation";
+import RegistrationOrAuthorisationClass from "./registration_or_authorization/RegistrationOrAuthorisationClass";
 import RegistrationForgotPassword from "./registration_forgot_password/RegistrationForgotPassword";
 import RestoreAccount from "./restore_account/RestoreAccount";
 import {PropsAuthReg} from "../../redux/interfaces/auth/authRegistration";
@@ -41,25 +41,25 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                         СимОн
                     </button>
                 </header>
-                {location.pathname === AUTHORIZATION ? <RegistrationOrAuthorisation input_email={props.input_email}
-                                                                                    input_nickname={props.input_nickname}
-                                                                                    input_password={props.input_password}
-                                                                                    setEmail={props.setEmail}
-                                                                                    setNickname={props.setNickname}
-                                                                                    setPassword={props.setPassword}
-                                                                                    setInputEmail={props.setInputEmail}
-                                                                                    setInputNickname={props.setInputNickname}
-                                                                                    setInputPassword={props.setInputPassword}
-                                                                                    message={props.message}
-                                                                                    setMessage={props.setMessage}
-                                                                                    input_emailOrNickname={props.input_emailOrNickname}
-                                                                                    setInputEmailOrNickname={props.setInputEmailOrNickname}
-                                                                                    setToken={props.setToken}
-                                                                                    token={props.token}
-                                                                                    code={props.code}
-                                                                                    setCode={props.setCode}
-                                                                                    buttonShowMessage={props.buttonShowMessage}
-                                                                                    setShowMessage={props.setShowMessage}/> :
+                {location.pathname === AUTHORIZATION ? <RegistrationOrAuthorisationClass input_email={props.input_email}
+                                                                                         input_nickname={props.input_nickname}
+                                                                                         input_password={props.input_password}
+                                                                                         setEmail={props.setEmail}
+                                                                                         setNickname={props.setNickname}
+                                                                                         setPassword={props.setPassword}
+                                                                                         setInputEmail={props.setInputEmail}
+                                                                                         setInputNickname={props.setInputNickname}
+                                                                                         setInputPassword={props.setInputPassword}
+                                                                                         message={props.message}
+                                                                                         setMessage={props.setMessage}
+                                                                                         input_emailOrNickname={props.input_emailOrNickname}
+                                                                                         setInputEmailOrNickname={props.setInputEmailOrNickname}
+                                                                                         setToken={props.setToken}
+                                                                                         token={props.token}
+                                                                                         code={props.code}
+                                                                                         setCode={props.setCode}
+                                                                                         buttonShowMessage={props.buttonShowMessage}
+                                                                                         setShowMessage={props.setShowMessage}/> :
                 location.pathname === REGISTRATION ? <Registration input_email={props.input_email}
                                                                    input_nickname={props.input_nickname}
                                                                    input_password={props.input_password}
