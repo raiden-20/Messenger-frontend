@@ -1,7 +1,5 @@
-import React, {useState} from "react";
+import React from "react";
 import {useLocation, useNavigate} from "react-router-dom";
-
-import ProfileButtonCreatingPost from "../profile/profile/profile_button_creating_post/ProfileButtonCreatingPost";
 
 import main_aside_css from "../profile/main_profile_css/MainProfileAside.module.css";
 import {PROFILE_USER} from "../../../paths/profilePath";
@@ -14,6 +12,8 @@ import default_profile_ava from '../../../../assets/images/default_profile_ava.s
 import './ProfileAsideFriends.css'
 import UserFriendsShortInfo from "./shortProfile/UserFriendsShortInfo";
 import {PROFILE_USER_PHOTO} from "../../../paths/photoPath";
+import ProfileButtonCreatingPostContainer
+    from "../profile/profile/profile_button_creating_post/ProfileButtonCreatingPostContainer";
 
 const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
 
@@ -60,7 +60,7 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
                 </section>
             </section>
             <section>
-                {location.pathname === PROFILE_USER ? <ProfileButtonCreatingPost/> : null}
+                {location.pathname === PROFILE_USER ? <ProfileButtonCreatingPostContainer/> : null}
             </section>
         </aside>
     )

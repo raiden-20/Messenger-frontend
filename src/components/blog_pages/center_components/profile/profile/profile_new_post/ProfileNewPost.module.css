@@ -1,17 +1,20 @@
 .section {
+    overflow: auto;
     display: grid;
-    grid-template-rows: 75% 25%;
+    grid-template-rows: 150px auto 50px;
 
-    height: 78%;
-    margin: 5%;
+    margin: 4% 7% 4% 7%;
+}
+
+.section textarea {
+    height: 150px;
 }
 
 .new_post_window {
-    position: relative;
-    top: 0;
-    left: 0;
+    position: absolute;
+    top: 30%;
+    left: 33%;
     width: 600px;
-    height: 270px;
 
     background-color: rgba(247, 245, 255, 1);
     box-shadow: 0 0 15px 0 rgba(95, 110, 120, 1);
@@ -22,10 +25,6 @@
 
 
 .new_post_window textarea {
-
-    padding: 1%;
-
-    border-radius: 20px 20px 0 0;
     border: none;
     resize: none;
     background-color: transparent;
@@ -70,4 +69,61 @@
     border: none;
     background-color: rgba(133, 91, 217, 1);
     color: rgba(246, 246, 254, 1);
+}
+
+.input_photo2 {
+    width: 100%;
+    margin: 15px 0 15px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 240px;
+    grid-auto-columns: 240px;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+.input_photo3 {
+    width: 100%;
+    margin: 15px 0 15px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 240px;
+    grid-auto-columns: 150px;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.input_photo4 {
+    width: 100%;
+    margin: 15px 0 15px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 150px;
+    grid-auto-columns: 240px;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.input_photo5 {
+    width: 100%;
+    margin: 15px 0 15px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 150px;
+    grid-auto-columns: 240px;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.one_photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.delete_photo {
+    display: grid;
+    position: relative;
+    bottom: 95%;
+    left: 80%;
 }

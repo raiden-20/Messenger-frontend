@@ -17,7 +17,7 @@ class MainProfileAside extends Component<PropsUserProfileAside, StateUserProfile
 
     componentDidMount() {
         //photo
-        axios.get(`http://localhost:8080/blog/photo/count/${localStorage.getItem('idUser')}`, this.config) //todo исправить на правильный урл
+        axios.get(`http://localhost:8080/blog/photo/count/${localStorage.getItem('idUser')}`, this.config) // todo исправить на правильный урл
             .then(response =>{
                 switch (response.status) {
                     case 200 : {

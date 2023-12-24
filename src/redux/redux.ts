@@ -5,6 +5,7 @@ import usersReducer from "./reducers/usersReducer";
 import settingsReducer from "./reducers/settingsReducer";
 import navigationReducer from "./reducers/navigationReducer";
 import photoReducer from "./reducers/photoReducer";
+import postReducer from "./reducers/postReducer";
 
 let reducers = combineReducers({
     auth: authReducer,
@@ -12,7 +13,8 @@ let reducers = combineReducers({
     photo: photoReducer,
     users: usersReducer,
     settings: settingsReducer,
-    navigation: navigationReducer
+    navigation: navigationReducer,
+    post: postReducer
 })
 
 let reduxStore = createStore(reducers)
