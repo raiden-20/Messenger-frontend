@@ -16,7 +16,7 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
                 }
             })
     }
-
+ 
     render() {
         return<UserComments userComments={this.props.userComments}
                             setButtonCommentClick={this.props.setButtonCommentClick}

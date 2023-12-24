@@ -8,7 +8,7 @@ import SuccessfulActivationComponent from "./SuccessfulActivationComponent";
 class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuccessfulSmth>{
     componentDidMount() {
         this.props.setId(localStorage.getItem('id'))
-        axios.put('http://localhost:8000/auth/active/account', {
+        axios.put('http://localhost:8080/auth/active/account', {
             "id": localStorage.getItem('id')
         })
             .then(response => {

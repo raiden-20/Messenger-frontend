@@ -28,7 +28,7 @@ const NewPasswordForm = (props : PropsNewPassword) => {
     const saveButtonActionSecondStep = () => {
         if (props.input_password != null && props.input_passwordConfirm != null) {
             if (props.input_password === props.input_passwordConfirm) {
-                axios.put('http://localhost:8000/auth/confirm/password', {
+                axios.put('http://localhost:8080/auth/confirm/password', {
                     token: props.token,
                     oneTimeCode: props.input_code,
                     newPassword: props.input_password

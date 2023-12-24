@@ -15,7 +15,7 @@ class RegistrationForgotPassword extends Component<PropsAuthForgotPassword, Stat
     }
     sendPassword = () => {
         if (this.props.input_email !== null) {
-            axios.put('http://localhost:8000/auth/forget/password', {
+            axios.put('http://localhost:8080/auth/forget/password', {
                 email: this.props.input_email
             }).then(response => {
                 this.props.setShowMessage(true)

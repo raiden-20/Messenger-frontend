@@ -43,7 +43,7 @@ class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
     }
 
     deletePost = () =>{
-        axios.delete(`/blog/post/${this.props.post.idPost}`, config)
+        axios.delete(`http://localhost:8080/blog/post/${this.props.post.idPost}`, config)
             .then(response => {
                 switch (response.status) {
                     case 200: {

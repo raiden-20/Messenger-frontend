@@ -12,7 +12,7 @@ const DeleteAccount = (props: PropsDeleteAccount) => {
 
     const navigation = useNavigate()
     const deleteAccount = () => {
-        axios.put('http://localhost:8000/auth/block', {
+        axios.put('http://localhost:8080/auth/block', {
             token: localStorage.getItem('token'),
             password: localStorage.getItem('password')
         }, config).then(response => {

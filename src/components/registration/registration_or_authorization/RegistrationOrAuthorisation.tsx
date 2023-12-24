@@ -13,7 +13,7 @@ const RegistrationOrAuthorisation = (props : PropsAuthAuth) => {
     const navigate = useNavigate()
     const authorise = () => {
         if (props.input_emailOrNickname != '' && props.input_password != '') {
-            axios.post('http://localhost:8000/auth/login', {
+            axios.post('http://localhost:8080/auth/login', {
                 email: props.input_email,
                 nickname: props.input_nickname,
                 password: props.input_password,

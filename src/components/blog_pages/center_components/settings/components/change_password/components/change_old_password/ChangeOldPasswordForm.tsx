@@ -23,7 +23,7 @@ const ChangeOldPasswordForm = (props : PropsOldPassword) => {
         console.log(a)
         if (props.input_password != null) {
             if (props.input_password === localStorage.getItem('password')) {
-                axios.post('http://localhost:8000/auth/change/password', {
+                axios.post('http://localhost:8080/auth/change/password', {
                     token: localStorage.getItem('token'),
                     password: props.input_password,
                 }, config).then(response => {
