@@ -1,19 +1,23 @@
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {StatePhotoProfile} from "../../../../../redux/interfaces/profile/photo/photoProfile";
-import PhotoProfile from "./PhotoProfile";
-import {setPhotoUrl, setButtonOpenPhoto, setCountPhoto, setLikedPhoto} from "../../../../../redux/reducers/photoReducer";
+import PhotoProfileClas from "./PhotoProfileClas";
+import {
+    setPhotoUrl,
+    setButtonOpenPhoto,
+    setCountPhoto,
+    setLikedPhoto,
+    setPostUrl, setOnePhotoUrl
+} from "../../../../../redux/reducers/photoReducer";
 
 const mapStateToProps = (state: StatePhotoProfile) => {
     return {
         photoUrl: state.photo.photoUrl,
         countPhoto: state.photo.countPhoto,
         isButtonOpenPhotoPressed: state.photo.isButtonOpenPhotoPressed,
-        isLiked: state.photo.isLiked,
 
         name: state.profile.name,
     }
-
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
@@ -27,13 +31,16 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         setButtonOpenPhoto(isButtonOpenPhotoPressed : boolean) {
             dispatch(setButtonOpenPhoto(isButtonOpenPhotoPressed))
         },
-        setLikedPhoto(isLiked : boolean) {
-            dispatch(setLikedPhoto(isLiked))
-        }
+        setPostUrl(postId : string) {
+            dispatch(setPostUrl(postId))
+        },
+        setOnePhotoUrl(onePhotoUrl : string) {
+            dispatch(setOnePhotoUrl(onePhotoUrl))
+        },
     }
 
 }
 
-const PhotoProfileContainer = connect(mapStateToProps, mapDispatchToProps)(PhotoProfile)
+const PhotoProfileContainer = connect(mapStateToProps, mapDispatchToProps)(PhotoProfileClas)
 
 export default PhotoProfileContainer

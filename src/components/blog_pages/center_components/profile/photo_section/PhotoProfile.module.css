@@ -34,7 +34,22 @@
     row-gap: 5px;
 }
 
+.allPhoto {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 15px;
+    row-gap: 15px;
+}
+
+.allPhoto section {
+    height: 275px;
+    width: 275px;
+    border-radius: 10px;
+}
+
 .userPhoto {
-    max-height: 300px;
-    max-width: 400px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }

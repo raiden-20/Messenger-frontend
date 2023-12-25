@@ -6,7 +6,7 @@ export interface StatePhotoProfile {
         countPhoto: number
         photoUrl: []
         isButtonOpenPhotoPressed: boolean,
-        isLiked: boolean
+        onePhoto: string
     }
 }
 
@@ -21,18 +21,26 @@ export interface PropsPhotoProfile {
     countPhoto: number
     photoUrl: []
     isButtonOpenPhotoPressed: boolean,
-    isLiked: boolean
 
     setPhotoUrl(photoUrl : []): void
     setCountPhoto(countPhoto : number): void
     setButtonOpenPhoto(isButtonOpenPhotoPressed : boolean): void
-    setLikedPhoto(isLiked : boolean): void
+    setPostUrl(postId: string): void
+    setOnePhotoUrl(onePhotoUrl : string): void
 }
 export interface PropsPhotoProfileComponent {
     name: string
     countPhoto: number
     photoUrl: []
+    isButtonOpenPhotoPressed: boolean,
 
     setButtonOpenPhoto(isButtonOpenPhotoPressed : boolean): void
-    setLikedPhoto(isLiked : boolean): void
+    setPostUrl(postId: string): void
+    setOnePhotoUrl(onePhotoUrl : string): void
+}
+
+export interface PhotoArr {
+    postId: string,
+    userId: string,
+    url: string
 }

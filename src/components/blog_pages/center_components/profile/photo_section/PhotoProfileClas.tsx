@@ -2,7 +2,7 @@ import {Component} from "react";
 import {PropsPhotoProfile, StatePhotoProfileClass} from "../../../../../redux/interfaces/profile/photo/photoProfile";
 import PhotoProfileComponent from "./PhotoProfileComponent";
 import axios from "axios";
-class PhotoProfile extends Component<PropsPhotoProfile, StatePhotoProfileClass> {
+class PhotoProfileClas extends Component<PropsPhotoProfile, StatePhotoProfileClass> {
     config = {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -40,8 +40,10 @@ class PhotoProfile extends Component<PropsPhotoProfile, StatePhotoProfileClass> 
                                       countPhoto={this.props.countPhoto}
                                       photoUrl={this.props.photoUrl}
                                       setButtonOpenPhoto={this.props.setButtonOpenPhoto}
-                                      setLikedPhoto={this.props.setLikedPhoto}/>
+                                      isButtonOpenPhotoPressed={this.props.isButtonOpenPhotoPressed}
+                                      setPostUrl={this.props.setPostUrl}
+                                      setOnePhotoUrl={this.props.setOnePhotoUrl}/>
     }
 }
 
-export default PhotoProfile
+export default PhotoProfileClas
