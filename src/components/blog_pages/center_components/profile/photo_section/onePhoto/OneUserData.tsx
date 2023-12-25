@@ -25,7 +25,9 @@ const OneUserData = (props: PropsOneUserComponent) => {
                             <button className={onePhoto_css.button}>
                                 <img src={props.isLike ? like_isLiked : like_notLiked} alt={'likes'}/>
                             </button>
-                            <div>{props.likesCount}</div>
+                            <div>
+                                {props.likesCount}
+                            </div>
                         </section>
                         <section>
                             <button className={onePhoto_css.button}>
