@@ -30,7 +30,8 @@
     max-height: 150px;
     display: grid;
     grid-template-columns: 45px auto;
-    column-gap: 10px;
+    column-gap: 5px;
+    padding-right: 5px;
 }
 
 .user_ava {
@@ -86,7 +87,7 @@
 
 .footer {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 40% 60%;
 }
 
 .comments {
