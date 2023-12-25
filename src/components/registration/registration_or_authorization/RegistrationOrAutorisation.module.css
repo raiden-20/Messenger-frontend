@@ -26,7 +26,7 @@
 
 .forgot_button {
     height: 100%;
-    background-color: rgba(246, 246, 254, 1);
+    background-color: transparent;
     border: none;
 
     font-family: 'Inter', sans-serif;
