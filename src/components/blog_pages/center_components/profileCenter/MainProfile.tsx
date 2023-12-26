@@ -7,6 +7,7 @@ import config from "../../../paths/config";
 class MainProfile extends Component<PropsUserProfile, StateUserProfile> {
 
     componentDidMount() {
+
         axios.get(`http://localhost:8080/auth/data/${localStorage.getItem('idUser')}`, config)
             .then(response => {
                 switch (response.status) {
@@ -14,6 +15,7 @@ class MainProfile extends Component<PropsUserProfile, StateUserProfile> {
                         this.props.setNickname(response.data.nickname)
                         axios.get(`http://localhost:8080/social/data/${localStorage.getItem('idUser')}`, config)
                             .then(response => {
+                                debugger
                                 switch (response.status) {
                                     case 200 : {
                                         this.props.setName(response.data.name)

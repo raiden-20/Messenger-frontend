@@ -22,6 +22,7 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
                 props.setShowMessage(false)
                 switch (response.status) {
                     case 200 : {
+                        debugger
                         props.setToken(response.data)
                         localStorage.setItem('token', response.data.token)
                         localStorage.setItem('id', response.data.id)

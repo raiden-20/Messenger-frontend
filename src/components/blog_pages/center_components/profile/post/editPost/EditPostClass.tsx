@@ -6,7 +6,9 @@ import config from "../../../../../paths/config";
 class EditPostClass extends Component<PropsEditPost, StateEditPost> {
 
     setNewPost = () : boolean => { //edit post
-        axios.put(`http://localhost:8080/blog/post/${this.props.idPost}`, config)
+        axios.put(`http://localhost:8080/blog/post/${this.props.idPost}`, {
+
+        },config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
