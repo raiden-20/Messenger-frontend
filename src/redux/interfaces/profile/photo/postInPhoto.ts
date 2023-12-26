@@ -49,17 +49,45 @@ export interface PropsOnePostComponent {
     avatarUrl: string
 
     text: string,
-    isLike: boolean,
-    likesCount: string
-    commentsCount: string,
+    isLiked: boolean,
+    countLikes: string
+    countComments: string,
     time: string
 
     setInputPostComment(input_comment : string): void
     setButtonOpenPhoto(isButtonOpenPhotoPressed : boolean): void
     setComment(): void
+
+    likePost(): void
 }
 
 export interface PropsOneUserComponent {
+    avatarUrl: string
+    name: string
+    nickname: string
+    isLike: boolean
+    likesCount: string
+    commentsCount: string
+    time: string
+    text: string
+
+    deleteComment(): void
+    likeComment(): void
+}
+
+export interface StateOneUserDataClass {
+    comment_id: string
+    avatarUrl: string
+    name: string
+    nickname: string
+    isLike: boolean
+    likesCount: string
+    commentsCount: string
+    time: string
+    text: string
+}
+export interface PropsOneUserDataClass {
+    comment_id: string
     avatarUrl: string
     name: string
     nickname: string

@@ -6,40 +6,100 @@ import {
 import ProfileNewPostComponent from "./ProfileNewPostComponent";
 import axios from "axios";
 import config from "../../../../../paths/config";
+
 class ProfileNewPostClass extends Component<PropsCreatePostButtonClass, StateCreatingPostClass> {
-    setNewPost = () : boolean => {
-        let formData = new FormData()
-        this.props.input_postPhoto.map((photo, i) => (
-            formData.append('photo' + (i + 1), photo)
-        ))
+    config = {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Accept: 'application/json, text/plain',
+            'Content-Type': 'application/json;charset=UTF-8'
+        }
+    };
+
+    setNewPost = (): boolean => {
+        debugger
+        console.dir(this.props.input_postPhoto)
+        for(let i = 0; i < this.props.input_postPhoto.length; i++) {
+            debugger
+            let formData = new FormData()
+            formData.append('photo' + (i + 1), this.props.input_postPhoto[i])
+            let userUpdateCover = {
+                url: '',
+                source: 'POST',
+                postId: '',
+                photoId: ''
+            }
+            formData.append('data', JSON.stringify(userUpdateCover))
+            axios.post('http://localhost:8080/file', {
+                formData
+            }, this.config)
+                .then(response => {
+                    debugger
+                }).catch(error => {
+                debugger
+                alert(error)
+            })
+        }
+
+        this.props.input_postPhoto.map((photo, i) => function () {
+            debugger
+                let formData = new FormData()
+                formData.append('photo' + (i + 1), photo)
+                axios.post('http://localhost:8080/file', {
+                    formData
+                }, config)
+                    .then(response => {
+                        debugger
+                    }).catch(error => {
+                    debugger
+                    alert(error)
+                })
+            }
+        )
 
 
+        debugger
         axios.post('http://localhost:8080/blog/post/create', {
-            text: this.props.input_postText,
-            photo: formData}, config)
+            text: this.props.input_postText
+        }, config)
             .then(response => {
                 switch (response.status) {
                     case 200: {
-                        // ok
+                        this.props.input_postPhoto.map((photo, i) => function () {
+                                let formData = new FormData()
+                                formData.append('photo' + (i + 1), photo)
+                                axios.post('http://localhost:8080/file', {
+                                    formData
+                                }, config)
+                                    .then(response => {
+                                    debugger
+                                }).catch(error => {
+                                    debugger
+                                    alert(error)
+                                })
+                            }
+                        )
                         return true
                     }
                 }
             }).catch(error => {
-                switch (error.response.status) {
-                    case 400: {
-                        // too many characters
-                        // file too big
-                        break
-                    }
-                    case 403: {
-                        // bad token
-                        break
-                    }
+                debugger
+            switch (error.response.status) {
+                case 400: {
+                    // too many characters
+                    // file too big
+                    break
                 }
-                return false
+                case 403: {
+                    // bad token
+                    break
+                }
+            }
+            return false
         })
         return false
     }
+
     render() {
         return <ProfileNewPostComponent setButtonCreatPostPressed={this.props.setButtonCreatPostPressed}
                                         setInputPostPhoto={this.props.setInputPostPhoto}

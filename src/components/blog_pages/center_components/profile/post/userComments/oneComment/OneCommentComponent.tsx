@@ -35,7 +35,7 @@ const OneCommentComponent = (props: PropsOneCommentComponent) => {
                 {props.text}
                 <section className={one_comment_css.footer}>
                     <div className={one_comment_css.time}>
-                        <TimeComponent time={props.createdAt.split('-')}/>
+                        <TimeComponent time={props.time.split('-')}/>
                     </div>
 
                     <section className={one_comment_css.likes}>

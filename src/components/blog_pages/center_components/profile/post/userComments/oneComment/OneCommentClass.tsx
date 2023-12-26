@@ -12,7 +12,7 @@ class OneCommentClass extends Component<Comment, Comment> {
 
     likeComment = () => {
         axios.put('http://localhost:8080/blog/comment/like',  {
-            // todo comment id
+            comment_id: this.props.comment_id
         },config)
             .then(response => {
                 switch (response.status) {
@@ -33,7 +33,24 @@ class OneCommentClass extends Component<Comment, Comment> {
     }
 
     deleteComment = () => {
-
+        axios.delete(`http://localhost:8080/blog/comment/${this.props.comment_id}`, config)
+            .then(response => {
+                switch (response.status) {
+                    case 200 : {
+                        //ok
+                    }
+                }
+            }).catch(error => {
+            switch (error.response.status) {
+                case 403: {
+                    //bad token
+                    break
+                }
+                case 404: {
+                    //comment doesn't exist
+                }
+            }
+        })
     }
 
     componentDidMount() {
@@ -62,7 +79,7 @@ class OneCommentClass extends Component<Comment, Comment> {
                                     nickname={this.nickname}
                                     avatarUrl={this.avatarUrl}
                                     text={this.props.text}
-                                    createdAt={this.props.createdAt}
+                                    time={this.props.time}
                                     countLikes={this.props.countLikes}
                                     isLiked={this.props.isLiked}
                                     likeComment={this.likeComment}

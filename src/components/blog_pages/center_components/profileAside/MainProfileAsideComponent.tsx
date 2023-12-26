@@ -44,7 +44,7 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
                 </section>
                 <section className={main_aside_css.friendsSector}>
                     <section className={main_aside_css.friendsAva}>
-                        {props.users.map( (user:PropsOneFriend, i) => // todo никнейм
+                        {props.usersShortInfo.map( (user:PropsOneFriend, i) => // todo никнейм
                             <section className={main_aside_css.friendPhoto + ' friendPhotoSection' + i}>
                                 <img src={user.avatarUrl === '' ? default_profile_ava : user.avatarUrl}
                                      className={'friendPhoto' + i} alt={'user_ava'}/>

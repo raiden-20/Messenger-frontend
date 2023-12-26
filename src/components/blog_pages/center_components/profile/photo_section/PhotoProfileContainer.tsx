@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {StatePhotoProfile} from "../../../../../redux/interfaces/profile/photo/photoProfile";
-import PhotoProfileClas from "./PhotoProfileClas";
+import PhotoProfileClass from "./PhotoProfileClass";
 import {
     setPhotoUrl,
     setButtonOpenPhoto,
@@ -41,6 +41,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 
 }
 
-const PhotoProfileContainer = connect(mapStateToProps, mapDispatchToProps)(PhotoProfileClas)
+const PhotoProfileContainer = connect(mapStateToProps, mapDispatchToProps)(PhotoProfileClass)
 
 export default PhotoProfileContainer

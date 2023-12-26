@@ -7,11 +7,6 @@ import ErrorRegistration from "./options/error_registration/ErrorRegistration";
 const RegistrationComponent = (props: PropsAuthRegComponent) => {
 
     const setInputEmail = (event : React.ChangeEvent<HTMLInputElement>) => {
-        if (props.input_email != null) {
-            if (!props.input_email.split('').includes('@')) {
-                // todo обводить красным контуром
-            }
-        }
         props.setInputEmail(event.target.value)
 
     }
@@ -28,7 +23,6 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
         props.setInputConfirmPassword(event.target.value)
     }
     const setInputBirthDate = (event : React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value)
         props.setInputBirthDate(event.target.value)
     }
 
@@ -38,18 +32,18 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
                 <section className={reg_curr.form}>
                     <section className={reg_curr.inputs}>
                         <input type={'text'} className={options_reg.input} onChange={setInputNickname}
-                               value={props.input_nickname}  placeholder={'Никнейм'}/>
+                               value={props.input_nickname || ''} placeholder={'Никнейм'}/>
                         <input type={'text'} className={options_reg.input} onChange={setInputName}
-                               value={props.input_name} placeholder={'Имя'}/>
+                               value={props.input_name || ''} placeholder={'Имя'}/>
                         <input type={'date'} className={options_reg.input + ' ' + options_reg.input_date} onChange={setInputBirthDate}
-                               value={props.input_birthDate} placeholder={'Дата рождения'}/>
+                               value={props.input_birthDate || ''} placeholder={'Дата рождения'}/>
                         <input type={'text'} className={options_reg.input} onChange={setInputEmail}
-                               value={props.input_email} placeholder={'Электронный адрес'}/>
-                        <input type={'text'} className={options_reg.input} onChange={setInputPassword}
-                               value={props.input_password.replace(/./g, '*')}
+                               value={props.input_email || ''} placeholder={'Электронный адрес'}/>
+                        <input type={'password'} className={options_reg.input} onChange={setInputPassword}
+                               value={props.input_password || ''}
                                placeholder={'Пароль'}/>
-                        <input type={'text'} className={options_reg.input} onChange={setInputConfirmPassword}
-                               value={props.input_confirmPassword.replace(/./g, '*')}
+                        <input type={'password'} className={options_reg.input} onChange={setInputConfirmPassword}
+                               value={props.input_confirmPassword || ''}
                                placeholder={'Подтвердите пароль'}/>
                     </section>
                     <button className={options_reg.main_page_button + ' ' + reg_curr.button}

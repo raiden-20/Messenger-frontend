@@ -7,17 +7,13 @@ import {
 import './ProfileAsideFriends.css'
 import MainProfileAsideComponent from "./MainProfileAsideComponent";
 import axios from "axios";
+import config from "../../../paths/config";
 
 class MainProfileAsideClass extends Component<PropsUserProfileAside, StateUserProfileAsideComponent>{
-    config = {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-    };
 
     componentDidMount() {
         //photo
-        axios.get(`http://localhost:8080/blog/photo/count/${localStorage.getItem('idUser')}`, this.config) // todo исправить на правильный урл
+        axios.get(`http://localhost:8080/blog/photo/count/${localStorage.getItem('idUser')}`, config)
             .then(response =>{
                 switch (response.status) {
                     case 200 : {
@@ -27,13 +23,15 @@ class MainProfileAsideClass extends Component<PropsUserProfileAside, StateUserPr
             })
 
         //friends
-        axios.get(`http://localhost:8080/social/friends/random/${localStorage.getItem('idUser')}`, this.config)
+        debugger
+        axios.get(`http://localhost:8080/social/relation/friends/random/${localStorage.getItem('idUser')}`, config)
             .then(response => {
+                debugger
                 switch (response.status) {
                     case 200 : {
                         this.props.setUsers(response.data)
 
-                        axios.get(`http://localhost:8080/social/count/friends/${localStorage.getItem('idUser')}`, this.config)
+                        axios.get(`http://localhost:8080/social/count/friends/${localStorage.getItem('idUser')}`, config)
                             .then(response => {
                                 switch (response.status) {
                                     case 200 : {
@@ -50,6 +48,7 @@ class MainProfileAsideClass extends Component<PropsUserProfileAside, StateUserPr
                     }
                 }
             }).catch(error => {
+                debugger
                 switch (error.response.status) {
                     case 403: {
                         //плохой токен
@@ -59,7 +58,7 @@ class MainProfileAsideClass extends Component<PropsUserProfileAside, StateUserPr
     }
 
     render() {
-        return <MainProfileAsideComponent users={this.props.users}
+        return <MainProfileAsideComponent usersShortInfo={this.props.usersShortInfo}
                                           countFriends={this.props.countFriends}
                                           countPhoto={this.props.countPhoto}/>;
     }

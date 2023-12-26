@@ -59,7 +59,9 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                                          code={props.code}
                                                                                          setCode={props.setCode}
                                                                                          buttonShowMessage={props.buttonShowMessage}
-                                                                                         setShowMessage={props.setShowMessage}/> :
+                                                                                         setShowMessage={props.setShowMessage}
+                                                                                         input_passwordShow={props.input_passwordShow}
+                                                                                         setInputPasswordShow={props.setInputPasswordShow}/> :
                 location.pathname === REGISTRATION ? <Registration input_email={props.input_email}
                                                                    input_nickname={props.input_nickname}
                                                                    input_password={props.input_password}
@@ -85,7 +87,11 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                    setInputName={props.setInputName}
                                                                    input_birthDate={props.input_birthDate}
                                                                    setBirthDate={props.setBirthDate}
-                                                                   setInputBirthDate={props.setInputBirthDate}/> :
+                                                                   setInputBirthDate={props.setInputBirthDate}
+                                                                   input_passwordShow={props.input_passwordShow}
+                                                                   setInputPasswordShow={props.setInputPasswordShow}
+                                                                   input_confirmPasswordShow={props.input_confirmPasswordShow}
+                                                                   setInputConfirmPasswordShow={props.setInputConfirmPasswordShow}/> :
                 location.pathname === REGISTRATION_FORGOT_PASSWORD ? <RegistrationForgotPassword input_email={props.input_email}
                                                                                                  setInputEmail={props.setInputEmail}
                                                                                                  message={props.message}

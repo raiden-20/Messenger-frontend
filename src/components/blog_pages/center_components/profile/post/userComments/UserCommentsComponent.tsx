@@ -46,7 +46,7 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                                     </button>
                                 </section> : null}
                             {props.buttonEditPost ? <EditPostContainer/> : null}
-                            {/*{*/}
+                            {/*{*/  }
                             {/*    localStorage.getItem('userId') === localStorage.getItem('id') ?*/}
                             {/*        <img src={settings_post} alt={'settings post'}/> : null*/}
                             {/*}*/}
@@ -107,9 +107,10 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                             {props.userComments.map((comment: Comment) => (
                                 <OneCommentClass user_id={comment.user_id}
                                                  text={comment.text}
-                                                 createdAt={comment.createdAt}
+                                                 time={comment.time}
                                                  countLikes={comment.countLikes}
-                                                 isLiked={comment.isLiked}/>
+                                                 isLiked={comment.isLiked}
+                                                 comment_id={comment.comment_id}/>
                             ))}
                         </section>
                     </section>

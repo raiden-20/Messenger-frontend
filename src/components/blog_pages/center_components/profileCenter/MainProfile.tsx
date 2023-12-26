@@ -12,12 +12,12 @@ class MainProfile extends Component<PropsUserProfile, StateUserProfile> {
                 switch (response.status) {
                     case 200 : {
                         this.props.setNickname(response.data.nickname)
-                        axios.get(`'http://localhost:8080/social/data/${localStorage.getItem('idUser')}'`, config)
+                        axios.get(`http://localhost:8080/social/data/${localStorage.getItem('idUser')}`, config)
                             .then(response => {
                                 switch (response.status) {
                                     case 200 : {
                                         this.props.setName(response.data.name)
-                                        this.props.setBio(response.data.name)
+                                        this.props.setBio(response.data.bio)
                                         this.props.setBirthDate(response.data.birthDate)
                                         this.props.setAvatarUrl(response.data.avatarUrl)
                                         this.props.setCoverUrl(response.data.coverUrl)

@@ -18,17 +18,7 @@ const RegistrationOrAuthorisationComponent = (props: PropsAuthAuthComponent) => 
     }
     const setInputPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         props.setInputPassword(event.target.value)
-        showPassword()
-    }
-
-    let pagePassword = ""
-
-    const showPassword = () => {
-        if (props.input_password === '') {
-            pagePassword = ''
-        } else {
-            props.input_password.split('').map(() => pagePassword += '*')
-        }
+        props.setInputPasswordShow(event.target.value.split('').map(() => '*').join(''))
     }
 
     return (
@@ -38,8 +28,8 @@ const RegistrationOrAuthorisationComponent = (props: PropsAuthAuthComponent) => 
                     <section className={reg.inputs}>
                         <input type={'text'} className={options_reg.input} onChange={setInputEmailOrNickname}
                                value={props.input_emailOrNickname} placeholder={'Электронный адрес или никнейм'}/>
-                        <input type={'text'} className={options_reg.input} onChange={setInputPassword}
-                               value={props.input_password.replace(/./g, '*')} placeholder={'Пароль'}/>
+                        <input type={'password'} className={options_reg.input} onChange={setInputPassword}
+                               value={props.input_password} placeholder={'Пароль'}/>
                     </section>
                     <button className={options_reg.main_page_button} onClick={props.authorise}
                             type={'submit'}>Войти

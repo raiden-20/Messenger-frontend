@@ -6,22 +6,24 @@ import config from "../../../../../paths/config";
 
 class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
 
+    commentId = ''
     text = 'bla bla'
     time = '2023-10-14'
-    isLike = false
-    likesCount = '9'
-    commentsCount = '2'
+    isLiked = false
+    countLikes = '9'
+    countComments = '2'
 
     componentDidMount() {
         axios.get(`http://localhost:8080/blog/post/${this.props.postId} `, config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
+                        this.commentId = response.data.commentId
                         this.text = response.data.text
                         this.time = response.data.time
-                        this.isLike = response.data.isLike
-                        this.likesCount = response.data.likesCount
-                        this.commentsCount = response.data.commentsCount
+                        this.isLiked = response.data.isLiked
+                        this.countLikes = response.data.countLikes
+                        this.countComments = response.data.countComments
                     }
                 }
             }).catch(error => {
@@ -70,6 +72,28 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
             }
         })
     }
+    likePost = () => {
+        axios.put('http://localhost:8080/blog/comment/like', {
+            commentId: this.commentId
+        }, config)
+            .then(response => {
+                switch (response.status) {
+                    case 200 : {
+                        //ok
+                    }
+                }
+            }).catch(error => {
+            switch (error.response.status) {
+                case 403 : {
+                    //bad token
+                    break
+                }
+                case 404 : {
+                    // post doesn't exist
+                }
+            }
+        })
+    }
 
     render() {
         return <OnePhotoComponent postId={this.props.postId}
@@ -81,12 +105,13 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
                                   setButtonOpenPhoto={this.props.setButtonOpenPhoto}
                                   onePhotoUrl={this.props.onePhotoUrl}
                                   avatarUrl={this.props.avatarUrl}
-                                  commentsCount={this.commentsCount}
-                                  isLike={this.isLike}
-                                  likesCount={this.likesCount}
+                                  countComments={this.countComments}
+                                  isLiked={this.isLiked}
+                                  countLikes={this.countLikes}
                                   text={this.text}
                                   time={this.time}
-                                  setComment={this.setComment}/>
+                                  setComment={this.setComment}
+                                  likePost={this.likePost}/>
     }
 }
 

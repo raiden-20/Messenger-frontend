@@ -12,7 +12,9 @@ const SET_INPUT_EMAIL_DATA = 'SET_INPUT_EMAIL_DATA'
 const SET_INPUT_NICKNAME_DATA = 'SET_INPUT_NICKNAME_DATA'
 const SET_INPUT_EMAIL_OR_NICKNAME_DATA = 'SET_INPUT_EMAIL_OR_NICKNAME_DATA'
 const SET_INPUT_PASSWORD_DATA = 'SET_INPUT_PASSWORD_DATA'
+const SET_INPUT_PASSWORD_DATA_SHOW = 'SET_INPUT_PASSWORD_DATA_SHOW'
 const SET_INPUT_CONFIRM_PASSWORD_DATA = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
+const SET_INPUT_CONFIRM_PASSWORD_DATA_SHOW = 'SET_INPUT_CONFIRM_PASSWORD_DATA_SHOW'
 
 const SET_MESSAGE = 'SET_MESSAGE'
 const SET_SHOW_MESSAGE = 'SET_SHOW_MESSAGE'
@@ -20,19 +22,21 @@ const SET_TOKEN = 'SET_TOKEN'
 const SET_CODE = 'SET_CODE'
 
 const initialState = {
-    id: '',
-    token: '',
+    id: "",
+    token: "",
 
-    email: 'an.korobeynikova@gmail.com',
-    newEmail: '',
-    nickname: 'anastas',
-    password: 12345678910,
+    email: "",
+    newEmail: "",
+    nickname: "",
+    password: 0,
 
-    input_email: '',
-    input_nickname: '',
-    input_emailOrNickname: '',
-    input_password: '',
-    input_confirmPassword : '',
+    input_email: "",
+    input_nickname: "",
+    input_emailOrNickname: "",
+    input_password: "",
+    input_passwordShow: "",
+    input_confirmPassword : "",
+    input_confirmPasswordShow : "",
 
     message: '',
     buttonShowMessage: false,
@@ -106,9 +110,19 @@ const authReducer = (state = initialState, action : any) => {
 
             return stateCopy
         }
+        case SET_INPUT_PASSWORD_DATA_SHOW : {
+            stateCopy.input_passwordShow = action.input_passwordShow
+
+            return stateCopy
+        }
 
         case SET_INPUT_CONFIRM_PASSWORD_DATA : {
             stateCopy.input_confirmPassword = action.input_confirmPassword
+
+            return stateCopy
+        }
+        case SET_INPUT_CONFIRM_PASSWORD_DATA_SHOW : {
+            stateCopy.input_confirmPasswordShow = action.input_confirmPasswordShow
 
             return stateCopy
         }
@@ -194,9 +208,19 @@ export const setInputPassword = (input_password : string) => {
         type: SET_INPUT_PASSWORD_DATA, input_password
     }
 }
+export const setInputPasswordShow = (input_passwordShow : string) => {
+    return {
+        type: SET_INPUT_PASSWORD_DATA_SHOW, input_passwordShow
+    }
+}
 export const setInputConfirmPassword = (input_confirmPassword : string) => {
     return {
         type: SET_INPUT_CONFIRM_PASSWORD_DATA, input_confirmPassword
+    }
+}
+export const setInputConfirmPasswordShow = (input_confirmPasswordShow : string) => {
+    return {
+        type: SET_INPUT_CONFIRM_PASSWORD_DATA, input_confirmPasswordShow
     }
 }
 

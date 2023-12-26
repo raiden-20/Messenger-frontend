@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {StatePost} from "../../../../../../redux/interfaces/profile/post/post";
-import Post from "./Post";
+import PostClass from "./PostClass";
 import {setMessage} from "../../../../../../redux/reducers/authReducer";
 import {
     setButtonEditPostClick, setInputPostComment,
@@ -53,6 +53,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     }
 }
 
-const PostContainer = connect(mapStateToProps, mapDispatchToProps)(Post)
+const PostContainer = connect(mapStateToProps, mapDispatchToProps)(PostClass)
 
 export default PostContainer

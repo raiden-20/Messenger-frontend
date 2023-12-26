@@ -4,21 +4,25 @@ import PostComponent from "./PostComponent";
 import axios from "axios";
 import config from "../../../../../paths/config";
 
-class Post extends Component<PropsPost, StatePostsClass> {
+class PostClass extends Component<PropsPost, StatePostsClass> {
 
 
     componentDidMount() {
-        axios.get('http://localhost:8080/', config) // todo узнать юрл
+        debugger
+        axios.get(`http://localhost:8080/blog/user/${localStorage.getItem('idUser')}`, config) // todo узнать юрл
             .then(response => {
                 switch (response.status) {
                     case 200: {
+                        debugger
                         this.props.setPosts(response.data)
                         if (response.data.size === 0) {
                             this.props.setMessage('Нет постов')
                         }
                     }
                 }
-            })
+            }).catch(error => {
+                debugger
+        })
     }
 
     render() {
@@ -40,4 +44,4 @@ class Post extends Component<PropsPost, StatePostsClass> {
     }
 }
 
-export default Post
+export default PostClass

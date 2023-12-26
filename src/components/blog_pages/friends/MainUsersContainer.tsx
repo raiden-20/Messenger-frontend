@@ -7,11 +7,11 @@ import {
     setUserSubscriptionsCount, setWhoOpened
 } from "../../../redux/reducers/usersReducer";
 import {connect} from "react-redux";
-import MainUsers from "./MainUsers";
+import MainUsersClass from "./MainUsersClass";
 
 const mapStateToProps = (state : StateUsers) => {
     return {
-        users : state.users.users,
+        usersShortInfo : state.users.usersShortInfo,
         countFriends: state.users.countFriends,
         countSubscriptions: state.users.countSubscriptions,
         countSubscribers: state.users.countSubscribers,
@@ -42,6 +42,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     }
 }
 
-const MainUsersContainer = connect(mapStateToProps, mapDispatchToProps)(MainUsers)
+const MainUsersContainer = connect(mapStateToProps, mapDispatchToProps)(MainUsersClass)
 
 export default MainUsersContainer

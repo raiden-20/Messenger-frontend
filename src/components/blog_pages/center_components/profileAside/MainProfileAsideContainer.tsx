@@ -10,7 +10,7 @@ import {setCountPhoto} from "../../../../redux/reducers/photoReducer";
 
     const mapStateToProps = (state : StateUserProfileAside) => {
         return {
-            users: state.users.users,
+            usersShortInfo: state.users.usersShortInfo,
             countFriends: state.users.countFriends,
 
             countPhoto: state.photo.countPhoto

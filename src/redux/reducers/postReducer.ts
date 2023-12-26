@@ -16,8 +16,8 @@ const initialState = {
     ],
 
     userComments: [
-        {user_id: 2, text: 'cat is so awesome', createdAt: '2023-12-16', countLikes: 3, isLiked: true},
-        {user_id: 2, text: 'cat is so awesome', createdAt: '2023-12-16', countLikes: 3, isLiked: true}
+        {comment_id: 1, user_id: 2, text: 'cat is so awesome', time: '2023-12-16', countLikes: 3, isLiked: true},
+        {comment_id: 2, user_id: 2, text: 'cat is so awesome', time: '2023-12-16', countLikes: 3, isLiked: true}
     ],
 
     input_postPhoto: [],

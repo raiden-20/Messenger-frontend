@@ -31,7 +31,7 @@
     display: grid;
     grid-template-columns: 45px auto;
     column-gap: 5px;
-    padding-right: 5px;
+    padding: 10px 5px 5px 0;
 }
 
 .user_ava {
@@ -39,6 +39,9 @@
     height: 45px;
 }
 
+.nickname {
+    color: #5F6E78;
+}
 .userPostData {
     height: 78px;
     display: grid;
@@ -67,15 +70,19 @@
 
 .likeComments {
     display: flex;
-    gap: 15px;
+    gap: 10px;
+    align-items: center;
 }
 
 .likeComments section {
-    display: flex;
-    gap: 5px;
+    display: grid;
+    grid-template-columns: 17px auto;
+    column-gap: 5px;
 }
 
 .button {
+    display: flex;
+    flex-flow: row nowrap;
     background-color: transparent;
     border: none;
     padding: 0;
@@ -87,14 +94,31 @@
 
 .footer {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 45% 55%;
 }
 
 .comments {
-    padding: 10px 0 10px 0;
-    overflow-y: scroll;
+    padding: 0 0 10px 0;
+    overflow-y: hidden;
+}
+
+.settingComment {
+    width: 28px;
+    height: 6px;
+}
+
+.deleteComment {
+    position: relative;
+    left: 68%;
+    width: 100px;
+    height: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 4px 0 #00000040;
+    border-radius: 15px;
+
     display: grid;
-    row-gap: 10px;
+    align-items: center;
+    justify-items: center;
 }
 
 ::-webkit-scrollbar {

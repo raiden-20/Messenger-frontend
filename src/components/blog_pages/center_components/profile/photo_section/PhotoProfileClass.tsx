@@ -2,15 +2,11 @@ import {Component} from "react";
 import {PropsPhotoProfile, StatePhotoProfileClass} from "../../../../../redux/interfaces/profile/photo/photoProfile";
 import PhotoProfileComponent from "./PhotoProfileComponent";
 import axios from "axios";
-class PhotoProfileClas extends Component<PropsPhotoProfile, StatePhotoProfileClass> {
-    config = {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-    };
+import config from "../../../../paths/config";
+class PhotoProfileClass extends Component<PropsPhotoProfile, StatePhotoProfileClass> {
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/blog/photo/${localStorage.getItem('idUser')}`, this.config)
+        axios.get(`http://localhost:8080/blog/photo/${localStorage.getItem('idUser')}`, config)
             .then(response =>{
                 switch (response.status) {
                     case 200 : {
@@ -18,6 +14,7 @@ class PhotoProfileClas extends Component<PropsPhotoProfile, StatePhotoProfileCla
                     }
                 }
             }).catch(error => {
+                debugger
                 switch (error.response.status){
                     case 403 : {
                         //bad token
@@ -25,14 +22,16 @@ class PhotoProfileClas extends Component<PropsPhotoProfile, StatePhotoProfileCla
                 }
         })
 
-        axios.get(`http://localhost:8080/blog/photo/count/${localStorage.getItem('idUser')}`, this.config) //todo исправить на правильный урл
+        axios.get(`http://localhost:8080/blog/photo/count/${localStorage.getItem('idUser')}`, config)
             .then(response =>{
                 switch (response.status) {
                     case 200 : {
                         this.props.setCountPhoto(response.data)
                     }
                 }
-            })
+            }).catch(error => {
+                debugger
+        })
     }
 
     render() {
@@ -46,4 +45,4 @@ class PhotoProfileClas extends Component<PropsPhotoProfile, StatePhotoProfileCla
     }
 }
 
-export default PhotoProfileClas
+export default PhotoProfileClass

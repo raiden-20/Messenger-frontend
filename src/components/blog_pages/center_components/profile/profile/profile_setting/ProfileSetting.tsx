@@ -5,14 +5,9 @@ import {
     PropsProfileSettings,
     StateProfileSettingsClass
 } from "../../../../../../redux/interfaces/profile/settings/profileSettings";
+import config from "../../../../../paths/config";
 
 class ProfileSetting extends Component<PropsProfileSettings, StateProfileSettingsClass> {
-
-
-    config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    };
-
     constructor(props: PropsProfileSettings) {
         super(props)
         this.props.setInputName(this.props.name)
@@ -35,9 +30,9 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
         }
     }
 
-    setPhotoToServer = (formData: FormData) => {
-
-        if (this.props.deleteCoverFlag) {
+    setPhotoToServer = (formData: FormData, flag: boolean) => {
+        debugger
+        if (flag) {
             axios.delete('http://localhost:8080/file', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
                 data: {
@@ -47,38 +42,46 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
         } else {
             axios.post('http://localhost:8080/file', {
                 formData
-            }, this.config).then()
+            }, config).then(response => {
+                debugger
+            }).catch(error => {
+                debugger
+                alert(error)
+            })
         }
     }
 
     setData = () => {
+        debugger
         let formDataCover = new FormData()
         formDataCover.append('cover', this.props.input_coverUrl)
         let userUpdateCover = {
-            url: this.props.coverUrl,
+            url: '',
             source: 'COVER',
-            postId: ''
+            postId: '',
+            photoId: ''
         }
         formDataCover.append('data', JSON.stringify(userUpdateCover))
 
         let formDataAvatar = new FormData()
-        formDataCover.append('avatar', this.props.input_avatarUrl)
+        formDataAvatar.append('avatar', this.props.input_avatarUrl)
         let userUpdateAvatar = {
-            url: this.props.avatarUrl,
+            url: '',
             source: 'AVATAR',
-            postId: ''
+            postId: '',
+            photoId: ''
         }
-        formDataCover.append('data', JSON.stringify(userUpdateAvatar))
+        formDataAvatar.append('data', JSON.stringify(userUpdateAvatar))
 
-        this.setPhotoToServer(formDataCover) // запрос на смену ковра
-        this.setPhotoToServer(formDataAvatar)// на смену авы
+        this.setPhotoToServer(formDataCover, this.props.deleteCoverFlag) // запрос на смену ковра
+        this.setPhotoToServer(formDataAvatar, this.props.deleteAvatarFlag)// на смену авы
 
-
+        debugger
         axios.post('http://localhost:8080/auth/change/nickname', {
             "token": localStorage.getItem('token'),
             "nickname": this.props.input_nickname
-        }, this.config).then(response => {
-
+        }, config).then(response => {
+            debugger
             this.props.setNickname(this.props.input_nickname)
             localStorage.setItem('token', response.data)
 
@@ -86,38 +89,21 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
                 name: this.props.input_name,
                 birthDate: this.props.input_birthDate,
                 bio: this.props.input_bio,
-            }, this.config)
+            }, config)
                 .then(response => {
+                    debugger
                     switch (response.status) {
                         case 200 : {
-                            this.props.setMessage('данные изменены')
+                            this.props.setMessage('Данные изменены')
                         }
                     }
-                })
-            this.props.setInputNickname('')
-            this.props.setInputName('')
-            this.props.setInputBirthDate('')
-            this.props.setInputBio('')
+                }).catch(error => {
+                debugger
+            })
+            debugger
         }).catch(error => {
+            debugger
             this.props.setMessage(error.message)
-            switch (error.response.status) {
-                case 400 : {
-                    if (error.response.data === "User doesn't exist") {
-                        this.props.setMessage('Пользователя не существует')
-                    }
-                    break
-                }
-                case 409 : {
-                    if (error.response.data === "This nickname is already in use") {
-                        this.props.setMessage('Данный никнейм уже используется')
-                    }
-                    break
-                }
-                default:
-            }
-            this.props.setInputName('')
-            this.props.setInputBirthDate('')
-            this.props.setInputBio('')
         })
     }
 

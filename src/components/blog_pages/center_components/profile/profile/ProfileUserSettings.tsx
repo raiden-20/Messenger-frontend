@@ -9,12 +9,9 @@ import {
 } from "../../../../../redux/interfaces/profile/settings/profileSettings";
 
 const ProfileUserSettings = (props: PropsButtonPressed) => {
-
     const showSettings = () => {
         props.setButtonSettingPressed(true)
     }
-
-
 
     return (
         <section className={profile_css.profile_icons}>

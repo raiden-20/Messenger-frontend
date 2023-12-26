@@ -57,19 +57,19 @@ const MainUsersComponent = (props: PropsUsersComponent) => {
                     <img src={search_svg} alt={'search icon'}/>
                     <input placeholder={'Поиск'}/>
                 </section>
-                {location.pathname === FRIENDS_USER ? <MainFriendsComponent users={props.users}
+                {location.pathname === FRIENDS_USER ? <MainFriendsComponent usersShortInfo={props.usersShortInfo}
                                                                             countFriends={props.countFriends}
                                                                             actionRequest={props.actionRequest}
                                                                             whoOpened={props.whoOpened}/> :
-                location.pathname === SUBSCRIPTIONS_USER ? <MainSubscriptionsComponent users={props.users}
+                location.pathname === SUBSCRIPTIONS_USER ? <MainSubscriptionsComponent usersShortInfo={props.usersShortInfo}
                                                                                        countSubscriptions={props.countSubscriptions}
                                                                                        actionRequest={props.actionRequest}
                                                                                        whoOpened={props.whoOpened}/> :
-                location.pathname === SUBSCRIBERS_USER ? <MainSubscribersComponent users={props.users}
+                location.pathname === SUBSCRIBERS_USER ? <MainSubscribersComponent usersShortInfo={props.usersShortInfo}
                                                                                    countSubscribers={props.countSubscribers}
                                                                                    actionRequest={props.actionRequest}
                                                                                    whoOpened={props.whoOpened}/> :
-                    location.pathname === SEARCH ? <MainSearchComponent users={props.users}
+                    location.pathname === SEARCH ? <MainSearchComponent usersShortInfo={props.usersShortInfo}
                                                                         actionRequest={props.actionRequest}
                                                                         whoOpened={props.whoOpened}/> : null}
             </section>

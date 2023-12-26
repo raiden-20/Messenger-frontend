@@ -1,7 +1,8 @@
 export interface Comment {
+    comment_id: string
     user_id: string,
     text: string,
-    createdAt: string,
+    time: string
     countLikes: string,
     isLiked: boolean
 }
@@ -79,7 +80,7 @@ export interface PropsOneCommentComponent {
     nickname: string,
     avatarUrl: string
     text: string,
-    createdAt: string,
+    time: string,
     countLikes: string,
     isLiked: boolean
 

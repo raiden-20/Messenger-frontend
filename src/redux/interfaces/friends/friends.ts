@@ -1,3 +1,4 @@
+
 export interface User {
     id: string,
     name: string,
@@ -8,7 +9,7 @@ export interface User {
 
 export interface StateUsers {
     users : {
-        users : [],
+        usersShortInfo : [],
         countFriends: number,
         countSubscriptions: number,
         countSubscribers: number
@@ -17,7 +18,7 @@ export interface StateUsers {
 }
 
 export interface PropsUsers {
-    users : []
+    usersShortInfo : []
     countFriends: number,
     countSubscriptions: number,
     countSubscribers: number
@@ -34,7 +35,7 @@ export interface PropsUsers {
 }
 
 export interface PropsUsersComponent {
-    users : []
+    usersShortInfo : []
     countFriends: number
     countSubscribers: number
     countSubscriptions: number
@@ -50,26 +51,26 @@ export interface PropsUsersComponent {
 }
 
 export interface PropsFriendsComponent{
-    users : []
+    usersShortInfo : []
     countFriends: number
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void
 
 }
 export interface PropsSearchComponent{
-    users : []
+    usersShortInfo : []
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void
 
 }
 export interface PropsSubscribersComponent{
-    users : []
+    usersShortInfo : []
     countSubscribers: number
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void
 }
 export interface PropsSubscriptionsComponent{
-    users : []
+    usersShortInfo : []
     countSubscriptions: number
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void

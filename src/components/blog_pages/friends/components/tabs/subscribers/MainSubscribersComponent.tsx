@@ -11,7 +11,7 @@ const MainSubscribersComponent = (props: PropsSubscribersComponent) => {
 
     return (
         <section className={main_css.friends_list}>
-            {props.users.map((user: User) => <OneUser bio={user.bio}
+            {props.usersShortInfo.map((user: User) => <OneUser bio={user.bio}
                                                       name={user.name}
                                                       nickname={user.nickname}
                                                       avatarUrl={user.avatarUrl}

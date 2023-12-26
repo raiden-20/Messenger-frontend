@@ -1,4 +1,3 @@
-const SET_USER_DATA = 'SET_USER_DATA'
 const SET_USER_NAME = 'SET_USER_NAME'
 const SET_USER_BIRTH_DATE = 'SET_USER_BIRTH_DATE'
 const SET_USER_BIO = 'SET_USER_BIO'
@@ -7,9 +6,9 @@ const SET_USER_COVER_URL = 'SET_USER_COVER_URL'
 const SET_USER_STATUS = 'SET_USER_STATUS'
 
 
-const SET_INPUT_USER_NAME = 'SET_INPUT_EMAIL_DATA'
+const SET_INPUT_USER_NAME = 'SET_INPUT_USER_NAME'
 const SET_INPUT_USER_BIRTH_DATE = 'SET_INPUT_USER_BIRTH_DATE'
-const SET_INPUT_USER_ABOUT = 'SET_INPUT_CONFIRM_PASSWORD_DATA'
+const SET_INPUT_USER_ABOUT = 'SET_INPUT_USER_ABOUT'
 const SET_INPUT_USER_AVATAR_URL = 'SET_INPUT_USER_AVATAR_URL'
 const SET_INPUT_USER_COVER_URL = 'SET_INPUT_USER_COVER_URL'
 
@@ -18,18 +17,18 @@ const SET_DELETE_COVER_FLAG = 'SET_DELETE_COVER_FLAG'
 
 const SET_BUTTON_SETTING_PRESSED = 'SET_BUTTON_SETTING_PRESSED'
 const initialState = {
-    name: 'Настя',
-    birthDate: '2023-02-13',
-    bio: 'будьте счастливы',
-    avatarUrl: '',
-    coverUrl: '',
-    status: '',
+    name: "",
+    birthDate: "",
+    bio: "",
+    avatarUrl: "",
+    coverUrl: "",
+    status: "",
 
-    input_name: '',
+    input_name: "",
     input_avatarUrl: File,
     input_coverUrl: File,
-    input_birthDate: '',
-    input_bio : '',
+    input_birthDate: "",
+    input_bio : "",
     isButtonSettingPressed: false,
 
     deleteAvatarFlag: false,
@@ -137,9 +136,9 @@ export const setBirthDate = (birthDate : string) => {
         type: SET_USER_BIRTH_DATE, birthDate
     }
 }
-export const setBio = (about : string) => {
+export const setBio = (bio : string) => {
     return {
-        type: SET_USER_BIO, about
+        type: SET_USER_BIO, bio
     }
 }
 export const setAvatarUrl = (avatarUrl : string) => {

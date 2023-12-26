@@ -36,15 +36,15 @@ const initialState = {
 }
 
 const usersReducer = (state = initialState, action : any) => {
-    let stateCopy = {...state, users: state.usersShortInfo.map(u => u)}
+    let stateCopy = {...state, usersShortInfo: state.usersShortInfo.map(u => u)}
     switch (action.type) {
 
         case SET_USERS : {
-            return {...state, users: [...state.usersShortInfo, ...action.users]}
+            return {...state, usersShortInfo: [...state.usersShortInfo, ...action.usersShortInfo]}
         }
         case SET_USERS_NICKNAME : {
             stateCopy.usersShortInfo.map((user, i) => user.nickname = action.nicknames[i])
-            return {...state, users: [...state.usersShortInfo, ...action.users]}
+            return {...state, usersShortInfo: [...state.usersShortInfo, ...action.usersShortInfo]}
         }
         case SET_USERS_FRIENDS_COUNT : {
             stateCopy.countFriends = action.countFriends
@@ -67,9 +67,9 @@ const usersReducer = (state = initialState, action : any) => {
     }
 }
 
-export const setUsers = (users : []) => {
+export const setUsers = (usersShortInfo : []) => {
     return {
-        type: SET_USERS, users
+        type: SET_USERS, usersShortInfo
     }
 }
 export const setUsersNicknames = (nicknames : []) => {

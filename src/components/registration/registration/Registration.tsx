@@ -8,8 +8,7 @@ const Registration = (props: PropsAuthRegReg) => {
         if (props.input_name !== '') {
             if (props.input_email !== '' && props.input_nickname !== '' &&
                 props.input_password !== '' && props.input_confirmPassword !== '') {
-                debugger
-                if (props.input_password.length > 8) {
+                if (props.input_password.length >= 8) {
                     if (props.input_email.split('').includes('@')) {
                         if (props.input_password === props.input_confirmPassword) {
                             axios.post('http://localhost:8080/auth/registration', {
@@ -25,7 +24,7 @@ const Registration = (props: PropsAuthRegReg) => {
                                         if (response.data !== null) {
                                             props.setMessage('На Вашу почту было отправлено письмо с подтверждением бла бла бла')
                                             localStorage.setItem('id', response.data)
-                                            axios.post('http://localhost:8080/social/registration', { // todo изменить везде порт на сошиале
+                                            axios.post('http://localhost:8080/social/registration', {
                                                 id: localStorage.getItem('id'),
                                                 name: props.input_name,
                                                 birthDate: props.input_birthDate
@@ -43,8 +42,12 @@ const Registration = (props: PropsAuthRegReg) => {
                                     default:
                                 }
                                 props.setInputEmail('')
+                                props.setInputName('')
+                                props.setInputBirthDate('')
                                 props.setInputNickname('')
                                 props.setInputPassword('')
+                                props.setInputPasswordShow('')
+                                props.setInputConfirmPasswordShow('')
                                 props.setInputConfirmPassword('')
                             }).catch(error => {
                                 props.setShowMessage(true)
@@ -107,7 +110,11 @@ const Registration = (props: PropsAuthRegReg) => {
                                       setInputName={props.setInputName}
                                       setName={props.setName}
                                       input_birthDate={props.input_birthDate}
-                                      setInputBirthDate={props.setInputBirthDate}/>
+                                      setInputBirthDate={props.setInputBirthDate}
+                                      input_passwordShow={props.input_passwordShow}
+                                      setInputPasswordShow={props.setInputPasswordShow}
+                                      input_confirmPasswordShow={props.input_confirmPasswordShow}
+                                      setInputConfirmPasswordShow={props.setInputConfirmPasswordShow}/>
 }
 
 export default Registration
