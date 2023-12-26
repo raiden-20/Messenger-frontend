@@ -73,12 +73,20 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
     const deleteInputCover = () => {
         setImageCoverSrc('')
         props.setInputCoverUrl(null)
-        props.setDeleteCoverFlag(true)
+        if (props.coverUrl !== '') {
+            props.setDeleteCoverUrl(props.coverUrl)
+            props.setDeleteCoverFlag(true)
+        }
+
     }
     const deleteInputAvatar = () => {
         setImageAvatarSrc('')
         props.setInputAvatarUrl(null)
-        props.setDeleteAvatarFlag(true)
+        if (props.coverUrl !== '') {
+            props.setDeleteAvatarUrl(props.avatarUrl)
+            props.setDeleteAvatarFlag(true)
+        }
+
     }
 
     const cancel = () => {

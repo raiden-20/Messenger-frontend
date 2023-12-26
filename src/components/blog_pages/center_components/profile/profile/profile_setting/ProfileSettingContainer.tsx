@@ -3,7 +3,8 @@ import ProfileSetting from "./ProfileSetting";
 import {StateProfileSettings} from "../../../../../../redux/interfaces/profile/settings/profileSettings";
 import {Dispatch} from "redux";
 import {
-    setBirthDate, setButtonSettingPressed, setDeleteAvatarFlag, setDeleteCoverFlag, setInputAvatarUrl,
+    setAvatarUrl,
+    setBirthDate, setButtonSettingPressed, setCoverUrl, setDeleteAvatarFlag, setDeleteCoverFlag, setInputAvatarUrl,
     setInputBio,
     setInputBirthDate, setInputCoverUrl, setInputName,
     setName
@@ -39,6 +40,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         setName(name: string) {
             dispatch(setName(name))
+        },
+        setAvatarUrl(avatarUrl : string) {
+          dispatch(setAvatarUrl(avatarUrl))
+        },
+        setCoverUrl(coverUrl : string) {
+          dispatch(setCoverUrl(coverUrl))
         },
         setNickname(nickname: string) {
             dispatch(setNickname(nickname))

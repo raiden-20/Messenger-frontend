@@ -12,6 +12,13 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
     deleteCoverUrl = ''
     deleteAvatarUrl = ''
 
+    setDeleteCoverUrl = (deleteCoverUrl: string) => {
+        this.deleteCoverUrl = deleteCoverUrl
+    }
+    setDeleteAvatarUrl = (deleteAvatarUrl: string) => {
+        this.deleteAvatarUrl = deleteAvatarUrl
+    }
+
 
     constructor(props: PropsProfileSettings) {
         super(props)
@@ -46,6 +53,8 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
                 }
             }).then(response => {
                 debugger
+                this.props.setAvatarUrl('')
+                this.props.setDeleteAvatarFlag(false)
             }).catch(error => {
                 debugger
             })
@@ -78,6 +87,8 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
                 }
             }).then(response => {
                 debugger
+                this.props.setCoverUrl('')
+                this.props.setDeleteCoverFlag(false)
             }).catch(error => {
                 debugger
             })
@@ -153,7 +164,9 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
                                         setDeleteAvatarFlag={this.props.setDeleteAvatarFlag}
                                         setDeleteCoverFlag={this.props.setDeleteCoverFlag}
                                         avatarUrl={this.props.avatarUrl}
-                                        coverUrl={this.props.coverUrl}/>
+                                        coverUrl={this.props.coverUrl}
+                                        setDeleteAvatarUrl={this.setDeleteAvatarUrl}
+                                        setDeleteCoverUrl={this.setDeleteCoverUrl}/>
     }
 }
 

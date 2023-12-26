@@ -79,6 +79,9 @@ export interface PropsProfileSettings {
 
     setName(name: string): void
 
+    setAvatarUrl(avatarUrl : string): void
+    setCoverUrl(coverUrl : string): void
+
     setNickname(nickname: string): void
 
     setBirthDate(nickname: string): void
@@ -121,6 +124,7 @@ export interface PropsProfileSettingsComponent {
     input_bio: string;
 
     avatarUrl: string;
+
     coverUrl: string;
 
     setInputName(input_name: string): void
@@ -142,4 +146,7 @@ export interface PropsProfileSettingsComponent {
     setDeleteAvatarFlag(deleteAvatarFlag: boolean): void
 
     setDeleteCoverFlag(deleteCoverFlag: boolean): void
+
+    setDeleteCoverUrl(deleteCoverUrl: string): void
+    setDeleteAvatarUrl(deleteAvatarUrl: string): void
 }
