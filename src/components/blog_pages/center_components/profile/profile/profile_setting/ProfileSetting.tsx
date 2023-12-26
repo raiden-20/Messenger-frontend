@@ -45,7 +45,7 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
     setAvatarToServer = () => {
         debugger
         if (this.props.deleteAvatarFlag) {
-            axios.delete('http://localhost:8080/file', {
+            axios.delete('http://localhost:8080/file/social', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
                 data: {
                     url: this.deleteAvatarUrl,
@@ -65,7 +65,7 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
             formDataAvatar.append('url', 'undefined')
             formDataAvatar.append('source', 'AVATAR')
 
-            axios.post('http://localhost:8080/file', {
+            axios.post('http://localhost:8080/file/social', {
                 formDataAvatar
             }, config).then(response => {
                 debugger
@@ -79,7 +79,7 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
     setCoverToServer = () => {
         debugger
         if (this.props.deleteCoverFlag) {
-            axios.delete('http://localhost:8080/file', {
+            axios.delete('http://localhost:8080/file/social', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
                 data: {
                     url: this.deleteCoverUrl,
@@ -99,7 +99,7 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
             formDataCover.append('url', 'undefined')
             formDataCover.append('source', 'COVER')
 
-            axios.post('http://localhost:8080/file', {
+            axios.post('http://localhost:8080/file/social', {
                 formDataCover
             }, config).then(response => {
                 debugger
