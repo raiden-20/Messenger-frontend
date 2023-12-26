@@ -24,7 +24,7 @@ export interface PropsUsers {
     countSubscribers: number
     whoOpened: string
 
-    setUsers(users: []):void
+    setUsers(usersShortInfo: []):void
     setUsersNicknames(nicknames: []): void
     setUserFriendsCount(countFriends: number): void
     setUserSubscriptionsCount(countSubscriptions: number): void

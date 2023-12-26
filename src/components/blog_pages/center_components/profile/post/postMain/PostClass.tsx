@@ -8,12 +8,10 @@ class PostClass extends Component<PropsPost, StatePostsClass> {
 
 
     componentDidMount() {
-        debugger
         axios.get(`http://localhost:8080/blog/user/${localStorage.getItem('idUser')}`, config) // todo узнать юрл
             .then(response => {
                 switch (response.status) {
                     case 200: {
-                        debugger
                         this.props.setPosts(response.data)
                         if (response.data.size === 0) {
                             this.props.setMessage('Нет постов')

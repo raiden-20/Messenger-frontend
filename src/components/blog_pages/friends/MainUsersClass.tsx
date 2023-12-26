@@ -8,16 +8,16 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
 
     constructor(props: PropsUsers) {
         super(props)
+
+        console.log(this.props)
         axios.get(`http://localhost:8080/social/relation/friends/${localStorage.getItem('idUser')}`, config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        debugger
                         this.props.setUsers(response.data)
                     }
                 }
             }).catch(error => {
-            debugger
             switch (error.response.status) {
                 case 403 : {
 
@@ -72,7 +72,6 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
             }
         })
     }
-
     getFriends() {
         axios.get(`http://localhost:8080/social/relation/friends/${localStorage.getItem('idUser')}`, config)
             .then(response => {
@@ -91,17 +90,14 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
     }
 
     getSubscriptions() {
-        debugger
         axios.get(`http://localhost:8080/social/relation/subscriptions/${localStorage.getItem('idUser')}`, config)
             .then(response => {
-                debugger
                 switch (response.status) {
                     case 200 : {
                         this.props.setUsers(response.data)
                     }
                 }
             }).catch(error => {
-                debugger
             switch (error.response.status) {
                 case 403 : {
 
@@ -111,17 +107,14 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
     }
 
     getSubscribers() {
-        debugger
         axios.get(`http://localhost:8080/social/relation/subscribers/${localStorage.getItem('idUser')}`, config)
             .then(response => {
-                debugger
                 switch (response.status) {
                     case 200 : {
                         this.props.setUsers(response.data)
                     }
                 }
             }).catch(error => {
-                debugger
             switch (error.response.status) {
                 case 403 : {
 
@@ -130,7 +123,7 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
         })
     }
     getSearch() {
-        axios.get(`http://localhost:8080/social/users}`, config)
+        axios.get('http://localhost:8080/social/users', config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
@@ -144,29 +137,24 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
                 }
             }
         })
-        axios.get(`http://localhost:8080/auth/users}`, config)
-            .then(response => {
-                debugger
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setUsersNicknames(response.data)
-                    }
-                }
-            })
     }
 
     actionRequest = (idOtherUser: string, action : string) => {
+        action = action.toUpperCase()
+        debugger
         axios.post(`http://localhost:8080/social/action`, {
-            id: idOtherUser,
+            secondUser: idOtherUser,
             action: action
         }, config)
             .then(response => {
+                debugger
                 switch (response.status) {
                     case 200 : {
                         // okay
                     }
                 }
             }).catch(error => {
+                debugger
                 switch (error.response.status) {
                     case 403 : {
                         // bad token
@@ -185,14 +173,14 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
 
     render() {
         return <MainUsersComponent usersShortInfo={this.props.usersShortInfo}
-                                   getFriends={this.getFriends}
-                                   getSubscribers={this.getSubscribers}
-                                   getSubscriptions={this.getSubscriptions}
+                                   getFriends={this.getFriends.bind(this)}
+                                   getSubscribers={this.getSubscribers.bind(this)}
+                                   getSubscriptions={this.getSubscriptions.bind(this)}
                                    countFriends={this.props.countFriends}
                                    countSubscribers={this.props.countSubscribers}
                                    countSubscriptions={this.props.countSubscriptions}
                                    actionRequest={this.actionRequest}
-                                   getSearch={this.getSearch}
+                                   getSearch={this.getSearch.bind(this)}
                                    whoOpened={this.props.whoOpened}
                                    setWhoOpened={this.props.setWhoOpened}/>
     }

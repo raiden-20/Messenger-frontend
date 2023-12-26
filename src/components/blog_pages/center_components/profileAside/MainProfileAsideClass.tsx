@@ -23,10 +23,8 @@ class MainProfileAsideClass extends Component<PropsUserProfileAside, StateUserPr
             })
 
         //friends
-        debugger
         axios.get(`http://localhost:8080/social/relation/friends/random/${localStorage.getItem('idUser')}`, config)
             .then(response => {
-                debugger
                 switch (response.status) {
                     case 200 : {
                         this.props.setUsers(response.data)

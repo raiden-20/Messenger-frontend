@@ -12,7 +12,6 @@ import SubscriptionsImages from "./imagesForWhoOpened/SubscriptionsImages";
 import SearchImages from "./imagesForWhoOpened/SearchImages";
 
 const OneUserComponent = (props: PropsOneFriendComponent) => {
-    const [actionToSubscriber, setActionToSubscriber] = useState('')
     const navigation = useNavigate()
     const toProfile = () => {
         debugger
@@ -32,14 +31,17 @@ const OneUserComponent = (props: PropsOneFriendComponent) => {
                 break
             }
             case 'subscriptions' : {
-                props.changeFriendStatus(actionToSubscriber)
-                break
-            }
-            case 'subscribers' : {
-                props.changeFriendStatus('DELETE_FRIEND')
+                props.changeFriendStatus('DELETE_REQUEST')
                 break
             }
         }
+    }
+
+    const accept = () =>{
+        props.changeFriendStatus('ACCEPT')
+    }
+    const reject = () =>{
+        props.changeFriendStatus('REJECT')
     }
 
 
@@ -63,35 +65,37 @@ const OneUserComponent = (props: PropsOneFriendComponent) => {
                     </section>
                 </section>
             </section>
-
-            {props.whoOpened === 'subscribers' ?
-                <section className={main_css.friend_functional_subscribers}>
-                    <button className={main_css.chat}>
-                        <img src={chatting} alt={'chat'}/>
-                    </button>
-                    <section className={main_css.section_buttons}>
-                        <button className={main_css.add} onClick={() => setActionToSubscriber('ACCEPT')}>
-                            <img src={check_mark} alt={'mark'}/>
-                            Добавить
-                        </button>
-                        <button className={main_css.delete} onClick={() => setActionToSubscriber('REJECT')}>
-                            <img src={delete_mark} alt={'mark'}/>
-                            Удалить
-                        </button>
-                    </section>
-                </section>
-                :
-                <section className={main_css.friend_functional}>
-                    <button>
-                        <img src={chatting} alt={'chat'}/>
-                    </button>
-                    <button onClick={setAction}>
-                        {props.whoOpened === 'friends' ? <FriendsImages/> :
-                            props.whoOpened === 'subscriptions' ? <SubscriptionsImages/> :
-                                props.whoOpened === 'search' ? <SearchImages/> : null}
-                    </button>
-                </section>
+            {props.id !== localStorage.getItem('id') ?
+                props.whoOpened === 'subscribers' ?
+                        <section className={main_css.friend_functional_subscribers}>
+                            <button className={main_css.chat}>
+                                <img src={chatting} alt={'chat'}/>
+                            </button>
+                            <section className={main_css.section_buttons}>
+                                <button className={main_css.add} onClick={accept}>
+                                    <img src={check_mark} alt={'mark'}/>
+                                    Добавить
+                                </button>
+                                <button className={main_css.delete} onClick={reject}>
+                                    <img src={delete_mark} alt={'mark'}/>
+                                    Удалить
+                                </button>
+                            </section>
+                        </section>
+                        :
+                        <section className={main_css.friend_functional}>
+                            <button>
+                                <img src={chatting} alt={'chat'}/>
+                            </button>
+                            <button onClick={setAction}>
+                                {props.whoOpened === 'friends' ? <FriendsImages/> :
+                                    props.whoOpened === 'subscriptions' ? <SubscriptionsImages/> :
+                                        props.whoOpened === 'search' ? <SearchImages/> : null}
+                            </button>
+                        </section>
+                : null
             }
+
 
         </section>
     )

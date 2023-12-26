@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
 import main_aside_css from "../profile/main_profile_css/MainProfileAside.module.css";
@@ -19,6 +19,7 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
 
     const location = useLocation()
     const navigation = useNavigate()
+    const [isMouseEnter, setMouseEnter] = useState(false)
 
     return (
         <aside className={main_aside_css.aside}>
@@ -47,14 +48,15 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
                         {props.usersShortInfo.map( (user:PropsOneFriend, i) => // todo никнейм
                             <section className={main_aside_css.friendPhoto + ' friendPhotoSection' + i}>
                                 <img src={user.avatarUrl === '' ? default_profile_ava : user.avatarUrl}
-                                     className={'friendPhoto' + i} alt={'user_ava'}/>
-                                <section className={main_aside_css.shortInfoSection + ' friendMiniProfile' + i}>
+                                     className={'friendPhoto' + i} alt={'user_ava'} onMouseEnter={() => setMouseEnter(true)}/>
+                                {isMouseEnter ?
+                                <section className={main_aside_css.shortInfoSection + ' friendMiniProfile' + i} onMouseLeave={() => setMouseEnter(false)}>
                                     <UserFriendsShortInfoClass id={user.id}
                                                                name={user.name}
                                                                nickname={user.nickname}
                                                                bio={user.bio}
                                                                avatarUrl={user.avatarUrl}/>
-                                </section>
+                                </section> : null}
                             </section>)}
                     </section>
                 </section>

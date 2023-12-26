@@ -21,8 +21,8 @@ const mapStateToProps = (state : StateUsers) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        setUsers(users: []) {
-            dispatch(setUsers(users))
+        setUsers(usersShortInfo: []) {
+            dispatch(setUsers(usersShortInfo))
         },
         setUsersNicknames(nicknames: []) {
             dispatch(setUsersNicknames(nicknames))

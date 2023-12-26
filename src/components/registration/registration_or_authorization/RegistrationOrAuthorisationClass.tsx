@@ -23,12 +23,10 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
                 switch (response.status) {
                     case 200 : {
                         props.setToken(response.data)
-                        debugger
                         localStorage.setItem('token', response.data.token)
                         localStorage.setItem('id', response.data.id)
                         localStorage.setItem('idUser', response.data.id)
                         localStorage.setItem('password', props.input_password)
-                        localStorage.setItem('email', props.input_email)
 
                         cleanMessageAndChangePath()
 
@@ -40,7 +38,6 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
                 props.setInputEmail(null)
                 props.setInputPassword(null)
             }).catch(error => {
-                debugger
                 props.setShowMessage(true)
                 props.setCode(error.response.status)
                 console.dir(error)

@@ -8,6 +8,11 @@ import {
 import config from "../../../../../paths/config";
 
 class ProfileSetting extends Component<PropsProfileSettings, StateProfileSettingsClass> {
+
+    deleteCoverUrl = ''
+    deleteAvatarUrl = ''
+
+
     constructor(props: PropsProfileSettings) {
         super(props)
         this.props.setInputName(this.props.name)
@@ -30,53 +35,76 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
         }
     }
 
-    setPhotoToServer = (formData: FormData, flag: boolean) => {
+    setAvatarToServer = () => {
         debugger
-        if (flag) {
+        if (this.props.deleteAvatarFlag) {
             axios.delete('http://localhost:8080/file', {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
                 data: {
-                    formData
+                    url: this.deleteAvatarUrl,
+                    source: 'AVATAR'
                 }
-            }).then()
-        } else {
+            }).then(response => {
+                debugger
+            }).catch(error => {
+                debugger
+            })
+        }
+        if (this.props.input_avatarUrl !== undefined || this.props.avatarUrl !== null) {
+            let formDataAvatar = new FormData()
+            formDataAvatar.append('file', this.props.input_avatarUrl)
+            formDataAvatar.append('url', 'undefined')
+            formDataAvatar.append('source', 'AVATAR')
+
             axios.post('http://localhost:8080/file', {
-                formData
+                formDataAvatar
             }, config).then(response => {
                 debugger
             }).catch(error => {
                 debugger
-                alert(error)
             })
         }
     }
 
+
+    setCoverToServer = () => {
+        debugger
+        if (this.props.deleteCoverFlag) {
+            axios.delete('http://localhost:8080/file', {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+                data: {
+                    url: this.deleteCoverUrl,
+                    source: 'COVER'
+                }
+            }).then(response => {
+                debugger
+            }).catch(error => {
+                debugger
+            })
+        }
+        if (this.props.input_coverUrl !== undefined || this.props.input_coverUrl !== null) {
+            let formDataCover = new FormData()
+            formDataCover.append('file', this.props.input_coverUrl)
+            formDataCover.append('url', 'undefined')
+            formDataCover.append('source', 'COVER')
+
+            axios.post('http://localhost:8080/file', {
+                formDataCover
+            }, config).then(response => {
+                debugger
+            }).catch(error => {
+                debugger
+            })
+        }
+    }
+
+
     setData = () => {
         debugger
-        let formDataCover = new FormData()
-        formDataCover.append('cover', this.props.input_coverUrl)
-        let userUpdateCover = {
-            url: '',
-            source: 'COVER',
-            postId: '',
-            photoId: ''
-        }
-        formDataCover.append('data', JSON.stringify(userUpdateCover))
 
-        let formDataAvatar = new FormData()
-        formDataAvatar.append('avatar', this.props.input_avatarUrl)
-        let userUpdateAvatar = {
-            url: '',
-            source: 'AVATAR',
-            postId: '',
-            photoId: ''
-        }
-        formDataAvatar.append('data', JSON.stringify(userUpdateAvatar))
+        this.setAvatarToServer()
+        this.setCoverToServer()
 
-        this.setPhotoToServer(formDataCover, this.props.deleteCoverFlag) // запрос на смену ковра
-        this.setPhotoToServer(formDataAvatar, this.props.deleteAvatarFlag)// на смену авы
-
-        debugger
         axios.post('http://localhost:8080/auth/change/nickname', {
             "token": localStorage.getItem('token'),
             "nickname": this.props.input_nickname

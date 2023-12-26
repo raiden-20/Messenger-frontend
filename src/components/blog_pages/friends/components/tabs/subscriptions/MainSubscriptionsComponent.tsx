@@ -8,7 +8,7 @@ import OneUser from "../../oneUser/OneUser";
 
 const MainSubscriptionsComponent = (props: PropsSubscriptionsComponent) => {
     const changeFriendStatus = (idOtherUser: string) => {
-        props.actionRequest(idOtherUser, 'reject')
+        props.actionRequest(idOtherUser, 'DELETE_REQUEST')
     }
 
     return (

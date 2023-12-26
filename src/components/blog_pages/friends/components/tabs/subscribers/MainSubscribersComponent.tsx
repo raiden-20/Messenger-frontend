@@ -5,8 +5,8 @@ import OneUser from "../../oneUser/OneUser";
 
 
 const MainSubscribersComponent = (props: PropsSubscribersComponent) => {
-    const changeFriendStatus = (idOtherUser: string) => {
-        props.actionRequest(idOtherUser, 'accept')
+    const changeFriendStatus = (idOtherUser: string, action: string) => {
+        props.actionRequest(idOtherUser, action)
     }
 
     return (
