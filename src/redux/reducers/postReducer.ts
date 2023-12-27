@@ -51,15 +51,21 @@ const postReducer = (state = initialState, action: any) => {
         case SET_ONE_POST : {
             // @ts-ignore
             stateCopy= {...state, posts: [...state.posts]}
-            // @ts-ignore
-            stateCopy.posts[action.postId] = action.onePost
+            stateCopy.posts.forEach((post: Post, i) => {
+                if (post.postId === action.onePost.postId) {
+                    post = action.onePost
+                }
+            })
             return stateCopy
         }
         case SET_ONE_COMMENT : {
             // @ts-ignore
             stateCopy= {...state, comments: [...state.comments]}
-            // @ts-ignore
-            stateCopy.comments[action.commentId] = action.oneComment
+            stateCopy.comments.forEach((comment: Comment, i) => {
+                if (comment.commentId === action.oneComment.commentId) {
+                    comment = action.oneComment
+                }
+            })
             return stateCopy
         }
         case ADD_ONE_POST : {
