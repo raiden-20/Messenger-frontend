@@ -148,9 +148,31 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        // okay
+                        switch (action) {
+                            case 'CREATE': {
+                                this.getSearch()
+                                break
+                            }
+                            case 'DELETE_FRIEND': {
+                                this.getFriends()
+                                break
+                            }
+                            case 'ACCEPT': {
+                                this.getSubscribers()
+                                break
+                            }
+                            case 'REJECT': {
+                                this.getSubscribers()
+                                break
+                            }
+                            case 'DELETE_REQUEST': {
+                                this.getSubscriptions()
+                                break
+                            }
+                        }
                     }
                 }
+                this.componentDidMount()
             }).catch(error => {
                 switch (error.response.status) {
                     case 403 : {

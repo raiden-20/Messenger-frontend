@@ -1,15 +1,16 @@
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
-import {StatePost} from "../../../../../../redux/interfaces/profile/post/post";
+import {Post, StatePost} from "../../../../../../redux/interfaces/profile/post/post";
 import PostClass from "./PostClass";
 import {setMessage} from "../../../../../../redux/reducers/authReducer";
 import {
-    setButtonEditPostClick, setCommentAvatarUrl, setCommentName, setCommentNickname, setInputPostComment,
+    setButtonEditPostClick, setInputPostComment,
     setInputPostPhoto,
     setInputPostPhotoUrl, setInputPostText,
     setPosts,
-    setUserComments
+    setComments, deleteOnePost, deleteOneComment, setOnePost, setOneComment, addOneComment
 } from "../../../../../../redux/reducers/postReducer";
+import {Comment} from "../../../../../../redux/interfaces/profile/post/comments";
 
 const mapStateToProps = (state : StatePost) => {
     return {
@@ -17,13 +18,10 @@ const mapStateToProps = (state : StatePost) => {
         nickname: state.auth.nickname,
         avatarUrl: state.profile.avatarUrl,
         message: state.auth.message,
-        userComments: state.post.userComments,
+        comments: state.post.comments,
         posts: state.post.posts,
         buttonEditPost: state.post.buttonEditPost,
-        input_comment: state.post.input_comment,
-        commentName : state.post.commentName,
-        commentNickname: state.post.commentNickname,
-        commentAvatarUrl: state.post.commentAvatarUrl,
+        input_comment: state.post.input_comment
     }
 }
 
@@ -35,8 +33,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         setPosts(posts: []) {
             dispatch(setPosts(posts))
         },
-        setUserComments(userComments: []) {
-            dispatch(setUserComments(userComments))
+        setUserComments(comments: []) {
+            dispatch(setComments(comments))
         },
         setInputPostPhotoUrl(input_postPhotoUrl: string) {
             dispatch(setInputPostPhotoUrl(input_postPhotoUrl))
@@ -53,14 +51,20 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         setButtonEditPostClick(flag: boolean) {
             dispatch(setButtonEditPostClick(flag))
         },
-        setCommentName(commentName: string) {
-            dispatch(setCommentName(commentName))
+        deleteOnePost (postId: string) {
+            dispatch(deleteOnePost(postId))
         },
-        setCommentNickname(commentNickname: string) {
-            dispatch(setCommentNickname(commentNickname))
+        deleteOneComment(commentId: string) {
+            dispatch(deleteOneComment(commentId))
         },
-        setCommentAvatarUrl(commentAvatarUrl: string) {
-            dispatch(setCommentAvatarUrl(commentAvatarUrl))
+        setOnePost(onePost: Post, postId: string) {
+            dispatch(setOnePost(onePost, postId))
+        },
+        setOneComment(oneComment: Comment, commentId: string) {
+            dispatch(setOneComment(oneComment, commentId))
+        },
+        addOneComment(oneComment: Comment) {
+            dispatch(addOneComment(oneComment))
         }
     }
 }

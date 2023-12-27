@@ -8,7 +8,7 @@ import {
     PropsButtonPressed
 } from "../../../../../redux/interfaces/profile/settings/profileSettings";
 
-const ProfileUserSettings = (props: PropsButtonPressed) => {
+const ProfileUserSettingsComponent = (props: PropsButtonPressed) => {
     const showSettings = () => {
         props.setButtonSettingPressed(true)
     }
@@ -21,4 +21,4 @@ const ProfileUserSettings = (props: PropsButtonPressed) => {
     )
 }
 
-export default ProfileUserSettings
+export default ProfileUserSettingsComponent

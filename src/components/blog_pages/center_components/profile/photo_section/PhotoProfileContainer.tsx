@@ -6,7 +6,6 @@ import {
     setPhotoUrl,
     setButtonOpenPhoto,
     setCountPhoto,
-    setLikedPhoto,
     setPostUrl, setOnePhotoUrl
 } from "../../../../../redux/reducers/photoReducer";
 
@@ -15,7 +14,6 @@ const mapStateToProps = (state: StatePhotoProfile) => {
         photoUrl: state.photo.photoUrl,
         countPhoto: state.photo.countPhoto,
         isButtonOpenPhotoPressed: state.photo.isButtonOpenPhotoPressed,
-
         name: state.profile.name,
     }
 }

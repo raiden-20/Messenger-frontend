@@ -36,6 +36,8 @@ export interface PropsCreatePostButton {
 
     setInputPostAllPhotoDelete(): void
 
+    setPosts(posts: []): void
+
 }
 export interface PropsCreatePostButtonClass {
     input_postPhoto: [],
@@ -53,6 +55,8 @@ export interface PropsCreatePostButtonClass {
     setInputPostAllPhotoDelete(): void
 
     setButtonCreatPostPressed(flag: boolean): void
+
+    setPosts(posts: []): void
 }
 export interface PropsCreatePostButtonComponent {
     input_postPhoto: [],

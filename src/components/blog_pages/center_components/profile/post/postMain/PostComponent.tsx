@@ -12,7 +12,7 @@ const PostComponent = (props: PropsPostComponent) => {
                               nickname={props.nickname}
                               setMessage={props.setMessage}
                               post={post}
-                              userComments={props.userComments}
+                              comments={props.comments}
                               setUserComments={props.setUserComments}
                               setInputPostPhoto={props.setInputPostPhoto}
                               setInputPostPhotoUrl={props.setInputPostPhotoUrl}
@@ -24,9 +24,11 @@ const PostComponent = (props: PropsPostComponent) => {
                               commentAvatarUrl={props.commentAvatarUrl}
                               commentName={props.commentName}
                               commentNickname={props.commentNickname}
-                              setCommentAvatarUrl={props.setCommentAvatarUrl}
-                              setCommentName={props.setCommentName}
-                              setCommentNickname={props.setCommentNickname}/>
+                              deleteOneComment={props.deleteOneComment}
+                              deleteOnePost={props.deleteOnePost}
+                              setOneComment={props.setOneComment}
+                              setOnePost={props.setOnePost}
+                              addOneComment={props.addOneComment}/>
             ))}
         </div>
 

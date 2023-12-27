@@ -1,45 +1,38 @@
+import {Post} from "./post";
+
 export interface Comment {
     commentId: string
-    userId: string,
+    userId: string | null,
     text: string,
     time: string
-    likeCount: string,
+    countLikes: string,
     isLiked: boolean
-
-    commentName : string,
-    commentNickname: string,
-    commentAvatarUrl: string,
 }
 
 export interface PropsComment {
     commentId: string
-    userId: string,
+    userId: string | null,
     text: string,
     time: string
-    likeCount: string,
+    countLikes: string,
     isLiked: boolean
 
-    commentName : string,
-    commentNickname: string,
-    commentAvatarUrl: string,
-    setCommentName(commentName: string): void
-    setCommentNickname(commentNickname: string): void
-    setCommentAvatarUrl(commentAvatarUrl: string): void
+    deleteOneComment(commentId: string): void
+    setOneComment(oneComment: Comment, commentId: string): void
+
 }
 
 export interface PropsUserComment {
     setButtonCommentClick(flag: boolean): void
-    setUserComments(userComments: []): void
+    setUserComments(comments: []): void
     setInputPostComment(input_comment: string): void
     edit(): void
     deletePost(): void
     like_button(): void
     setComment(): void
 
-    setCommentName(commentName: string): void
-    setCommentNickname(commentNickname: string): void
-    setCommentAvatarUrl(commentAvatarUrl: string): void
-
+    deleteOneComment(commentId: string): void
+    setOneComment(oneComment: Comment, commentId: string): void
 
 
     postId: string,
@@ -49,17 +42,13 @@ export interface PropsUserComment {
     likeCount: string
     commentCount: string,
     isLiked: boolean
-    userComments: [],
+    comments: [],
     name: string,
     nickname: string
     avatarUrl: string
     message: string
     buttonEditPost: boolean
     input_comment: string
-
-    commentName : string,
-    commentNickname: string,
-    commentAvatarUrl: string,
 }
 
 export interface StateUserCommentClass {
@@ -74,30 +63,24 @@ export interface StateUserCommentClass {
     time: string,
     text: string,
     photoUrl: [],
-    likesCount: string
+    likeCount: string
     commentCount: string,
     isLiked: boolean
-    userComments: [],
+    comments: [],
     input_comment: string
-
-    commentName : string,
-    commentNickname: string,
-    commentAvatarUrl: string,
 }
 
 export interface PropsUserCommentClass {
     setButtonCommentClick(flag: boolean): void
-    setUserComments(userComments: []): void
+    setUserComments(comments: []): void
     setInputPostComment(input_comment: string): void
     edit(): void
     deletePost(): void
     like_button(): void
 
-
-
-    setCommentName(commentName: string): void
-    setCommentNickname(commentNickname: string): void
-    setCommentAvatarUrl(commentAvatarUrl: string): void
+    deleteOneComment(commentId: string): void
+    setOneComment(oneComment: Comment, commentId: string): void
+    addOneComment(oneComment: Comment): void
 
     postId: string,
     time: string,
@@ -106,28 +89,24 @@ export interface PropsUserCommentClass {
     likeCount: string
     commentCount: string,
     isLiked: boolean
-    userComments: [],
+    comments: [],
     name: string,
     nickname: string
     avatarUrl: string
     message: string
     buttonEditPost: boolean
     input_comment: string
-
-    commentName : string,
-    commentNickname: string,
-    commentAvatarUrl: string,
 }
 
 export interface PropsOneCommentComponent {
     text: string,
     time: string,
-    likeCount: string,
+    countLikes: string,
     isLiked: boolean
 
-    commentName : string,
-    commentNickname: string,
-    commentAvatarUrl: string,
+    avatarUrl: string,
+    name: string,
+    nickname: string
 
     likeComment(): void
     deleteComment(): void

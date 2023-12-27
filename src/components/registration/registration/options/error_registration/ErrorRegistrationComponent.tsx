@@ -1,11 +1,11 @@
 import React from "react";
-import success_css from './SuccessfulRegistration.module.css'
+import error_css from './ErrorRegistration.module.css'
 import {PropsSuccessError} from "../../../../../redux/interfaces/auth/authSuccessError";
 
-const SuccessfulRegistration = (props: PropsSuccessError) => {
+const ErrorRegistrationComponent = (props: PropsSuccessError) => {
     return (
-        <section className={success_css.root}>
-            <section className={success_css.main}>
+        <section className={error_css.root}>
+            <section className={error_css.main}>
                 <section>
                     {props.message}
                 </section>
@@ -14,4 +14,4 @@ const SuccessfulRegistration = (props: PropsSuccessError) => {
     )
 }
 
-export default SuccessfulRegistration
+export default ErrorRegistrationComponent

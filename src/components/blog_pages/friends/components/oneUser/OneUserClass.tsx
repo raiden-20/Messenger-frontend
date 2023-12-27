@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {PropsOneFriend, StateOneFriend} from "../../../../../redux/interfaces/friends/oneFriend";
 import OneUserComponent from "./OneUserComponent";
 
-class OneUser extends Component<PropsOneFriend, StateOneFriend>{
+class OneUserClass extends Component<PropsOneFriend, StateOneFriend>{
 
     changeFriendStatus = (action: string) => {
         this.props.changeFriendStatus(this.props.id, action)
@@ -19,4 +19,4 @@ class OneUser extends Component<PropsOneFriend, StateOneFriend>{
     }
 }
 
-export default OneUser
+export default OneUserClass

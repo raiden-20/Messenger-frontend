@@ -3,26 +3,26 @@ import {PropsOnePhotoClass, StateOnePhotoClass} from "../../../../../../redux/in
 import OnePhotoComponent from "./OnePhotoComponent";
 import axios from "axios";
 import config from "../../../../../paths/config";
+import {Comment} from "../../../../../../redux/interfaces/profile/post/comments";
 
 class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
 
     commentId = ''
-    text = 'bla bla'
-    time = '2023-10-14'
+    text = ''
+    time = ''
     isLiked = false
-    likeCount = '9'
-    commentCount = '2'
+    likesCount = ''
+    commentCount = ''
 
     componentDidMount() {
         axios.get(`http://localhost:8080/blog/post/${this.props.postId} `, config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        this.commentId = response.data.commentId
                         this.text = response.data.text
                         this.time = response.data.time
                         this.isLiked = response.data.isLiked
-                        this.likeCount = response.data.likeCount
+                        this.likesCount = response.data.likesCount
                         this.commentCount = response.data.commentCount
                     }
                 }
@@ -50,14 +50,24 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
     }
 
     setComment = () => {
-        axios.post('http://localhost:8080/blog/comment', {
+        axios.post('http://localhost:8080/blog/comment/create', {
             postId: this.props.postId,
             text: this.props.input_comment
         }, config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        //ok
+                        const now = new Date();
+                        const dateString = now.toLocaleDateString();
+                        let oneComment: Comment = {
+                            commentId: response.data,
+                            userId: localStorage.getItem('idUser'),
+                            text: this.props.input_comment,
+                            time: dateString.split('.').join('-'),
+                            countLikes: '0',
+                            isLiked: false
+                        }
+                        this.props.addOneComment(oneComment)
                     }
                 }
             }).catch(error => {
@@ -73,23 +83,29 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
         })
     }
     likePost = () => {
-        axios.put('http://localhost:8080/blog/comment/like', {
-            commentId: this.commentId
+        axios.put('http://localhost:8080/blog/post/like', {
+            postId: this.props.postId
         }, config)
             .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        //ok
-                    }
-                }
+                axios.get(`http://localhost:8080/blog/post/${this.props.postId}`, config)
+                    .then(response => {
+                        switch (response.status) {
+                            case 200: {
+                                this.props.setOnePost(response.data, this.props.postId)
+                            }
+                        }
+                    }).catch(error => {
+                    debugger
+                })
             }).catch(error => {
             switch (error.response.status) {
-                case 403 : {
-                    //bad token
+                case 403: {
+                    // bad token //todo сделать alarm 'ваша сессия истекла, войдите в систему заново' и выкинуть на вход
                     break
                 }
-                case 404 : {
+                case 404: {
                     // post doesn't exist
+                    break
                 }
             }
         })
@@ -97,7 +113,7 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
 
     render() {
         return <OnePhotoComponent postId={this.props.postId}
-                                  userComments={this.props.userComments}
+                                  comments={this.props.comments}
                                   input_comment={this.props.input_comment}
                                   name={this.props.name}
                                   nickname={this.props.nickname}
@@ -107,11 +123,14 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
                                   avatarUrl={this.props.avatarUrl}
                                   commentCount={this.commentCount}
                                   isLiked={this.isLiked}
-                                  likeCount={this.likeCount}
+                                  likeCount={this.likesCount}
                                   text={this.text}
                                   time={this.time}
                                   setComment={this.setComment}
-                                  likePost={this.likePost}/>
+                                  likePost={this.likePost}
+                                  addOneComment={this.props.addOneComment}
+                                  deleteOneComment={this.props.deleteOneComment}
+                                  setOneComment={this.props.setOneComment}/>
     }
 }
 

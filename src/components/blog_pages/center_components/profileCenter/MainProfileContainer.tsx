@@ -10,7 +10,7 @@ import {
     setName,
     setStatus
 } from "../../../../redux/reducers/profileReducer";
-import MainProfile from "./MainProfile";
+import MainProfileClass from "./MainProfileClass";
 
 const mapStateToProps = (state : StateUserProfile) => {
     return {
@@ -60,6 +60,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     }
 }
 
-const MainProfileContainer = connect(mapStateToProps, mapDispatchToProps)(MainProfile)
+const MainProfileContainer = connect(mapStateToProps, mapDispatchToProps)(MainProfileClass)
 
 export default MainProfileContainer

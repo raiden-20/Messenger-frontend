@@ -1,7 +1,7 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
 
-import ProfileOtherUserSettings from "../profile/profile_other_user/ProfileOtherUserSettings";
+import ProfileOtherUserSettingsComponent from "../profile/profile_other_user/ProfileOtherUserSettingsComponent";
 
 import main_css from "../profile/main_profile_css/MainProfile.module.css";
 import main_elements_css from "../profile/main_profile_css/MainProfileElements.module.css";
@@ -35,7 +35,7 @@ const MainProfileComponent = (props: PropsUserProfileComponent) => {
                             <div className={main_elements_css.name}>{props.name}</div>
                             <div className={main_elements_css.userName}>{'@' + props.nickname}</div>
                         </section>
-                        {location.pathname === PROFILE_USER ? <ProfileUserSettingsContainer/> : <ProfileOtherUserSettings/>}
+                        {location.pathname === PROFILE_USER ? <ProfileUserSettingsContainer/> : <ProfileOtherUserSettingsComponent/>}
                     </section>
                     <section>
                         <p>{props.bio}</p>

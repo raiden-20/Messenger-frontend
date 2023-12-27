@@ -101,19 +101,15 @@ const UserCommentsComponent = (props: PropsUserComment) => {
 
                         </section>
                         <section className={post_comm_css.comments_arr}>
-                            {props.userComments.reverse().map((comment: Comment) => (
+                            {props.comments.reverse().map((comment: Comment) => (
                                 <OneCommentClass userId={comment.userId}
                                                  text={comment.text}
                                                  time={comment.time}
-                                                 likeCount={comment.likeCount}
+                                                 countLikes={comment.countLikes}
                                                  isLiked={comment.isLiked}
                                                  commentId={comment.commentId}
-                                                 commentAvatarUrl={props.commentAvatarUrl}
-                                                 commentName={props.commentName}
-                                                 commentNickname={props.commentNickname}
-                                                 setCommentAvatarUrl={props.setCommentAvatarUrl}
-                                                 setCommentName={props.setCommentName}
-                                                 setCommentNickname={props.setCommentNickname}/>
+                                                 deleteOneComment={props.deleteOneComment}
+                                                 setOneComment={props.setOneComment}/>
                             ))}
                         </section>
                     </section>

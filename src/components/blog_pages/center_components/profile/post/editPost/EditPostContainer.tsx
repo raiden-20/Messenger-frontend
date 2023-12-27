@@ -6,7 +6,7 @@ import {
     setInputPostPhoto,
     setInputPostPhotoDelete,
     setInputPostPhotoUrl,
-    setInputPostText
+    setInputPostText, setPosts
 } from "../../../../../../redux/reducers/postReducer";
 import EditPostClass from "./EditPostClass";
 import {StateEditPost} from "../../../../../../redux/interfaces/profile/post/editPost";
@@ -43,6 +43,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setDeletePhotoPostUrl(deletePhotoPostUrl: {} | null) {
             dispatch(setDeletePhotoPostUrl(deletePhotoPostUrl))
+        },
+        setPosts(posts: []) {
+            dispatch(setPosts(posts))
         }
     }
 

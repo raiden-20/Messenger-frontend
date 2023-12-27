@@ -1,8 +1,18 @@
+import {Comment} from "../interfaces/profile/post/comments";
+import {Post} from "../interfaces/profile/post/post";
+
 const SET_POSTS = 'SET_POSTS'
-const SET_USER_COMMENTS = 'SET_USER_COMMENTS'
-const SET_COMMENT_NAME = 'SET_COMMENT_NAME'
-const SET_COMMENT_NICKNAME = 'SET_COMMENT_NICKNAME'
-const SET_COMMENT_AVATAR_URL = 'SET_COMMENT_AVATAR_URL'
+const SET_COMMENTS = 'SET_USER_COMMENTS'
+
+const SET_ONE_POST = 'SET_POSTS'
+const SET_ONE_COMMENT = 'SET_USER_COMMENTS'
+
+const ADD_ONE_POST = 'SET_POSTS'
+const ADD_ONE_COMMENT = 'SET_USER_COMMENTS'
+
+const DELETE_ONE_POST = 'DELETE_ONE_POST'
+const DELETE_ONE_COMMENT = 'DELETE_ONE_COMMENT'
+
 const SET_POST_INPUT_PHOTO = 'SET_POST_INPUT_PHOTO'
 const SET_POST_INPUT_PHOTO_DELETE = 'SET_POST_INPUT_PHOTO_DELETE'
 const SET_POST_INPUT_ALL_PHOTO_DELETE = 'SET_POST_INPUT_ALL_PHOTO_DELETE'
@@ -11,24 +21,10 @@ const SET_POST_INPUT_COMMENT = 'SET_POST_INPUT_COMMENT'
 const SET_POST_INPUT_TEXT = 'SET_POST_INPUT_TEXT'
 
 const SET_BUTTON_EDIT_POST = 'SET_BUTTON_EDIT_POST'
-const SET_DELETE_PHOTO_POST_URL = 'SET_DELETE_PHOTO_POST_URL'
 
 const initialState = {
     posts: [],
-
-    postId: '',
-    commentId: '',
-
-    isLikedPost: false,
-    likeCount: 0,
-    commentCount: 0,
-    isLikedComment: false,
-
-
-    userComments: [],
-    commentName : '',
-    commentNickname: '',
-    commentAvatarUrl: '',
+    comments: [],
 
     input_postPhoto: [],
     input_postPhotoUrl: [],
@@ -36,8 +32,6 @@ const initialState = {
     input_comment: '',
 
     buttonEditPost: false,
-
-    deletePhotoPostUrl: []
 }
 
 const postReducer = (state = initialState, action: any) => {
@@ -49,16 +43,58 @@ const postReducer = (state = initialState, action: any) => {
 
             return stateCopy
         }
+        case SET_COMMENTS : {
+            stateCopy.comments = action.comments
+
+            return stateCopy
+        }
+        case SET_ONE_POST : {
+            // @ts-ignore
+            stateCopy= {...state, posts: [...state.posts]}
+            // @ts-ignore
+            stateCopy.posts[action.postId] = action.onePost
+            return stateCopy
+        }
+        case SET_ONE_COMMENT : {
+            // @ts-ignore
+            stateCopy= {...state, comments: [...state.comments]}
+            // @ts-ignore
+            stateCopy.comments[action.commentId] = action.oneComment
+            return stateCopy
+        }
+        case ADD_ONE_POST : {
+            // @ts-ignore
+            stateCopy= {...state, posts: [...state.posts]}
+            // @ts-ignore
+            stateCopy.posts.push(action.onePost)
+            return stateCopy
+        }
+        case ADD_ONE_COMMENT : {
+            // @ts-ignore
+            stateCopy= {...state, comments: [...state.comments]}
+            // @ts-ignore
+            stateCopy.comments.push(action.oneComment)
+            return stateCopy
+        }
+        case DELETE_ONE_POST : {
+            // @ts-ignore
+            stateCopy= {...state, posts: [...state.posts]}
+            stateCopy.posts.splice(action.postId, 1)
+            return stateCopy
+        }
+        case DELETE_ONE_COMMENT: {
+            // @ts-ignore
+            stateCopy= {...state, comments: [...state.comments]}
+            stateCopy.comments.splice(action.commentId, 1)
+            return stateCopy
+        }
+
+
         case SET_POST_INPUT_PHOTO : {
             // @ts-ignore
             stateCopy = {...state, input_postPhoto: [...state.input_postPhoto]}
             // @ts-ignore
             stateCopy.input_postPhoto.push(action.input_postPhoto)
-
-            return stateCopy
-        }
-        case SET_USER_COMMENTS : {
-            stateCopy.userComments = action.userComments
 
             return stateCopy
         }
@@ -88,15 +124,6 @@ const postReducer = (state = initialState, action: any) => {
 
             return stateCopy
         }
-        case SET_DELETE_PHOTO_POST_URL: {
-            // @ts-ignore
-            stateCopy = {...state, deletePhotoPostUrl: [...state.deletePhotoPostUrl]}
-            action.deletePhotoPostUrl === null ? stateCopy.deletePhotoPostUrl = [] :
-                // @ts-ignore
-            stateCopy.deletePhotoPostUrl.push(action.deletePhotoPostUrl)
-
-            return stateCopy
-        }
         case SET_POST_INPUT_TEXT : {
             stateCopy.input_postText = action.input_postText
 
@@ -108,45 +135,66 @@ const postReducer = (state = initialState, action: any) => {
             return stateCopy
         }
 
+
+
         case SET_BUTTON_EDIT_POST : {
             stateCopy.buttonEditPost = action.buttonEditPost
 
             return stateCopy
         }
-        case SET_COMMENT_NAME : {
-            stateCopy.commentName = action.commentName
 
-            return stateCopy
-        }
-        case SET_COMMENT_NICKNAME : {
-            stateCopy.commentNickname = action.commentNickname
-
-            return stateCopy
-        }
-        case SET_COMMENT_AVATAR_URL : {
-            stateCopy.commentAvatarUrl = action.commentAvatarUrl
-
-            return stateCopy
-        }
         default : {
             return stateCopy
         }
     }
 }
 
-export const setInputPostPhoto = (input_postPhoto: File) => {
-    return {
-        type: SET_POST_INPUT_PHOTO, input_postPhoto
-    }
-}
 export const setPosts = (posts: []) => {
     return {
         type: SET_POSTS, posts
     }
 }
-export const setUserComments = (userComments: []) => {
+export const setComments = (comments: []) => {
     return {
-        type: SET_USER_COMMENTS, userComments
+        type: SET_COMMENTS, comments
+    }
+}
+
+export const setOnePost = (onePost: Post, postId: string) => {
+    return {
+        type: SET_ONE_POST, onePost, postId
+    }
+}
+export const setOneComment = (oneComment: Comment, commentId: string) => {
+    return {
+        type: SET_ONE_COMMENT, oneComment, commentId
+    }
+}
+export const addOnePost = (onePost: Post) => {
+    return {
+        type: ADD_ONE_POST, onePost
+    }
+}
+export const addOneComment = (oneComment: Comment) => {
+    return {
+        type: ADD_ONE_COMMENT, oneComment
+    }
+}
+export const deleteOnePost = (postId: string) => {
+    return {
+        type: DELETE_ONE_POST, postId
+    }
+}
+export const deleteOneComment = (commentId: string) => {
+    return {
+        type: DELETE_ONE_COMMENT, commentId
+    }
+}
+
+
+export const setInputPostPhoto = (input_postPhoto: File) => {
+    return {
+        type: SET_POST_INPUT_PHOTO, input_postPhoto
     }
 }
 export const setInputPostPhotoDelete = (index: number) => {
@@ -175,29 +223,10 @@ export const setInputPostComment = (input_comment: string) => {
     }
 }
 
+
 export const setButtonEditPostClick = (buttonEditPost: boolean) => {
     return {
         type: SET_BUTTON_EDIT_POST, buttonEditPost
-    }
-}
-export const setCommentName = (commentName: string) => {
-    return {
-        type: SET_COMMENT_NAME, commentName
-    }
-}
-export const setCommentNickname = (commentNickname: string) => {
-    return {
-        type: SET_COMMENT_NICKNAME, commentNickname
-    }
-}
-export const setCommentAvatarUrl = (commentAvatarUrl: string) => {
-    return {
-        type: SET_COMMENT_AVATAR_URL, commentAvatarUrl
-    }
-}
-export const setDeletePhotoPostUrl = (deletePhotoPostUrl: {} | null) => {
-    return {
-        type: SET_DELETE_PHOTO_POST_URL, deletePhotoPostUrl
     }
 }
 

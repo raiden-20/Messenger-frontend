@@ -5,25 +5,29 @@ import axios from "axios";
 import config from "../../../../../paths/config";
 
 class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
-    config = {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-    };
 
-
-    comment = () => {
+    componentDidMount() {
         axios.post(`http://localhost:8080/blog/comment/${this.props.post.postId}`, config)
             .then(response => {
-
+                this.props.setUserComments(response.data)
             })
     }
+
     like = () => {
         axios.put('http://localhost:8080/blog/post/like', {
             postId: this.props.post.postId
-        }, this.config)
+        }, config)
             .then(response => {
-                this.props.setCommentNickname('')
+                axios.get(`http://localhost:8080/blog/post/${this.props.post.postId}`, config)
+                    .then(response => {
+                        switch (response.status) {
+                            case 200: {
+                                this.props.setOnePost(response.data, this.props.post.postId)
+                            }
+                        }
+                    }).catch(error => {
+                    debugger
+                })
             }).catch(error => {
                 switch (error.response.status) {
                     case 403: {
@@ -55,7 +59,7 @@ class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
             .then(response => {
                 switch (response.status) {
                     case 200: {
-                        this.props.setCommentNickname('')
+                        this.props.deleteOnePost(this.props.post.postId)
                     }
                 }
             }).catch(error => {
@@ -85,9 +89,8 @@ class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
                                  commentCount={this.props.post.commentCount}
                                  isLiked={this.props.post.isLiked}
                                  postId={this.props.post.postId}
-                                 comment={this.comment}
                                  like={this.like}
-                                 userComments={this.props.userComments}
+                                 comments={this.props.comments}
                                  setUserComments={this.props.setUserComments}
                                  deletePost={this.deletePost}
                                  editPost={this.editPost}
@@ -95,12 +98,9 @@ class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
                                  buttonEditPost={this.props.buttonEditPost}
                                  input_comment={this.props.input_comment}
                                  setInputPostComment={this.props.setInputPostComment}
-                                 commentAvatarUrl={this.props.commentAvatarUrl}
-                                 commentName={this.props.commentName}
-                                 commentNickname={this.props.commentNickname}
-                                 setCommentAvatarUrl={this.props.setCommentAvatarUrl}
-                                 setCommentName={this.props.setCommentName}
-                                 setCommentNickname={this.props.setCommentNickname}/>
+                                 deleteOneComment={this.props.deleteOneComment}
+                                 setOneComment={this.props.setOneComment}
+                                 addOneComment={this.props.addOneComment}/>
     }
 }
 

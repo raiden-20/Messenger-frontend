@@ -13,12 +13,12 @@ const OneCommentComponent = (props: PropsOneCommentComponent) => {
 
     return (
         <div className={one_comment_css.comment}>
-            <img src={props.commentAvatarUrl === '' ? default_ava : props.commentAvatarUrl} alt={'user avatar'}/>
+            <img src={props.avatarUrl === '' ? default_ava : props.avatarUrl} alt={'user avatar'}/>
             <section className={one_comment_css.bodyComment}>
                 <section className={one_comment_css.headerComment}>
                     <section className={one_comment_css.name_nick}>
-                        <div><strong>{props.commentName}</strong></div>
-                        <div className={one_comment_css.nickname}>@{props.commentNickname}</div>
+                        <div><strong>{props.name}</strong></div>
+                        <div className={one_comment_css.nickname}>@{props.nickname}</div>
                     </section>
                     <section>
                         <button className={post_css.button + ' ' + post_css.setting_post}
@@ -46,7 +46,7 @@ const OneCommentComponent = (props: PropsOneCommentComponent) => {
                                     :
                                     <img src={like_notLiked} className={post_css.icon} alt={'like is not liked'}/>
                                 }
-                                {props.likeCount}
+                                {props.countLikes}
                             </button>
                         </section>
                     </section>

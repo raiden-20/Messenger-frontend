@@ -4,7 +4,7 @@ import MainProfileComponent from "./MainProfileComponent";
 import axios from "axios";
 import config from "../../../paths/config";
 
-class MainProfile extends Component<PropsUserProfile, StateUserProfile> {
+class MainProfileClass extends Component<PropsUserProfile, StateUserProfile> {
 
     componentDidMount() {
 
@@ -72,4 +72,4 @@ class MainProfile extends Component<PropsUserProfile, StateUserProfile> {
     }
 }
 
-export default MainProfile
+export default MainProfileClass

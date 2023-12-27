@@ -6,7 +6,7 @@ import create from "../../../../../../assets/images/other/create_post.svg";
 import {PropsCreatePostButton} from "../../../../../../redux/interfaces/post/CreatePost";
 import ProfileNewPostClass from "../profile_new_post/ProfileNewPostClass";
 
-const ProfileButtonCreatingPost = (props: PropsCreatePostButton) => {
+const ProfileButtonCreatingPostComponent = (props: PropsCreatePostButton) => {
 
     const [isButtonCreatPostPressed, setButtonCreatPostPressed] = useState(false)
 
@@ -26,10 +26,11 @@ const ProfileButtonCreatingPost = (props: PropsCreatePostButton) => {
                                                         input_postPhotoUrl={props.input_postPhotoUrl}
                                                         setInputPostPhotoUrl={props.setInputPostPhotoUrl}
                                                         setInputPostPhotoDelete={props.setInputPostPhotoDelete}
-                                                        setInputPostAllPhotoDelete={props.setInputPostAllPhotoDelete}/> : null}
+                                                        setInputPostAllPhotoDelete={props.setInputPostAllPhotoDelete}
+                                                        setPosts={props.setPosts}/> : null}
         </div>
 
     )
 }
 
-export default ProfileButtonCreatingPost
+export default ProfileButtonCreatingPostComponent

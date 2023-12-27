@@ -27,7 +27,7 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        this.props.setCommentName('')
+                        this.props.addOneComment(response.data)
                     }
                 }
             }).catch(error => {
@@ -45,7 +45,7 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
     }
  
     render() {
-        return<UserCommentsComponent userComments={this.props.userComments}
+        return<UserCommentsComponent comments={this.props.comments}
                                      setButtonCommentClick={this.props.setButtonCommentClick}
                                      setUserComments={this.props.setUserComments}
                                      commentCount={this.props.commentCount}
@@ -66,12 +66,8 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
                                      input_comment={this.props.input_comment}
                                      setInputPostComment={this.props.setInputPostComment}
                                      setComment={this.sentComment}
-                                     commentAvatarUrl={this.props.commentAvatarUrl}
-                                     commentName={this.props.commentName}
-                                     commentNickname={this.props.commentNickname}
-                                     setCommentAvatarUrl={this.props.setCommentAvatarUrl}
-                                     setCommentName={this.props.setCommentName}
-                                     setCommentNickname={this.props.setCommentNickname}/>
+                                     deleteOneComment={this.props.deleteOneComment}
+                                     setOneComment={this.props.setOneComment}/>
     }
 }
 

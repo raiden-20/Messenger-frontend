@@ -16,7 +16,7 @@ import {PROFILE_USER} from "../../paths/profilePath";
 import {FRIENDS_USER} from "../../paths/usersPath";
 import {SETTINGS} from "../../paths/navigationPath";
 
-const Navigation = (props: PropsNavigation) => {
+const NavigationComponent = (props: PropsNavigation) => {
     const navigation = useNavigate()
 
     const changeButtonNavStatus = () => {
@@ -78,4 +78,4 @@ const Navigation = (props: PropsNavigation) => {
         )
 }
 
-export default Navigation
+export default NavigationComponent

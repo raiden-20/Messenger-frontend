@@ -25,14 +25,17 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
                 <img src={cat} alt={'user_photo'} className={onePhoto_css.photo}/>
                 <section className={onePhoto_css.body}>
                     <OneUserDataClass commentId={''}
+                                      userId={localStorage.getItem('idUser')}
                                       avatarUrl={props.avatarUrl}
                                       name={props.name}
                                       nickname={props.nickname}
-                                      isLike={props.isLiked}
-                                      likeCount={props.likeCount}
+                                      isLiked={props.isLiked}
+                                      countLikes={props.likeCount}
                                       time={props.time}
                                       text={props.text}
-                                      commentsCount={props.commentCount}/>
+                                      commentsCount={props.commentCount}
+                                      deleteOneComment={props.deleteOneComment}
+                                      setOneComment={props.setOneComment}/>
                     <section className={post_comm_css.section_writeComment}>
                             <textarea placeholder={'Написать комментарий'} value={props.input_comment}
                                       onChange={setInputComment}></textarea>
@@ -41,16 +44,19 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
                         </button>
                     </section>
                     <section className={onePhoto_css.comments}>
-                        {props.userComments.map((oneComment: Comment) => (
+                        {props.comments.map((oneComment: Comment) => (
                             <OneUserDataClass commentId={oneComment.commentId}
                                               avatarUrl={props.avatarUrl}
                                               name={props.name}
                                               nickname={props.nickname}
-                                              isLike={oneComment.isLiked}
-                                              likeCount={oneComment.likeCount}
+                                              isLiked={oneComment.isLiked}
+                                              countLikes={oneComment.countLikes}
                                               time={oneComment.time}
                                               text={oneComment.text}
-                                              commentsCount={''}/>
+                                              commentsCount={''}
+                                              deleteOneComment={props.deleteOneComment}
+                                              setOneComment={props.setOneComment}
+                                              userId={oneComment.userId}/>
                         ))}
                     </section>
                 </section>

@@ -1,7 +1,9 @@
+import {Comment} from "../post/comments";
+import {Post} from "../post/post";
+
 export interface StatePostInPhoto {
     post: {
-        postId: string,
-        userComments: [],
+        comments: [],
         input_comment: string
     }
     profile: {
@@ -13,12 +15,13 @@ export interface StatePostInPhoto {
     }
     photo: {
         onePhotoUrl: string
+        postId: string,
     }
 }
 
 export interface StateOnePhotoClass {
     postId: string,
-    userComments: [],
+    comments: [],
     input_comment: string
     name: string,
     nickname: string,
@@ -27,7 +30,7 @@ export interface StateOnePhotoClass {
 }
 export interface PropsOnePhotoClass {
     postId: string,
-    userComments: [],
+    comments: [],
     input_comment: string
     name: string,
     nickname: string,
@@ -36,12 +39,17 @@ export interface PropsOnePhotoClass {
 
     setInputPostComment(input_comment : string): void
     setButtonOpenPhoto(isButtonOpenPhotoPressed : boolean): void
-    setUserComments(userComments: []): void
+    setUserComments(comments: []): void
+
+    addOneComment(oneComment: Comment): void
+    deleteOneComment(commentId: string): void
+    setOnePost(onePost: Post, postId: string):void
+    setOneComment(oneComment: Comment, commentId: string):void
 }
 
 export interface PropsOnePostComponent {
     postId: string,
-    userComments: [],
+    comments: [],
     input_comment: string
     name: string,
     nickname: string,
@@ -59,6 +67,10 @@ export interface PropsOnePostComponent {
     setComment(): void
 
     likePost(): void
+
+    addOneComment(oneComment: Comment): void
+    deleteOneComment(commentId: string): void
+    setOneComment(oneComment: Comment, commentId: string):void
 }
 
 export interface PropsOneUserComponent {
@@ -77,10 +89,11 @@ export interface PropsOneUserComponent {
 
 export interface StateOneUserDataClass {
     commentId: string
+    userId: string | null
     avatarUrl: string
     name: string
     nickname: string
-    isLike: boolean
+    isLiked: boolean
     likeCount: string
     commentsCount: string
     time: string
@@ -88,13 +101,17 @@ export interface StateOneUserDataClass {
 }
 export interface PropsOneUserDataClass {
     commentId: string
+    userId: string | null
     avatarUrl: string
     name: string
     nickname: string
-    isLike: boolean
-    likeCount: string
+    isLiked: boolean
+    countLikes: string
     commentsCount: string
     time: string
     text: string
+
+    deleteOneComment(commentId: string): void
+    setOneComment(oneComment: Comment, commentId: string):void
 }
 

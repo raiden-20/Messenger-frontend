@@ -30,7 +30,7 @@ class PostClass extends Component<PropsPost, StatePostsClass> {
                               message={this.props.message}
                               setMessage={this.props.setMessage}
                               posts={this.props.posts}
-                              userComments={this.props.userComments}
+                              comments={this.props.comments}
                               setUserComments={this.props.setUserComments}
                               setInputPostPhoto={this.props.setInputPostPhoto}
                               setInputPostPhotoUrl={this.props.setInputPostPhotoUrl}
@@ -42,9 +42,11 @@ class PostClass extends Component<PropsPost, StatePostsClass> {
                               commentAvatarUrl={this.props.commentAvatarUrl}
                               commentName={this.props.commentName}
                               commentNickname={this.props.commentNickname}
-                              setCommentAvatarUrl={this.props.setCommentAvatarUrl}
-                              setCommentName={this.props.setCommentName}
-                              setCommentNickname={this.props.setCommentNickname}/>
+                              deleteOneComment={this.props.deleteOneComment}
+                              deleteOnePost={this.props.deleteOnePost}
+                              setOneComment={this.props.setOneComment}
+                              setOnePost={this.props.setOnePost}
+                              addOneComment={this.props.addOneComment}/>
     }
 }
 

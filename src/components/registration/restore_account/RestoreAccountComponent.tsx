@@ -4,7 +4,7 @@ import option_css from '../css_options/Options.module.css'
 import {NavLink, useNavigate} from "react-router-dom";
 import {PropsAuthRestore} from "../../../redux/interfaces/auth/authRestoreAccount";
 import {SUCCESSFUL_ACTIVATION} from "../../paths/authPath";
-const RestoreAccount = (props: PropsAuthRestore) => {
+const RestoreAccountComponent = (props: PropsAuthRestore) => {
     const navigate = useNavigate()
 
     return (
@@ -13,19 +13,6 @@ const RestoreAccount = (props: PropsAuthRestore) => {
                  <strong>Восстановить аккаунт?</strong>
              </header>
              <main>
-                 {/*<section className={restore_css.ava_fio}>*/}
-                 {/*    <section className={restore_css.ava}>*/}
-
-                 {/*    </section>*/}
-                 {/*    <section>*/}
-                 {/*        <section>*/}
-                 {/*            <strong>Имя Фамилия</strong>*/}
-                 {/*            <section>*/}
-                 {/*                @name*/}
-                 {/*         </section>*/}
-                 {/*        </section>*/}
-                 {/*    </section>*/}
-                 {/*</section>*/}
                  <section>
                      Восстановить аккаунт бла бла бла письмо на почту с подтверждением
                  </section>
@@ -43,4 +30,4 @@ const RestoreAccount = (props: PropsAuthRestore) => {
     )
 }
 
-export default RestoreAccount
+export default RestoreAccountComponent

@@ -2,8 +2,8 @@ import React from "react";
 import reg_curr from './Registration.module.css'
 import options_reg from '../css_options/Options.module.css'
 import {PropsAuthRegComponent} from "../../../redux/interfaces/auth/authRegistration";
-import SuccessfulRegistration from "./options/successful_registration/SuccessfulRegistration";
-import ErrorRegistration from "./options/error_registration/ErrorRegistration";
+import SuccessfulRegistrationComponent from "./options/successful_registration/SuccessfulRegistrationComponent";
+import ErrorRegistrationComponent from "./options/error_registration/ErrorRegistrationComponent";
 const RegistrationComponent = (props: PropsAuthRegComponent) => {
 
     const setInputEmail = (event : React.ChangeEvent<HTMLInputElement>) => {
@@ -54,8 +54,8 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
             </section>
             <section>
                 {props.buttonShowMessage ? props.code !== 0 ? props.code === 200 || props.code === 201 ?
-                <SuccessfulRegistration message={props.message}/> :
-                <ErrorRegistration message={props.message}/> : null : null}
+                <SuccessfulRegistrationComponent message={props.message}/> :
+                <ErrorRegistrationComponent message={props.message}/> : null : null}
             </section>
         </section>
     )

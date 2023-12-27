@@ -5,6 +5,10 @@ import axios from "axios";
 import config from "../../../../../../paths/config";
 
 class OneCommentClass extends Component<PropsComment, Comment> {
+    name = ''
+    nickname = ''
+    avatarUrl = ''
+
 
     likeComment = () => {
         axios.put('http://localhost:8080/blog/comment/like',  {
@@ -13,7 +17,16 @@ class OneCommentClass extends Component<PropsComment, Comment> {
             .then(response => {
                 switch (response.status) {
                     case 200:
-                        this.props.setCommentName(this.props.commentName)
+                        let commentData: Comment = {
+                            commentId: this.props.commentId,
+                            userId: this.props.userId,
+                            text: this.props.text,
+                            time: this.props.time,
+                            countLikes: this.props.countLikes,
+                            isLiked: this.props.isLiked
+                        }
+                        commentData.isLiked = !this.props.isLiked;
+                        this.props.setOneComment(commentData, this.props.commentId)
                 }
         }).catch(error => {
             switch (error.response.status) {
@@ -33,7 +46,7 @@ class OneCommentClass extends Component<PropsComment, Comment> {
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        this.props.setCommentName('')
+                        this.props.deleteOneComment(this.props.commentId)
                     }
                 }
             }).catch(error => {
@@ -54,7 +67,7 @@ class OneCommentClass extends Component<PropsComment, Comment> {
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        this.props.setCommentNickname(response.data.nickname)
+                        this.nickname = response.data.nickname
                     }
                 }
         })
@@ -62,8 +75,8 @@ class OneCommentClass extends Component<PropsComment, Comment> {
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        this.props.setCommentName(response.data.name)
-                        this.props.setCommentAvatarUrl(response.data.avatarUrl)
+                        this.name = response.data.name
+                        this.avatarUrl = response.data.avatarUrl
                     }
                 }
             })
@@ -73,13 +86,13 @@ class OneCommentClass extends Component<PropsComment, Comment> {
     render() {
         return <OneCommentComponent text={this.props.text}
                                     time={this.props.time}
-                                    likeCount={this.props.likeCount}
+                                    countLikes={this.props.countLikes}
                                     isLiked={this.props.isLiked}
                                     likeComment={this.likeComment}
                                     deleteComment={this.deleteComment}
-                                    commentAvatarUrl={this.props.commentAvatarUrl}
-                                    commentName={this.props.commentName}
-                                    commentNickname={this.props.commentNickname}/>
+                                    avatarUrl={this.avatarUrl}
+                                    name={this.name}
+                                    nickname={this.nickname}/>
     }
 }
 

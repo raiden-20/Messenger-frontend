@@ -66,6 +66,22 @@ export interface PropsAuthReg{
     setId(id: string): void
 }
 
+export interface StateAuthRegReg {
+    input_email: string;
+    input_nickname: string;
+    input_name: string;
+    input_password: string;
+    input_passwordShow: string;
+    input_confirmPassword : string;
+    input_confirmPasswordShow : string
+
+    input_birthDate : string
+    input_emailOrNickname: string
+
+    buttonShowMessage: boolean
+    message: string;
+    code: number;
+}
 export interface PropsAuthRegReg{
     input_email: string;
     input_nickname: string;

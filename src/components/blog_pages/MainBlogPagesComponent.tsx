@@ -13,7 +13,7 @@ import MainUsersContainer from "./friends/MainUsersContainer";
 import {PROFILE_USER_PHOTO} from "../paths/photoPath";
 import PhotoProfileContainer from "./center_components/profile/photo_section/PhotoProfileContainer";
 
-const MainBlogPages = () => {
+const MainBlogPagesComponent = () => {
 
     const location = useLocation()
     return (
@@ -34,4 +34,4 @@ const MainBlogPages = () => {
     )
 }
 
-export default MainBlogPages
+export default MainBlogPagesComponent

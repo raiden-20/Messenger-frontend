@@ -5,7 +5,7 @@ import prof from '../css_options/Page.module.css'
 import {
     PropsAuthAuthComponent
 } from "../../../redux/interfaces/auth/authAuthorize";
-import ErrorRegistration from "../registration/options/error_registration/ErrorRegistration";
+import ErrorRegistrationComponent from "../registration/options/error_registration/ErrorRegistrationComponent";
 const RegistrationOrAuthorisationComponent = (props: PropsAuthAuthComponent) => {
 
     const setInputEmailOrNickname = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +48,7 @@ const RegistrationOrAuthorisationComponent = (props: PropsAuthAuthComponent) => 
                 </section>
             </section>
             <section className={prof.message}>
-                {props.code !== 200 && props.buttonShowMessage ? <ErrorRegistration message={props.message}/> : null}
+                {props.code !== 200 && props.buttonShowMessage ? <ErrorRegistrationComponent message={props.message}/> : null}
             </section>
         </div>
 

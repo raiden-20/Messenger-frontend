@@ -7,9 +7,9 @@ import {PROFILE_OTHER_USER} from "../../../../paths/profilePath";
 import default_ava from '../../../../../assets/images/default_profile_ava.svg'
 import check_mark from '../../../../../assets/images/friends/check_mark.svg'
 import delete_mark from '../../../../../assets/images/friends/delete_mark.svg'
-import FriendsImages from "./imagesForWhoOpened/FriendsImages";
-import SubscriptionsImages from "./imagesForWhoOpened/SubscriptionsImages";
-import SearchImages from "./imagesForWhoOpened/SearchImages";
+import FriendsImagesComponent from "./imagesForWhoOpened/FriendsImagesComponent";
+import SubscriptionsImagesComponent from "./imagesForWhoOpened/SubscriptionsImagesComponent";
+import SearchImagesComponent from "./imagesForWhoOpened/SearchImagesComponent";
 
 const OneUserComponent = (props: PropsOneFriendComponent) => {
     const navigation = useNavigate()
@@ -87,9 +87,9 @@ const OneUserComponent = (props: PropsOneFriendComponent) => {
                                 <img src={chatting} alt={'chat'}/>
                             </button>
                             <button onClick={setAction}>
-                                {props.whoOpened === 'friends' ? <FriendsImages/> :
-                                    props.whoOpened === 'subscriptions' ? <SubscriptionsImages/> :
-                                        props.whoOpened === 'search' ? <SearchImages/> : null}
+                                {props.whoOpened === 'friends' ? <FriendsImagesComponent/> :
+                                    props.whoOpened === 'subscriptions' ? <SubscriptionsImagesComponent/> :
+                                        props.whoOpened === 'search' ? <SearchImagesComponent/> : null}
                             </button>
                         </section>
                 : null

@@ -2,7 +2,7 @@ import {setButtonSettingPressed} from "../../../../../redux/reducers/profileRedu
 import {StateButtonPressed} from "../../../../../redux/interfaces/profile/settings/profileSettings";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import ProfileUserSettings from "./ProfileUserSettings";
+import ProfileUserSettingsComponent from "./ProfileUserSettingsComponent";
 
 const mapStateToProps = (state: StateButtonPressed) => {
     return {
@@ -20,6 +20,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 
 }
 
-const ProfileUserSettingsContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileUserSettings)
+const ProfileUserSettingsContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileUserSettingsComponent)
 
 export default ProfileUserSettingsContainer

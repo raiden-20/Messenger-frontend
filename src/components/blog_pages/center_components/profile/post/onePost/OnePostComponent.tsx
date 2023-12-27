@@ -84,7 +84,7 @@ const OnePostComponent = (props: OnePost & Post) => {
                         <button className={post_css.button} onClick={() => setButtonCommentClick(true)}>
                             <img src={comment} className={post_css.icon} alt={'comment icon'}/>
                         </button>
-                        {buttonCommentClick ? <UserCommentsClass userComments={props.userComments}
+                        {buttonCommentClick ? <UserCommentsClass comments={props.comments}
                                                                  setButtonCommentClick={setButtonCommentClick}
                                                                  setUserComments={props.setUserComments}
                                                                  commentCount={props.commentCount}
@@ -104,12 +104,9 @@ const OnePostComponent = (props: OnePost & Post) => {
                                                                  like_button={like_button}
                                                                  input_comment={props.input_comment}
                                                                  setInputPostComment={props.setInputPostComment}
-                                                                 commentAvatarUrl={props.commentAvatarUrl}
-                                                                 commentName={props.commentName}
-                                                                 commentNickname={props.commentNickname}
-                                                                 setCommentAvatarUrl={props.setCommentAvatarUrl}
-                                                                 setCommentName={props.setCommentName}
-                                                                 setCommentNickname={props.setCommentNickname}/> : null}
+                                                                 deleteOneComment={props.deleteOneComment}
+                                                                 setOneComment={props.setOneComment}
+                                                                 addOneComment={props.addOneComment}/> : null}
                         {props.commentCount}
                     </section>
                 </section>

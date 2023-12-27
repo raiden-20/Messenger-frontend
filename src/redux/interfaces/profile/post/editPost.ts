@@ -24,6 +24,7 @@ export interface PropsEditPost {
     setInputPostPhotoDelete(index: number): void
     setInputPostAllPhotoDelete(): void
     setDeletePhotoPostUrl(deletePhotoPostUrl: {} | null): void
+    setPosts(posts: []): void
 }
 
 export interface deleteData {

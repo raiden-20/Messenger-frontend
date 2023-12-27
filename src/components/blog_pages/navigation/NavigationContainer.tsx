@@ -2,7 +2,7 @@ import {PropsNavigation, StateNavigation} from "../../../redux/interfaces/naviga
 import {Dispatch} from "redux";
 import {setButtonMoreSection} from "../../../redux/reducers/navigationReducer";
 import {connect} from "react-redux";
-import Navigation from "./Navigation";
+import NavigationComponent from "./NavigationComponent";
 import {setData, setToken} from "../../../redux/reducers/authReducer";
 
 const mapStateToProps = (state : PropsNavigation & StateNavigation) => {
@@ -27,6 +27,6 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
     }
 }
 
-const NavigationContainer = connect(mapStateToProps, mapDispatchToProps)(Navigation)
+const NavigationContainer = connect(mapStateToProps, mapDispatchToProps)(NavigationComponent)
 
 export default NavigationContainer

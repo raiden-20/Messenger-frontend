@@ -1,6 +1,6 @@
 import img_visible_css from './ImagesVisible.module.css'
 import delete_img from "../../../../../../assets/images/friends/delete.svg";
-const SubscriptionsImages = () => {
+const SubscriptionsImagesComponent = () => {
     return (
         <div className={img_visible_css.div}>
             <img src={delete_img} alt={'img'}/>
@@ -8,4 +8,4 @@ const SubscriptionsImages = () => {
     )
 }
 
-export default SubscriptionsImages
+export default SubscriptionsImagesComponent

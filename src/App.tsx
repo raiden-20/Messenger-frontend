@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 import MainRegistrationContainer from "./components/registration/MainRegistrationContainer";
-import MainBlogPages from "./components/blog_pages/MainBlogPages";
+import MainBlogPagesComponent from "./components/blog_pages/MainBlogPagesComponent";
 
 import app from './App.module.css';
 import {
@@ -28,15 +28,15 @@ const App = () => {
                         <Route path={REGISTRATION_RESTORE_ACCOUNT} element={<MainRegistrationContainer/>}/>
                         <Route path={SUCCESSFUL_ACTIVATION} element={<MainRegistrationContainer/>}/>
                         <Route path={SUCCESSFUL_CHANGE_EMAIL} element={<MainRegistrationContainer/>}/>
-                        <Route path='/dialogs' element={<MainBlogPages/>}/>
-                        <Route path={PROFILE_USER} element={<MainBlogPages/>}/>
-                        <Route path={PROFILE_USER_PHOTO} element={<MainBlogPages/>}/>
-                        <Route path={PROFILE_OTHER_USER} element={<MainBlogPages/>}/>
-                        <Route path={FRIENDS_USER} element={<MainBlogPages/>}/>
-                        <Route path={SUBSCRIBERS_USER} element={<MainBlogPages/>}/>
-                        <Route path={SUBSCRIPTIONS_USER} element={<MainBlogPages/>}/>
-                        <Route path={SEARCH} element={<MainBlogPages/>}/>
-                        <Route path={SETTINGS} element={<MainBlogPages/>}/>
+                        <Route path='/dialogs' element={<MainBlogPagesComponent/>}/>
+                        <Route path={PROFILE_USER} element={<MainBlogPagesComponent/>}/>
+                        <Route path={PROFILE_USER_PHOTO} element={<MainBlogPagesComponent/>}/>
+                        <Route path={PROFILE_OTHER_USER} element={<MainBlogPagesComponent/>}/>
+                        <Route path={FRIENDS_USER} element={<MainBlogPagesComponent/>}/>
+                        <Route path={SUBSCRIBERS_USER} element={<MainBlogPagesComponent/>}/>
+                        <Route path={SUBSCRIPTIONS_USER} element={<MainBlogPagesComponent/>}/>
+                        <Route path={SEARCH} element={<MainBlogPagesComponent/>}/>
+                        <Route path={SETTINGS} element={<MainBlogPagesComponent/>}/>
                     </Routes>
                 </Router>
             </section>

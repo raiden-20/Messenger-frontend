@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import ProfileSetting from "./ProfileSetting";
+import ProfileSettingClass from "./ProfileSettingClass";
 import {StateProfileSettings} from "../../../../../../redux/interfaces/profile/settings/profileSettings";
 import {Dispatch} from "redux";
 import {
@@ -92,7 +92,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         }
     }
 }
-const ProfileSettingContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileSetting)
+const ProfileSettingContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileSettingClass)
 
 export default ProfileSettingContainer
 

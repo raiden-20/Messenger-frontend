@@ -1,3 +1,5 @@
+import {Comment} from "./comments";
+
 export interface StatePost {
     auth : {
         nickname: string
@@ -10,13 +12,9 @@ export interface StatePost {
 
     post: {
         posts: [],
-        userComments: [],
+        comments: [],
         buttonEditPost: boolean
         input_comment: string
-
-        commentName : string,
-        commentNickname: string,
-        commentAvatarUrl: string,
     }
 }
 
@@ -26,7 +24,7 @@ export interface PropsPost {
     avatarUrl: string
     message: string
     posts: []
-    userComments: [],
+    comments: [],
     input_comment: string
     buttonEditPost: boolean
 
@@ -36,7 +34,7 @@ export interface PropsPost {
 
     setMessage(message: string): void
     setPosts(posts : []): void
-    setUserComments(userComments : []): void
+    setUserComments(comments : []): void
 
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostText(input_postText: string): void
@@ -45,9 +43,11 @@ export interface PropsPost {
 
     setButtonEditPostClick(flag: boolean): void
 
-    setCommentName(commentName: string): void
-    setCommentNickname(commentNickname: string): void
-    setCommentAvatarUrl(commentAvatarUrl: string): void
+    deleteOnePost (postId: string): void
+    deleteOneComment(commentId: string): void
+    setOnePost(onePost: Post, postId: string): void
+    setOneComment(oneComment: Comment, commentId: string): void
+    addOneComment(oneComment: Comment): void
 }
 
 export interface StatePostsClass {
@@ -55,7 +55,7 @@ export interface StatePostsClass {
     nickname: string
     avatarUrl: string
     posts: []
-    userComments: [],
+    comments: [],
     message: string
     input_comment: string
     buttonEditPost: boolean
@@ -70,7 +70,7 @@ export interface PropsPostComponent {
     nickname: string
     avatarUrl: string
     posts: []
-    userComments: [],
+    comments: [],
     message: string
     input_comment: string
     buttonEditPost: boolean
@@ -80,7 +80,7 @@ export interface PropsPostComponent {
     commentAvatarUrl: string,
 
     setMessage(message: string): void
-    setUserComments(userComments: []): void
+    setUserComments(comments: []): void
 
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostText(input_postText: string): void
@@ -89,9 +89,11 @@ export interface PropsPostComponent {
 
     setButtonEditPostClick(flag: boolean): void
 
-    setCommentName(commentName: string): void
-    setCommentNickname(commentNickname: string): void
-    setCommentAvatarUrl(commentAvatarUrl: string): void
+    deleteOnePost (postId: string): void
+    deleteOneComment(commentId: string): void
+    setOnePost(onePost: Post, postId: string): void
+    setOneComment(oneComment: Comment, commentId: string): void
+    addOneComment(oneComment: Comment): void
 }
 
 export interface StateOnePostClass {
@@ -100,7 +102,7 @@ export interface StateOnePostClass {
     avatarUrl: string
     message: string
     post: Post
-    userComments: [],
+    comments: [],
     input_comment: string
     buttonEditPost: boolean
 
@@ -114,7 +116,7 @@ export interface PropsOnePostClass {
     avatarUrl: string
     message: string
     post: Post
-    userComments: [],
+    comments: [],
     input_comment: string
     buttonEditPost: boolean
 
@@ -123,7 +125,7 @@ export interface PropsOnePostClass {
     commentAvatarUrl: string,
 
     setMessage(message: string): void
-    setUserComments(userComments: []): void
+    setUserComments(comments: []): void
 
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostText(input_postText: string): void
@@ -132,9 +134,11 @@ export interface PropsOnePostClass {
 
     setButtonEditPostClick(flag: boolean): void
 
-    setCommentName(commentName: string): void
-    setCommentNickname(commentNickname: string): void
-    setCommentAvatarUrl(commentAvatarUrl: string): void
+    deleteOnePost (postId: string): void
+    deleteOneComment(commentId: string): void
+    setOnePost(onePost: Post, postId: string): void
+    setOneComment(oneComment: Comment, commentId: string): void
+    addOneComment(oneComment: Comment): void
 }
 
 
@@ -143,10 +147,10 @@ export interface OnePostClass {
     nickname: string
     avatarUrl: string
     message: string
-    userComments: [],
+    comments: [],
     input_comment: string
     setMessage(message: string): void
-    setUserComments(userComments: []): void
+    setUserComments(comments: []): void
 
     like(): void
     comment(): void
@@ -156,10 +160,6 @@ export interface OnePostClass {
     setInputPostText(input_postText: string): void
     setInputPostComment(input_comment: string): void
     setInputPostPhoto(input_postPhoto: File): void
-
-    setCommentName(commentName: string): void
-    setCommentNickname(commentNickname: string): void
-    setCommentAvatarUrl(commentAvatarUrl: string): void
 }
 
 export interface OnePost {
@@ -167,28 +167,23 @@ export interface OnePost {
     nickname: string
     avatarUrl: string
     message: string
-    userComments: [],
+    comments: [],
     input_comment: string
     buttonEditPost: boolean
 
-    commentName : string,
-    commentNickname: string,
-    commentAvatarUrl: string,
-
     setMessage(message: string): void
-    setUserComments(userComments: []): void
+    setUserComments(comments: []): void
     setInputPostComment(input_comment: string): void
 
     like(): void
-    comment(): void
     deletePost(): void
     editPost(): void
 
     setButtonEditPostClick(flag: boolean): void
 
-    setCommentName(commentName: string): void
-    setCommentNickname(commentNickname: string): void
-    setCommentAvatarUrl(commentAvatarUrl: string): void
+    deleteOneComment(commentId: string): void
+    setOneComment(oneComment: Comment, commentId: string): void
+    addOneComment(oneComment: Comment): void
 }
 
 export interface Post {
@@ -199,7 +194,6 @@ export interface Post {
     likeCount: string
     commentCount: string,
     isLiked: boolean
-    userComments: [],
 }
 
 export interface Time {

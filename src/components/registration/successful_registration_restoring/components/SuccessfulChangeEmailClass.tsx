@@ -6,7 +6,7 @@ import {
 } from "../../../../redux/interfaces/auth/authSuccessfulActivation";
 import axios from "axios";
 
-class SuccessfulChangeEmail extends Component<PropsSuccessfulEmail, StateSuccessfulSmth>{
+class SuccessfulChangeEmailClass extends Component<PropsSuccessfulEmail, StateSuccessfulSmth>{
     config = {
         headers: { Authorization: `Bearer ${this.props.token}` }
     };
@@ -49,4 +49,4 @@ class SuccessfulChangeEmail extends Component<PropsSuccessfulEmail, StateSuccess
     }
 }
 
-export default SuccessfulChangeEmail
+export default SuccessfulChangeEmailClass

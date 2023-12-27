@@ -7,7 +7,7 @@ import {
 } from "../../../../../../redux/interfaces/profile/settings/profileSettings";
 import config from "../../../../../paths/config";
 
-class ProfileSetting extends Component<PropsProfileSettings, StateProfileSettingsClass> {
+class ProfileSettingClass extends Component<PropsProfileSettings, StateProfileSettingsClass> {
 
     config = {
         headers: {
@@ -176,4 +176,4 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
     }
 }
 
-export default ProfileSetting
+export default ProfileSettingClass

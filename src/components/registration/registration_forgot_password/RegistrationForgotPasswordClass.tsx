@@ -1,18 +1,10 @@
-import reg_forgot_css from './RegistrationForgotPassword.module.css'
 import React, {Component} from "react";
-import options_reg from '../css_options/Options.module.css'
 import {PropsAuthForgotPassword, StateAuthForgotPassword} from "../../../redux/interfaces/auth/authForgotPassword";
 import axios from "axios";
-import SuccessfulRegistration from "../registration/options/successful_registration/SuccessfulRegistration";
-import ErrorRegistration from "../registration/options/error_registration/ErrorRegistration";
+import RegistrationForgotPasswordComponent from "./RegistrationForgotPasswordComponent";
 
-class RegistrationForgotPassword extends Component<PropsAuthForgotPassword, StateAuthForgotPassword>{
-    setInputEmail = (event : React.ChangeEvent<HTMLInputElement>) => {
-        if (!event.target.value.split('').includes('@')) {
-            //обводить красным контуром
-        }
-        this.props.setInputEmail(event.target.value)
-    }
+class RegistrationForgotPasswordClass extends Component<PropsAuthForgotPassword, StateAuthForgotPassword>{
+
     sendPassword = () => {
         if (this.props.input_email !== null) {
             axios.put('http://localhost:8080/auth/forget/password', {
@@ -52,27 +44,16 @@ class RegistrationForgotPassword extends Component<PropsAuthForgotPassword, Stat
     }
 
     render() {
-        return (
-            <div>
-                <section className={reg_forgot_css.functional}>
-                    <section className={reg_forgot_css.text}>
-                        <p><strong>Проблемы со входом?</strong></p>
-                        <p>Ссылка для сброса пароля придет вам на электронную почту</p>
-                    </section>
-                    <section className={reg_forgot_css.form}>
-                        <section className={reg_forgot_css.inputs}>
-                            <input type={'text'} className={options_reg.input} onChange={this.setInputEmail}
-                                   value={this.props.input_email} placeholder={'Электронный адрес'}/>
-                        </section>
-                        <button type={'submit'} className={options_reg.main_page_button} onClick={this.sendPassword}>Сбросить пароль</button>
-                    </section>
-                </section>
-                {this.props.buttonShowMessage ? this.props.code === 200 ? <SuccessfulRegistration message={this.props.message}/> :
-                    <ErrorRegistration message={this.props.message}/> : null}
-            </div>
-
-        )
+        return <RegistrationForgotPasswordComponent input_email={this.props.input_email}
+                                                    message={this.props.message}
+                                                    buttonShowMessage={this.props.buttonShowMessage}
+                                                    code={this.props.code}
+                                                    setInputEmail={this.props.setInputEmail}
+                                                    setShowMessage={this.props.setShowMessage}
+                                                    setMessage={this.props.setMessage}
+                                                    setCode={this.props.setCode}
+                                                    sendPassword={this.sendPassword}/>
     }
 }
 
-export default RegistrationForgotPassword
+export default RegistrationForgotPasswordClass

@@ -5,7 +5,7 @@ import {
     StateSuccessfulSmth
 } from "../../../../redux/interfaces/auth/authSuccessfulActivation";
 import SuccessfulActivationComponent from "./SuccessfulActivationComponent";
-class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuccessfulSmth>{
+class SuccessfulActivationClass extends Component<PropsSuccessfulActivation, StateSuccessfulSmth>{
     componentDidMount() {
         this.props.setId(localStorage.getItem('id'))
         axios.put('http://localhost:8080/auth/active/account', {
@@ -50,4 +50,4 @@ class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuc
 
 }
 
-export default SuccessfulActivation
+export default SuccessfulActivationClass

@@ -22,17 +22,29 @@ class ProfileNewPostClass extends Component<PropsCreatePostButtonClass, StateCre
             .then(response => {
                 switch (response.status) {
                     case 200: {
+                        this.props.setInputPostText('')
                         for(let i = 0; i < this.props.input_postPhoto.length; i++) {
                             let formData = new FormData()
                             formData.append('file', this.props.input_postPhoto[i])
                             formData.append('postId', response.data)
                             axios.post('http://localhost:8080/file/blog', formData, this.config)
                                 .then(response => {
+
                                 }).catch(error => {
                                 debugger
                                 alert(error)
                             })
                         }
+                        axios.get(`http://localhost:8080/blog/user/${localStorage.getItem('idUser')}`, config)
+                            .then(response => {
+                                switch (response.status) {
+                                    case 200: {
+                                        this.props.setPosts(response.data)
+                                    }
+                                }
+                            }).catch(error => {
+                            debugger
+                        })
                         return true
                     }
                 }

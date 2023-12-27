@@ -29,7 +29,7 @@ class EditPostClass extends Component<PropsEditPost, StateEditPost> {
             }).catch(error => {
             })
         })
-
+        this.props.setInputPostText('')
         axios.put(`http://localhost:8080/blog/post`, {
             postId: this.props.postId,
             text: this.props.input_postText
@@ -37,7 +37,30 @@ class EditPostClass extends Component<PropsEditPost, StateEditPost> {
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        //ok
+                        this.props.input_postPhoto.map(file => {
+                            let formDataAvatar = new FormData()
+                            formDataAvatar.append('file', file)
+                            formDataAvatar.append('postId', this.props.postId)
+
+                            axios.post('http://localhost:8080/file/blog', formDataAvatar, this.config)
+                                .then(response => {
+                                    this.props.setInputPostAllPhotoDelete()
+                            }).catch(error => {
+                                debugger
+                            })
+                        })
+
+                        axios.get(`http://localhost:8080/blog/user/${localStorage.getItem('idUser')}`, config)
+                            .then(response => {
+                                switch (response.status) {
+                                    case 200: {
+                                        this.props.setPosts(response.data)
+                                    }
+                                }
+                            }).catch(error => {
+                            debugger
+                        })
+
                     }
                 }
             })

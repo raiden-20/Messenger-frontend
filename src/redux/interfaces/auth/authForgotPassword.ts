@@ -18,3 +18,16 @@ export interface PropsAuthForgotPassword{
     setMessage(message: string): void;
     setCode(code: number): void;
 }
+export interface PropsAuthForgotPasswordComponent{
+    input_email: string;
+    message: string
+    buttonShowMessage: boolean
+    code: number
+
+    setInputEmail(input_email: string | null): void;
+    setShowMessage(buttonShowMessage: boolean): void;
+    setMessage(message: string): void;
+    setCode(code: number): void;
+
+    sendPassword():void
+}
