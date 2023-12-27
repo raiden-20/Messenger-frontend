@@ -20,7 +20,13 @@ const PostComponent = (props: PropsPostComponent) => {
                               setButtonEditPostClick={props.setButtonEditPostClick}
                               buttonEditPost={props.buttonEditPost}
                               input_comment={props.input_comment}
-                              setInputPostComment={props.setInputPostComment}/>
+                              setInputPostComment={props.setInputPostComment}
+                              commentAvatarUrl={props.commentAvatarUrl}
+                              commentName={props.commentName}
+                              commentNickname={props.commentNickname}
+                              setCommentAvatarUrl={props.setCommentAvatarUrl}
+                              setCommentName={props.setCommentName}
+                              setCommentNickname={props.setCommentNickname}/>
             ))}
         </div>
 

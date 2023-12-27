@@ -8,7 +8,7 @@ class PostClass extends Component<PropsPost, StatePostsClass> {
 
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/blog/user/${localStorage.getItem('idUser')}`, config) // todo узнать юрл
+        axios.get(`http://localhost:8080/blog/user/${localStorage.getItem('idUser')}`, config)
             .then(response => {
                 switch (response.status) {
                     case 200: {
@@ -38,7 +38,13 @@ class PostClass extends Component<PropsPost, StatePostsClass> {
                               setButtonEditPostClick={this.props.setButtonEditPostClick}
                               buttonEditPost={this.props.buttonEditPost}
                               input_comment={this.props.input_comment}
-                              setInputPostComment={this.props.setInputPostComment}/>
+                              setInputPostComment={this.props.setInputPostComment}
+                              commentAvatarUrl={this.props.commentAvatarUrl}
+                              commentName={this.props.commentName}
+                              commentNickname={this.props.commentNickname}
+                              setCommentAvatarUrl={this.props.setCommentAvatarUrl}
+                              setCommentName={this.props.setCommentName}
+                              setCommentNickname={this.props.setCommentNickname}/>
     }
 }
 

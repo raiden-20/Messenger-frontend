@@ -4,7 +4,7 @@ import {StatePost} from "../../../../../../redux/interfaces/profile/post/post";
 import PostClass from "./PostClass";
 import {setMessage} from "../../../../../../redux/reducers/authReducer";
 import {
-    setButtonEditPostClick, setInputPostComment,
+    setButtonEditPostClick, setCommentAvatarUrl, setCommentName, setCommentNickname, setInputPostComment,
     setInputPostPhoto,
     setInputPostPhotoUrl, setInputPostText,
     setPosts,
@@ -20,7 +20,10 @@ const mapStateToProps = (state : StatePost) => {
         userComments: state.post.userComments,
         posts: state.post.posts,
         buttonEditPost: state.post.buttonEditPost,
-        input_comment: state.post.input_comment
+        input_comment: state.post.input_comment,
+        commentName : state.post.commentName,
+        commentNickname: state.post.commentNickname,
+        commentAvatarUrl: state.post.commentAvatarUrl,
     }
 }
 
@@ -49,6 +52,15 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setButtonEditPostClick(flag: boolean) {
             dispatch(setButtonEditPostClick(flag))
+        },
+        setCommentName(commentName: string) {
+            dispatch(setCommentName(commentName))
+        },
+        setCommentNickname(commentNickname: string) {
+            dispatch(setCommentNickname(commentNickname))
+        },
+        setCommentAvatarUrl(commentAvatarUrl: string) {
+            dispatch(setCommentAvatarUrl(commentAvatarUrl))
         }
     }
 }

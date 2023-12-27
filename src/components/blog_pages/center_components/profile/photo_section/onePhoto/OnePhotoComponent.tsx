@@ -24,15 +24,15 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
             <section className={onePhoto_css.page}>
                 <img src={cat} alt={'user_photo'} className={onePhoto_css.photo}/>
                 <section className={onePhoto_css.body}>
-                    <OneUserDataClass comment_id={''}
+                    <OneUserDataClass commentId={''}
                                       avatarUrl={props.avatarUrl}
                                       name={props.name}
                                       nickname={props.nickname}
                                       isLike={props.isLiked}
-                                      likesCount={props.countLikes}
+                                      likeCount={props.likeCount}
                                       time={props.time}
                                       text={props.text}
-                                      commentsCount={props.countComments}/>
+                                      commentsCount={props.commentCount}/>
                     <section className={post_comm_css.section_writeComment}>
                             <textarea placeholder={'Написать комментарий'} value={props.input_comment}
                                       onChange={setInputComment}></textarea>
@@ -42,12 +42,12 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
                     </section>
                     <section className={onePhoto_css.comments}>
                         {props.userComments.map((oneComment: Comment) => (
-                            <OneUserDataClass comment_id={oneComment.comment_id}
+                            <OneUserDataClass commentId={oneComment.commentId}
                                               avatarUrl={props.avatarUrl}
                                               name={props.name}
                                               nickname={props.nickname}
                                               isLike={oneComment.isLiked}
-                                              likesCount={oneComment.countLikes}
+                                              likeCount={oneComment.likeCount}
                                               time={oneComment.time}
                                               text={oneComment.text}
                                               commentsCount={''}/>

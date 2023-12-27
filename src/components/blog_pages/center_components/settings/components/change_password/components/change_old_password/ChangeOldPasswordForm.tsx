@@ -42,7 +42,6 @@ const ChangeOldPasswordForm = (props : PropsOldPassword) => {
                     }
                     props.setInputPassword(null)
                 }).catch(error => {
-                    debugger
                     console.dir(error)
                     props.setMessage(error.message)
                     switch (error.response.status) {

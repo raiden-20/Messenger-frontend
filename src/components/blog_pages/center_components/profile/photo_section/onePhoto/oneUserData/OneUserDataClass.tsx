@@ -10,7 +10,7 @@ import config from "../../../../../../paths/config";
 class OneUserDataClass extends Component<PropsOneUserDataClass, StateOneUserDataClass> {
     likeComment = () => {
         axios.put('http://localhost:8080/blog/comment/like',  {
-            comment_id: this.props.comment_id
+            commentId: this.props.commentId
         },config)
             .then(response => {
                 switch (response.status) {
@@ -31,7 +31,7 @@ class OneUserDataClass extends Component<PropsOneUserDataClass, StateOneUserData
     }
 
     deleteComment = () => {
-        axios.delete(`http://localhost:8080/blog/comment/${this.props.comment_id}`, config)
+        axios.delete(`http://localhost:8080/blog/comment/${this.props.commentId}`, config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
@@ -56,7 +56,7 @@ class OneUserDataClass extends Component<PropsOneUserDataClass, StateOneUserData
                                      name={this.props.name}
                                      nickname={this.props.nickname}
                                      isLike={this.props.isLike}
-                                     likesCount={this.props.likesCount}
+                                     likeCount={this.props.likeCount}
                                      time={this.props.time}
                                      text={this.props.time}
                                      deleteComment={this.deleteComment}

@@ -37,7 +37,6 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
 
                 reader.readAsDataURL(file);
                 props.setInputCoverUrl(event.target.files[0])
-                props.setDeleteCoverFlag(false)
             } else {
                 //todo вывод ошибки
             }
@@ -59,7 +58,6 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                 };
                 reader.readAsDataURL(file);
                 props.setInputAvatarUrl(event.target.files[0])
-                props.setDeleteAvatarFlag(false)
             } else {
                 //todo вывод ошибки
             }

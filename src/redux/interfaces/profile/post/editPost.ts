@@ -1,18 +1,20 @@
 export interface StateEditPost {
     post : {
-        idPost: string,
+        postId: string,
         input_postPhoto: [],
         input_postPhotoUrl: [],
         input_postText: ''
+        deletePhotoPostUrl: []
     }
 
 }
 
 export interface PropsEditPost {
-    idPost: string,
+    postId: string,
     input_postPhoto: [],
     input_postPhotoUrl: [],
-    input_postText: ''
+    input_postText: '',
+    deletePhotoPostUrl: []
 
     setButtonEditPostClick(flag: boolean): void
     setInputPostPhoto(input_postPhoto: File): void
@@ -21,4 +23,11 @@ export interface PropsEditPost {
     setButtonEditPostClick(flag: boolean): void
     setInputPostPhotoDelete(index: number): void
     setInputPostAllPhotoDelete(): void
+    setDeletePhotoPostUrl(deletePhotoPostUrl: {} | null): void
+}
+
+export interface deleteData {
+    url: string,
+    photoId: string,
+    postId: string
 }

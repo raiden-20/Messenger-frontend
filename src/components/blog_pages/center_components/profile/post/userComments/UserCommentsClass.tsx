@@ -6,7 +6,7 @@ import config from "../../../../../paths/config";
 class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommentClass> {
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/blog/comment/${this.props.idPost}`, config)
+        axios.get(`http://localhost:8080/blog/comment/${this.props.postId}`, config)
             .then(response => {
                 switch (response.status) {
                     case 200: {
@@ -14,21 +14,24 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
                         break
                     }
                 }
-            })
+            }).catch( error => {
+                debugger
+        })
     }
 
     sentComment = () => {
-        axios.post('http://localhost:8080/blog/comment', {
-            idPost: this.props.idPost,
+        axios.post('http://localhost:8080/blog/comment/create', {
+            postId: this.props.postId,
             text: this.props.input_comment
         }, config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        //ok
+                        this.props.setCommentName('')
                     }
                 }
             }).catch(error => {
+                debugger
             switch (error.response.status) {
                 case 403 : {
                     //bad token
@@ -46,9 +49,9 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
                                      setButtonCommentClick={this.props.setButtonCommentClick}
                                      setUserComments={this.props.setUserComments}
                                      commentCount={this.props.commentCount}
-                                     idPost={this.props.idPost}
+                                     postId={this.props.postId}
                                      isLiked={this.props.isLiked}
-                                     likesCount={this.props.likesCount}
+                                     likeCount={this.props.likeCount}
                                      photoUrl={this.props.photoUrl}
                                      text={this.props.text}
                                      time={this.props.time}
@@ -62,7 +65,13 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
                                      like_button={this.props.like_button}
                                      input_comment={this.props.input_comment}
                                      setInputPostComment={this.props.setInputPostComment}
-                                     setComment={this.sentComment}/>
+                                     setComment={this.sentComment}
+                                     commentAvatarUrl={this.props.commentAvatarUrl}
+                                     commentName={this.props.commentName}
+                                     commentNickname={this.props.commentNickname}
+                                     setCommentAvatarUrl={this.props.setCommentAvatarUrl}
+                                     setCommentName={this.props.setCommentName}
+                                     setCommentNickname={this.props.setCommentNickname}/>
     }
 }
 

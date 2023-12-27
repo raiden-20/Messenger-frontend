@@ -50,7 +50,6 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
     }
 
     setAvatarToServer = () => {
-        debugger
         if (this.props.deleteAvatarFlag) {
             axios.delete('http://localhost:8080/file/social', {
                 headers: {
@@ -63,7 +62,6 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
                     source: 'AVATAR'
                 }
             }).then(response => {
-                debugger
                 this.props.setAvatarUrl('')
                 this.props.setDeleteAvatarFlag(false)
             }).catch(error => {
@@ -77,7 +75,6 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
             formDataAvatar.append('source', 'AVATAR')
 
             axios.post('http://localhost:8080/file/social', formDataAvatar, this.config).then(response => {
-                debugger
             }).catch(error => {
                 debugger
             })
@@ -86,7 +83,6 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
 
 
     setCoverToServer = () => {
-        debugger
         if (this.props.deleteCoverFlag) {
             axios.delete('http://localhost:8080/file/social', {
                 headers: {
@@ -98,7 +94,6 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
                     source: 'COVER'
                 }
             }).then(response => {
-                debugger
                 this.props.setCoverUrl('')
                 this.props.setDeleteCoverFlag(false)
             }).catch(error => {
@@ -112,7 +107,7 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
             formDataCover.append('source', 'COVER')
 
             axios.post('http://localhost:8080/file/social', formDataCover, this.config).then(response => {
-                debugger
+
             }).catch(error => {
                 debugger
             })
@@ -121,7 +116,6 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
 
 
     setData = () => {
-        debugger
 
         this.setAvatarToServer()
         this.setCoverToServer()
@@ -130,9 +124,13 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
             "token": localStorage.getItem('token'),
             "nickname": this.props.input_nickname
         }, config).then(response => {
-            debugger
             this.props.setNickname(this.props.input_nickname)
-            localStorage.setItem('token', response.data)
+            if (response.data.split(' ').length === 2) {
+                localStorage.setItem('token', response.data.split(' ')[1])
+            } else {
+                localStorage.setItem('token', response.data)
+            }
+
 
             axios.post('http://localhost:8080/social/data', {
                 name: this.props.input_name,
@@ -140,7 +138,6 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
                 bio: this.props.input_bio,
             }, config)
                 .then(response => {
-                    debugger
                     switch (response.status) {
                         case 200 : {
                             this.props.setMessage('Данные изменены')
@@ -149,7 +146,6 @@ class ProfileSetting extends Component<PropsProfileSettings, StateProfileSetting
                 }).catch(error => {
                 debugger
             })
-            debugger
         }).catch(error => {
             debugger
             this.props.setMessage(error.message)

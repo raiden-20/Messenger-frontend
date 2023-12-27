@@ -1,13 +1,38 @@
 import {Component} from "react";
-import {PropsEditPost, StateEditPost} from "../../../../../../redux/interfaces/profile/post/editPost";
+import {deleteData, PropsEditPost, StateEditPost} from "../../../../../../redux/interfaces/profile/post/editPost";
 import ProfileNewPostComponent from "../../profile/profile_new_post/ProfileNewPostComponent";
 import axios from "axios";
 import config from "../../../../../paths/config";
 class EditPostClass extends Component<PropsEditPost, StateEditPost> {
+    config = {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'multipart/form-data; boundary=---------------------------123456789012345678901234567'
+        }
+    };
 
     setNewPost = () : boolean => { //edit post
-        axios.put(`http://localhost:8080/blog/post/${this.props.idPost}`, {
+        this.props.deletePhotoPostUrl.map((data: deleteData) => {
+            axios.delete('http://localhost:8080/file/blog', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'multipart/form-data; boundary=---------------------------123456789012345678901234567'
 
+                },
+                data: {
+                    url: data.url,
+                    photoId: data.photoId,
+                    postId: data.postId
+                }
+            }).then(response => {
+                this.props.setDeletePhotoPostUrl(null)
+            }).catch(error => {
+            })
+        })
+
+        axios.put(`http://localhost:8080/blog/post`, {
+            postId: this.props.postId,
+            text: this.props.input_postText
         },config)
             .then(response => {
                 switch (response.status) {

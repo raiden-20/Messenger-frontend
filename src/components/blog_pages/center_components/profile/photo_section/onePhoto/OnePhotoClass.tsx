@@ -10,8 +10,8 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
     text = 'bla bla'
     time = '2023-10-14'
     isLiked = false
-    countLikes = '9'
-    countComments = '2'
+    likeCount = '9'
+    commentCount = '2'
 
     componentDidMount() {
         axios.get(`http://localhost:8080/blog/post/${this.props.postId} `, config)
@@ -22,8 +22,8 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
                         this.text = response.data.text
                         this.time = response.data.time
                         this.isLiked = response.data.isLiked
-                        this.countLikes = response.data.countLikes
-                        this.countComments = response.data.countComments
+                        this.likeCount = response.data.likeCount
+                        this.commentCount = response.data.commentCount
                     }
                 }
             }).catch(error => {
@@ -105,9 +105,9 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
                                   setButtonOpenPhoto={this.props.setButtonOpenPhoto}
                                   onePhotoUrl={this.props.onePhotoUrl}
                                   avatarUrl={this.props.avatarUrl}
-                                  countComments={this.countComments}
+                                  commentCount={this.commentCount}
                                   isLiked={this.isLiked}
-                                  countLikes={this.countLikes}
+                                  likeCount={this.likeCount}
                                   text={this.text}
                                   time={this.time}
                                   setComment={this.setComment}

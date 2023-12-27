@@ -39,7 +39,7 @@ const OneUserDataComponent = (props: PropsOneUserComponent) => {
                                 <img src={props.isLike ? like_isLiked : like_notLiked} alt={'likes'}/>
                             </button>
                             <div>
-                                {props.likesCount}
+                                {props.likeCount}
                             </div>
                         </section>
                         <section>
@@ -47,7 +47,7 @@ const OneUserDataComponent = (props: PropsOneUserComponent) => {
                                 <img src={comment} alt={'comment'}/>
                             </button>
                             <div>
-                                {props.likesCount}
+                                {props.likeCount}
                             </div>
                         </section>
                     </section>

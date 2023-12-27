@@ -37,7 +37,11 @@ const NewPasswordForm = (props : PropsNewPassword) => {
                     props.setMessage('Пароль был изменен')
                     props.setPassword(props.input_password)
                     localStorage.setItem('password', props.input_password)
-                    localStorage.setItem('token', response.data)
+                    if (response.data.split(' ').length === 2) {
+                        localStorage.setItem('token', response.data.split(' ')[1])
+                    } else {
+                        localStorage.setItem('token', response.data)
+                    }
 
                     navigate(AUTHORIZATION)
                     props.setInputPassword('')

@@ -14,7 +14,6 @@ const DefaultSeeEmail = (props : PropsChangeEmail) => {
     }
 
     const getEmail = () => {
-        debugger
         // id запрос на получение email
         return // email
     }

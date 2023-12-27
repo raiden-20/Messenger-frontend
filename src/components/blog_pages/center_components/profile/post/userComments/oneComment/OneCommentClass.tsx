@@ -1,23 +1,19 @@
 import {Component} from "react";
 import OneCommentComponent from "./OneCommentComponent";
-import {Comment} from "../../../../../../../redux/interfaces/profile/post/comments";
+import {Comment, PropsComment} from "../../../../../../../redux/interfaces/profile/post/comments";
 import axios from "axios";
 import config from "../../../../../../paths/config";
 
-class OneCommentClass extends Component<Comment, Comment> {
-
-    name = 'Настя'
-    nickname = 'stasy'
-    avatarUrl = ''
+class OneCommentClass extends Component<PropsComment, Comment> {
 
     likeComment = () => {
         axios.put('http://localhost:8080/blog/comment/like',  {
-            comment_id: this.props.comment_id
+            commentId: this.props.commentId
         },config)
             .then(response => {
                 switch (response.status) {
                     case 200:
-                        //ok
+                        this.props.setCommentName(this.props.commentName)
                 }
         }).catch(error => {
             switch (error.response.status) {
@@ -33,11 +29,11 @@ class OneCommentClass extends Component<Comment, Comment> {
     }
 
     deleteComment = () => {
-        axios.delete(`http://localhost:8080/blog/comment/${this.props.comment_id}`, config)
+        axios.delete(`http://localhost:8080/blog/comment/${this.props.commentId}`, config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        //ok
+                        this.props.setCommentName('')
                     }
                 }
             }).catch(error => {
@@ -54,20 +50,20 @@ class OneCommentClass extends Component<Comment, Comment> {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/auth/data/${this.props.user_id}`, config)
+        axios.get(`http://localhost:8080/auth/data/${this.props.userId}`, config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        this.nickname = response.data.nickname
+                        this.props.setCommentNickname(response.data.nickname)
                     }
                 }
         })
-        axios.get(`http://localhost:8080/social/data/${this.props.user_id}`, config)
+        axios.get(`http://localhost:8080/social/data/${this.props.userId}`, config)
             .then(response => {
                 switch (response.status) {
                     case 200 : {
-                        this.name = response.data.name
-                        this.avatarUrl = response.data.avatarUrl
+                        this.props.setCommentName(response.data.name)
+                        this.props.setCommentAvatarUrl(response.data.avatarUrl)
                     }
                 }
             })
@@ -75,15 +71,15 @@ class OneCommentClass extends Component<Comment, Comment> {
 
 
     render() {
-        return <OneCommentComponent name={this.name}
-                                    nickname={this.nickname}
-                                    avatarUrl={this.avatarUrl}
-                                    text={this.props.text}
+        return <OneCommentComponent text={this.props.text}
                                     time={this.props.time}
-                                    countLikes={this.props.countLikes}
+                                    likeCount={this.props.likeCount}
                                     isLiked={this.props.isLiked}
                                     likeComment={this.likeComment}
-                                    deleteComment={this.deleteComment}/>
+                                    deleteComment={this.deleteComment}
+                                    commentAvatarUrl={this.props.commentAvatarUrl}
+                                    commentName={this.props.commentName}
+                                    commentNickname={this.props.commentNickname}/>
     }
 }
 

@@ -31,7 +31,6 @@ const DeleteAccount = (props: PropsDeleteAccount) => {
                 default:
             }
         }).catch(error => {
-            debugger
             console.dir(error)
             props.setMessage(error.message)
             switch (error.response.status) {

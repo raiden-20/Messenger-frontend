@@ -141,20 +141,17 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
 
     actionRequest = (idOtherUser: string, action : string) => {
         action = action.toUpperCase()
-        debugger
         axios.post(`http://localhost:8080/social/action`, {
             secondUser: idOtherUser,
             action: action
         }, config)
             .then(response => {
-                debugger
                 switch (response.status) {
                     case 200 : {
                         // okay
                     }
                 }
             }).catch(error => {
-                debugger
                 switch (error.response.status) {
                     case 403 : {
                         // bad token

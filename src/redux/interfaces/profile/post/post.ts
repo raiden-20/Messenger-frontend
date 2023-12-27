@@ -1,5 +1,3 @@
-import {setInputPostComment} from "../../../reducers/postReducer";
-
 export interface StatePost {
     auth : {
         nickname: string
@@ -15,6 +13,10 @@ export interface StatePost {
         userComments: [],
         buttonEditPost: boolean
         input_comment: string
+
+        commentName : string,
+        commentNickname: string,
+        commentAvatarUrl: string,
     }
 }
 
@@ -28,6 +30,10 @@ export interface PropsPost {
     input_comment: string
     buttonEditPost: boolean
 
+    commentName : string,
+    commentNickname: string,
+    commentAvatarUrl: string,
+
     setMessage(message: string): void
     setPosts(posts : []): void
     setUserComments(userComments : []): void
@@ -38,6 +44,10 @@ export interface PropsPost {
     setInputPostComment(input_comment: string): void
 
     setButtonEditPostClick(flag: boolean): void
+
+    setCommentName(commentName: string): void
+    setCommentNickname(commentNickname: string): void
+    setCommentAvatarUrl(commentAvatarUrl: string): void
 }
 
 export interface StatePostsClass {
@@ -49,6 +59,10 @@ export interface StatePostsClass {
     message: string
     input_comment: string
     buttonEditPost: boolean
+
+    commentName : string,
+    commentNickname: string,
+    commentAvatarUrl: string,
 }
 
 export interface PropsPostComponent {
@@ -61,6 +75,10 @@ export interface PropsPostComponent {
     input_comment: string
     buttonEditPost: boolean
 
+    commentName : string,
+    commentNickname: string,
+    commentAvatarUrl: string,
+
     setMessage(message: string): void
     setUserComments(userComments: []): void
 
@@ -70,6 +88,10 @@ export interface PropsPostComponent {
     setInputPostPhoto(input_postPhoto: File): void
 
     setButtonEditPostClick(flag: boolean): void
+
+    setCommentName(commentName: string): void
+    setCommentNickname(commentNickname: string): void
+    setCommentAvatarUrl(commentAvatarUrl: string): void
 }
 
 export interface StateOnePostClass {
@@ -81,6 +103,10 @@ export interface StateOnePostClass {
     userComments: [],
     input_comment: string
     buttonEditPost: boolean
+
+    commentName : string,
+    commentNickname: string,
+    commentAvatarUrl: string,
 }
 export interface PropsOnePostClass {
     name: string,
@@ -91,6 +117,11 @@ export interface PropsOnePostClass {
     userComments: [],
     input_comment: string
     buttonEditPost: boolean
+
+    commentName : string,
+    commentNickname: string,
+    commentAvatarUrl: string,
+
     setMessage(message: string): void
     setUserComments(userComments: []): void
 
@@ -100,6 +131,10 @@ export interface PropsOnePostClass {
     setInputPostPhoto(input_postPhoto: File): void
 
     setButtonEditPostClick(flag: boolean): void
+
+    setCommentName(commentName: string): void
+    setCommentNickname(commentNickname: string): void
+    setCommentAvatarUrl(commentAvatarUrl: string): void
 }
 
 
@@ -121,6 +156,10 @@ export interface OnePostClass {
     setInputPostText(input_postText: string): void
     setInputPostComment(input_comment: string): void
     setInputPostPhoto(input_postPhoto: File): void
+
+    setCommentName(commentName: string): void
+    setCommentNickname(commentNickname: string): void
+    setCommentAvatarUrl(commentAvatarUrl: string): void
 }
 
 export interface OnePost {
@@ -131,6 +170,11 @@ export interface OnePost {
     userComments: [],
     input_comment: string
     buttonEditPost: boolean
+
+    commentName : string,
+    commentNickname: string,
+    commentAvatarUrl: string,
+
     setMessage(message: string): void
     setUserComments(userComments: []): void
     setInputPostComment(input_comment: string): void
@@ -141,14 +185,18 @@ export interface OnePost {
     editPost(): void
 
     setButtonEditPostClick(flag: boolean): void
+
+    setCommentName(commentName: string): void
+    setCommentNickname(commentNickname: string): void
+    setCommentAvatarUrl(commentAvatarUrl: string): void
 }
 
 export interface Post {
-    idPost: string,
+    postId: string,
     time: string,
     text: string,
     photoUrl: [],
-    likesCount: string
+    likeCount: string
     commentCount: string,
     isLiked: boolean
     userComments: [],

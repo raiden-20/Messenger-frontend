@@ -50,8 +50,8 @@ export interface PropsOnePostComponent {
 
     text: string,
     isLiked: boolean,
-    countLikes: string
-    countComments: string,
+    likeCount: string
+    commentCount: string,
     time: string
 
     setInputPostComment(input_comment : string): void
@@ -66,7 +66,7 @@ export interface PropsOneUserComponent {
     name: string
     nickname: string
     isLike: boolean
-    likesCount: string
+    likeCount: string
     commentsCount: string
     time: string
     text: string
@@ -76,23 +76,23 @@ export interface PropsOneUserComponent {
 }
 
 export interface StateOneUserDataClass {
-    comment_id: string
+    commentId: string
     avatarUrl: string
     name: string
     nickname: string
     isLike: boolean
-    likesCount: string
+    likeCount: string
     commentsCount: string
     time: string
     text: string
 }
 export interface PropsOneUserDataClass {
-    comment_id: string
+    commentId: string
     avatarUrl: string
     name: string
     nickname: string
     isLike: boolean
-    likesCount: string
+    likeCount: string
     commentsCount: string
     time: string
     text: string

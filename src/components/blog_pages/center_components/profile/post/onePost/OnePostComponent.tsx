@@ -16,7 +16,7 @@ const OnePostComponent = (props: OnePost & Post) => {
     const [isMouseEnter, setMouseEnter] = useState(false)
 
     const like_button = () => {
-
+        props.like()
     }
 
     const edit = () => {
@@ -65,10 +65,7 @@ const OnePostComponent = (props: OnePost & Post) => {
                     ))}
                 </section>
                 <section className={post_css.text}>
-                    Lorem ipsum dolor sit amet consectetur. Cras facilisis diam lacus massa ultricies volutpat vitae.
-                    Natoque consequat ut id nulla a faucibus scelerisque in. Ullamcorper dignissim blandit enim sed
-                    morbi urna sit. Amet interdum amet purus urna sit. Odio interdum nec elit arcu nunc. Posuere
-                    bibendum tempor adipiscing aliquet dignissim. In arcu viverra id suspendisse amet.
+                    {props.text}
                 </section>
             </section>
             <footer className={post_css.footer}>
@@ -81,7 +78,7 @@ const OnePostComponent = (props: OnePost & Post) => {
                                     <img src={like_notLiked} className={post_css.icon} alt={'like is not liked'}/>
                                 }
                             </button>
-                        {props.likesCount}
+                        {props.likeCount}
                     </section>
                     <section className={post_css.icon_count}>
                         <button className={post_css.button} onClick={() => setButtonCommentClick(true)}>
@@ -91,9 +88,9 @@ const OnePostComponent = (props: OnePost & Post) => {
                                                                  setButtonCommentClick={setButtonCommentClick}
                                                                  setUserComments={props.setUserComments}
                                                                  commentCount={props.commentCount}
-                                                                 idPost={props.idPost}
+                                                                 postId={props.postId}
                                                                  isLiked={props.isLiked}
-                                                                 likesCount={props.likesCount}
+                                                                 likeCount={props.likeCount}
                                                                  photoUrl={props.photoUrl}
                                                                  text={props.text}
                                                                  time={props.time}
@@ -106,7 +103,13 @@ const OnePostComponent = (props: OnePost & Post) => {
                                                                  edit={edit}
                                                                  like_button={like_button}
                                                                  input_comment={props.input_comment}
-                                                                 setInputPostComment={props.setInputPostComment}/> : null}
+                                                                 setInputPostComment={props.setInputPostComment}
+                                                                 commentAvatarUrl={props.commentAvatarUrl}
+                                                                 commentName={props.commentName}
+                                                                 commentNickname={props.commentNickname}
+                                                                 setCommentAvatarUrl={props.setCommentAvatarUrl}
+                                                                 setCommentName={props.setCommentName}
+                                                                 setCommentNickname={props.setCommentNickname}/> : null}
                         {props.commentCount}
                     </section>
                 </section>

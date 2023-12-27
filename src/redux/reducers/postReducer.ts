@@ -1,6 +1,8 @@
-
 const SET_POSTS = 'SET_POSTS'
 const SET_USER_COMMENTS = 'SET_USER_COMMENTS'
+const SET_COMMENT_NAME = 'SET_COMMENT_NAME'
+const SET_COMMENT_NICKNAME = 'SET_COMMENT_NICKNAME'
+const SET_COMMENT_AVATAR_URL = 'SET_COMMENT_AVATAR_URL'
 const SET_POST_INPUT_PHOTO = 'SET_POST_INPUT_PHOTO'
 const SET_POST_INPUT_PHOTO_DELETE = 'SET_POST_INPUT_PHOTO_DELETE'
 const SET_POST_INPUT_ALL_PHOTO_DELETE = 'SET_POST_INPUT_ALL_PHOTO_DELETE'
@@ -9,23 +11,33 @@ const SET_POST_INPUT_COMMENT = 'SET_POST_INPUT_COMMENT'
 const SET_POST_INPUT_TEXT = 'SET_POST_INPUT_TEXT'
 
 const SET_BUTTON_EDIT_POST = 'SET_BUTTON_EDIT_POST'
+const SET_DELETE_PHOTO_POST_URL = 'SET_DELETE_PHOTO_POST_URL'
 
 const initialState = {
-    posts: [
-        {idPost: 1, time: '2023-11-12', text: 'hi bitch', photoUrl: ['s', 'dd', 'd'], likesCount: 5, commentCount: 1, isLikes: false}
-    ],
+    posts: [],
 
-    userComments: [
-        {comment_id: 1, user_id: 2, text: 'cat is so awesome', time: '2023-12-16', countLikes: 3, isLiked: true},
-        {comment_id: 2, user_id: 2, text: 'cat is so awesome', time: '2023-12-16', countLikes: 3, isLiked: true}
-    ],
+    postId: '',
+    commentId: '',
+
+    isLikedPost: false,
+    likeCount: 0,
+    commentCount: 0,
+    isLikedComment: false,
+
+
+    userComments: [],
+    commentName : '',
+    commentNickname: '',
+    commentAvatarUrl: '',
 
     input_postPhoto: [],
     input_postPhotoUrl: [],
     input_postText: '',
     input_comment: '',
 
-    buttonEditPost: false
+    buttonEditPost: false,
+
+    deletePhotoPostUrl: []
 }
 
 const postReducer = (state = initialState, action: any) => {
@@ -46,8 +58,7 @@ const postReducer = (state = initialState, action: any) => {
             return stateCopy
         }
         case SET_USER_COMMENTS : {
-            // @ts-ignore
-            stateCopy = {...state, userComments: [...state.userComments]}
+            stateCopy.userComments = action.userComments
 
             return stateCopy
         }
@@ -77,6 +88,15 @@ const postReducer = (state = initialState, action: any) => {
 
             return stateCopy
         }
+        case SET_DELETE_PHOTO_POST_URL: {
+            // @ts-ignore
+            stateCopy = {...state, deletePhotoPostUrl: [...state.deletePhotoPostUrl]}
+            action.deletePhotoPostUrl === null ? stateCopy.deletePhotoPostUrl = [] :
+                // @ts-ignore
+            stateCopy.deletePhotoPostUrl.push(action.deletePhotoPostUrl)
+
+            return stateCopy
+        }
         case SET_POST_INPUT_TEXT : {
             stateCopy.input_postText = action.input_postText
 
@@ -90,6 +110,21 @@ const postReducer = (state = initialState, action: any) => {
 
         case SET_BUTTON_EDIT_POST : {
             stateCopy.buttonEditPost = action.buttonEditPost
+
+            return stateCopy
+        }
+        case SET_COMMENT_NAME : {
+            stateCopy.commentName = action.commentName
+
+            return stateCopy
+        }
+        case SET_COMMENT_NICKNAME : {
+            stateCopy.commentNickname = action.commentNickname
+
+            return stateCopy
+        }
+        case SET_COMMENT_AVATAR_URL : {
+            stateCopy.commentAvatarUrl = action.commentAvatarUrl
 
             return stateCopy
         }
@@ -111,7 +146,7 @@ export const setPosts = (posts: []) => {
 }
 export const setUserComments = (userComments: []) => {
     return {
-        type: SET_POSTS, userComments
+        type: SET_USER_COMMENTS, userComments
     }
 }
 export const setInputPostPhotoDelete = (index: number) => {
@@ -143,6 +178,26 @@ export const setInputPostComment = (input_comment: string) => {
 export const setButtonEditPostClick = (buttonEditPost: boolean) => {
     return {
         type: SET_BUTTON_EDIT_POST, buttonEditPost
+    }
+}
+export const setCommentName = (commentName: string) => {
+    return {
+        type: SET_COMMENT_NAME, commentName
+    }
+}
+export const setCommentNickname = (commentNickname: string) => {
+    return {
+        type: SET_COMMENT_NICKNAME, commentNickname
+    }
+}
+export const setCommentAvatarUrl = (commentAvatarUrl: string) => {
+    return {
+        type: SET_COMMENT_AVATAR_URL, commentAvatarUrl
+    }
+}
+export const setDeletePhotoPostUrl = (deletePhotoPostUrl: {} | null) => {
+    return {
+        type: SET_DELETE_PHOTO_POST_URL, deletePhotoPostUrl
     }
 }
 

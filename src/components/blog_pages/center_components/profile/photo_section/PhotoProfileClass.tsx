@@ -14,7 +14,6 @@ class PhotoProfileClass extends Component<PropsPhotoProfile, StatePhotoProfileCl
                     }
                 }
             }).catch(error => {
-                debugger
                 switch (error.response.status){
                     case 403 : {
                         //bad token
@@ -30,7 +29,6 @@ class PhotoProfileClass extends Component<PropsPhotoProfile, StatePhotoProfileCl
                     }
                 }
             }).catch(error => {
-                debugger
         })
     }
 

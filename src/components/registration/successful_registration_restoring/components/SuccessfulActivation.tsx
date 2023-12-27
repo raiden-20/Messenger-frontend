@@ -24,7 +24,6 @@ class SuccessfulActivation extends Component<PropsSuccessfulActivation, StateSuc
                 }
             })
             .catch(error => {
-                debugger
                 console.dir(error)
                 this.props.setMessage(error.message)
                 switch (error.response.status) {

@@ -46,7 +46,6 @@ class MainProfileAsideClass extends Component<PropsUserProfileAside, StateUserPr
                     }
                 }
             }).catch(error => {
-                debugger
                 switch (error.response.status) {
                     case 403: {
                         //плохой токен

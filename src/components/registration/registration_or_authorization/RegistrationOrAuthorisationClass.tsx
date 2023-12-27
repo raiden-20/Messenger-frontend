@@ -22,9 +22,11 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
                 props.setShowMessage(false)
                 switch (response.status) {
                     case 200 : {
-                        debugger
-                        props.setToken(response.data)
-                        localStorage.setItem('token', response.data.token)
+                        if (response.data.token.split(' ').length === 2) {
+                            localStorage.setItem('token', response.data.token.split(' ')[1])
+                        } else {
+                            localStorage.setItem('token', response.data.token)
+                        }
                         localStorage.setItem('id', response.data.id)
                         localStorage.setItem('idUser', response.data.id)
                         localStorage.setItem('password', props.input_password)

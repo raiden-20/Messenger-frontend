@@ -12,13 +12,11 @@ class SuccessfulChangeEmail extends Component<PropsSuccessfulEmail, StateSuccess
     };
     componentDidMount() {
         this.props.setToken(localStorage.getItem('token'))
-        debugger
         axios.put('http://localhost:8080/auth/confirm/email', {
             "token": localStorage.getItem('token'),
             "email": this.props.email
         }, this.config)
             .then(response => {
-                debugger
                 this.props.setMessage(response.data.message)
                 this.props.setMessage('Пароль был успешно изменен!')
                 this.props.setEmail(this.props.newEmail)
@@ -26,7 +24,6 @@ class SuccessfulChangeEmail extends Component<PropsSuccessfulEmail, StateSuccess
                 localStorage.setItem('token', response.data)
             })
             .catch(error => {
-                debugger
                 console.dir(error)
                 this.props.setMessage(error.message)
                 switch (error.response.status) {

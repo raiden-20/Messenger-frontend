@@ -14,7 +14,6 @@ import SearchImages from "./imagesForWhoOpened/SearchImages";
 const OneUserComponent = (props: PropsOneFriendComponent) => {
     const navigation = useNavigate()
     const toProfile = () => {
-        debugger
         localStorage.setItem('idUser', props.id)
         console.log(PROFILE_OTHER_USER)
         navigation(PROFILE_OTHER_USER)

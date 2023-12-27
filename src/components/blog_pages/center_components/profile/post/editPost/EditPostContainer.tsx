@@ -1,8 +1,7 @@
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import {StateCreatingPost} from "../../../../../../redux/interfaces/post/CreatePost";
 import {
-    setButtonEditPostClick,
+    setButtonEditPostClick, setDeletePhotoPostUrl,
     setInputPostAllPhotoDelete,
     setInputPostPhoto,
     setInputPostPhotoDelete,
@@ -17,7 +16,8 @@ const mapStateToProps = (state: StateEditPost) => {
         input_postText : state.post.input_postText,
         input_postPhoto: state.post.input_postPhoto,
         input_postPhotoUrl: state.post.input_postPhotoUrl,
-        idPost: state.post.idPost
+        postId: state.post.postId,
+        deletePhotoPostUrl : state.post.deletePhotoPostUrl
     }
 }
 
@@ -40,6 +40,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setButtonEditPostClick(flag: boolean) {
             dispatch(setButtonEditPostClick(flag))
+        },
+        setDeletePhotoPostUrl(deletePhotoPostUrl: {} | null) {
+            dispatch(setDeletePhotoPostUrl(deletePhotoPostUrl))
         }
     }
 

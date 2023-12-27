@@ -13,9 +13,9 @@ class MainProfile extends Component<PropsUserProfile, StateUserProfile> {
                 switch (response.status) {
                     case 200 : {
                         this.props.setNickname(response.data.nickname)
+                        console.log(localStorage.getItem('token'))
                         axios.get(`http://localhost:8080/social/data/${localStorage.getItem('idUser')}`, config)
                             .then(response => {
-                                debugger
                                 switch (response.status) {
                                     case 200 : {
                                         this.props.setName(response.data.name)

@@ -46,10 +46,10 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                                     </button>
                                 </section> : null}
                             {props.buttonEditPost ? <EditPostContainer/> : null}
-                            {/*{*/  }
-                            {/*    localStorage.getItem('userId') === localStorage.getItem('id') ?*/}
-                            {/*        <img src={settings_post} alt={'settings post'}/> : null*/}
-                            {/*}*/}
+                            {
+                                localStorage.getItem('userId') === localStorage.getItem('id') ?
+                                <img src={settings_post} alt={'settings post'}/> : null
+                            }
                         </header>
                         <section className={post_comm_css.post_gap}>
                             <section className={post_css.post}>
@@ -67,10 +67,7 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                                     ))}
                                 </section>
                                 <section className={post_css.text}>
-                                    Lorem ipsum dolor sit amet consectetur. Cras facilisis diam lacus massa ultricies volutpat vitae.
-                                    Natoque consequat ut id nulla a faucibus scelerisque in. Ullamcorper dignissim blandit enim sed
-                                    morbi urna sit. Amet interdum amet purus urna sit. Odio interdum nec elit arcu nunc. Posuere
-                                    bibendum tempor adipiscing aliquet dignissim. In arcu viverra id suspendisse amet.
+                                    {props.text}
                                 </section>
                             </section>
                             <footer className={post_css.footer}>
@@ -83,7 +80,7 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                                                     <img src={like_notLiked} className={post_css.icon} alt={'like is not liked'}/>
                                                 }
                                             </button>
-                                        {props.likesCount}
+                                        {props.likeCount}
                                     </section>
                                     <section className={post_css.icon_count}>
                                         <button className={post_css.button}>
@@ -104,13 +101,19 @@ const UserCommentsComponent = (props: PropsUserComment) => {
 
                         </section>
                         <section className={post_comm_css.comments_arr}>
-                            {props.userComments.map((comment: Comment) => (
-                                <OneCommentClass user_id={comment.user_id}
+                            {props.userComments.reverse().map((comment: Comment) => (
+                                <OneCommentClass userId={comment.userId}
                                                  text={comment.text}
                                                  time={comment.time}
-                                                 countLikes={comment.countLikes}
+                                                 likeCount={comment.likeCount}
                                                  isLiked={comment.isLiked}
-                                                 comment_id={comment.comment_id}/>
+                                                 commentId={comment.commentId}
+                                                 commentAvatarUrl={props.commentAvatarUrl}
+                                                 commentName={props.commentName}
+                                                 commentNickname={props.commentNickname}
+                                                 setCommentAvatarUrl={props.setCommentAvatarUrl}
+                                                 setCommentName={props.setCommentName}
+                                                 setCommentNickname={props.setCommentNickname}/>
                             ))}
                         </section>
                     </section>
