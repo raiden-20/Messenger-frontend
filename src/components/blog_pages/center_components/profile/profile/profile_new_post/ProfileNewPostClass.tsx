@@ -6,6 +6,7 @@ import {
 import ProfileNewPostComponent from "./ProfileNewPostComponent";
 import axios from "axios";
 import config from "../../../../../paths/config";
+import {Post} from "../../../../../../redux/interfaces/profile/post/post";
 
 class ProfileNewPostClass extends Component<PropsCreatePostButtonClass, StateCreatingPostClass> {
     config = {
@@ -35,11 +36,20 @@ class ProfileNewPostClass extends Component<PropsCreatePostButtonClass, StateCre
                                 alert(error)
                             })
                         }
-                        axios.get(`http://localhost:8080/blog/user/${localStorage.getItem('idUser')}`, config)
+                        axios.get(`http://localhost:8080/blog/post/${response.data}`, config)
                             .then(response => {
                                 switch (response.status) {
                                     case 200: {
-                                        this.props.setPosts(response.data)
+                                        let onePost: Post = {
+                                            postId: response.data.postId,
+                                            time: response.data.time,
+                                            text: response.data.text,
+                                            photoUrl: response.data.photoUrl,
+                                            likeCount: response.data.likeCount,
+                                            commentCount: response.data.commentCount,
+                                            isLiked: response.data.isLiked
+                                        }
+                                        this.props.addOnePost(onePost)
                                     }
                                 }
                             }).catch(error => {

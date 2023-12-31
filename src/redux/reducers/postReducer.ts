@@ -166,14 +166,14 @@ export const setComments = (comments: []) => {
     }
 }
 
-export const setOnePost = (onePost: Post, postId: string) => {
+export const setOnePost = (onePost: Post) => {
     return {
-        type: SET_ONE_POST, onePost, postId
+        type: SET_ONE_POST, onePost
     }
 }
-export const setOneComment = (oneComment: Comment, commentId: string) => {
+export const setOneComment = (oneComment: Comment) => {
     return {
-        type: SET_ONE_COMMENT, oneComment, commentId
+        type: SET_ONE_COMMENT, oneComment
     }
 }
 export const addOnePost = (onePost: Post) => {

@@ -2,12 +2,9 @@ import change_el_css from "../../../ChangeSettingsElements.module.css";
 import change_private_css from './ChangeOldPassword.module.css'
 import React from "react";
 import {PropsOldPassword} from "../../../../../../../../redux/interfaces/settings/settings_for_components/password/SettingsChangePassword";
-import axios from "axios";
+import {ChangeOldPasswordAxios} from "../../../../../../../axios/auth/AuthAxios";
 
 const ChangeOldPasswordForm = (props : PropsOldPassword) => {
-    const config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    };
 
     const sendInputPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         props.setInputPassword(event.target.value)
@@ -23,48 +20,14 @@ const ChangeOldPasswordForm = (props : PropsOldPassword) => {
         console.log(a)
         if (props.input_password != null) {
             if (props.input_password === localStorage.getItem('password')) {
-                axios.post('http://localhost:8080/auth/change/password', {
-                    token: localStorage.getItem('token'),
-                    password: props.input_password,
-                }, config).then(response => {
-                    switch (response.status) {
-                        case 200 : {
-                            if (response.data === "Check your mailbox to confirm new password") {
-                                props.setMessage('На Вашу почту был отправлен одноразовый код')
-                            }
+                ChangeOldPasswordAxios( {
+                    input_password: props.input_password,
 
-                            props.setInputPassword(null)
-                            props.setButtonChangePasswordFirstStepPressed(false)
-                            props.setButtonChangePasswordSecondStepPressed(true)
-                            break
-                        }
-                        default:
-                    }
-                    props.setInputPassword(null)
-                }).catch(error => {
-                    console.dir(error)
-                    props.setMessage(error.message)
-                    switch (error.response.status) {
-                        case 400 : {
-                            if (error.response.data === "User doesn't exist") {
-                                props.setMessage('Пользователя не существует')
-                            } else if (error.response.data === "Password mismatch") {
-                                props.setMessage('Неверный пароль')
-                            }else if (error.response.data === "Bad token") {
-                                props.setMessage('Плохой токен')
-                            }
-                            break
-                        }
-                        case 409 : {
-                            if (error.response.data === "The password was changed less than 5 minutes ago, please try again later") {
-                                props.setMessage('Пароль был изменен менее 5 минут назад, попробуйте позже')
-                            }
-                            break
-                        }
-                        default:
-                    }
-                    props.setInputPassword('')
+                    setMessage: props.setMessage,
+                    setButtonChangePasswordFirstStepPressed: props.setButtonChangePasswordFirstStepPressed,
+                    setButtonChangePasswordSecondStepPressed: props.setButtonChangePasswordSecondStepPressed
                 })
+                props.setInputPassword('')
             } else {
                 props.setMessage('Неправильный пароль')
                 props.setInputPassword('')
@@ -74,7 +37,7 @@ const ChangeOldPasswordForm = (props : PropsOldPassword) => {
 
     }
 
-    return (
+    return ( // todo вынести
         <div className={change_private_css.rootChangePassword}>
             <section className={change_private_css.setOldPassword}>
                 <legend>Подтвердите Ваш пароль. Вам будет выслан код на электронный адрес бла бла бла

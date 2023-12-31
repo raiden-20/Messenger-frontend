@@ -21,9 +21,6 @@ const PostComponent = (props: PropsPostComponent) => {
                               buttonEditPost={props.buttonEditPost}
                               input_comment={props.input_comment}
                               setInputPostComment={props.setInputPostComment}
-                              commentAvatarUrl={props.commentAvatarUrl}
-                              commentName={props.commentName}
-                              commentNickname={props.commentNickname}
                               deleteOneComment={props.deleteOneComment}
                               deleteOnePost={props.deleteOnePost}
                               setOneComment={props.setOneComment}

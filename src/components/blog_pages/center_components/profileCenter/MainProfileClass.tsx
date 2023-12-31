@@ -1,59 +1,16 @@
 import React, {Component} from 'react';
 import {PropsUserProfile, StateUserProfile} from "../../../../redux/interfaces/profile/profileBase";
 import MainProfileComponent from "./MainProfileComponent";
-import axios from "axios";
-import config from "../../../paths/config";
+import {AuthDataAxios} from "../../../axios/auth/AuthAxios";
 
 class MainProfileClass extends Component<PropsUserProfile, StateUserProfile> {
 
     componentDidMount() {
 
-        axios.get(`http://localhost:8080/auth/data/${localStorage.getItem('idUser')}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setNickname(response.data.nickname)
-                        console.log(localStorage.getItem('token'))
-                        axios.get(`http://localhost:8080/social/data/${localStorage.getItem('idUser')}`, config)
-                            .then(response => {
-                                switch (response.status) {
-                                    case 200 : {
-                                        this.props.setName(response.data.name)
-                                        this.props.setBio(response.data.bio)
-                                        this.props.setBirthDate(response.data.birthDate)
-                                        this.props.setAvatarUrl(response.data.avatarUrl)
-                                        this.props.setCoverUrl(response.data.coverUrl)
-                                        this.props.setStatus(response.data.status)
-                                        break
-                                    }
-                                }
-                            }).catch(error => {
-                            this.props.setMessage(error.message)
-                            switch (error.response.status) {
-                                case 400 : {
-                                    if (error.response.data === "Bad token") {
-                                        this.props.setMessage('Плохой токен')
-                                    }
-                                    break
-                                }
-                                default:
-                            }
-                        })
-                        break
-                    }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403 : {
-                    this.props.setMessage('Плохой токен')
-                    break
-                }
-                case 404 : {
-                    this.props.setMessage('Такого пользователя не существует')
-                    // todo тут перейти на стр такого пользователя не сущ
-                    break
-                }
-            }
+        AuthDataAxios({
+            setNickname: this.props.setNickname,
+            setUserData: this.props.setNickname,
+            setMessage: this.props.setMessage
         })
     }
 

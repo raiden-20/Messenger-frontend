@@ -1,9 +1,19 @@
+export interface User {
+    id: string,
+    name: string,
+    nickname: string,
+    bio: string,
+    avatarUrl: string,
+    status: string,
+}
+
 export interface StateOneFriend {
     id: string,
     name: string,
     nickname: string,
     bio: string,
-    avatarUrl: string
+    avatarUrl: string,
+    status: string,
 
     whoOpened: string
 }
@@ -21,6 +31,7 @@ export interface PropsOneFriend{
     nickname: string,
     bio: string
     avatarUrl: string
+    status: string,
     whoOpened: string
     changeFriendStatus(idOtherUser: string, action: string): void
 }
@@ -31,6 +42,7 @@ export interface PropsOneFriend2{
     nickname: string,
     bio: string
     avatarUrl: string
+    status: string,
 }
 
 export interface PropsOneFriendComponent{
@@ -40,6 +52,7 @@ export interface PropsOneFriendComponent{
     bio: string,
     avatarUrl: string,
     whoOpened: string
+    status: string,
     changeFriendStatus(action: string): void
 }
 
@@ -50,4 +63,8 @@ export interface PropsOneFriendComponent2{
     bio: string,
     avatarUrl: string,
     changeFriendStatus(): void
+}
+
+export interface PropsStatus {
+    status: string
 }

@@ -35,7 +35,7 @@ const MainProfileComponent = (props: PropsUserProfileComponent) => {
                             <div className={main_elements_css.name}>{props.name}</div>
                             <div className={main_elements_css.userName}>{'@' + props.nickname}</div>
                         </section>
-                        {location.pathname === PROFILE_USER ? <ProfileUserSettingsContainer/> : <ProfileOtherUserSettingsComponent/>}
+                        {location.pathname === PROFILE_USER ? <ProfileUserSettingsContainer/> : <ProfileOtherUserSettingsComponent status={props.status}/>}
                     </section>
                     <section>
                         <p>{props.bio}</p>

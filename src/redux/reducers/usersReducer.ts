@@ -1,9 +1,16 @@
+import {Comment} from "../interfaces/profile/post/comments";
+import {User} from "../interfaces/friends/oneFriend";
+
 const SET_USERS = 'SET_USERS'
 const SET_USERS_FRIENDS_COUNT = 'SET_USERS_FRIENDS_COUNT'
 const SET_USERS_SUBSCRIPTIONS_COUNT = 'SET_USERS_SUBSCRIPTIONS_COUNT'
 const SET_USERS_SUBSCRIBERS_COUNT = 'SET_USERS_SUBSCRIBERS_COUNT'
 const SET_WHO_OPENED = 'SET_WHO_OPENED'
 const SET_USERS_NICKNAME = 'SET_USERS_NICKNAME'
+
+const SET_CHANGE_USER_STATUS = 'SET_CHANGE_USER_STATUS'
+
+
 
 const initialState = {
     usersShortInfo : [],
@@ -41,6 +48,15 @@ const usersReducer = (state = initialState, action : any) => {
             stateCopy.whoOpened = action.whoOpened
             return stateCopy
         }
+        case SET_CHANGE_USER_STATUS : {
+            stateCopy= {...state, usersShortInfo: [...state.usersShortInfo]}
+            stateCopy.usersShortInfo.forEach((user: User) => {
+                if (user.id === action.id) {
+                    user.status = action.status
+                }
+            })
+            return stateCopy
+        }
         default:
             return stateCopy
     }
@@ -74,6 +90,11 @@ export const setUserSubscribersCount = (countSubscribers : number) => {
 export const setWhoOpened = (whoOpened : string) => {
     return {
         type: SET_WHO_OPENED, whoOpened
+    }
+}
+export const setChangeUserStatus = (id: string, status: string) => {
+    return {
+        type: SET_WHO_OPENED, id, status
     }
 }
 

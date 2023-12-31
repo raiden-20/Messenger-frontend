@@ -28,10 +28,6 @@ export interface PropsPost {
     input_comment: string
     buttonEditPost: boolean
 
-    commentName : string,
-    commentNickname: string,
-    commentAvatarUrl: string,
-
     setMessage(message: string): void
     setPosts(posts : []): void
     setUserComments(comments : []): void
@@ -45,8 +41,8 @@ export interface PropsPost {
 
     deleteOnePost (postId: string): void
     deleteOneComment(commentId: string): void
-    setOnePost(onePost: Post, postId: string): void
-    setOneComment(oneComment: Comment, commentId: string): void
+    setOnePost(onePost: Post): void
+    setOneComment(oneComment: Comment): void
     addOneComment(oneComment: Comment): void
 }
 
@@ -59,10 +55,6 @@ export interface StatePostsClass {
     message: string
     input_comment: string
     buttonEditPost: boolean
-
-    commentName : string,
-    commentNickname: string,
-    commentAvatarUrl: string,
 }
 
 export interface PropsPostComponent {
@@ -74,10 +66,6 @@ export interface PropsPostComponent {
     message: string
     input_comment: string
     buttonEditPost: boolean
-
-    commentName : string,
-    commentNickname: string,
-    commentAvatarUrl: string,
 
     setMessage(message: string): void
     setUserComments(comments: []): void
@@ -91,8 +79,8 @@ export interface PropsPostComponent {
 
     deleteOnePost (postId: string): void
     deleteOneComment(commentId: string): void
-    setOnePost(onePost: Post, postId: string): void
-    setOneComment(oneComment: Comment, commentId: string): void
+    setOnePost(onePost: Post): void
+    setOneComment(oneComment: Comment): void
     addOneComment(oneComment: Comment): void
 }
 
@@ -120,10 +108,6 @@ export interface PropsOnePostClass {
     input_comment: string
     buttonEditPost: boolean
 
-    commentName : string,
-    commentNickname: string,
-    commentAvatarUrl: string,
-
     setMessage(message: string): void
     setUserComments(comments: []): void
 
@@ -136,8 +120,8 @@ export interface PropsOnePostClass {
 
     deleteOnePost (postId: string): void
     deleteOneComment(commentId: string): void
-    setOnePost(onePost: Post, postId: string): void
-    setOneComment(oneComment: Comment, commentId: string): void
+    setOnePost(post: Post): void
+    setOneComment(oneComment: Comment): void
     addOneComment(oneComment: Comment): void
 }
 

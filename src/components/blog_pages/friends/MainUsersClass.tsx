@@ -146,27 +146,27 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
             action: action
         }, config)
             .then(response => {
-                switch (response.status) {
+                switch (response.status) { // todo узнать какие статусы и прописать
                     case 200 : {
                         switch (action) {
                             case 'CREATE': {
-                                this.getSearch()
+                                this.props.setChangeUserStatus(idOtherUser, '')
                                 break
                             }
                             case 'DELETE_FRIEND': {
-                                this.getFriends()
+                                this.props.setChangeUserStatus(idOtherUser, '')
                                 break
                             }
                             case 'ACCEPT': {
-                                this.getSubscribers()
+                                this.props.setChangeUserStatus(idOtherUser, '')
                                 break
                             }
                             case 'REJECT': {
-                                this.getSubscribers()
+                                this.props.setChangeUserStatus(idOtherUser, '')
                                 break
                             }
                             case 'DELETE_REQUEST': {
-                                this.getSubscriptions()
+                                this.props.setChangeUserStatus(idOtherUser, '')
                                 break
                             }
                         }

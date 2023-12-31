@@ -1,12 +1,3 @@
-
-export interface User {
-    id: string,
-    name: string,
-    nickname: string,
-    bio: string
-    avatarUrl: string
-}
-
 export interface StateUsers {
     users : {
         usersShortInfo : [],
@@ -30,7 +21,7 @@ export interface PropsUsers {
     setUserSubscriptionsCount(countSubscriptions: number): void
     setUserSubscribersCount(countSubscribers: number): void
     setWhoOpened(whoOpened: string): void
-
+    setChangeUserStatus(id: string, status: string): void
 
 }
 

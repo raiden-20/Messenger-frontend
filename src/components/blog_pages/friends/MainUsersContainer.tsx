@@ -1,6 +1,7 @@
 import {StateUsers} from "../../../redux/interfaces/friends/friends";
 import {Dispatch} from "redux";
 import {
+    setChangeUserStatus,
     setUserFriendsCount,
     setUsers, setUsersNicknames,
     setUserSubscribersCount,
@@ -8,6 +9,7 @@ import {
 } from "../../../redux/reducers/usersReducer";
 import {connect} from "react-redux";
 import MainUsersClass from "./MainUsersClass";
+import {User} from "../../../redux/interfaces/friends/oneFriend";
 
 const mapStateToProps = (state : StateUsers) => {
     return {
@@ -38,6 +40,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setWhoOpened(whoOpened: string) {
             dispatch(setWhoOpened(whoOpened))
+        },
+        setChangeUserStatus(id: string, status: string) {
+            dispatch(setChangeUserStatus(id, status))
         }
     }
 }

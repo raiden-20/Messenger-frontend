@@ -1,7 +1,6 @@
 export interface StateAuthRestore {
     auth: {
         message: string
-        id: string
     }
 }
 

@@ -1,7 +1,8 @@
 import React from "react";
 import main_css from "../../../MainUsers.module.css";
-import {PropsFriendsComponent, User} from "../../../../../../redux/interfaces/friends/friends";
+import {PropsFriendsComponent} from "../../../../../../redux/interfaces/friends/friends";
 import OneUserClass from "../../oneUser/OneUserClass";
+import {User} from "../../../../../../redux/interfaces/friends/oneFriend";
 
 
 const MainFriendsComponent = (props: PropsFriendsComponent) => {
@@ -17,7 +18,8 @@ const MainFriendsComponent = (props: PropsFriendsComponent) => {
                                                                     avatarUrl={user.avatarUrl}
                                                                     id={user.id}
                                                                     changeFriendStatus={changeFriendStatus}
-                                                                    whoOpened={props.whoOpened}/>)}
+                                                                    whoOpened={props.whoOpened}
+                                                                    status={user.status}/>)}
         </section>
     )
 }

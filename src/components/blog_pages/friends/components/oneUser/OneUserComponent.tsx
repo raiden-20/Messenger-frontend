@@ -7,7 +7,7 @@ import {PROFILE_OTHER_USER} from "../../../../paths/profilePath";
 import default_ava from '../../../../../assets/images/default_profile_ava.svg'
 import check_mark from '../../../../../assets/images/friends/check_mark.svg'
 import delete_mark from '../../../../../assets/images/friends/delete_mark.svg'
-import FriendsImagesComponent from "./imagesForWhoOpened/FriendsImagesComponent";
+import UsersImagesComponent from "./imagesForWhoOpened/UsersImagesComponent";
 import SubscriptionsImagesComponent from "./imagesForWhoOpened/SubscriptionsImagesComponent";
 import SearchImagesComponent from "./imagesForWhoOpened/SearchImagesComponent";
 
@@ -87,9 +87,8 @@ const OneUserComponent = (props: PropsOneFriendComponent) => {
                                 <img src={chatting} alt={'chat'}/>
                             </button>
                             <button onClick={setAction}>
-                                {props.whoOpened === 'friends' ? <FriendsImagesComponent/> :
-                                    props.whoOpened === 'subscriptions' ? <SubscriptionsImagesComponent/> :
-                                        props.whoOpened === 'search' ? <SearchImagesComponent/> : null}
+                                {props.status !== 'search' ? <UsersImagesComponent status={props.status}/> :
+                                    <SearchImagesComponent/> }
                             </button>
                         </section>
                 : null

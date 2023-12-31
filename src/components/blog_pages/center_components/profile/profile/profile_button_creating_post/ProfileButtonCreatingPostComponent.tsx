@@ -19,15 +19,16 @@ const ProfileButtonCreatingPostComponent = (props: PropsCreatePostButton) => {
                 </section>
             </button>
             {isButtonCreatPostPressed ? <ProfileNewPostClass setButtonCreatPostPressed={setButtonCreatPostPressed}
-                                                        setInputPostPhoto={props.setInputPostPhoto}
-                                                        setInputPostText={props.setInputPostText}
-                                                        input_postPhoto={props.input_postPhoto}
-                                                        input_postText={props.input_postText}
-                                                        input_postPhotoUrl={props.input_postPhotoUrl}
-                                                        setInputPostPhotoUrl={props.setInputPostPhotoUrl}
-                                                        setInputPostPhotoDelete={props.setInputPostPhotoDelete}
-                                                        setInputPostAllPhotoDelete={props.setInputPostAllPhotoDelete}
-                                                        setPosts={props.setPosts}/> : null}
+                                                             setInputPostPhoto={props.setInputPostPhoto}
+                                                             setInputPostText={props.setInputPostText}
+                                                             input_postPhoto={props.input_postPhoto}
+                                                             input_postText={props.input_postText}
+                                                             input_postPhotoUrl={props.input_postPhotoUrl}
+                                                             setInputPostPhotoUrl={props.setInputPostPhotoUrl}
+                                                             setInputPostPhotoDelete={props.setInputPostPhotoDelete}
+                                                             setInputPostAllPhotoDelete={props.setInputPostAllPhotoDelete}
+                                                             setPosts={props.setPosts}
+                                                             addOnePost={props.addOnePost}/> : null}
         </div>
 
     )

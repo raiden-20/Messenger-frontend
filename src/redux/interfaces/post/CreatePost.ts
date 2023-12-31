@@ -1,3 +1,5 @@
+import {Post} from "../profile/post/post";
+
 export interface PropsCreatePost {
     input_postPhoto: [],
     input_postPhotoUrl: [],
@@ -38,6 +40,8 @@ export interface PropsCreatePostButton {
 
     setPosts(posts: []): void
 
+    addOnePost(onePost: Post): void
+
 }
 export interface PropsCreatePostButtonClass {
     input_postPhoto: [],
@@ -57,6 +61,7 @@ export interface PropsCreatePostButtonClass {
     setButtonCreatPostPressed(flag: boolean): void
 
     setPosts(posts: []): void
+    addOnePost(onePost: Post): void
 }
 export interface PropsCreatePostButtonComponent {
     input_postPhoto: [],

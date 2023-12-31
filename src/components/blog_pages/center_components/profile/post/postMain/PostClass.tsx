@@ -39,14 +39,11 @@ class PostClass extends Component<PropsPost, StatePostsClass> {
                               buttonEditPost={this.props.buttonEditPost}
                               input_comment={this.props.input_comment}
                               setInputPostComment={this.props.setInputPostComment}
-                              commentAvatarUrl={this.props.commentAvatarUrl}
-                              commentName={this.props.commentName}
-                              commentNickname={this.props.commentNickname}
                               deleteOneComment={this.props.deleteOneComment}
                               deleteOnePost={this.props.deleteOnePost}
                               setOneComment={this.props.setOneComment}
-                              setOnePost={this.props.setOnePost}
-                              addOneComment={this.props.addOneComment}/>
+                              addOneComment={this.props.addOneComment}
+                              setOnePost={this.props.setOnePost}/>
     }
 }
 

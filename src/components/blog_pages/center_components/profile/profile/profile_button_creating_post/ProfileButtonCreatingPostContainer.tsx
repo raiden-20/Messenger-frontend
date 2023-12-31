@@ -3,12 +3,14 @@ import ProfileButtonCreatingPostComponent from "./ProfileButtonCreatingPostCompo
 import {Dispatch} from "redux";
 import {StateCreatingPost} from "../../../../../../redux/interfaces/post/CreatePost";
 import {
+    addOnePost,
     setInputPostAllPhotoDelete,
     setInputPostPhoto,
     setInputPostPhotoDelete,
     setInputPostPhotoUrl,
     setInputPostText, setPosts
 } from "../../../../../../redux/reducers/postReducer";
+import {Post} from "../../../../../../redux/interfaces/profile/post/post";
 
 const mapStateToProps = (state: StateCreatingPost) => {
     return {
@@ -38,6 +40,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setPosts(posts : []) {
             dispatch(setPosts(posts))
+        },
+        addOnePost(onePost: Post): void {
+            dispatch(addOnePost(onePost))
         },
     }
 

@@ -1,8 +1,9 @@
 import {Component} from "react";
 import OnePostComponent from "./OnePostComponent";
-import {PropsOnePostClass, StateOnePostClass} from "../../../../../../redux/interfaces/profile/post/post";
+import {Post, PropsOnePostClass, StateOnePostClass} from "../../../../../../redux/interfaces/profile/post/post";
 import axios from "axios";
 import config from "../../../../../paths/config";
+import {Comment} from "../../../../../../redux/interfaces/profile/post/comments";
 
 class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
 
@@ -22,7 +23,18 @@ class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
                     .then(response => {
                         switch (response.status) {
                             case 200: {
-                                this.props.setOnePost(response.data, this.props.post.postId)
+                                let post: Post = {
+                                    postId: this.props.post.postId,
+                                    time: this.props.post.time,
+                                    text: this.props.post.text,
+                                    photoUrl: this.props.post.photoUrl,
+                                    likeCount: this.props.post.isLiked ? (Number.parseInt(this.props.post.likeCount) - 1).toString() :
+                                        (Number.parseInt(this.props.post.likeCount) + 1).toString(),
+                                    commentCount: this.props.post.commentCount,
+                                    isLiked: !this.props.post.isLiked
+                                }
+
+                                this.props.setOnePost(post)
                             }
                         }
                     }).catch(error => {

@@ -3,13 +3,16 @@ import React from 'react';
 import prof_oth_us from './ProfileOtherUser.module.css'
 
 import chatting from '../../../../../assets/images/other/chat_with_user.svg'
-import sub_app from '../../../../../assets/images/friends/submitted_application.svg'
+import UsersImagesComponent from "../../../friends/components/oneUser/imagesForWhoOpened/UsersImagesComponent";
+import SearchImagesComponent from "../../../friends/components/oneUser/imagesForWhoOpened/SearchImagesComponent";
+import {PropsStatus} from "../../../../../redux/interfaces/friends/oneFriend";
 
-const ProfileOtherUserSettingsComponent = () => {
+const ProfileOtherUserSettingsComponent = (props: PropsStatus) => {
     return (// todo status
         <section className={prof_oth_us.profile_icons}>
             <img src={chatting} alt={'chat'}/>
-            <img src={sub_app} alt={'adding to friend'}/>
+            {props.status !== 'search' ? <UsersImagesComponent status={props.status}/> :
+                <SearchImagesComponent/>}
         </section>
     )
 }

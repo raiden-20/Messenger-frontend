@@ -1,21 +1,10 @@
 import React from "react";
-import {
-    PropsNewPassword
-} from "../../../../../../../../redux/interfaces/settings/settings_for_components/password/SettingsNewPassword";
-
+import {PropsNewPassword} from "../../../../../../../../redux/interfaces/settings/settings_for_components/password/SettingsNewPassword";
 import change_el_css from "../../../ChangeSettingsElements.module.css";
 import change_private_css from './NewPasswordForm.module.css'
-import axios from "axios";
-import {AUTHORIZATION} from "../../../../../../../paths/authPath";
-import {useNavigate} from "react-router-dom";
+import {NewPasswordAxios} from "../../../../../../../axios/auth/AuthAxios";
 
 const NewPasswordForm = (props : PropsNewPassword) => {
-    const navigate = useNavigate()
-
-    const config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    };
-
     const sendInputPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         props.setInputPassword(event.target.value)
     }
@@ -28,42 +17,14 @@ const NewPasswordForm = (props : PropsNewPassword) => {
     const saveButtonActionSecondStep = () => {
         if (props.input_password != null && props.input_passwordConfirm != null) {
             if (props.input_password === props.input_passwordConfirm) {
-                axios.put('http://localhost:8080/auth/confirm/password', {
-                    token: props.token,
-                    oneTimeCode: props.input_code,
-                    newPassword: props.input_password
-                }, config).then(response => {
+                NewPasswordAxios( {
+                    input_code: props.input_code,
+                    input_password: props.input_password,
 
-                    props.setMessage('Пароль был изменен')
-                    props.setPassword(props.input_password)
-                    localStorage.setItem('password', props.input_password)
-                    if (response.data.split(' ').length === 2) {
-                        localStorage.setItem('token', response.data.split(' ')[1])
-                    } else {
-                        localStorage.setItem('token', response.data)
-                    }
-
-                    navigate(AUTHORIZATION)
-                    props.setInputPassword('')
-
-                }).catch(error => {
-                    props.setMessage(error.message)
-                    switch (error.response.status) {
-                        case 400 : {
-                            if (error.response.data === "User doesn't exist") {
-                                props.setMessage('Пользователя не существует')
-                            } else if (error.response.data === "Code doesn't match") {
-                                props.setMessage('Неверный код')
-                            } else if (error.response.data === "The code is not relevant") {
-                                props.setMessage('Истекло время использования кода')
-                            }else if (error.response.data === "Bad token") {
-                                props.setMessage('Плохой токен')
-                            }
-                            break
-                        }
-                        default:
-                    }
+                    setMessage: props.setMessage,
+                    setPassword: props.setPassword
                 })
+
                 props.setInputPassword('')
                 props.setInputPasswordConfirm('')
                 props.setInputCode('')

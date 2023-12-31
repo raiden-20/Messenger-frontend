@@ -17,6 +17,7 @@ import {
 } from "../paths/authPath";
 import {PropsProfileNameSurname} from "../../redux/interfaces/profile/profileAddNameSurname";
 import MainSuccessComponent from "./successful_registration_restoring/MainSuccessComponent";
+import RestoreAccountClass from "./restore_account/RestoreAccountClass";
 
 const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
     const navigate = useNavigate()
@@ -100,8 +101,8 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                                                       setCode={props.setCode}
                                                                                                       buttonShowMessage={props.buttonShowMessage}
                                                                                                       setShowMessage={props.setShowMessage}/> :
-                location.pathname === REGISTRATION_RESTORE_ACCOUNT ? <RestoreAccountComponent message={props.message}
-                                                                                              setMessage={props.setMessage}
+                location.pathname === REGISTRATION_RESTORE_ACCOUNT ? <RestoreAccountClass message={props.message}
+                                                                                          setMessage={props.setMessage}
                                                                                      /> :
                 location.pathname === SUCCESSFUL_ACTIVATION ? <MainSuccessComponent message={props.message}
                                                                                     setMessage={props.setMessage}

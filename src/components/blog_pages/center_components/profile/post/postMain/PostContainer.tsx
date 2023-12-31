@@ -8,7 +8,7 @@ import {
     setInputPostPhoto,
     setInputPostPhotoUrl, setInputPostText,
     setPosts,
-    setComments, deleteOnePost, deleteOneComment, setOnePost, setOneComment, addOneComment
+    setComments, deleteOnePost, deleteOneComment, setOnePost, setOneComment, addOneComment, addOnePost
 } from "../../../../../../redux/reducers/postReducer";
 import {Comment} from "../../../../../../redux/interfaces/profile/post/comments";
 
@@ -57,11 +57,11 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         deleteOneComment(commentId: string) {
             dispatch(deleteOneComment(commentId))
         },
-        setOnePost(onePost: Post, postId: string) {
-            dispatch(setOnePost(onePost, postId))
+        setOnePost(onePost: Post) {
+            dispatch(setOnePost(onePost))
         },
-        setOneComment(oneComment: Comment, commentId: string) {
-            dispatch(setOneComment(oneComment, commentId))
+        setOneComment(oneComment: Comment) {
+            dispatch(setOneComment(oneComment))
         },
         addOneComment(oneComment: Comment) {
             dispatch(addOneComment(oneComment))

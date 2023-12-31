@@ -1,3 +1,5 @@
+const SET_USER_DATA = 'SET_USER_DATA'
+
 const SET_USER_NAME = 'SET_USER_NAME'
 const SET_USER_BIRTH_DATE = 'SET_USER_BIRTH_DATE'
 const SET_USER_BIO = 'SET_USER_BIO'
@@ -28,16 +30,27 @@ const initialState = {
     input_avatarUrl: File,
     input_coverUrl: File,
     input_birthDate: "",
-    input_bio : "",
+    input_bio: "",
     isButtonSettingPressed: false,
 
     deleteAvatarFlag: false,
     deleteCoverFlag: false
 }
 
-const profileReducer = (state = initialState, action : any) => {
+const profileReducer = (state = initialState, action: any) => {
     let stateCopy = {...state}
     switch (action.type) {
+        case SET_USER_DATA : {
+            stateCopy.name = action.name
+            stateCopy.birthDate = action.birthDate
+            stateCopy.bio = action.bio
+            stateCopy.avatarUrl = action.avatarUrl
+            stateCopy.coverUrl = action.coverUrl
+            stateCopy.status = action.status
+
+            return stateCopy
+        }
+
 
         case SET_USER_NAME : {
             stateCopy.name = action.name
@@ -126,72 +139,83 @@ const profileReducer = (state = initialState, action : any) => {
     }
 }
 
-export const setName = (name : string) => {
+export const setUserData = (name: string,
+                            birthDate: string,
+                            bio: string,
+                            avatarUrl: string,
+                            coverUrl: string,
+                            status: string) => {
+    return {
+        type: SET_USER_DATA, name, birthDate, bio, avatarUrl, coverUrl, status
+    }
+}
+
+export const setName = (name: string) => {
     return {
         type: SET_USER_NAME, name
     }
 }
-export const setBirthDate = (birthDate : string) => {
+export const setBirthDate = (birthDate: string) => {
     return {
         type: SET_USER_BIRTH_DATE, birthDate
     }
 }
-export const setBio = (bio : string) => {
+export const setBio = (bio: string) => {
     return {
         type: SET_USER_BIO, bio
     }
 }
-export const setAvatarUrl = (avatarUrl : string) => {
+export const setAvatarUrl = (avatarUrl: string) => {
     return {
         type: SET_USER_AVATAR_URL, avatarUrl
     }
 }
-export const setCoverUrl = (coverUrl : string) => {
+export const setCoverUrl = (coverUrl: string) => {
     return {
         type: SET_USER_COVER_URL, coverUrl
     }
 }
-export const setStatus = (status : string) => {
+export const setStatus = (status: string) => {
     return {
         type: SET_USER_STATUS, status
     }
 }
-export const setInputName = (input_name : string) => {
+export const setInputName = (input_name: string) => {
     return {
         type: SET_INPUT_USER_NAME, input_name
     }
 }
-export const setInputBirthDate = (input_birthDate : string) => {
+export const setInputBirthDate = (input_birthDate: string) => {
     return {
         type: SET_INPUT_USER_BIRTH_DATE, input_birthDate
     }
 }
-export const setInputBio = (input_about : string) => {
+export const setInputBio = (input_about: string) => {
     return {
         type: SET_INPUT_USER_ABOUT, input_about
     }
 }
-export const setInputAvatarUrl = (input_avatarUrl : File) => {
+export const setInputAvatarUrl = (input_avatarUrl: File) => {
     return {
         type: SET_INPUT_USER_AVATAR_URL, input_avatarUrl
     }
 }
-export const setInputCoverUrl = (input_coverUrl : File) => {
+export const setInputCoverUrl = (input_coverUrl: File) => {
     return {
         type: SET_INPUT_USER_COVER_URL, input_coverUrl
     }
 }
-export const setButtonSettingPressed = (isButtonSettingPressed : boolean) => {
+export const setButtonSettingPressed = (isButtonSettingPressed: boolean) => {
     return {
         type: SET_BUTTON_SETTING_PRESSED, isButtonSettingPressed
     }
 }
-export const setDeleteAvatarFlag = (deleteAvatarFlag : boolean) => {
+export const setDeleteAvatarFlag = (deleteAvatarFlag: boolean) => {
     return {
         type: SET_DELETE_AVATAR_FLAG, deleteAvatarFlag
     }
 }
-export const setDeleteCoverFlag = (deleteCoverFlag : boolean) => {
+export const setDeleteCoverFlag = (deleteCoverFlag: boolean) => {
     return {
         type: SET_DELETE_COVER_FLAG, deleteCoverFlag
     }

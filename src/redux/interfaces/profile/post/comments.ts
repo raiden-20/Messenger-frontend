@@ -1,5 +1,3 @@
-import {Post} from "./post";
-
 export interface Comment {
     commentId: string
     userId: string | null,

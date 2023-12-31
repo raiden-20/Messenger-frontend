@@ -9,7 +9,7 @@ import {
 import {PropsChangeEmail, StateChangeEmail} from "../../../../../redux/interfaces/settings/SettingsChangeEmail";
 import ChangePassword from "../components/change_password/ChangePassword";
 import ChangeLanguage from "../components/change_language/ChangeLanguage";
-import DeleteAccount from "../components/delete_account/DeleteAccount";
+import DeleteAccountClass from "../components/delete_account/DeleteAccountClass";
 import {
     PropsDeleteAccount, StateDeleteAccount
 } from "../../../../../redux/interfaces/settings/settings_for_components/SettingsDeleteAccount";
@@ -67,11 +67,11 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail &
                         </section>
                     </main>
                     <footer>
-                        <DeleteAccount password={this.props.password}
-                                       setToken={this.props.setToken}
-                                       token={this.props.token}
-                                       setMessage={this.props.setMessage}
-                                       message={this.props.message}/>
+                        <DeleteAccountClass password={this.props.password}
+                                            setToken={this.props.setToken}
+                                            token={this.props.token}
+                                            setMessage={this.props.setMessage}
+                                            message={this.props.message}/>
                     </footer>
                 </section>
             </section>

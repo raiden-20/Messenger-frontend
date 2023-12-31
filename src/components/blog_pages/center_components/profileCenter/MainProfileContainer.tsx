@@ -8,13 +8,13 @@ import {
     setBirthDate,
     setCoverUrl,
     setName,
-    setStatus
+    setStatus, setUserData
 } from "../../../../redux/reducers/profileReducer";
 import MainProfileClass from "./MainProfileClass";
 
-const mapStateToProps = (state : StateUserProfile) => {
+const mapStateToProps = (state: StateUserProfile) => {
     return {
-        id : state.auth.id,
+        id: state.auth.id,
         name: state.profile.name,
         birthDate: state.profile.birthDate,
         nickname: state.auth.nickname,
@@ -31,6 +31,14 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         setId(id: string) {
             dispatch(setId(id))
+        },
+        setUserData(name: string,
+                    birthDate: string,
+                    bio: string,
+                    avatarUrl: string,
+                    coverUrl: string,
+                    status: string) {
+            dispatch(setUserData(name, birthDate, bio, avatarUrl, coverUrl, status))
         },
         setName(name: string) {
             dispatch(setName(name))
