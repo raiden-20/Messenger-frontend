@@ -132,6 +132,5 @@ export const DeletePhotoPostAxios = (data: DeletePhotoPostAxiosInterface) => {
             postId: data.postId
         }
     }).then(response => {
-    }).catch(error => {
     })
 }
