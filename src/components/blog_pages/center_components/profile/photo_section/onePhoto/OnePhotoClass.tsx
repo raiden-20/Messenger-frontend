@@ -6,9 +6,8 @@ import {Comment} from "../../../../../../redux/interfaces/profile/post/comments"
 
 class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
 
-    commentId = ''
     text = ''
-    time = ''
+    time = '1999-01-01'
     isLiked = false
     likeCount = '0'
     commentCount = '0'
@@ -20,6 +19,7 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
         })
 
         postData.then(response => {
+            debugger
             this.text = response.text
             this.time = response.time
             this.isLiked = response.isLiked
@@ -58,10 +58,14 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
                         text: this.props.input_comment,
                         time: dateString.split('.').join('-'),
                         countLikes: '0',
-                        isLiked: false
+                        isLiked: false,
+                        name: this.props.name,
+                        nickname: this.props.nickname,
+                        avatarUrl: this.props.avatarUrl
                     }
                     this.props.addOneComment(oneComment)
                     this.props.setOneCommentCountPost(this.props.postId, this.commentCount + 1)
+                    this.props.setInputPostComment('')
                 }
             }
         })
@@ -99,7 +103,8 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
                                   likePost={this.likePost}
                                   deleteOneComment={this.props.deleteOneComment}
                                   setOneCommentCountPost={this.props.setOneCommentCountPost}
-                                  setOneLikeCommentPost={this.props.setOneLikeCommentPost}/>
+                                  setOneLikeCommentPost={this.props.setOneLikeCommentPost}
+                                  setOneCommentUserData={this.props.setOneCommentUserData}/>
     }
 }
 

@@ -14,7 +14,10 @@ const OneUserDataComponent = (props: PropsOneUserComponent) => {
 
     return (
         <section className={onePhoto_css.user}>
-            <img className={onePhoto_css.user_ava} src={props.avatarUrl === '' ? default_ava : props.avatarUrl} alt={'user avatar'}/>
+            <section className={onePhoto_css.user_ava}>
+                <img src={props.avatarUrl === '' ? default_ava : props.avatarUrl} alt={'user avatar'}/>
+            </section>
+
             <section className={onePhoto_css.userPostData}>
                 <section className={onePhoto_css.header}>
                     <section className={onePhoto_css.nameNick}>

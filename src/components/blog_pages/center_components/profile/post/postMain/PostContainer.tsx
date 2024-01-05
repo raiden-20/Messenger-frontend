@@ -16,7 +16,7 @@ import {
     setOnePost,
     setOneComment,
     addOneComment,
-    setOneLikeCountPost, setOneLikeCommentPost, setOneCommentCountPost
+    setOneLikeCountPost, setOneLikeCommentPost, setOneCommentCountPost, setOneCommentUserData
 } from "../../../../../../redux/reducers/postReducer";
 import {Comment} from "../../../../../../redux/interfaces/profile/post/comments";
 
@@ -79,6 +79,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setOneComment(oneComment: Comment) {
             dispatch(setOneComment(oneComment))
+        },
+        setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string) {
+            dispatch(setOneCommentUserData(commentId, name, nickname, avatarUrl))
         },
         addOneComment(oneComment: Comment) {
             dispatch(addOneComment(oneComment))

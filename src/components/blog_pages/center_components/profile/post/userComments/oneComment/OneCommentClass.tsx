@@ -37,12 +37,10 @@ class OneCommentClass extends Component<PropsComment, Comment> {
     }
 
     componentDidMount() {
-        debugger
         let authDataPromise = AuthDataAxios({
             id: this.props.userId as string
         })
         authDataPromise.then(response => {
-            debugger
             switch (response[0]) {
                 case 200 : {
                     this.nickname = response[1].nickname
@@ -55,11 +53,11 @@ class OneCommentClass extends Component<PropsComment, Comment> {
             id: this.props.userId as string
         })
         dataPromise.then(response => {
-            debugger
             switch (response[0]) {
                 case 200 : {
                     this.name = response[1].name
                     this.avatarUrl = response[1].avatarUrl
+                    this.props.setOneCommentUserData(this.props.commentId, this.name, this.nickname, this.avatarUrl)
                 }
             }
         })

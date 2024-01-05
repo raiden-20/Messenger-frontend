@@ -5,7 +5,13 @@ import {
     setInputPostComment,
     setComments,
     setOneComment,
-    deleteOneComment, setOnePost, addOneComment, setOneLikeCountPost, setOneLikeCommentPost, setOneCommentCountPost
+    deleteOneComment,
+    setOnePost,
+    addOneComment,
+    setOneLikeCountPost,
+    setOneLikeCommentPost,
+    setOneCommentCountPost,
+    setOneCommentUserData
 } from "../../../../../../redux/reducers/postReducer";
 import OnePhotoClass from "./OnePhotoClass";
 import {setButtonOpenPhoto} from "../../../../../../redux/reducers/photoReducer";
@@ -53,6 +59,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setOneLikeCommentPost(commentId: string, likeComment: string) {
             dispatch(setOneLikeCommentPost(commentId, likeComment))
+        },
+        setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string) {
+            dispatch(setOneCommentUserData(commentId, name, nickname, avatarUrl))
         },
         setOneCommentCountPost(postId: string, commentCount: string) {
             dispatch(setOneCommentCountPost(postId, commentCount))

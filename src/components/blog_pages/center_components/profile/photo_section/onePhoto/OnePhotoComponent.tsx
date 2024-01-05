@@ -22,7 +22,9 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
         <section className={prof_setting.location_edit_window}>
             <section className={prof_setting.overflay} onClick={() => props.setButtonOpenPhoto(false)}></section>
             <section className={onePhoto_css.page}>
-                <img src={cat} alt={'user_photo'} className={onePhoto_css.photo}/>
+                <section className={onePhoto_css.photo}>
+                    <img src={props.onePhotoUrl} alt={'user_photo'}/>
+                </section>
                 <section className={onePhoto_css.body}>
                     <OneUserDataClass commentId={''}
                                       userId={localStorage.getItem('idUser')}
@@ -36,7 +38,8 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
                                       commentsCount={props.commentCount}
                                       deleteOneComment={props.deleteOneComment}
                                       setOneCommentCountPost={props.setOneCommentCountPost}
-                                      setOneLikeCommentPost={props.setOneLikeCommentPost}/>
+                                      setOneLikeCommentPost={props.setOneLikeCommentPost}
+                                      setOneCommentUserData={props.setOneCommentUserData}/>
                     <section className={post_comm_css.section_writeComment}>
                             <textarea placeholder={'Написать комментарий'} value={props.input_comment}
                                       onChange={setInputComment}></textarea>
@@ -47,9 +50,9 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
                     <section className={onePhoto_css.comments}>
                         {props.comments.map((oneComment: Comment) => (
                             <OneUserDataClass commentId={oneComment.commentId}
-                                              avatarUrl={props.avatarUrl}
-                                              name={props.name}
-                                              nickname={props.nickname}
+                                              avatarUrl={oneComment.avatarUrl}
+                                              name={oneComment.name}
+                                              nickname={oneComment.nickname}
                                               isLiked={oneComment.isLiked}
                                               countLikes={oneComment.countLikes}
                                               time={oneComment.time}
@@ -58,7 +61,8 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
                                               deleteOneComment={props.deleteOneComment}
                                               userId={oneComment.userId}
                                               setOneCommentCountPost={props.setOneCommentCountPost}
-                                              setOneLikeCommentPost={props.setOneLikeCommentPost}/>
+                                              setOneLikeCommentPost={props.setOneLikeCommentPost}
+                                              setOneCommentUserData={props.setOneCommentUserData}/>
                         ))}
                     </section>
                 </section>

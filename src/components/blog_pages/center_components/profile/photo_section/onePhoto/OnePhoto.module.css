@@ -17,6 +17,13 @@
     border-radius: 20px 0 0 20px;
 }
 
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px 0 0 20px;
+}
+
 .body {
     display: grid;
     grid-template-rows: 78px 50px auto;
@@ -37,6 +44,14 @@
 .user_ava {
     width: 45px;
     height: 45px;
+    border-radius: 50px;
+}
+
+.user_ava img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50px;
 }
 
 .nickname {

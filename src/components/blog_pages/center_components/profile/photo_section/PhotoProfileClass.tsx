@@ -35,7 +35,7 @@ class PhotoProfileClass extends Component<PropsPhotoProfile, StatePhotoProfileCl
                                       setButtonOpenPhoto={this.props.setButtonOpenPhoto}
                                       isButtonOpenPhotoPressed={this.props.isButtonOpenPhotoPressed}
                                       setPostUrl={this.props.setPostUrl}
-                                      setOnePhotoUrl={this.props.setOnePhotoUrl}/>
+                                      setOnePhotoUrl={this.props.setOnePhotoUrl} />
     }
 }
 

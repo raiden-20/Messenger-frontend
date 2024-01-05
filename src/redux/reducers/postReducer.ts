@@ -9,6 +9,7 @@ const SET_ONE_LIKE_COUNT_POST = 'SET_ONE_LIKE_COUNT_POST'
 const SET_ONE_LIKE_COUNT_COMMENT = 'SET_ONE_LIKE_COUNT_COMMENT'
 const SET_ONE_COMMENT_COUNT_POST = 'SET_ONE_COMMENT_COUNT_POST'
 const SET_ONE_COMMENT = 'SET_ONE_COMMENT'
+const SET_ONE_COMMENT_USER_DATA = 'SET_ONE_COMMENT_USER_DATA'
 
 const ADD_ONE_POST = 'ADD_ONE_POST'
 const ADD_ONE_COMMENT = 'ADD_ONE_COMMENT'
@@ -106,6 +107,22 @@ const postReducer = (state = initialState, action: any) => {
                 if (stateCopy.comments[index].commentId === action.oneComment.commentId) {
                     // @ts-ignore
                     stateCopy.comments[index] = action.oneComment
+                }
+            }
+            return stateCopy
+        }
+        case SET_ONE_COMMENT_USER_DATA : {
+            // @ts-ignore
+            stateCopy= {...state, comments: [...state.comments]}
+            for (let index = 0; index < stateCopy.comments.length; index++) {
+                // @ts-ignore
+                if (stateCopy.comments[index].commentId === action.commentId) {
+                    // @ts-ignore
+                    stateCopy.comments[index].name = action.name
+                    // @ts-ignore
+                    stateCopy.comments[index].nickname = action.nickname
+                    // @ts-ignore
+                    stateCopy.comments[index].avatarUrl = action.avatarUrl
                 }
             }
             return stateCopy
@@ -247,6 +264,11 @@ export const setOneCommentCountPost = (postId: string, commentCount: string) => 
 export const setOneComment = (oneComment: Comment) => {
     return {
         type: SET_ONE_COMMENT, oneComment
+    }
+}
+export const setOneCommentUserData = (commentId: string, name: string, nickname: string, avatarUrl: string) => {
+    return {
+        type: SET_ONE_COMMENT_USER_DATA, commentId, name, nickname, avatarUrl
     }
 }
 export const addOnePost = (onePost: Post) => {

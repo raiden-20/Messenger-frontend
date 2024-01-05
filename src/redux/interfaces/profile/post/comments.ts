@@ -8,6 +8,9 @@ export interface Comment {
     time: string
     countLikes: string,
     isLiked: boolean
+    name: string
+    nickname: string
+    avatarUrl: string
 }
 
 export interface PropsComment {
@@ -17,12 +20,15 @@ export interface PropsComment {
     time: string
     countLikes: string,
     isLiked: boolean
+    name: string
+    nickname: string
+    avatarUrl: string
 
     deleteOneComment(commentId: string): void
 
     setOneLikeCommentPost(commentId: string, likeComment: string): void
     setOneCommentCountPost(postId: string, commentCount: string): void
-
+    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
 }
 
 export interface PropsUserComment {
@@ -38,6 +44,7 @@ export interface PropsUserComment {
 
     setOneLikeCommentPost(commentId: string, likeComment: string): void
     setOneCommentCountPost(postId: string, commentCount: string): void
+    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
 
 
     postId: string,
@@ -89,6 +96,7 @@ export interface PropsUserCommentClass {
 
     setOneLikeCommentPost(commentId: string, likeComment: string): void
     setOneCommentCountPost(postId: string, commentCount: string): void
+    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
 
     postId: string,
     time: string,

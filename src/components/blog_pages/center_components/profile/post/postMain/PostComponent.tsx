@@ -34,7 +34,8 @@ const PostComponent = (props: PropsPostComponent) => {
                                   addOneComment={props.addOneComment}
                                   setOneCommentCountPost={props.setOneCommentCountPost}
                                   setOneLikeCommentPost={props.setOneLikeCommentPost}
-                                  setOneLikeCountPost={props.setOneLikeCountPost}/>
+                                  setOneLikeCountPost={props.setOneLikeCountPost}
+                                  setOneCommentUserData={props.setOneCommentUserData}/>
                 ))}
             </div>
 

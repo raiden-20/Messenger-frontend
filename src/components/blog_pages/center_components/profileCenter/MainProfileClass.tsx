@@ -11,7 +11,6 @@ class MainProfileClass extends Component<PropsUserProfile, StateUserProfile> {
             id: localStorage.getItem('idUser') as string
         })
         authDataPromise.then(response => {
-            debugger
             switch (response[0]) {
                 case 200 : {
                     this.props.setNickname(response[1].nickname)

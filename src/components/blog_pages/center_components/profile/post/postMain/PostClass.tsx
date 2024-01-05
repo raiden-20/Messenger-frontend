@@ -35,7 +35,8 @@ class PostClass extends Component<PropsPost, StatePostsClass> {
                               setOnePost={this.props.setOnePost}
                               setOneCommentCountPost={this.props.setOneCommentCountPost}
                               setOneLikeCommentPost={this.props.setOneLikeCommentPost}
-                              setOneLikeCountPost={this.props.setOneLikeCountPost}/>
+                              setOneLikeCountPost={this.props.setOneLikeCountPost}
+                              setOneCommentUserData={this.props.setOneCommentUserData}/>
     }
 }
 

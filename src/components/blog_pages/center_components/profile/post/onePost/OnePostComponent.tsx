@@ -108,7 +108,8 @@ const OnePostComponent = (props: OnePost & Post) => {
                                                                  addOneComment={props.addOneComment}
                                                                  photoUrl={props.photoUrl}
                                                                  setOneCommentCountPost={props.setOneCommentCountPost}
-                                                                 setOneLikeCommentPost={props.setOneLikeCommentPost}/> : null}
+                                                                 setOneLikeCommentPost={props.setOneLikeCommentPost}
+                                                                 setOneCommentUserData={props.setOneCommentUserData}/> : null}
                         {props.commentCount}
                     </section>
                 </section>

@@ -87,7 +87,8 @@ class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
                                  setOneComment={this.props.setOneComment}
                                  addOneComment={this.props.addOneComment}
                                  setOneCommentCountPost={this.props.setOneCommentCountPost}
-                                 setOneLikeCommentPost={this.props.setOneLikeCommentPost}/>
+                                 setOneLikeCommentPost={this.props.setOneLikeCommentPost}
+                                 setOneCommentUserData={this.props.setOneCommentUserData}/>
     }
 }
 

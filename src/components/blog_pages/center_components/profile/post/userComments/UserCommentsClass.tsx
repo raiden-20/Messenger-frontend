@@ -38,10 +38,14 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
                         text: this.props.input_comment,
                         time: dateString.split('.').join('-'),
                         countLikes: '0',
-                        isLiked: false
+                        isLiked: false,
+                        name: this.props.name,
+                        nickname: this.props.nickname,
+                        avatarUrl: this.props.avatarUrl
                     }
                     this.props.addOneComment(oneComment)
                     this.props.setOneCommentCountPost(this.props.postId, this.props.commentCount + 1)
+                    this.props.setInputPostComment('')
                 }
             }
         })
@@ -71,7 +75,8 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
                                      setComment={this.sentComment}
                                      deleteOneComment={this.props.deleteOneComment}
                                      setOneCommentCountPost={this.props.setOneCommentCountPost}
-                                     setOneLikeCommentPost={this.props.setOneLikeCommentPost}/>
+                                     setOneLikeCommentPost={this.props.setOneLikeCommentPost}
+                                     setOneCommentUserData={this.props.setOneCommentUserData}/>
     }
 }
 

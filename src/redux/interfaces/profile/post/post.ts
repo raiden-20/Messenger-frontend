@@ -50,6 +50,7 @@ export interface PropsPost {
     setOneLikeCountPost(postId: string, likeCount: string): void
     setOneLikeCommentPost(commentId: string, likeComment: string): void
     setOneCommentCountPost(postId: string, commentCount: string): void
+    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
 }
 
 export interface StatePostsClass {
@@ -92,6 +93,7 @@ export interface PropsPostComponent {
     setOneLikeCountPost(postId: string, likeCount: string): void
     setOneLikeCommentPost(commentId: string, likeComment: string): void
     setOneCommentCountPost(postId: string, commentCount: string): void
+    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
 }
 
 export interface StateOnePostClass {
@@ -137,6 +139,7 @@ export interface PropsOnePostClass {
     setOneLikeCountPost(postId: string, likeCount: string): void
     setOneLikeCommentPost(commentId: string, likeComment: string): void
     setOneCommentCountPost(postId: string, commentCount: string): void
+    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
 }
 
 
@@ -185,6 +188,7 @@ export interface OnePost {
 
     setOneLikeCommentPost(commentId: string, likeComment: string): void
     setOneCommentCountPost(postId: string, commentCount: string): void
+    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
 }
 
 export interface Post {
