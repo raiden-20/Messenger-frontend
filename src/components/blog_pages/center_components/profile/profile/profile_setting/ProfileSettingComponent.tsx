@@ -37,6 +37,10 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
 
                 reader.readAsDataURL(file);
                 props.setInputCoverUrl(event.target.files[0])
+                if (props.coverUrl !== '') {
+                    props.setDeleteCoverUrl(props.coverUrl)
+                    props.setDeleteCoverFlag(true)
+                }
             } else {
                 //todo вывод ошибки
             }
@@ -58,6 +62,10 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                 };
                 reader.readAsDataURL(file);
                 props.setInputAvatarUrl(event.target.files[0])
+                if (props.avatarUrl !== '') {
+                    props.setDeleteAvatarUrl(props.avatarUrl)
+                    props.setDeleteAvatarFlag(true)
+                }
             } else {
                 //todo вывод ошибки
             }
@@ -113,7 +121,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                                 <section className={prof_setting.det_delete_bgc}>
                                     <section>
                                         <input className={prof_setting.hidden} type="file" id="setCover-btn" onChange={setCover}/>
-                                        <label htmlFor="setCover-btn">Загрузить</label>
+                                        <label htmlFor="setCover-btn">Загрузить фото</label>
                                     </section>
                                     <section>
                                         <label onClick={deleteInputCover}>Удалить</label>
@@ -125,7 +133,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                                 <section className={prof_setting.det_delete_ava}>
                                     <section>
                                         <input className={prof_setting.hidden} type="file" id="setAvanar-btn" onChange={setAvatar}/>
-                                        <label htmlFor="setAvanar-btn">Загрузить</label>
+                                        <label htmlFor="setAvanar-btn">Загрузить фото</label>
                                     </section>
                                     <section>
                                         <label onClick={deleteInputAvatar}>Удалить</label>

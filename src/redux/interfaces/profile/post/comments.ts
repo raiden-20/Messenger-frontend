@@ -1,3 +1,6 @@
+import {PostPhoto} from "../../post/CreatePost";
+import {Post} from "./post";
+
 export interface Comment {
     commentId: string
     userId: string | null,
@@ -16,7 +19,9 @@ export interface PropsComment {
     isLiked: boolean
 
     deleteOneComment(commentId: string): void
-    setOneComment(oneComment: Comment, commentId: string): void
+
+    setOneLikeCommentPost(commentId: string, likeComment: string): void
+    setOneCommentCountPost(postId: string, commentCount: string): void
 
 }
 
@@ -30,13 +35,15 @@ export interface PropsUserComment {
     setComment(): void
 
     deleteOneComment(commentId: string): void
-    setOneComment(oneComment: Comment, commentId: string): void
+
+    setOneLikeCommentPost(commentId: string, likeComment: string): void
+    setOneCommentCountPost(postId: string, commentCount: string): void
 
 
     postId: string,
     time: string,
     text: string,
-    photoUrl: [],
+    photoUrl: PostPhoto[],
     likeCount: string
     commentCount: string,
     isLiked: boolean
@@ -60,7 +67,7 @@ export interface StateUserCommentClass {
     postId: string,
     time: string,
     text: string,
-    photoUrl: [],
+    photoUrl: PostPhoto[],
     likeCount: string
     commentCount: string,
     isLiked: boolean
@@ -80,10 +87,13 @@ export interface PropsUserCommentClass {
     setOneComment(oneComment: Comment, commentId: string): void
     addOneComment(oneComment: Comment): void
 
+    setOneLikeCommentPost(commentId: string, likeComment: string): void
+    setOneCommentCountPost(postId: string, commentCount: string): void
+
     postId: string,
     time: string,
     text: string,
-    photoUrl: [],
+    photoUrl: PostPhoto[],
     likeCount: string
     commentCount: string,
     isLiked: boolean

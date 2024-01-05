@@ -1,23 +1,22 @@
 import React, {useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import main_aside_css from "../profile/main_profile_css/MainProfileAside.module.css";
-import {PROFILE_USER} from "../../../paths/profilePath";
 import {PropsUserProfileAsideComponent} from "../../../../redux/interfaces/profile/profileBase";
 import {FRIENDS_USER} from "../../../paths/usersPath";
-import {PropsOneFriend} from "../../../../redux/interfaces/friends/oneFriend";
+import {PropsOneFriend2} from "../../../../redux/interfaces/friends/oneFriend";
 
 import default_profile_ava from '../../../../assets/images/default_profile_ava.svg'
 
 import './ProfileAsideFriends.css'
 import UserFriendsShortInfoClass from "./shortProfile/UserFriendsShortInfoClass";
 import {PROFILE_USER_PHOTO} from "../../../paths/photoPath";
-import ProfileButtonCreatingPostContainer
-    from "../profile/profile/profile_button_creating_post/ProfileButtonCreatingPostContainer";
+import ProfileButtonCreatingPostComponent
+    from "../profile/profile/profile_button_creating_post/ProfileButtonCreatingPostComponent";
+import {PhotoArr} from "../../../../redux/interfaces/profile/photo/photoProfile";
 
 const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
 
-    const location = useLocation()
     const navigation = useNavigate()
     const [isMouseEnter, setMouseEnter] = useState(false)
 
@@ -28,15 +27,11 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
                     <strong>Фото</strong> {props.countPhoto}
                 </section>
                 <section className={main_aside_css.group_photo}>
-                    <section className={main_aside_css.photo_section}>
-
-                    </section>
-                    <section className={main_aside_css.photo_section}>
-
-                    </section>
-                    <section className={main_aside_css.photo_section}>
-
-                    </section>
+                    {props.photoUrl.slice(0, 3).map((photo: PhotoArr) =>
+                        <section className={main_aside_css.photo_section}>
+                            <img src={photo.url} alt={''}/>
+                        </section>
+                    )}
                 </section>
             </section>
             <section className={main_aside_css.friends} onClick={() => navigation(FRIENDS_USER)}>
@@ -45,7 +40,7 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
                 </section>
                 <section className={main_aside_css.friendsSector}>
                     <section className={main_aside_css.friendsAva}>
-                        {props.usersShortInfo.map( (user:PropsOneFriend, i) => // todo никнейм
+                        {props.usersShortInfo.map( (user:PropsOneFriend2, i) =>
                             <section className={main_aside_css.friendPhoto + ' friendPhotoSection' + i}>
                                 <img src={user.avatarUrl === '' ? default_profile_ava : user.avatarUrl}
                                      className={'friendPhoto' + i} alt={'user_ava'} onMouseEnter={() => setMouseEnter(true)}/>
@@ -53,16 +48,21 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
                                 <section className={main_aside_css.shortInfoSection + ' friendMiniProfile' + i} onMouseLeave={() => setMouseEnter(false)}>
                                     <UserFriendsShortInfoClass id={user.id}
                                                                name={user.name}
-                                                               nickname={user.nickname}
                                                                bio={user.bio}
-                                                               avatarUrl={user.avatarUrl}/>
+                                                               avatarUrl={user.avatarUrl}
+                                                               status={user.status}
+                                                               setChangeUserStatus={props.setChangeUserStatus}
+                                                               nickname={user.nickname}
+                                                               setUserNickname={props.setUserNickname}
+                                                               setUserPhoto={props.setUserPhoto}
+                                                               photo={user.photo}/>
                                 </section> : null}
                             </section>)}
                     </section>
                 </section>
             </section>
             <section>
-                {location.pathname === PROFILE_USER ? <ProfileButtonCreatingPostContainer/> : null}
+                {localStorage.getItem('idUser') === localStorage.getItem('id') ? <ProfileButtonCreatingPostComponent/> : null}
             </section>
         </aside>
     )

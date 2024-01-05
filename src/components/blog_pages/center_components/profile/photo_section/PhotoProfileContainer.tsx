@@ -8,6 +8,7 @@ import {
     setCountPhoto,
     setPostUrl, setOnePhotoUrl
 } from "../../../../../redux/reducers/photoReducer";
+import {setName} from "../../../../../redux/reducers/profileReducer";
 
 const mapStateToProps = (state: StatePhotoProfile) => {
     return {
@@ -22,6 +23,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         setPhotoUrl(photoUrl : []) {
             dispatch(setPhotoUrl(photoUrl))
+        },
+        setName(name: string) {
+            dispatch(setName(name))
         },
         setCountPhoto (countPhoto : number) {
             dispatch(setCountPhoto(countPhoto))

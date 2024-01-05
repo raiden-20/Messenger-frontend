@@ -23,6 +23,7 @@ export interface PropsPhotoProfile {
     isButtonOpenPhotoPressed: boolean,
 
     setPhotoUrl(photoUrl : []): void
+    setName(name: string): void
     setCountPhoto(countPhoto : number): void
     setButtonOpenPhoto(isButtonOpenPhotoPressed : boolean): void
     setPostUrl(postId: string): void

@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import MainSetting from "./MainSetting";
-import {setMessage, setNewEmail, setPassword, setToken} from "../../../../redux/reducers/authReducer";
+import {setEmail, setMessage, setNewEmail, setPassword} from "../../../../redux/reducers/authReducer";
 import {
     setButtonChangeEmailPressed, setButtonChangePasswordFirstStepPressed, setButtonChangePasswordSecondStepPressed,
     setInputCode, setInputPasswordConfirm, setInputPassword, setInputEmail
@@ -22,7 +22,6 @@ const mapStateToProps = (state : StateChangeEmail & StateChangePassword & StateD
         input_passwordConfirm: state.settings.input_passwordConfirm,
         input_code: state.settings.input_code,
 
-        token: state.auth.token,
         message: state.auth.message,
 
         buttonChangeEmail: state.settings.buttonChangeEmail,
@@ -53,15 +52,11 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
             dispatch(setNewEmail(newEmail))
         },
         setEmail(email : string) {
-            dispatch(setNewEmail(email))
+            dispatch(setEmail(email))
         },
         setMessage(message: string) {
             dispatch(setMessage(message))
         },
-        setToken(token: string) {
-            dispatch(setToken(token))
-        },
-
         setButtonChangeEmailPressed(buttonChangeEmail: boolean) {
             dispatch(setButtonChangeEmailPressed(buttonChangeEmail))
         },

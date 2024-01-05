@@ -43,8 +43,11 @@ export interface PropsOnePhotoClass {
 
     addOneComment(oneComment: Comment): void
     deleteOneComment(commentId: string): void
-    setOnePost(onePost: Post, postId: string):void
-    setOneComment(oneComment: Comment, commentId: string):void
+    setOneComment(oneComment: Comment):void
+
+    setOneLikeCountPost(postId: string, likeCount: string): void
+    setOneLikeCommentPost(commentId: string, likeComment: string): void
+    setOneCommentCountPost(postId: string, commentCount: string): void
 }
 
 export interface PropsOnePostComponent {
@@ -65,12 +68,10 @@ export interface PropsOnePostComponent {
     setInputPostComment(input_comment : string): void
     setButtonOpenPhoto(isButtonOpenPhotoPressed : boolean): void
     setComment(): void
-
     likePost(): void
-
-    addOneComment(oneComment: Comment): void
     deleteOneComment(commentId: string): void
-    setOneComment(oneComment: Comment, commentId: string):void
+    setOneLikeCommentPost(commentId: string, likeComment: string): void
+    setOneCommentCountPost(postId: string, commentCount: string): void
 }
 
 export interface PropsOneUserComponent {
@@ -112,6 +113,8 @@ export interface PropsOneUserDataClass {
     text: string
 
     deleteOneComment(commentId: string): void
-    setOneComment(oneComment: Comment, commentId: string):void
+
+    setOneLikeCommentPost(commentId: string, likeComment: string): void
+    setOneCommentCountPost(postId: string, commentCount: string): void
 }
 

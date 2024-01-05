@@ -1,7 +1,7 @@
-import {Comment} from "../interfaces/profile/post/comments";
 import {User} from "../interfaces/friends/oneFriend";
 
 const SET_USERS = 'SET_USERS'
+const SET_USERS_PHOTO = 'SET_USERS_PHOTO'
 const SET_USERS_FRIENDS_COUNT = 'SET_USERS_FRIENDS_COUNT'
 const SET_USERS_SUBSCRIPTIONS_COUNT = 'SET_USERS_SUBSCRIPTIONS_COUNT'
 const SET_USERS_SUBSCRIBERS_COUNT = 'SET_USERS_SUBSCRIBERS_COUNT'
@@ -9,6 +9,7 @@ const SET_WHO_OPENED = 'SET_WHO_OPENED'
 const SET_USERS_NICKNAME = 'SET_USERS_NICKNAME'
 
 const SET_CHANGE_USER_STATUS = 'SET_CHANGE_USER_STATUS'
+
 
 
 
@@ -28,10 +29,26 @@ const usersReducer = (state = initialState, action : any) => {
             stateCopy.usersShortInfo = action.usersShortInfo
             return stateCopy
         }
-        // case SET_USERS_NICKNAME : {
-        //     stateCopy.usersShortInfo.map((user, i) => user.nickname = action.nicknames[i])
-        //     return {...state, usersShortInfo: [...state.usersShortInfo, ...action.usersShortInfo]}
-        // }
+        case SET_USERS_NICKNAME : {
+            for (let index = 0; index < stateCopy.usersShortInfo.length; index++) {
+                // @ts-ignore
+                if (stateCopy.usersShortInfo[index].id === action.id) {
+                    // @ts-ignore
+                    stateCopy.usersShortInfo[index].nickname = action.nickname
+                }
+            }
+            return {...state, usersShortInfo: [...state.usersShortInfo]}
+        }
+        case SET_USERS_PHOTO : {
+            for (let index = 0; index < stateCopy.usersShortInfo.length; index++) {
+                // @ts-ignore
+                if (stateCopy.usersShortInfo[index].id === action.id) {
+                    // @ts-ignore
+                    stateCopy.usersShortInfo[index].photo = action.photo
+                }
+            }
+            return {...state, usersShortInfo: [...state.usersShortInfo]}
+        }
         case SET_USERS_FRIENDS_COUNT : {
             stateCopy.countFriends = action.countFriends
             return stateCopy
@@ -67,9 +84,14 @@ export const setUsers = (usersShortInfo : []) => {
         type: SET_USERS, usersShortInfo
     }
 }
-export const setUsersNicknames = (nicknames : []) => {
+export const setUserNickname = (id: string, nickname : string) => {
     return {
-        type: SET_USERS_NICKNAME, nicknames
+        type: SET_USERS_NICKNAME, id, nickname
+    }
+}
+export const setUserPhoto = (id: string, photo : []) => {
+    return {
+        type: SET_USERS_PHOTO, id, photo
     }
 }
 export const setUserSubscriptionsCount = (countSubscriptions : number) => {
@@ -92,9 +114,9 @@ export const setWhoOpened = (whoOpened : string) => {
         type: SET_WHO_OPENED, whoOpened
     }
 }
-export const setChangeUserStatus = (id: string, status: string) => {
+export const setChangeUserStatus = (id: string, status: string | null) => {
     return {
-        type: SET_WHO_OPENED, id, status
+        type: SET_CHANGE_USER_STATUS, id, status
     }
 }
 

@@ -35,7 +35,8 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
                                       text={props.text}
                                       commentsCount={props.commentCount}
                                       deleteOneComment={props.deleteOneComment}
-                                      setOneComment={props.setOneComment}/>
+                                      setOneCommentCountPost={props.setOneCommentCountPost}
+                                      setOneLikeCommentPost={props.setOneLikeCommentPost}/>
                     <section className={post_comm_css.section_writeComment}>
                             <textarea placeholder={'Написать комментарий'} value={props.input_comment}
                                       onChange={setInputComment}></textarea>
@@ -55,8 +56,9 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
                                               text={oneComment.text}
                                               commentsCount={''}
                                               deleteOneComment={props.deleteOneComment}
-                                              setOneComment={props.setOneComment}
-                                              userId={oneComment.userId}/>
+                                              userId={oneComment.userId}
+                                              setOneCommentCountPost={props.setOneCommentCountPost}
+                                              setOneLikeCommentPost={props.setOneLikeCommentPost}/>
                         ))}
                     </section>
                 </section>

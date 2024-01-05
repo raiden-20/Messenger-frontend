@@ -1,26 +1,17 @@
-import axios from "axios/index";
+import axios from "axios";
 import {
-    ActivationAccountAxiosInterface,
-    AuthDataAxiosInterface,
-    ChangeEmailAxiosInterface,
-    ChangeOldPasswordAxiosInterface,
-    DeleteProfileAxiosInterface,
-    ForgotPasswordAxiosInterface,
-    NewPasswordAxiosInterface,
-    RegistrationAxiosInterface,
+    ActivationAccountAxiosInterface, AuthDataAxiosInterface, ChangeEmailAxiosInterface,
+    ChangeNicknameAxiosInterface, ChangeOldPasswordAxiosInterface, DeleteProfileAxiosInterface,
+    ForgotPasswordAxiosInterface, NewPasswordAxiosInterface, RegistrationAxiosInterface,
     RegistrationOrAuthorizationAxiosInterface, SuccessfulChangeEmailInterface
 } from "./authInterfaces";
-import {useNavigate} from "react-router-dom";
-import {PROFILE_USER} from "../../paths/profilePath";
-import {AUTHORIZATION, REGISTRATION_RESTORE_ACCOUNT} from "../../paths/authPath";
-import {ProfileGetDataAxios, RegistrationSocialAxios} from "../profile/ProfileAxios";
+import {RegistrationSocialAxios} from "../profile/ProfileAxios";
 import config from "../../paths/config";
-import {ProfileGetDataAxiosInterface} from "../profile/profileInterface";
+import {AUTH, LOCALHOST} from "../urls";
+import {AuthData} from "../../../redux/interfaces/auth/authData";
 
-export const RegistrationOrAuthorizationAxios = (data: RegistrationOrAuthorizationAxiosInterface) => { // authorization todo мб както разделить по файлам
-    const navigate = useNavigate()
-
-    axios.post('http://localhost:8080/auth/login', {
+export const RegistrationOrAuthorizationAxios = async (data: RegistrationOrAuthorizationAxiosInterface) => {
+    return axios.post(LOCALHOST + AUTH + '/login', {
         email: data.input_email,
         nickname: data.input_nickname,
         password: data.input_password,
@@ -37,18 +28,14 @@ export const RegistrationOrAuthorizationAxios = (data: RegistrationOrAuthorizati
                 localStorage.setItem('id', response.data.id)
                 localStorage.setItem('idUser', response.data.id)
                 localStorage.setItem('password', data.input_password)
-
                 data.cleanMessageAndChangePath()
-
-                navigate(PROFILE_USER)
-
                 break
             }
             default:
         }
         data.setInputEmail('')
         data.setInputPassword('')
-
+        return response.status
     }).catch(error => {
         data.setShowMessage(true)
         data.setCode(error.response.status)
@@ -60,21 +47,21 @@ export const RegistrationOrAuthorizationAxios = (data: RegistrationOrAuthorizati
                 }else if (error.response.data === 'Password mismatch') {
                     data.setMessage('Неверный пароль')
                 }
-                navigate(AUTHORIZATION)
                 break
             }
             case 403 : {
                 data.setMessage('Аккаунт не активирован')
-                navigate(REGISTRATION_RESTORE_ACCOUNT)
+                localStorage.setItem('id', error.response.data)
                 break
             }
             default:
         }
+        return error.response.status
     })
 }
 
 export const RegistrationAxios = (data: RegistrationAxiosInterface) => { // registration
-    axios.post('http://localhost:8080/auth/registration', {
+    axios.post(LOCALHOST + AUTH + '/registration', {
         email: data.input_email,
         nickname: data.input_nickname,
         password: data.input_password,
@@ -85,7 +72,6 @@ export const RegistrationAxios = (data: RegistrationAxiosInterface) => { // regi
         switch (response.status) {
             case 201 : {
                 if (response.data !== null) {
-                    data.setMessage('На Вашу почту было отправлено письмо с подтверждением бла бла бла')
                     localStorage.setItem('id', response.data)
 
                     RegistrationSocialAxios( {
@@ -122,7 +108,7 @@ export const RegistrationAxios = (data: RegistrationAxiosInterface) => { // regi
 }
 
 export const ForgotPasswordAxios = (data: ForgotPasswordAxiosInterface) => {
-    axios.put('http://localhost:8080/auth/forget/password', {
+    axios.put(LOCALHOST + AUTH + '/forget/password', {
         email: data.input_email
     }).then(response => {
         data.setShowMessage(true)
@@ -155,8 +141,8 @@ export const ForgotPasswordAxios = (data: ForgotPasswordAxiosInterface) => {
     })
 }
 
-export const ActivationAccountAxios = (data: ActivationAccountAxiosInterface) => {
-    axios.put('http://localhost:8080/auth/active/account', {
+export const ActivationAccountAxios = async (data: ActivationAccountAxiosInterface) => {
+    return axios.put(LOCALHOST + AUTH + '/active/account', {
         "id": localStorage.getItem('id')
     })
         .then(response => {
@@ -166,7 +152,7 @@ export const ActivationAccountAxios = (data: ActivationAccountAxiosInterface) =>
                     if (response.data === "Account activated") {
                         data.setMessage('Ваш аккаунт был успешно активирован! Для продолжения войдите в аккаунт')
                     }
-                    break
+                    return response.status
                 }
                 default:
             }
@@ -184,40 +170,30 @@ export const ActivationAccountAxios = (data: ActivationAccountAxiosInterface) =>
                 }
                 default:
             }
+            return error.response.status
         });
 }
 
-export const AuthDataAxios = (props: AuthDataAxiosInterface & ProfileGetDataAxiosInterface) => {
-    axios.get(`http://localhost:8080/auth/data/${localStorage.getItem('idUser')}`, config)
+export const AuthDataAxios = async (data: AuthDataAxiosInterface) => {
+    return axios.get(LOCALHOST + AUTH + `/data/${data.id}`, config)
         .then(response => {
-            switch (response.status) {
-                case 200 : {
-                    props.setNickname(response.data.nickname)
-                    console.log(localStorage.getItem('token'))
-                    ProfileGetDataAxios({
-                        setUserData: props.setUserData,
-                        setMessage: props.setMessage
-                    })
-                    break
+            return [response.status, response.data];
+        }).catch(error => {
+            switch (error.response.status) {
+                case 403: {
+                    break;
+                }
+                case 404: {
+                    // todo тут перейти на стр такого пользователя не сущ
+                    break;
                 }
             }
-        }).catch(error => {
-        switch (error.response.status) {
-            case 403 : {
-                props.setMessage('Плохой токен')
-                break
-            }
-            case 404 : {
-                props.setMessage('Такого пользователя не существует')
-                // todo тут перейти на стр такого пользователя не сущ
-                break
-            }
-        }
-    })
+            return [error.response.status, '']
+        });
 }
 
 export const ChangeEmailAxios = (data: ChangeEmailAxiosInterface) => {
-    axios.post('http://localhost:8080/auth/change/email', {
+    axios.post(LOCALHOST + AUTH + '/change/email', {
         "password": data.input_password,
         "newEmail": data.input_email
     }, config).then(response => {
@@ -252,7 +228,7 @@ export const ChangeEmailAxios = (data: ChangeEmailAxiosInterface) => {
 }
 
 export const SuccessfulChangeEmail = (props : SuccessfulChangeEmailInterface) => {
-    axios.put('http://localhost:8080/auth/confirm/email', {
+    axios.put(LOCALHOST + AUTH + '/confirm/email', {
         "email": props.newEmail
     }, config)
         .then(response => {
@@ -278,7 +254,7 @@ export const SuccessfulChangeEmail = (props : SuccessfulChangeEmailInterface) =>
 }
 
 export const ChangeOldPasswordAxios = (props: ChangeOldPasswordAxiosInterface) => {
-    axios.post('http://localhost:8080/auth/change/password', {
+    axios.post(LOCALHOST + AUTH + '/change/password', {
         password: props.input_password,
     }, config).then(response => {
         switch (response.status) {
@@ -319,7 +295,7 @@ export const ChangeOldPasswordAxios = (props: ChangeOldPasswordAxiosInterface) =
 }
 
 export const NewPasswordAxios = (data: NewPasswordAxiosInterface) => {
-    axios.put('http://localhost:8080/auth/confirm/password', {
+    axios.put(LOCALHOST + AUTH + '/confirm/password', {
         oneTimeCode: data.input_code,
         newPassword: data.input_password
     }, config).then(response => {
@@ -354,9 +330,7 @@ export const NewPasswordAxios = (data: NewPasswordAxiosInterface) => {
 }
 
 export const DeleteProfileAxios = (data: DeleteProfileAxiosInterface) => {
-    const navigation = useNavigate()
-
-    axios.put('http://localhost:8080/auth/block', {
+    axios.put(LOCALHOST + AUTH + '/block', {
         password: localStorage.getItem('password')
     }, config).then(response => {
         switch (response.status) {
@@ -365,8 +339,9 @@ export const DeleteProfileAxios = (data: DeleteProfileAxiosInterface) => {
                     data.setMessage('')
                     localStorage.setItem('email', '')
                     localStorage.setItem('token', '')
-                    localStorage.setItem('password', '') // в общем все зачистить
-                    navigation(AUTHORIZATION)
+                    localStorage.setItem('password', '')
+                    localStorage.setItem('id', '')
+                    localStorage.setItem('idUser', '')
                 }
                 break
             }
@@ -393,6 +368,25 @@ export const DeleteProfileAxios = (data: DeleteProfileAxiosInterface) => {
             }
             default:
         }
+    })
+}
+
+export const ChangeNicknameAxios = (data: ChangeNicknameAxiosInterface) => {
+    axios.post(LOCALHOST + AUTH + '/change/nickname', {
+        nickname: data.input_nickname
+    }, config).then(response => {
+        data.setNickname(data.input_nickname)
+        if (response.data.split(' ').length === 2) {
+            localStorage.setItem('token', response.data.split(' ')[1])
+        } else {
+            localStorage.setItem('token', response.data)
+        }
+
+
+
+    }).catch(error => {
+        debugger
+        data.setMessage(error.message)
     })
 }
 

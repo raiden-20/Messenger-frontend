@@ -30,12 +30,10 @@
     position: relative;
     top: 0;
     left: 0;
-    width: 46%;
-    max-width: 671px;
-    height: 65%;
-    max-height: 652px;
+    width: 671px;
+    height: 639px;
 
-    background-color: rgba(247, 245, 255, 1);
+    background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 0 15px 0 rgba(95, 110, 120, 1);
     border-radius: 20px;
 
@@ -94,27 +92,44 @@
 }
 
 .det_delete_bgc {
+    width: 207px;
+    height: 89px;
+
+    padding: 0;
     display: none;
     grid-template-rows: 50% 50%;
     align-items: center;
-    padding: 1% 4% 1% 5%;
+
 
     position: absolute;
     top: 20%;
     left: 85%;
 
-    width: 19%;
-    height: 11%;
     z-index: 500;
 
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
-    background-color: rgba(247, 245, 255, 1);
+    background-color: rgba(255, 255, 255, 1);
     border-radius: 15px;
+    overflow: hidden;
 }
 
 .det_delete_bgc section:hover {
     background-color: rgba(65, 72, 109, 0.2);
     z-index: 450;
+}
+
+.det_delete_bgc section {
+    height: 100%;
+
+    display: grid;
+    align-items: center;
+}
+
+.det_delete_bgc section label {
+    padding: 0 45px 0 50px;
+    font-weight: 600;
+
+
 }
 
 .edit_prof_window .ava {
@@ -156,25 +171,43 @@
 }
 
 .det_delete_ava {
+    width: 207px;
+    height: 89px;
+
+    padding: 0;
     display: none;
     grid-template-rows: 50% 50%;
     align-items: center;
-    padding: 5% 27% 5% 27%;
+
 
     position: absolute;
-    top: 60%;
-    left: 70%;
+    top: 50%;
+    left: 85%;
 
-    width: 110%;
-    height: 62%;
     z-index: 500;
 
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
-    background-color: rgba(247, 245, 255, 1);
+    background-color: rgba(255, 255, 255, 1);
     border-radius: 15px;
+    overflow: hidden;
 }
 .det_delete_ava section:hover {
     background-color: rgba(65, 72, 109, 0.2);
+    z-index: 450;
+}
+
+.det_delete_ava section {
+    height: 100%;
+
+    display: grid;
+    align-items: center;
+}
+
+.det_delete_ava section label {
+    padding: 0 45px 0 50px;
+    font-weight: 600;
+
+
 }
 
 

@@ -1,44 +1,47 @@
 import {Component} from "react";
-import {PropsUserCommentClass, StateUserCommentClass} from "../../../../../../redux/interfaces/profile/post/comments";
+import {
+    Comment,
+    PropsUserCommentClass,
+    StateUserCommentClass
+} from "../../../../../../redux/interfaces/profile/post/comments";
 import UserCommentsComponent from "./UserCommentsComponent";
-import axios from "axios";
-import config from "../../../../../paths/config";
+import {GetCommentsAxios, SetCommentAxios} from "../../../../../axios/post/PostAxios";
 class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommentClass> {
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/blog/comment/${this.props.postId}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200: {
-                        this.props.setUserComments(response.data)
-                        break
-                    }
+        let a = GetCommentsAxios({
+            postId: this.props.postId,
+        })
+        a.then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setUserComments(response[1])
                 }
-            }).catch( error => {
-                debugger
+            }
         })
     }
 
     sentComment = () => {
-        axios.post('http://localhost:8080/blog/comment/create', {
+        let a = SetCommentAxios({
             postId: this.props.postId,
-            text: this.props.input_comment
-        }, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.addOneComment(response.data)
+            input_comment: this.props.input_comment,
+            addOneComment: this.props.addOneComment
+        })
+        a.then(response => {
+            switch (response) {
+                case 200 : {
+                    const now = new Date();
+                    const dateString = now.toLocaleDateString();
+                    let oneComment: Comment = {
+                        commentId: response.data,
+                        userId: localStorage.getItem('idUser'),
+                        text: this.props.input_comment,
+                        time: dateString.split('.').join('-'),
+                        countLikes: '0',
+                        isLiked: false
                     }
-                }
-            }).catch(error => {
-                debugger
-            switch (error.response.status) {
-                case 403 : {
-                    //bad token
-                    break
-                }
-                case 404 : {
-                    // post doesn't exist
+                    this.props.addOneComment(oneComment)
+                    this.props.setOneCommentCountPost(this.props.postId, this.props.commentCount + 1)
                 }
             }
         })
@@ -67,7 +70,8 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
                                      setInputPostComment={this.props.setInputPostComment}
                                      setComment={this.sentComment}
                                      deleteOneComment={this.props.deleteOneComment}
-                                     setOneComment={this.props.setOneComment}/>
+                                     setOneCommentCountPost={this.props.setOneCommentCountPost}
+                                     setOneLikeCommentPost={this.props.setOneLikeCommentPost}/>
     }
 }
 

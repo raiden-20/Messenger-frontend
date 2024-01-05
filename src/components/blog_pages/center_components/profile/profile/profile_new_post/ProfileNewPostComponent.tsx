@@ -23,7 +23,7 @@ const ProfileNewPostComponent = (props: PropsCreatePostButtonComponent) => {
                         }
                     };
                     reader.readAsDataURL(file);
-                    props.setInputPostPhoto(event.target.files[0])
+                    props.setInputPostPhoto(event.target.files[0], false)
                 } else {
                     //todo вывод ошибки
                 }

@@ -23,7 +23,6 @@ export interface PropsAuthAuth{
 
     message: string
     buttonShowMessage: boolean;
-    token: string
     code: number
 
     setInputEmail(input_email: string | null): void;
@@ -38,7 +37,6 @@ export interface PropsAuthAuth{
 
     setMessage(message : string): void;
     setShowMessage(buttonShowMessage: boolean): void;
-    setToken(token : string): void;
     setCode(code: number): void
 }
 
@@ -52,7 +50,6 @@ export interface PropsAuthAuthComponent{
 
     message: string
     buttonShowMessage: boolean;
-    token: string
     code: number
 
     setInputEmail(input_email: string | null): void;
@@ -63,10 +60,9 @@ export interface PropsAuthAuthComponent{
 
     setMessage(message : string): void;
     setShowMessage(buttonShowMessage: boolean): void;
-    setToken(token : string): void;
     setCode(code: number): void
 
     authorise(): void;
     forgotPassword(): void;
-    cleanMessageAndChangePath(): void;
+    toRegistration(): void;
 }

@@ -1,22 +1,20 @@
 .root {
     height: 100%;
-    min-height: 450px;
-    max-height: 295px;
 }
 
 .form {
     height: 100%;
     display: grid;
-    grid-template-rows: 70% 12%;
-    row-gap: 5%;
+    grid-template-rows: 85% 12%;
+    row-gap: 15px;
 }
 
 .inputs {
     width: 100%;
-    max-height: 217px;
+    height: 320px;
     display: grid;
-    grid-template-rows: 20% 20% 20% 20%;
-    row-gap: 6%;
+    grid-template-rows: repeat(6, 1fr);
+    row-gap: 10px;
 }
 
 .main form button {

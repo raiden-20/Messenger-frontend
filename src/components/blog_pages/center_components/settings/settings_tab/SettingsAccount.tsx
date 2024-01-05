@@ -34,11 +34,9 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail &
                                              setButtonChangeEmailPressed={this.props.setButtonChangeEmailPressed}
                                              buttonChangePasswordFirstStep={this.props.buttonChangePasswordFirstStep}
                                              buttonChangePasswordSecondStep={this.props.buttonChangePasswordSecondStep}
-                                             token={this.props.token}
                                              message={this.props.message}
                                              setMessage={this.props.setMessage}
                                              setNewEmail={this.props.setNewEmail}
-                                             setToken={this.props.setToken}
                                              setEmail={this.props.setEmail}/>
                         </section>
                         <section className={settings_css.leg_container}>
@@ -56,7 +54,6 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail &
                                                 buttonChangePasswordSecondStep={this.props.buttonChangePasswordSecondStep}
                                                 setButtonChangePasswordFirstStepPressed={this.props.setButtonChangePasswordFirstStepPressed}
                                                 setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}
-                                                token={this.props.token}
                                                 message={this.props.message}
                                                 setMessage={this.props.setMessage}/>
 
@@ -68,8 +65,6 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail &
                     </main>
                     <footer>
                         <DeleteAccountClass password={this.props.password}
-                                            setToken={this.props.setToken}
-                                            token={this.props.token}
                                             setMessage={this.props.setMessage}
                                             message={this.props.message}/>
                     </footer>

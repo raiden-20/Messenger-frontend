@@ -1,7 +1,7 @@
 .profile_icons {
     display: grid;
     width: 100%;
-    grid-template-columns: 48% 48%;
+    grid-template-columns: auto 35px;
     column-gap: 5%;
     justify-self: end;
 }

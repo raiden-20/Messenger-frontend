@@ -3,8 +3,7 @@
 
 .settings {
     margin: 0;
-    max-width: 615px;
-    min-height: 33vh;
+    width: 615px;
 
     display: grid;
 
@@ -17,21 +16,16 @@
 .settings main {
     padding: 6% 2% 4% 4%;
     display: grid;
-    row-gap: 4vh;
+    row-gap: 40px;
 }
 
 .settings footer {
-    height: 7vh;
+    height: 60px;
     display: grid;
     justify-items: center;
     align-items: center;
 
     border-top: 1px solid rgba(221, 227, 235, 1);
-}
-
-.settings footer button {
-    border: none;
-    background-color: transparent;
 }
 
 .leg_container {
@@ -52,10 +46,9 @@
     display: grid;
     grid-template-rows: 1fr 1fr;
 
-    height: 8vh;
-    padding: 4% 0 4% 0;
+    height: 90px;
     border-radius: 15px;
-    background-color: #F7F5FF;
+    background-color: #FFFFFF;
     border: 1px solid #DDE3EB;
 }
 
@@ -66,7 +59,7 @@
 
 
 .nav_settings section button {
-    padding: 0 8% 0 8%;
+    padding: 5% 8% 5% 8%;
     text-align: left;
     border: none;
     background-color: transparent;
@@ -74,6 +67,6 @@
     font-size: 1em;
 }
 
-.nav_settings button:focus {
+.nav_settings section:hover {
     background-color: #DDE3EB;
 }

@@ -2,18 +2,20 @@ import {StateUserProfileAside} from "../../../../redux/interfaces/profile/profil
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {
-    setUserFriendsCount,
+    setChangeUserStatus,
+    setUserFriendsCount, setUserNickname, setUserPhoto,
     setUsers
 } from "../../../../redux/reducers/usersReducer";
 import MainProfileAsideClass from "./MainProfileAsideClass";
-import {setCountPhoto} from "../../../../redux/reducers/photoReducer";
+import {setCountPhoto, setPhotoUrl} from "../../../../redux/reducers/photoReducer";
 
     const mapStateToProps = (state : StateUserProfileAside) => {
         return {
             usersShortInfo: state.users.usersShortInfo,
             countFriends: state.users.countFriends,
 
-            countPhoto: state.photo.countPhoto
+            countPhoto: state.photo.countPhoto,
+            photoUrl: state.photo.photoUrl
         }
     }
 
@@ -22,11 +24,23 @@ import {setCountPhoto} from "../../../../redux/reducers/photoReducer";
             setUsers(users: []) {
                 dispatch(setUsers(users))
             },
+            setUserNickname(id: string, nickname: string) {
+                dispatch(setUserNickname(id, nickname))
+            },
+            setPhotoUrl (photoUrl : []) {
+                dispatch(setPhotoUrl(photoUrl))
+            },
             setUserFriendsCount(countFriends: number) {
                 dispatch(setUserFriendsCount(countFriends))
             },
             setCountPhoto(countPhoto: number) {
                 dispatch(setCountPhoto(countPhoto))
+            },
+            setChangeUserStatus(id: string, status: string) {
+                dispatch(setChangeUserStatus(id, status))
+            },
+            setUserPhoto(id: string, photo : []) {
+                dispatch(setUserPhoto(id, photo))
             },
         }
     }

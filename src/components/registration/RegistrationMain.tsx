@@ -13,11 +13,10 @@ import {
     AUTHORIZATION,
     REGISTRATION,
     REGISTRATION_FORGOT_PASSWORD,
-    REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL
+    REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL, SUCCESSFUL_SENT_MESSSAGE
 } from "../paths/authPath";
 import {PropsProfileNameSurname} from "../../redux/interfaces/profile/profileAddNameSurname";
 import MainSuccessComponent from "./successful_registration_restoring/MainSuccessComponent";
-import RestoreAccountClass from "./restore_account/RestoreAccountClass";
 
 const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
     const navigate = useNavigate()
@@ -55,8 +54,6 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                                          setMessage={props.setMessage}
                                                                                          input_emailOrNickname={props.input_emailOrNickname}
                                                                                          setInputEmailOrNickname={props.setInputEmailOrNickname}
-                                                                                         setToken={props.setToken}
-                                                                                         token={props.token}
                                                                                          code={props.code}
                                                                                          setCode={props.setCode}
                                                                                          buttonShowMessage={props.buttonShowMessage}
@@ -101,25 +98,21 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
                                                                                                       setCode={props.setCode}
                                                                                                       buttonShowMessage={props.buttonShowMessage}
                                                                                                       setShowMessage={props.setShowMessage}/> :
-                location.pathname === REGISTRATION_RESTORE_ACCOUNT ? <RestoreAccountClass message={props.message}
-                                                                                          setMessage={props.setMessage}
-                                                                                     /> :
+                location.pathname === REGISTRATION_RESTORE_ACCOUNT ? <RestoreAccountComponent message={props.message}
+                                                                                          setMessage={props.setMessage}/> :
                 location.pathname === SUCCESSFUL_ACTIVATION ? <MainSuccessComponent message={props.message}
                                                                                     setMessage={props.setMessage}
                                                                                     setEmail={props.setEmail}
                                                                                     newEmail={props.newEmail}
-                                                                                    token={props.token}
-                                                                                    id={props.id}
-                                                                                    setId={props.setId}
-                                                                                    setToken={props.setToken}
                                                                                     email={props.email}/> :
+                location.pathname === SUCCESSFUL_SENT_MESSSAGE ? <MainSuccessComponent message={props.message}
+                                                                                       setMessage={props.setMessage}
+                                                                                       setEmail={props.setEmail}
+                                                                                       newEmail={props.newEmail}
+                                                                                       email={props.email}/> :
                 location.pathname === SUCCESSFUL_CHANGE_EMAIL ? <MainSuccessComponent message={props.message}
                                                                                       setMessage={props.setMessage} setEmail={props.setEmail}
                                                                                       newEmail={props.newEmail}
-                                                                                      token={props.token}
-                                                                                      id={props.id}
-                                                                                      setId={props.setId}
-                                                                                      setToken={props.setToken}
                                                                                       email={props.email}/> : null}
             </section>
         </div>

@@ -19,7 +19,8 @@ const MainSubscribersComponent = (props: PropsSubscribersComponent) => {
                                                                     id={user.id}
                                                                     changeFriendStatus={changeFriendStatus}
                                                                     whoOpened={props.whoOpened}
-                                                                    status={user.status}/>)}
+                                                                    status={user.status}
+                                                                    setUserNickname={props.setUserNickname}/>)}
         </section>
     )
 }

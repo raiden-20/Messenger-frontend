@@ -4,7 +4,12 @@ import options_reg from '../css_options/Options.module.css'
 import {PropsAuthRegComponent} from "../../../redux/interfaces/auth/authRegistration";
 import SuccessfulRegistrationComponent from "./options/successful_registration/SuccessfulRegistrationComponent";
 import ErrorRegistrationComponent from "./options/error_registration/ErrorRegistrationComponent";
+import reg from "../registration_or_authorization/RegistrationOrAutorisation.module.css";
+import {useNavigate} from "react-router-dom";
+import {SUCCESSFUL_ACTIVATION} from "../../paths/authPath";
 const RegistrationComponent = (props: PropsAuthRegComponent) => {
+
+    const navigate = useNavigate()
 
     const setInputEmail = (event : React.ChangeEvent<HTMLInputElement>) => {
         props.setInputEmail(event.target.value)
@@ -26,8 +31,16 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
         props.setInputBirthDate(event.target.value)
     }
 
+    const registr = () => {
+        if (props.authentication()) {
+            props.setMessage('На Вашу почту было отправлено письмо. Для продолжения перейдите по ссылке, указанной в письме')
+            navigate(SUCCESSFUL_ACTIVATION)
+        }
+
+    }
+
     return (
-        <section>
+        <section className={reg.div}>
             <section className={reg_curr.root}>
                 <section className={reg_curr.form}>
                     <section className={reg_curr.inputs}>
@@ -35,8 +48,8 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
                                value={props.input_nickname || ''} placeholder={'Никнейм'}/>
                         <input type={'text'} className={options_reg.input} onChange={setInputName}
                                value={props.input_name || ''} placeholder={'Имя'}/>
-                        <input type={'date'} className={options_reg.input + ' ' + options_reg.input_date} onChange={setInputBirthDate}
-                               value={props.input_birthDate || ''} placeholder={'Дата рождения'}/>
+                        <input type={'date'} placeholder={'ДД/ММ/ГГГГ'} className={options_reg.input + ' ' + options_reg.input_date} onChange={setInputBirthDate}
+                               value={props.input_birthDate || ''} />
                         <input type={'text'} className={options_reg.input} onChange={setInputEmail}
                                value={props.input_email || ''} placeholder={'Электронный адрес'}/>
                         <input type={'password'} className={options_reg.input} onChange={setInputPassword}
@@ -47,7 +60,7 @@ const RegistrationComponent = (props: PropsAuthRegComponent) => {
                                placeholder={'Подтвердите пароль'}/>
                     </section>
                     <button className={options_reg.main_page_button + ' ' + reg_curr.button}
-                            onClick={props.authentication} >
+                            onClick={registr} >
                         Зарегистрироваться
                     </button>
                 </section>

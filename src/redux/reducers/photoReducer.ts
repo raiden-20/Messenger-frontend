@@ -6,7 +6,11 @@ const SET_LIKED_PHOTO = 'SET_LIKED_PHOTO'
 const SET_POST_URL = 'SET_POST_URL'
 
 const initialState = {
-    photoUrl: ['gr', 'fr', 'grgr', 'grgr'],
+    photoUrl: [
+        {postId: '', photoId: '', url: ''},
+        {postId: '', photoId: '', url: ''},
+        {postId: '', photoId: '', url: ''}
+    ],
     countPhoto: 0,
 
     onePhotoUrl: '',
@@ -21,7 +25,7 @@ const photoReducer = (state = initialState, action : any) => {
     switch (action.type) {
 
         case SET_USER_PHOTO : {
-            stateCopy = {...state, photoUrl: [...state.photoUrl]}
+            stateCopy = {...state, photoUrl: [...action.photoUrl]}
 
             return stateCopy
         }

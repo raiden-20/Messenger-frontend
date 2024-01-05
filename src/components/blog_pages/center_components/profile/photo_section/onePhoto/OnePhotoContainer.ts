@@ -5,7 +5,7 @@ import {
     setInputPostComment,
     setComments,
     setOneComment,
-    deleteOneComment, setOnePost, addOneComment
+    deleteOneComment, setOnePost, addOneComment, setOneLikeCountPost, setOneLikeCommentPost, setOneCommentCountPost
 } from "../../../../../../redux/reducers/postReducer";
 import OnePhotoClass from "./OnePhotoClass";
 import {setButtonOpenPhoto} from "../../../../../../redux/reducers/photoReducer";
@@ -36,8 +36,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         setUserComments(comments : []) {
             dispatch(setComments(comments))
         },
-        setOneComment(oneComment: Comment, commentId: string) {
-            dispatch(setOneComment(oneComment, commentId))
+        setOneComment(oneComment: Comment) {
+            dispatch(setOneComment(oneComment))
         },
         addOneComment(oneComment: Comment) {
             dispatch(addOneComment(oneComment))
@@ -45,8 +45,17 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         deleteOneComment(commentId: string) {
             dispatch(deleteOneComment(commentId))
         },
-        setOnePost(onePost: Post, postId: string) {
-            dispatch(setOnePost(onePost, postId))
+        setOnePost(onePost: Post) {
+            dispatch(setOnePost(onePost))
+        },
+        setOneLikeCountPost(postId: string, likeCount: string) {
+            dispatch(setOneLikeCountPost(postId, likeCount))
+        },
+        setOneLikeCommentPost(commentId: string, likeComment: string) {
+            dispatch(setOneLikeCommentPost(commentId, likeComment))
+        },
+        setOneCommentCountPost(postId: string, commentCount: string) {
+            dispatch(setOneCommentCountPost(postId, commentCount))
         },
     }
 

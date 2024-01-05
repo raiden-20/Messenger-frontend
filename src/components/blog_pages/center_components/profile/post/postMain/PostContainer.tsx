@@ -4,11 +4,19 @@ import {Post, StatePost} from "../../../../../../redux/interfaces/profile/post/p
 import PostClass from "./PostClass";
 import {setMessage} from "../../../../../../redux/reducers/authReducer";
 import {
-    setButtonEditPostClick, setInputPostComment,
+    setButtonEditPostClick,
+    setInputPostComment,
     setInputPostPhoto,
-    setInputPostPhotoUrl, setInputPostText,
+    setInputPostPhotoUrl,
+    setInputPostText,
     setPosts,
-    setComments, deleteOnePost, deleteOneComment, setOnePost, setOneComment, addOneComment, addOnePost
+    setComments,
+    deleteOnePost,
+    deleteOneComment,
+    setOnePost,
+    setOneComment,
+    addOneComment,
+    setOneLikeCountPost, setOneLikeCommentPost, setOneCommentCountPost
 } from "../../../../../../redux/reducers/postReducer";
 import {Comment} from "../../../../../../redux/interfaces/profile/post/comments";
 
@@ -39,8 +47,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         setInputPostPhotoUrl(input_postPhotoUrl: string) {
             dispatch(setInputPostPhotoUrl(input_postPhotoUrl))
         },
-        setInputPostPhoto(input_postPhoto: File) {
-            dispatch(setInputPostPhoto(input_postPhoto))
+        setInputPostPhoto(input_postPhoto: File, flag: boolean) {
+            dispatch(setInputPostPhoto(input_postPhoto, flag))
         },
         setInputPostText(input_postText: string) {
             dispatch(setInputPostText(input_postText))
@@ -59,6 +67,15 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setOnePost(onePost: Post) {
             dispatch(setOnePost(onePost))
+        },
+        setOneLikeCountPost(postId: string, likeCount: string) {
+            dispatch(setOneLikeCountPost(postId, likeCount))
+        },
+        setOneLikeCommentPost(commentId: string, likeComment: string) {
+            dispatch(setOneLikeCommentPost(commentId, likeComment))
+        },
+        setOneCommentCountPost(postId: string, commentCount: string) {
+            dispatch(setOneCommentCountPost(postId, commentCount))
         },
         setOneComment(oneComment: Comment) {
             dispatch(setOneComment(oneComment))

@@ -7,8 +7,15 @@ import SuccessfulActivationComponent from "./SuccessfulActivationComponent";
 import {ActivationAccountAxios} from "../../../axios/auth/AuthAxios";
 class SuccessfulActivationClass extends Component<PropsSuccessfulActivation, StateSuccessfulSmth>{
     componentDidMount() {
-        ActivationAccountAxios( {
+        let activate = ActivationAccountAxios({
             setMessage: this.props.setMessage
+        } )
+        activate.then(response => {
+            switch (response) {
+                case 200: {
+                    this.props.setMessage('Ваш аккаунт был успешно активирован! Для продолжения войдите в аккаунт')
+                }
+            }
         })
     }
 

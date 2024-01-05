@@ -19,7 +19,6 @@ class ChangePassword extends Component<PropsChangePassword, StateChangePassword>
                                      setInputPasswordConfirm={this.props.setInputPasswordConfirm}
                                      setInputCode={this.props.setInputCode}
                                      setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}
-                                     token={this.props.token}
                                      message={this.props.message}
                                      setMessage={this.props.setMessage}
                                      setPassword={this.props.setPassword}/>
@@ -31,7 +30,6 @@ class ChangePassword extends Component<PropsChangePassword, StateChangePassword>
                                                      setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}
                                                      setInputPassword={this.props.setInputPassword}
                                                      password={this.props.password}
-                                                     token={this.props.token}
                                                      message={this.props.message}
                                                      setMessage={this.props.setMessage}/>
                 }

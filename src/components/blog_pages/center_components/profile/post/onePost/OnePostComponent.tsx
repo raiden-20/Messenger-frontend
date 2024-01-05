@@ -1,6 +1,5 @@
 import post_css from "../postMain/Post.module.css";
 import default_profile_ava from "../../../../../../assets/images/default_profile_ava.svg";
-import cat from "../../../../../../assets/images/cat_registration.jpg";
 import settings_post from "../../../../../../assets/images/post/settings_post.svg";
 import like_isLiked from "../../../../../../assets/images/post/like_isLiked.svg";
 import like_notLiked from "../../../../../../assets/images/post/like_notLiked.svg";
@@ -10,6 +9,7 @@ import {OnePost, Post} from "../../../../../../redux/interfaces/profile/post/pos
 import TimeComponent from "../time/TimeComponent";
 import UserCommentsClass from "../userComments/UserCommentsClass";
 import EditPostContainer from "../editPost/EditPostContainer";
+import {PostPhoto} from "../../../../../../redux/interfaces/post/CreatePost";
 
 const OnePostComponent = (props: OnePost & Post) => {
     const [buttonCommentClick, setButtonCommentClick] = useState(false)
@@ -34,21 +34,21 @@ const OnePostComponent = (props: OnePost & Post) => {
                     <div className={post_css.name}>{props.name}</div>
                     <div className={post_css.userName}>{'@' + props.nickname}</div>
                 </section>
-                <button className={post_css.button + ' ' + post_css.setting_post}
-                        onMouseEnter={() => setMouseEnter(true)}>
-                    <img src={settings_post} alt={'settings post'}/>
-                </button>
+                { localStorage.getItem('idUser') === localStorage.getItem('id') ?
+                    <button className={post_css.button + ' ' + post_css.setting_post}
+                            onMouseEnter={() => setMouseEnter(true)}>
+                        <img src={settings_post} alt={'settings post'}/>
+                    </button> : null
+                }
+
                 {isMouseEnter ?
                     <section className={post_css.setting_choose} onMouseLeave={() => setMouseEnter(false)}>
                         <button onClick={() => edit()} className={post_css.button}><strong>Изменить</strong></button>
                         <button onClick={() => props.deletePost()} className={post_css.button}><strong>Удалить</strong>
                         </button>
                     </section> : null}
-                {props.buttonEditPost ? <EditPostContainer/> : null}
-                {/*{*/}
-                {/*    localStorage.getItem('userId') === localStorage.getItem('id') ?*/}
-                {/*        <img src={settings_post} alt={'settings post'}/> : null*/}
-                {/*}*/}
+                {props.buttonEditPost ? <EditPostContainer postId={props.postId}/> : null}
+
             </header>
             <section className={post_css.post}>
                 <section className={
@@ -58,9 +58,9 @@ const OnePostComponent = (props: OnePost & Post) => {
                                 props.photoUrl.length === 4 ? post_css.input_photo4 :
                                     props.photoUrl.length === 5 || props.photoUrl.length === 6 ? post_css.input_photo5 : '' :
                         post_css.input_photo0}>
-                    {props.photoUrl.map((url: string, i: number) => (
+                    {props.photoUrl.map((url: PostPhoto) => (
                         <section>
-                            <img src={cat} alt={'input img'} className={post_css.one_photo}/>
+                            <img src={url.url} alt={'input img'} className={post_css.one_photo}/>
                         </section>
                     ))}
                 </section>
@@ -91,7 +91,6 @@ const OnePostComponent = (props: OnePost & Post) => {
                                                                  postId={props.postId}
                                                                  isLiked={props.isLiked}
                                                                  likeCount={props.likeCount}
-                                                                 photoUrl={props.photoUrl}
                                                                  text={props.text}
                                                                  time={props.time}
                                                                  avatarUrl={props.avatarUrl}
@@ -106,7 +105,10 @@ const OnePostComponent = (props: OnePost & Post) => {
                                                                  setInputPostComment={props.setInputPostComment}
                                                                  deleteOneComment={props.deleteOneComment}
                                                                  setOneComment={props.setOneComment}
-                                                                 addOneComment={props.addOneComment}/> : null}
+                                                                 addOneComment={props.addOneComment}
+                                                                 photoUrl={props.photoUrl}
+                                                                 setOneCommentCountPost={props.setOneCommentCountPost}
+                                                                 setOneLikeCommentPost={props.setOneLikeCommentPost}/> : null}
                         {props.commentCount}
                     </section>
                 </section>

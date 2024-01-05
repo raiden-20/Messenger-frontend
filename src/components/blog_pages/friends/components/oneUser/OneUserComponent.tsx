@@ -1,36 +1,40 @@
 import main_css from "./OneUser.module.css";
 import chatting from "../../../../../assets/images/other/chat_with_user.svg";
-import React, {useState} from "react";
+import React from "react";
 import {PropsOneFriendComponent} from "../../../../../redux/interfaces/friends/oneFriend";
 import {useNavigate} from "react-router-dom";
-import {PROFILE_OTHER_USER} from "../../../../paths/profilePath";
+import {PROFILE_OTHER_USER, SET_NEW_URL_PROFILE} from "../../../../paths/profilePath";
 import default_ava from '../../../../../assets/images/default_profile_ava.svg'
 import check_mark from '../../../../../assets/images/friends/check_mark.svg'
 import delete_mark from '../../../../../assets/images/friends/delete_mark.svg'
 import UsersImagesComponent from "./imagesForWhoOpened/UsersImagesComponent";
-import SubscriptionsImagesComponent from "./imagesForWhoOpened/SubscriptionsImagesComponent";
-import SearchImagesComponent from "./imagesForWhoOpened/SearchImagesComponent";
 
 const OneUserComponent = (props: PropsOneFriendComponent) => {
     const navigation = useNavigate()
     const toProfile = () => {
+        debugger
         localStorage.setItem('idUser', props.id)
+        SET_NEW_URL_PROFILE(props.id)
         console.log(PROFILE_OTHER_USER)
         navigation(PROFILE_OTHER_USER)
     }
 
     const setAction = () => {
-        switch (props.whoOpened) {
-            case 'friends' : {
+        switch (props.status) {
+            case 'FRIENDS' : {
                 props.changeFriendStatus('DELETE_FRIEND')
                 break
             }
-            case 'search' : {
+            case null : {
                 props.changeFriendStatus('CREATE')
                 break
             }
-            case 'subscriptions' : {
+            case 'SEND_FIRST' : {
                 props.changeFriendStatus('DELETE_REQUEST')
+                break
+            }
+            case 'SEND_SECOND' : {
+                props.changeFriendStatus('REJECT')
                 break
             }
         }
@@ -83,12 +87,11 @@ const OneUserComponent = (props: PropsOneFriendComponent) => {
                         </section>
                         :
                         <section className={main_css.friend_functional}>
-                            <button>
-                                <img src={chatting} alt={'chat'}/>
+                            <button onClick={setAction} className={main_css.main_button}>
+                                <UsersImagesComponent status={props.status}/>
                             </button>
-                            <button onClick={setAction}>
-                                {props.status !== 'search' ? <UsersImagesComponent status={props.status}/> :
-                                    <SearchImagesComponent/> }
+                            <button className={main_css.button}>
+                                <img src={chatting} alt={'chat'}/>
                             </button>
                         </section>
                 : null

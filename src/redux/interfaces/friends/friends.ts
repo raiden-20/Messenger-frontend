@@ -16,12 +16,12 @@ export interface PropsUsers {
     whoOpened: string
 
     setUsers(usersShortInfo: []):void
-    setUsersNicknames(nicknames: []): void
+    setUserNickname(id: string, nickname: string): void
     setUserFriendsCount(countFriends: number): void
     setUserSubscriptionsCount(countSubscriptions: number): void
     setUserSubscribersCount(countSubscribers: number): void
     setWhoOpened(whoOpened: string): void
-    setChangeUserStatus(id: string, status: string): void
+    setChangeUserStatus(id: string, status: string | null): void
 
 }
 
@@ -37,6 +37,7 @@ export interface PropsUsersComponent {
     getSubscriptions(): void
     getSearch(): void
     actionRequest(idOtherUser: string, action: string): void
+    setUserNickname(id: string, nickname: string): void
 
     setWhoOpened(whoOpened: string): void
 }
@@ -46,12 +47,14 @@ export interface PropsFriendsComponent{
     countFriends: number
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void
+    setUserNickname(id: string, nickname: string): void
 
 }
 export interface PropsSearchComponent{
     usersShortInfo : []
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void
+    setUserNickname(id: string, nickname: string): void
 
 }
 export interface PropsSubscribersComponent{
@@ -59,10 +62,12 @@ export interface PropsSubscribersComponent{
     countSubscribers: number
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void
+    setUserNickname(id: string, nickname: string): void
 }
 export interface PropsSubscriptionsComponent{
     usersShortInfo : []
     countSubscriptions: number
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void
+    setUserNickname(id: string, nickname: string): void
 }

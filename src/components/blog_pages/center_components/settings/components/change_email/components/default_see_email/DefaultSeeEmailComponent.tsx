@@ -1,21 +1,15 @@
-import {
-    PropsChangeEmail
-} from "../../../../../../../../redux/interfaces/settings/settings_for_components/email/SettingDefoltSeeEmail";
 import settings_css from "../../../../Settings.module.css";
 import settings_el_css from '../../../ChangeSettingsElements.module.css'
 import setting_pencil from "../../../../../../../../assets/images/other/setting_pencil.svg";
-import React from "react";
+import {
+    PropsChangeEmail
+} from "../../../../../../../../redux/interfaces/settings/settings_for_components/email/SettingDefoltSeeEmail";
 
-const DefaultSeeEmail = (props : PropsChangeEmail) => {
+const DefaultSeeEmailComponent = (props: PropsChangeEmail) => {
     const changeButtonChangeEmail = () => {
         if (!props.buttonChangePasswordFirstStep && !props.buttonChangePasswordSecondStep) {
             props.setButtonChangeEmailPressed(true)
         }
-    }
-
-    const getEmail = () => {
-        // id запрос на получение email
-        return // email
     }
 
     return (
@@ -29,4 +23,4 @@ const DefaultSeeEmail = (props : PropsChangeEmail) => {
     )
 }
 
-export default DefaultSeeEmail
+export default DefaultSeeEmailComponent

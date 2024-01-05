@@ -27,10 +27,8 @@ const MainSetting = (props : PropsChangePassword & PropsChangeEmail & PropsDelet
                                                                          buttonChangePasswordSecondStep={props.buttonChangePasswordSecondStep}
                                                                          setButtonChangePasswordFirstStepPressed={props.setButtonChangePasswordFirstStepPressed}
                                                                          setButtonChangePasswordSecondStepPressed={props.setButtonChangePasswordSecondStepPressed}
-                                                                         token={props.token}
                                                                          message={props.message}
                                                                          setMessage={props.setMessage}
-                                                                         setToken={props.setToken}
                                                                          setNewEmail={props.setNewEmail}
                                                                          setEmail={props.setEmail}/>
                                                         : <SettingsSecurity/>)

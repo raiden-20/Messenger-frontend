@@ -3,7 +3,7 @@ import profileShort from './UserFriendsShortInfo.module.css'
 import default_ava from '../../../../../assets/images/default_profile_ava.svg'
 import dialog from '../../../../../assets/images/other/chat_with_user.svg'
 import addToFriend from '../../../../../assets/images/friends/add_to_friend.svg'
-import emptyPhoto from '../../../../../assets/images/other/empty_photo.svg'
+import {PhotoArr} from "../../../../../redux/interfaces/profile/photo/photoProfile";
 const UserFriendsShortInfoComponent = (props: PropsOneFriendComponent2) => {
     return (
         <section className={profileShort.page}>
@@ -25,9 +25,9 @@ const UserFriendsShortInfoComponent = (props: PropsOneFriendComponent2) => {
                 </section>
             </section>
             <footer className={profileShort.photos}>
-                <img src={emptyPhoto} alt={'users'}/>
-                <img src={emptyPhoto} alt={'users'}/>
-                <img src={emptyPhoto} alt={'users'}/>
+                {props.photo.map((onePhoto:PhotoArr) =>
+                    <img src={onePhoto.url} alt={'users'}/>
+                )}
             </footer>
         </section>
     )

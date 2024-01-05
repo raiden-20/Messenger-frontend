@@ -11,11 +11,8 @@ export interface StateAuthReg {
 
         message: string;
         buttonShowMessage: boolean
-        token: string
         code: number
-        id: string
         email: string
-
         newEmail: string
     }
     profile : {
@@ -36,9 +33,7 @@ export interface PropsAuthReg{
 
     message: string;
     buttonShowMessage: boolean
-    token: string
     code: number
-    id: string
     email: string
 
     newEmail: string
@@ -61,9 +56,7 @@ export interface PropsAuthReg{
 
     setMessage(message: string): void;
     setShowMessage(buttonShowMessage: boolean): void;
-    setToken(token: string): void;
     setCode(code: number): void
-    setId(id: string): void
 }
 
 export interface StateAuthRegReg {
@@ -148,5 +141,5 @@ export interface PropsAuthRegComponent{
     setMessage(message: string): void;
     setShowMessage(buttonShowMessage: boolean): void;
 
-    authentication(): void
+    authentication(): boolean
 }

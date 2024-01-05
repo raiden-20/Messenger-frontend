@@ -1,23 +1,51 @@
 .div {
-    width: 100%;
-    height: 100%;
-
     display: grid;
     justify-items: end;
 }
 
-.friends_img {
+.button {
+    padding: 5px 15px 5px 15px;
+
+    display: grid;
+    grid-template-columns: 14px auto;
+    column-gap: 10px;
+    align-items: center;
+    justify-items: center;
+
+    border-radius: 30px;
+    border: 2px solid rgba(133, 91, 217, 1);
+
+    color: rgba(133, 91, 217, 1);
+    font-weight: 600;
+}
+
+.button {
     display: grid;
 }
 
-.delete_img {
+.hide {
     display: none;
 }
 
-.div:hover .friends_img {
+.delete {
+    padding: 5px 15px 5px 15px;
+    border-radius: 30px;
+    grid-template-columns: 14px auto;
+    column-gap: 10px;
+    align-items: center;
+    justify-items: center;
+
+    background-color: rgba(224, 45, 45, 1);
+    border: 2px solid rgba(224, 45, 45, 1);
+    color: rgba(255, 255, 255, 1);
+    font-weight: 600;
+}
+
+
+.div:hover .button {
     display: none;
 }
 
-.div:hover .delete_img {
+.div:hover .hide {
     display: grid;
 }

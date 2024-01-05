@@ -17,6 +17,20 @@
     font-size: 1.1em;
 }
 
+.mainSettings {
+    display: grid;
+    justify-items: center;
+
+    padding: 3%;
+    background-color: rgba(250, 182, 191, 1);
+    border-radius: 10px;
+    color: rgba(140, 25, 14, 1);
+}
+
+.mainSettings section {
+    font-size: 0.9em;
+}
+
 @media screen and (max-height: 850px){
     .root {
 

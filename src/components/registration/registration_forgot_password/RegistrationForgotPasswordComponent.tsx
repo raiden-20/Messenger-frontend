@@ -7,6 +7,7 @@ import React from "react";
 import {
     PropsAuthForgotPasswordComponent
 } from "../../../redux/interfaces/auth/authForgotPassword";
+import reg from "../registration_or_authorization/RegistrationOrAutorisation.module.css";
 
 const RegistrationForgotPasswordComponent = (props: PropsAuthForgotPasswordComponent) => {
     const setInputEmail = (event : React.ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +18,7 @@ const RegistrationForgotPasswordComponent = (props: PropsAuthForgotPasswordCompo
     }
 
     return (
-        <div>
+        <div className={reg.div}>
             <section className={reg_forgot_css.functional}>
                 <section className={reg_forgot_css.text}>
                     <p><strong>Проблемы со входом?</strong></p>

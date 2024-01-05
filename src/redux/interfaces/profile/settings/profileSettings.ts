@@ -78,38 +78,22 @@ export interface PropsProfileSettings {
     deleteCoverFlag: boolean,
 
     setName(name: string): void
-
     setAvatarUrl(avatarUrl : string): void
     setCoverUrl(coverUrl : string): void
-
     setNickname(nickname: string): void
-
     setBirthDate(nickname: string): void
-
     setNickname(nickname: string): void
-
     setMessage(message: string): void
-
     setInputName(input_name: string): void
-
     setInputBirthDate(input_birthDate: string): void
-
     setInputNickname(input_nickname: string): void
-
     setInputBio(input_bio: string): void
-
     setId(id: string | null): void
-
     setToken(id: string | null): void
-
     setInputAvatarUrl(input_avatarUrl: File): void
-
     setInputCoverUrl(input_coverUrl: File): void
-
     setButtonSettingPressed(isButtonSettingPressed: boolean): void
-
     setDeleteAvatarFlag(deleteAvatarFlag: boolean): void
-
     setDeleteCoverFlag(deleteCoverFlag: boolean): void
 }
 

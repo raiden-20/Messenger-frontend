@@ -1,9 +1,9 @@
 import {PhotoArr, PropsPhotoProfileComponent} from "../../../../../redux/interfaces/profile/photo/photoProfile";
 import photo_css from './PhotoProfile.module.css'
 import goBack from '../../../../../assets/images/photo/goBack.svg'
+import noPhoto from '../../../../../assets/images/photo/no_photo.svg'
 import {useNavigate} from "react-router-dom";
 import {PROFILE_OTHER_USER} from "../../../../paths/profilePath";
-import cat from '../../../../../assets/images/cat_registration.jpg'
 import OnePhotoContainer from "./onePhoto/OnePhotoContainer";
 
 const PhotoProfileComponent = (props: PropsPhotoProfileComponent) => {
@@ -28,7 +28,7 @@ const PhotoProfileComponent = (props: PropsPhotoProfileComponent) => {
                 <section className={photo_css.allPhoto}>
                     {props.photoUrl.map((photoUrl : PhotoArr)  =>
                         <section onClick={()=> openPhoto(photoUrl.postId, photoUrl.url)}>
-                            <img src={cat} alt={'userPhoto'} className={photo_css.userPhoto}/>
+                            <img src={photoUrl.url === '' ? noPhoto : photoUrl.url} alt={'userPhoto'} className={photo_css.userPhoto}/>
                         </section>
                         )}
                 </section>

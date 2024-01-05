@@ -53,20 +53,41 @@
 
 .friend_functional {
     display: grid;
-    width: 90px;
-    grid-template-columns: 45% 45%;
-    column-gap: 10%;
+    grid-template-columns: auto 35px;
+    column-gap: 15px;
     justify-self: end;
     align-self: start;
 }
 
 .friend_functional button {
-    border: none;
-    background-color: transparent;
     padding: 0;
     display: grid;
     justify-items: end;
 }
+
+.button {
+    width: 35px;
+    height: 35px;
+
+    background-color: transparent;
+    border: none
+}
+.button img {
+    width: 100%;
+    height: 100%;
+}
+
+.main_button {
+    width: auto;
+    height: 35px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    background-color: transparent;
+    border: none
+}
+
 .friend_functional_subscribers{
     width: 100%;
     height: 100%;
@@ -86,10 +107,6 @@
 .chat img {
     width: 33px;
     height: 33px;
-}
-
-.friend_functional img {
-    width: 80%;
 }
 
 .section_buttons {

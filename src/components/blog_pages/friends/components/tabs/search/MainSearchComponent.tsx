@@ -6,8 +6,8 @@ import {User} from "../../../../../../redux/interfaces/friends/oneFriend";
 
 
 const MainSearchComponent = (props: PropsSearchComponent) => {
-    const changeFriendStatus = (idOtherUser: string) => {
-        props.actionRequest(idOtherUser, 'create')
+    const changeFriendStatus = (idOtherUser: string, action: string) => {
+        props.actionRequest(idOtherUser, action)
     }
 
     return (
@@ -19,7 +19,8 @@ const MainSearchComponent = (props: PropsSearchComponent) => {
                                                                     id={user.id}
                                                                     changeFriendStatus={changeFriendStatus}
                                                                     whoOpened={props.whoOpened}
-                                                                    status={user.status}/>)}
+                                                                    status={user.status}
+                                                                    setUserNickname={props.setUserNickname}/>)}
         </section>
     )
 }

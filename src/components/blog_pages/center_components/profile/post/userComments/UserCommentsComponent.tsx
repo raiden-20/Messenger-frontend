@@ -6,13 +6,13 @@ import post_css from "../postMain/Post.module.css";
 import default_profile_ava from "../../../../../../assets/images/default_profile_ava.svg";
 import settings_post from "../../../../../../assets/images/post/settings_post.svg";
 import EditPostContainer from "../editPost/EditPostContainer";
-import cat from "../../../../../../assets/images/cat_registration.jpg";
 import like_isLiked from "../../../../../../assets/images/post/like_isLiked.svg";
 import like_notLiked from "../../../../../../assets/images/post/like_notLiked.svg";
 import comment from "../../../../../../assets/images/post/comment.svg";
 import TimeComponent from "../time/TimeComponent";
 import sent_comment from '../../../../../../assets/images/post/sent_comment.svg'
 import OneCommentClass from "./oneComment/OneCommentClass";
+import {PostPhoto} from "../../../../../../redux/interfaces/post/CreatePost";
 
 const UserCommentsComponent = (props: PropsUserComment) => {
     const [isMouseEnter, setMouseEnter] = useState(false)
@@ -45,7 +45,7 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                                     <button onClick={() => props.deletePost()} className={post_css.button}><strong>Удалить</strong>
                                     </button>
                                 </section> : null}
-                            {props.buttonEditPost ? <EditPostContainer/> : null}
+                            {props.buttonEditPost ? <EditPostContainer postId={props.postId}/> : null}
                             {
                                 localStorage.getItem('userId') === localStorage.getItem('id') ?
                                 <img src={settings_post} alt={'settings post'}/> : null
@@ -60,9 +60,9 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                                                 props.photoUrl.length === 4 ? post_css.input_photo4 :
                                                     props.photoUrl.length === 5 || props.photoUrl.length === 6 ? post_css.input_photo5 : '' :
                                         post_css.input_photo0}>
-                                    {props.photoUrl.map((url: string, i: number) => (
+                                    {props.photoUrl.map((url: PostPhoto, i: number) => (
                                         <section>
-                                            <img src={cat} alt={'input img'} className={post_css.one_photo}/>
+                                            <img src={url.url} alt={'input img'} className={post_css.one_photo}/>
                                         </section>
                                     ))}
                                 </section>
@@ -98,10 +98,10 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                             <button className={post_css.button} onClick={props.setComment}>
                                 <img src={sent_comment} alt={'sent comment'}/>
                             </button>
-
                         </section>
                         <section className={post_comm_css.comments_arr}>
-                            {props.comments.reverse().map((comment: Comment) => (
+                            {props.comments.length > 0 ?
+                                props.comments.map((comment: Comment) => (
                                 <OneCommentClass userId={comment.userId}
                                                  text={comment.text}
                                                  time={comment.time}
@@ -109,8 +109,12 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                                                  isLiked={comment.isLiked}
                                                  commentId={comment.commentId}
                                                  deleteOneComment={props.deleteOneComment}
-                                                 setOneComment={props.setOneComment}/>
-                            ))}
+                                                 setOneCommentCountPost={props.setOneCommentCountPost}
+                                                 setOneLikeCommentPost={props.setOneLikeCommentPost}/>
+                            )) :
+                            <section className={post_comm_css.noComm}>
+                                <p>Нет комментарий...</p>
+                            </section>}
                         </section>
                     </section>
                 </section>

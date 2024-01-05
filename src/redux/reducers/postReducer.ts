@@ -2,13 +2,16 @@ import {Comment} from "../interfaces/profile/post/comments";
 import {Post} from "../interfaces/profile/post/post";
 
 const SET_POSTS = 'SET_POSTS'
-const SET_COMMENTS = 'SET_USER_COMMENTS'
+const SET_COMMENTS = 'SET_COMMENTS'
 
-const SET_ONE_POST = 'SET_POSTS'
-const SET_ONE_COMMENT = 'SET_USER_COMMENTS'
+const SET_ONE_POST = 'SET_ONE_POST'
+const SET_ONE_LIKE_COUNT_POST = 'SET_ONE_LIKE_COUNT_POST'
+const SET_ONE_LIKE_COUNT_COMMENT = 'SET_ONE_LIKE_COUNT_COMMENT'
+const SET_ONE_COMMENT_COUNT_POST = 'SET_ONE_COMMENT_COUNT_POST'
+const SET_ONE_COMMENT = 'SET_ONE_COMMENT'
 
-const ADD_ONE_POST = 'SET_POSTS'
-const ADD_ONE_COMMENT = 'SET_USER_COMMENTS'
+const ADD_ONE_POST = 'ADD_ONE_POST'
+const ADD_ONE_COMMENT = 'ADD_ONE_COMMENT'
 
 const DELETE_ONE_POST = 'DELETE_ONE_POST'
 const DELETE_ONE_COMMENT = 'DELETE_ONE_COMMENT'
@@ -49,23 +52,62 @@ const postReducer = (state = initialState, action: any) => {
             return stateCopy
         }
         case SET_ONE_POST : {
-            // @ts-ignore
+            debugger
             stateCopy= {...state, posts: [...state.posts]}
-            stateCopy.posts.forEach((post: Post, i) => {
-                if (post.postId === action.onePost.postId) {
-                    post = action.onePost
+            for (let index = 0; index < stateCopy.posts.length; index++) {
+                // @ts-ignore
+                if (stateCopy.posts[index].postId === action.onePost.postId) {
+                    // @ts-ignore
+                    stateCopy.posts[index] = action.onePost
                 }
-            })
+            }
+            return stateCopy
+        }
+        case SET_ONE_LIKE_COUNT_POST : {
+            stateCopy= {...state, posts: [...state.posts]}
+            for (let index = 0; index < stateCopy.posts.length; index++) {
+                // @ts-ignore
+                if (stateCopy.posts[index].postId === action.postId) {
+                    // @ts-ignore
+                    stateCopy.posts[index].likeCount = action.likeCount
+                    // @ts-ignore
+                    stateCopy.posts[index].isLiked = !stateCopy.posts[index].isLiked;
+                }
+            }
+            return stateCopy
+        }
+        case SET_ONE_LIKE_COUNT_COMMENT : {
+            stateCopy= {...state, comments: [...state.comments]}
+            for (let index = 0; index < stateCopy.comments.length; index++) {
+                // @ts-ignore
+                if (stateCopy.comments[index].commentId === action.commentId) {
+                    // @ts-ignore
+                    stateCopy.comments[index].likeComment = action.likeComment
+                }
+            }
+            return stateCopy
+        }
+        case SET_ONE_COMMENT_COUNT_POST : {
+            stateCopy= {...state, posts: [...state.posts]}
+            for (let index = 0; index < stateCopy.posts.length; index++) {
+                // @ts-ignore
+                if (stateCopy.posts[index].postId === action.postId) {
+                    // @ts-ignore
+                    stateCopy.posts[index].commentCount = action.commentCount
+                }
+            }
             return stateCopy
         }
         case SET_ONE_COMMENT : {
             // @ts-ignore
             stateCopy= {...state, comments: [...state.comments]}
-            stateCopy.comments.forEach((comment: Comment, i) => {
-                if (comment.commentId === action.oneComment.commentId) {
-                    comment = action.oneComment
+            for (let index = 0; index < stateCopy.comments.length; index++) {
+                // @ts-ignore
+                if (stateCopy.comments[index].commentId === action.oneComment.commentId) {
+                    // @ts-ignore
+                    stateCopy.comments[index] = action.oneComment
                 }
-            })
+            }
             return stateCopy
         }
         case ADD_ONE_POST : {
@@ -85,13 +127,26 @@ const postReducer = (state = initialState, action: any) => {
         case DELETE_ONE_POST : {
             // @ts-ignore
             stateCopy= {...state, posts: [...state.posts]}
-            stateCopy.posts.splice(action.postId, 1)
+            for (let index = 0; index < stateCopy.posts.length; index++) {
+                // @ts-ignore
+                if (stateCopy.posts[index].postId === action.postId) {
+                    stateCopy.posts.splice(index, 1)
+                    break
+                }
+            }
             return stateCopy
         }
         case DELETE_ONE_COMMENT: {
             // @ts-ignore
             stateCopy= {...state, comments: [...state.comments]}
-            stateCopy.comments.splice(action.commentId, 1)
+            for (let index = 0; index < stateCopy.comments.length; index++) {
+                // @ts-ignore
+                if (stateCopy.comments[index].commentId === action.commentId) {
+                    stateCopy.comments.splice(index, 1)
+                    break
+                }
+            }
+
             return stateCopy
         }
 
@@ -100,7 +155,10 @@ const postReducer = (state = initialState, action: any) => {
             // @ts-ignore
             stateCopy = {...state, input_postPhoto: [...state.input_postPhoto]}
             // @ts-ignore
-            stateCopy.input_postPhoto.push(action.input_postPhoto)
+            stateCopy.input_postPhoto.push({
+                input_postPhoto : action.input_postPhoto,
+                flag: action.flag
+            })
 
             return stateCopy
         }
@@ -171,6 +229,21 @@ export const setOnePost = (onePost: Post) => {
         type: SET_ONE_POST, onePost
     }
 }
+export const setOneLikeCountPost = (postId: string, likeCount: string) => {
+    return {
+        type: SET_ONE_LIKE_COUNT_POST, postId, likeCount
+    }
+}
+export const setOneLikeCommentPost = (commentId: string, likeComment: string) => {
+    return {
+        type: SET_ONE_LIKE_COUNT_COMMENT, commentId, likeComment
+    }
+}
+export const setOneCommentCountPost = (postId: string, commentCount: string) => {
+    return {
+        type: SET_ONE_COMMENT_COUNT_POST, postId, commentCount
+    }
+}
 export const setOneComment = (oneComment: Comment) => {
     return {
         type: SET_ONE_COMMENT, oneComment
@@ -197,10 +270,9 @@ export const deleteOneComment = (commentId: string) => {
     }
 }
 
-
-export const setInputPostPhoto = (input_postPhoto: File) => {
+export const setInputPostPhoto = (input_postPhoto: File, flag: boolean) => {
     return {
-        type: SET_POST_INPUT_PHOTO, input_postPhoto
+        type: SET_POST_INPUT_PHOTO, input_postPhoto, flag
     }
 }
 export const setInputPostPhotoDelete = (index: number) => {

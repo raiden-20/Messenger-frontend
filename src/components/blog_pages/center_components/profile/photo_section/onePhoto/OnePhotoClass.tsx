@@ -1,8 +1,7 @@
 import {Component} from "react";
 import {PropsOnePhotoClass, StateOnePhotoClass} from "../../../../../../redux/interfaces/profile/photo/postInPhoto";
 import OnePhotoComponent from "./OnePhotoComponent";
-import axios from "axios";
-import config from "../../../../../paths/config";
+import {GetCommentsAxios, GetPostDataAxios, LikePostAxios, SetCommentAxios} from "../../../../../axios/post/PostAxios";
 import {Comment} from "../../../../../../redux/interfaces/profile/post/comments";
 
 class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
@@ -11,101 +10,71 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
     text = ''
     time = ''
     isLiked = false
-    likesCount = ''
-    commentCount = ''
+    likeCount = '0'
+    commentCount = '0'
+    photoUrl = []
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/blog/post/${this.props.postId} `, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.text = response.data.text
-                        this.time = response.data.time
-                        this.isLiked = response.data.isLiked
-                        this.likesCount = response.data.likesCount
-                        this.commentCount = response.data.commentCount
-                    }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403 : {
-                    //bad token
-                    break
-                }
-                case 404 : {
-                    // post doesn't exist
+        let postData = GetPostDataAxios({
+            postId: this.props.postId
+        })
+
+        postData.then(response => {
+            this.text = response.text
+            this.time = response.time
+            this.isLiked = response.isLiked
+            this.likeCount = response.likeCount
+            this.commentCount = response.commentCount
+            this.photoUrl = response.photoUrl
+        })
+
+        let a = GetCommentsAxios({
+            postId: this.props.postId,
+        })
+        a.then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    debugger
+                    this.props.setUserComments(response[1])
                 }
             }
         })
-
-        axios.get(`http://localhost:8080/blog/comment/${this.props.postId}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200: {
-                        this.props.setUserComments(response.data)
-                        break
-                    }
-                }
-            })
     }
 
     setComment = () => {
-        axios.post('http://localhost:8080/blog/comment/create', {
+        let a = SetCommentAxios({
             postId: this.props.postId,
-            text: this.props.input_comment
-        }, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        const now = new Date();
-                        const dateString = now.toLocaleDateString();
-                        let oneComment: Comment = {
-                            commentId: response.data,
-                            userId: localStorage.getItem('idUser'),
-                            text: this.props.input_comment,
-                            time: dateString.split('.').join('-'),
-                            countLikes: '0',
-                            isLiked: false
-                        }
-                        this.props.addOneComment(oneComment)
+            input_comment: this.props.input_comment,
+            addOneComment: this.props.addOneComment
+        })
+        a.then(response => {
+            switch (response) {
+                case 200 : {
+                    const now = new Date();
+                    const dateString = now.toLocaleDateString();
+                    let oneComment: Comment = {
+                        commentId: response.data,
+                        userId: localStorage.getItem('idUser'),
+                        text: this.props.input_comment,
+                        time: dateString.split('.').join('-'),
+                        countLikes: '0',
+                        isLiked: false
                     }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403 : {
-                    //bad token
-                    break
-                }
-                case 404 : {
-                    // post doesn't exist
+                    this.props.addOneComment(oneComment)
+                    this.props.setOneCommentCountPost(this.props.postId, this.commentCount + 1)
                 }
             }
         })
     }
     likePost = () => {
-        axios.put('http://localhost:8080/blog/post/like', {
+        let ax = LikePostAxios({
             postId: this.props.postId
-        }, config)
-            .then(response => {
-                axios.get(`http://localhost:8080/blog/post/${this.props.postId}`, config)
-                    .then(response => {
-                        switch (response.status) {
-                            case 200: {
-                                this.props.setOnePost(response.data, this.props.postId)
-                            }
-                        }
-                    }).catch(error => {
-                    debugger
-                })
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403: {
-                    // bad token //todo сделать alarm 'ваша сессия истекла, войдите в систему заново' и выкинуть на вход
-                    break
-                }
-                case 404: {
-                    // post doesn't exist
-                    break
+        })
+        ax.then(response => {
+            switch (response) {
+                case 200: {
+                    this.props.setOneLikeCountPost(this.props.postId, this.isLiked ? (Number.parseInt(this.likeCount) - 1).toString() :
+                        (Number.parseInt(this.likeCount) + 1).toString())
                 }
             }
         })
@@ -123,14 +92,14 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
                                   avatarUrl={this.props.avatarUrl}
                                   commentCount={this.commentCount}
                                   isLiked={this.isLiked}
-                                  likeCount={this.likesCount}
+                                  likeCount={this.likeCount}
                                   text={this.text}
                                   time={this.time}
                                   setComment={this.setComment}
                                   likePost={this.likePost}
-                                  addOneComment={this.props.addOneComment}
                                   deleteOneComment={this.props.deleteOneComment}
-                                  setOneComment={this.props.setOneComment}/>
+                                  setOneCommentCountPost={this.props.setOneCommentCountPost}
+                                  setOneLikeCommentPost={this.props.setOneLikeCommentPost}/>
     }
 }
 

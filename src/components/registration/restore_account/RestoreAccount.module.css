@@ -1,19 +1,13 @@
 .root {
-    padding-top: 3%;
-    padding-bottom: 3%;
-    height: 231px;
 
     display: grid;
-    grid-template-rows: 10% 50% 15%;
-    row-gap: 10%;
+    grid-template-rows: 34px 35px;
+    row-gap: 30px;
 }
 
-.root main {
-    display: grid;
-    grid-template-rows: 45% 30%;
-    row-gap: 10%;
+.root header {
+    font-size: 1.2em;
 }
-
 .ava_fio {
     display: grid;
     grid-template-columns: 13% 80%;
@@ -34,15 +28,18 @@
 
 .button_restore {
     width: 100%;
+    height: 35px;
     border-radius: 5px;
     display: grid;
     align-content: center;
     justify-content: center;
 
     text-decoration: none;
+    font-size: 1em;
 }
 .button_cancel {
     width: 42%;
+    height: 35px;
     border-radius: 5px;
 
     display: grid;
@@ -50,4 +47,5 @@
     justify-content: center;
 
     text-decoration: none;
+    font-size: 1em;
 }

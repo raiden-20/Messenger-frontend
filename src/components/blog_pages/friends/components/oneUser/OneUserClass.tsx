@@ -1,11 +1,26 @@
 import React, {Component} from "react";
 import {PropsOneFriend, StateOneFriend} from "../../../../../redux/interfaces/friends/oneFriend";
 import OneUserComponent from "./OneUserComponent";
+import {AuthDataAxios} from "../../../../axios/auth/AuthAxios";
 
 class OneUserClass extends Component<PropsOneFriend, StateOneFriend>{
 
     changeFriendStatus = (action: string) => {
         this.props.changeFriendStatus(this.props.id, action)
+    }
+
+    componentDidMount() {
+        let authDataPromise = AuthDataAxios({
+            id: this.props.id
+        })
+        authDataPromise.then(response => {
+            debugger
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setUserNickname(this.props.id, response[1].nickname)
+                }
+            }
+        })
     }
 
     render() {

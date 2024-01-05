@@ -1,70 +1,49 @@
 import {Component} from "react";
-import {deleteData, PropsEditPost, StateEditPost} from "../../../../../../redux/interfaces/profile/post/editPost";
+import {PropsEditPost, StateEditPost} from "../../../../../../redux/interfaces/profile/post/editPost";
 import ProfileNewPostComponent from "../../profile/profile_new_post/ProfileNewPostComponent";
-import axios from "axios";
-import config from "../../../../../paths/config";
+import {DeletePhotoPostAxios} from "../../../../../axios/photo/PhotoAxios";
+import {EditPostAxios, GetPostDataAxios} from "../../../../../axios/post/PostAxios";
+import {PostPhoto} from "../../../../../../redux/interfaces/post/CreatePost";
 class EditPostClass extends Component<PropsEditPost, StateEditPost> {
-    config = {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Content-Type': 'multipart/form-data; boundary=---------------------------123456789012345678901234567'
-        }
-    };
+    deletePhotoPostUrl: string[] = []
+
+    setDeletePhoto = (url: string) => {
+        this.deletePhotoPostUrl.push(url)
+    }
+
+    setInputPostPhotoDelete = (index: number) => {
+        this.setDeletePhoto(this.props.input_postPhotoUrl[index])
+        this.props.setInputPostPhotoDelete(index)
+    }
 
     setNewPost = () : boolean => { //edit post
-        this.props.deletePhotoPostUrl.map((data: deleteData) => {
-            axios.delete('http://localhost:8080/file/blog', {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    'Content-Type': 'multipart/form-data; boundary=---------------------------123456789012345678901234567'
-
-                },
-                data: {
-                    url: data.url,
-                    photoId: data.photoId,
-                    postId: data.postId
-                }
-            }).then(response => {
-                this.props.setDeletePhotoPostUrl(null)
-            }).catch(error => {
-            })
+        let postData = GetPostDataAxios({
+            postId: this.props.postId
         })
-        this.props.setInputPostText('')
-        axios.put(`http://localhost:8080/blog/post`, {
-            postId: this.props.postId,
-            text: this.props.input_postText
-        },config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.input_postPhoto.map(file => {
-                            let formDataAvatar = new FormData()
-                            formDataAvatar.append('file', file)
-                            formDataAvatar.append('postId', this.props.postId)
-
-                            axios.post('http://localhost:8080/file/blog', formDataAvatar, this.config)
-                                .then(response => {
-                                    this.props.setInputPostAllPhotoDelete()
-                            }).catch(error => {
-                                debugger
+        postData.then(response => {
+            if (response !== null) {
+                this.deletePhotoPostUrl.map((data: string) => {
+                    response.photoUrl.map((url: PostPhoto) => {
+                        if (data === url.url) {
+                            DeletePhotoPostAxios({
+                                url: data,
+                                photoId: url.photoId,
+                                postId: this.props.postId,
                             })
-                        })
+                        }
+                    })
+                })
+                this.props.setInputPostText('')
+            }
+        })
 
-                        axios.get(`http://localhost:8080/blog/user/${localStorage.getItem('idUser')}`, config)
-                            .then(response => {
-                                switch (response.status) {
-                                    case 200: {
-                                        this.props.setPosts(response.data)
-                                    }
-                                }
-                            }).catch(error => {
-                            debugger
-                        })
-
-                    }
-                }
-            })
-        return false
+        return EditPostAxios({
+            postId: this.props.postId,
+            input_postText: this.props.input_postText,
+            input_postPhoto: this.props.input_postPhoto,
+            setButtonCreatPostPressed: this.props.setButtonEditPostClick,
+            setOnePost: this.props.setOnePost
+        })
     }
 
     render() {
@@ -74,7 +53,7 @@ class EditPostClass extends Component<PropsEditPost, StateEditPost> {
                                        setInputPostPhoto={this.props.setInputPostPhoto}
                                        setInputPostText={this.props.setInputPostText}
                                        setInputPostPhotoUrl={this.props.setInputPostPhotoUrl}
-                                       setInputPostPhotoDelete={this.props.setInputPostPhotoDelete}
+                                       setInputPostPhotoDelete={this.setInputPostPhotoDelete}
                                        setInputPostAllPhotoDelete={this.props.setInputPostAllPhotoDelete}
                                        setButtonCreatPostPressed={this.props.setButtonEditPostClick}
                                        setNewPost={this.setNewPost}/>

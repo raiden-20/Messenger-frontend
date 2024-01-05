@@ -12,7 +12,7 @@ import more_close from '../../../assets/images/icons_navigation/more_close.svg'
 import more_open from '../../../assets/images/icons_navigation/more_open.svg'
 import {PropsNavigation} from "../../../redux/interfaces/navigation/navigationMain";
 import NavigationMoreSection from "./components/NavigationMoreSection";
-import {PROFILE_USER} from "../../paths/profilePath";
+import {PROFILE_OTHER_USER, PROFILE_USER} from "../../paths/profilePath";
 import {FRIENDS_USER} from "../../paths/usersPath";
 import {SETTINGS} from "../../paths/navigationPath";
 
@@ -33,6 +33,17 @@ const NavigationComponent = (props: PropsNavigation) => {
         navigation(PROFILE_USER)
     }
 
+    const toFriends = () => {
+        // @ts-ignore
+        localStorage.setItem('idUser', localStorage.getItem('id'))
+        navigation(FRIENDS_USER)
+    }
+    const toSettings = () => {
+        // @ts-ignore
+        localStorage.setItem('idUser', localStorage.getItem('id'))
+        navigation(SETTINGS)
+    }
+
     return (
             <div className={nav.page}>
                 <header>
@@ -40,21 +51,21 @@ const NavigationComponent = (props: PropsNavigation) => {
                     СимОн
                 </header>
                 <section className={nav.links}>
-                    <section className={nav.svg_link}>
+                    <section className={nav.svg_link} onClick={toProfile}>
                         <img className={nav.img} src={profile} alt={'navigate to profile'}/>
-                        <button className={nav.button_nav} onClick={toProfile}>Профиль</button>
+                        <button className={nav.button_nav}>Профиль</button>
                     </section>
-                    <section className={nav.svg_link}>
+                    <section className={nav.svg_link} onClick={() => {}}>
                         <img className={nav.img} src={dialogs} alt={'navigate to dialogs'}/>
-                        <button className={nav.button_nav} onClick={() => {}}>Сообщения</button>
+                        <button className={nav.button_nav}>Сообщения</button>
                     </section>
-                    <section className={nav.svg_link}>
+                    <section className={nav.svg_link} onClick={toFriends}>
                         <img className={nav.img} src={friends} alt={'navigate to friends'}/>
-                        <button className={nav.button_nav} onClick={() => navigation(FRIENDS_USER)}>Друзья</button>
+                        <button className={nav.button_nav} >Друзья</button>
                     </section>
-                    <section className={nav.svg_link}>
+                    <section className={nav.svg_link} onClick={toSettings}>
                         <img className={nav.img} src={settings} alt={'navigate to settings'}/>
-                        <button className={nav.button_nav} onClick={() => navigation(SETTINGS)}>Настройки</button>
+                        <button className={nav.button_nav}>Настройки</button>
                     </section>
                     <section className={nav.svg_link} onClick={changeButtonNavStatus}>
                         <img className={nav.img} src={more} alt={'navigate to more'}/>

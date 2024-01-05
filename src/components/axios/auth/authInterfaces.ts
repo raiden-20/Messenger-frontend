@@ -39,7 +39,7 @@ export interface ActivationAccountAxiosInterface {
 }
 
 export interface AuthDataAxiosInterface {
-    setNickname(input_nickname: string): void
+    id: string
 }
 
 export interface ChangeEmailAxiosInterface {
@@ -74,5 +74,12 @@ export interface NewPasswordAxiosInterface {
 }
 
 export interface DeleteProfileAxiosInterface {
+    setMessage(message: string): void
+}
+
+export interface ChangeNicknameAxiosInterface {
+    input_nickname: string,
+
+    setNickname(input_nickname: string): void
     setMessage(message: string): void
 }

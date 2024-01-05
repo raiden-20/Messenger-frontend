@@ -3,10 +3,9 @@ import React, {useState} from "react";
 import prof_butt_creat_post_css from './ProfileButtonCreatingPost.module.css'
 
 import create from "../../../../../../assets/images/other/create_post.svg";
-import {PropsCreatePostButton} from "../../../../../../redux/interfaces/post/CreatePost";
-import ProfileNewPostClass from "../profile_new_post/ProfileNewPostClass";
+import ProfileButtonCreatingPostContainer from "../profile_new_post/ProfileNewPostContainer";
 
-const ProfileButtonCreatingPostComponent = (props: PropsCreatePostButton) => {
+const ProfileButtonCreatingPostComponent = () => {
 
     const [isButtonCreatPostPressed, setButtonCreatPostPressed] = useState(false)
 
@@ -18,17 +17,7 @@ const ProfileButtonCreatingPostComponent = (props: PropsCreatePostButton) => {
                     <strong>Создать</strong>
                 </section>
             </button>
-            {isButtonCreatPostPressed ? <ProfileNewPostClass setButtonCreatPostPressed={setButtonCreatPostPressed}
-                                                             setInputPostPhoto={props.setInputPostPhoto}
-                                                             setInputPostText={props.setInputPostText}
-                                                             input_postPhoto={props.input_postPhoto}
-                                                             input_postText={props.input_postText}
-                                                             input_postPhotoUrl={props.input_postPhotoUrl}
-                                                             setInputPostPhotoUrl={props.setInputPostPhotoUrl}
-                                                             setInputPostPhotoDelete={props.setInputPostPhotoDelete}
-                                                             setInputPostAllPhotoDelete={props.setInputPostAllPhotoDelete}
-                                                             setPosts={props.setPosts}
-                                                             addOnePost={props.addOnePost}/> : null}
+            {isButtonCreatPostPressed ? <ProfileButtonCreatingPostContainer setButtonCreatPostPressed={setButtonCreatPostPressed}/> : null}
         </div>
 
     )

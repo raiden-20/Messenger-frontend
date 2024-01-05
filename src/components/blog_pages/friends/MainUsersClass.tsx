@@ -1,8 +1,14 @@
 import React, {Component} from "react";
 import {PropsUsers, StateUsers} from "../../../redux/interfaces/friends/friends";
-import axios from "axios";
 import MainUsersComponent from "./MainUsersComponent";
-import config from "../../paths/config";
+import {
+    ActionUsersAxios,
+    GetCountFriendsAxios, GetCountSubscribersAxios, GetCountSubscriptionsAxios,
+    GetFriendsAxios,
+    GetSearchAxios,
+    GetSubscribersAxios,
+    GetSubscriptionsAxios
+} from "../../axios/users/UsersAxios";
 
 class MainUsersClass extends Component<PropsUsers, StateUsers> {
 
@@ -10,183 +16,83 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
         super(props)
 
         console.log(this.props)
-        axios.get(`http://localhost:8080/social/relation/friends/${localStorage.getItem('idUser')}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setUsers(response.data)
-                    }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403 : {
-
-                }
-            }
+        GetFriendsAxios({
+            setUsers: this.props.setUsers
         })
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/social/count/friends/${localStorage.getItem('idUser')}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setUserFriendsCount(response.data)
-                    }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403: {
-                    //плохой токен
-                }
-            }
+        GetCountFriendsAxios({
+            setUserFriendsCount: this.props.setUserFriendsCount
         })
-
-        axios.get(`http://localhost:8080/social/count/subscriptions/${localStorage.getItem('idUser')}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setUserSubscriptionsCount(response.data)
-                    }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403: {
-                    //плохой токен
-                }
-            }
+        GetCountSubscriptionsAxios({
+            setUserSubscriptionsCount: this.props.setUserSubscriptionsCount
         })
-
-        axios.get(`http://localhost:8080/social/count/subscribers/${localStorage.getItem('idUser')}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setUserSubscribersCount(response.data)
-                    }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403: {
-                    //плохой токен
-                }
-            }
+        GetCountSubscribersAxios({
+            setUserSubscribersCount: this.props.setUserSubscribersCount
         })
     }
-    getFriends() {
-        axios.get(`http://localhost:8080/social/relation/friends/${localStorage.getItem('idUser')}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setUsers(response.data)
-                    }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403 : {
 
-                }
-            }
+    getFriends() {
+        GetFriendsAxios({
+            setUsers: this.props.setUsers
         })
     }
 
     getSubscriptions() {
-        axios.get(`http://localhost:8080/social/relation/subscriptions/${localStorage.getItem('idUser')}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setUsers(response.data)
-                    }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403 : {
-
-                }
-            }
+        GetSubscriptionsAxios({
+            setUsers: this.props.setUsers
         })
     }
 
     getSubscribers() {
-        axios.get(`http://localhost:8080/social/relation/subscribers/${localStorage.getItem('idUser')}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setUsers(response.data)
-                    }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403 : {
-
-                }
-            }
+        GetSubscribersAxios({
+            setUsers: this.props.setUsers
         })
     }
     getSearch() {
-        axios.get('http://localhost:8080/social/users', config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setUsers(response.data)
-                    }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403 : {
-
-                }
-            }
+        GetSearchAxios({
+            setUsers: this.props.setUsers
         })
     }
 
     actionRequest = (idOtherUser: string, action : string) => {
         action = action.toUpperCase()
-        axios.post(`http://localhost:8080/social/action`, {
-            secondUser: idOtherUser,
+        let actionAx = ActionUsersAxios({
+            idOtherUser: idOtherUser,
             action: action
-        }, config)
-            .then(response => {
-                switch (response.status) { // todo узнать какие статусы и прописать
-                    case 200 : {
-                        switch (action) {
-                            case 'CREATE': {
-                                this.props.setChangeUserStatus(idOtherUser, '')
-                                break
-                            }
-                            case 'DELETE_FRIEND': {
-                                this.props.setChangeUserStatus(idOtherUser, '')
-                                break
-                            }
-                            case 'ACCEPT': {
-                                this.props.setChangeUserStatus(idOtherUser, '')
-                                break
-                            }
-                            case 'REJECT': {
-                                this.props.setChangeUserStatus(idOtherUser, '')
-                                break
-                            }
-                            case 'DELETE_REQUEST': {
-                                this.props.setChangeUserStatus(idOtherUser, '')
-                                break
-                            }
-                        }
-                    }
+        })
+        actionAx.then(response => {
+            debugger
+            switch (action) {
+                case 'CREATE': {
+                    this.props.setChangeUserStatus(idOtherUser, 'SEND_FIRST')
+                    this.props.setUserSubscriptionsCount(this.props.countSubscriptions + 1)
+                    break
                 }
-                this.componentDidMount()
-            }).catch(error => {
-                switch (error.response.status) {
-                    case 403 : {
-                        // bad token
-                        break
-                    }
-                    case 404 : {
-                        // user doesn't exist
-                        break
-                    }
-                    case 400 : {
-                        // relation has already exist
-                    }
+                case 'DELETE_FRIEND': {
+                    this.props.setChangeUserStatus(idOtherUser, 'SEND_SECOND')
+                    this.props.setUserFriendsCount(this.props.countFriends - 1)
+                    this.props.setUserSubscribersCount(this.props.countSubscribers + 1)
+                    break
                 }
+                case 'ACCEPT': {
+                    this.props.setChangeUserStatus(idOtherUser, 'FRIENDS')
+                    this.props.setUserSubscribersCount(this.props.countSubscribers - 1)
+                    this.props.setUserFriendsCount(this.props.countFriends + 1)
+                    break
+                }
+                case 'REJECT': {
+                    this.props.setChangeUserStatus(idOtherUser, null)
+                    this.props.setUserSubscribersCount(this.props.countSubscribers - 1)
+                    break
+                }
+                case 'DELETE_REQUEST': {
+                    this.props.setChangeUserStatus(idOtherUser, null)
+                    this.props.setUserSubscriptionsCount(this.props.countSubscriptions - 1)
+                    break
+                }
+            }
         })
     }
 
@@ -201,7 +107,8 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
                                    actionRequest={this.actionRequest}
                                    getSearch={this.getSearch.bind(this)}
                                    whoOpened={this.props.whoOpened}
-                                   setWhoOpened={this.props.setWhoOpened}/>
+                                   setWhoOpened={this.props.setWhoOpened}
+                                   setUserNickname={this.props.setUserNickname}/>
     }
 }
 

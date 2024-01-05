@@ -7,3 +7,8 @@ export interface StateNickname {
 export interface PropsNickname {
     nickname : string
 }
+
+export interface AuthData {
+    email: string,
+    nickname: string
+}

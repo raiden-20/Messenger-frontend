@@ -3,13 +3,12 @@ import {Dispatch} from "redux";
 import {
     setChangeUserStatus,
     setUserFriendsCount,
-    setUsers, setUsersNicknames,
+    setUsers, setUserNickname,
     setUserSubscribersCount,
     setUserSubscriptionsCount, setWhoOpened
 } from "../../../redux/reducers/usersReducer";
 import {connect} from "react-redux";
 import MainUsersClass from "./MainUsersClass";
-import {User} from "../../../redux/interfaces/friends/oneFriend";
 
 const mapStateToProps = (state : StateUsers) => {
     return {
@@ -26,8 +25,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         setUsers(usersShortInfo: []) {
             dispatch(setUsers(usersShortInfo))
         },
-        setUsersNicknames(nicknames: []) {
-            dispatch(setUsersNicknames(nicknames))
+        setUserNickname(id: string, nickname: string) {
+            dispatch(setUserNickname(id, nickname))
         },
         setUserSubscriptionsCount(countSubscriptions: number) {
             dispatch(setUserSubscriptionsCount(countSubscriptions))
@@ -41,7 +40,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         setWhoOpened(whoOpened: string) {
             dispatch(setWhoOpened(whoOpened))
         },
-        setChangeUserStatus(id: string, status: string) {
+        setChangeUserStatus(id: string, status: string | null) {
             dispatch(setChangeUserStatus(id, status))
         }
     }

@@ -1,23 +1,29 @@
+.div {
+    display: grid;
+    row-gap: 20px;
+}
+
 .functional {
     display: grid;
-    height: 27vh;
-    padding-bottom: 3%;
     grid-template-rows: 60% 40%;
+
 }
 
 .form {
+    height: 175px;
     display: grid;
     grid-template-rows: 57% 28%;
-    row-gap: 10%;
+    row-gap: 15px;
 
     justify-items: center;
 }
 
 .inputs {
     width: 100%;
+    height: 100px;
     display: grid;
     grid-template-rows: 45% 45%;
-    row-gap: 10%;
+    row-gap: 10px;
 }
 
 .functional button {
@@ -25,7 +31,7 @@
 }
 
 .forgot_button {
-    height: 100%;
+    height: 24px;
     background-color: transparent;
     border: none;
 
@@ -46,7 +52,7 @@
 .other_buttons {
     display: grid;
     grid-template-rows: 20% 15% 45%;
-    row-gap: 8%;
+    row-gap: 10px;
     font-size: 0.9em;
 }
 
@@ -58,8 +64,8 @@
 }
 
 .registration_button {
-
-    background-color: #F7F5FF;
+    height: 45px;
+    background-color: transparent;
     border: 2px solid #855BD9;
     color: #855BD9;
 

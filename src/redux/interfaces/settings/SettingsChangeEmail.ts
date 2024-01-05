@@ -10,7 +10,6 @@ export interface StateChangeEmail{
     auth : {
         email: string;
         password: string;
-        token: string
         message: string
     }
 }
@@ -25,7 +24,6 @@ export interface PropsChangeEmail{
     input_email: string;
     input_password: string;
 
-    token: string
     message: string
 
     setButtonChangeEmailPressed(buttonChangeEmail : boolean) : void;
@@ -35,7 +33,5 @@ export interface PropsChangeEmail{
     setNewEmail(email : string | null) : void;
     setEmail(email : string | null) : void;
     setMessage(message: string) : void;
-    setToken(token: string) : void;
-
 }
 

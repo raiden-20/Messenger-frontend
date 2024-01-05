@@ -1,4 +1,6 @@
 import {Comment} from "./comments";
+import {PostPhoto} from "../../post/CreatePost";
+import {setOneCommentCountPost, setOneLikeCommentPost, setOneLikeCountPost} from "../../../reducers/postReducer";
 
 export interface StatePost {
     auth : {
@@ -34,7 +36,7 @@ export interface PropsPost {
 
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostText(input_postText: string): void
-    setInputPostPhoto(input_postPhoto: File): void
+    setInputPostPhoto(input_postPhoto: File, flag: boolean): void
     setInputPostComment(input_comment: string): void
 
     setButtonEditPostClick(flag: boolean): void
@@ -44,6 +46,10 @@ export interface PropsPost {
     setOnePost(onePost: Post): void
     setOneComment(oneComment: Comment): void
     addOneComment(oneComment: Comment): void
+
+    setOneLikeCountPost(postId: string, likeCount: string): void
+    setOneLikeCommentPost(commentId: string, likeComment: string): void
+    setOneCommentCountPost(postId: string, commentCount: string): void
 }
 
 export interface StatePostsClass {
@@ -73,7 +79,7 @@ export interface PropsPostComponent {
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostText(input_postText: string): void
     setInputPostComment(input_comment: string): void
-    setInputPostPhoto(input_postPhoto: File): void
+    setInputPostPhoto(input_postPhoto: File, flag: boolean): void
 
     setButtonEditPostClick(flag: boolean): void
 
@@ -82,6 +88,10 @@ export interface PropsPostComponent {
     setOnePost(onePost: Post): void
     setOneComment(oneComment: Comment): void
     addOneComment(oneComment: Comment): void
+
+    setOneLikeCountPost(postId: string, likeCount: string): void
+    setOneLikeCommentPost(commentId: string, likeComment: string): void
+    setOneCommentCountPost(postId: string, commentCount: string): void
 }
 
 export interface StateOnePostClass {
@@ -114,7 +124,7 @@ export interface PropsOnePostClass {
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostText(input_postText: string): void
     setInputPostComment(input_comment: string): void
-    setInputPostPhoto(input_postPhoto: File): void
+    setInputPostPhoto(input_postPhoto: File, flag: boolean): void
 
     setButtonEditPostClick(flag: boolean): void
 
@@ -123,6 +133,10 @@ export interface PropsOnePostClass {
     setOnePost(post: Post): void
     setOneComment(oneComment: Comment): void
     addOneComment(oneComment: Comment): void
+
+    setOneLikeCountPost(postId: string, likeCount: string): void
+    setOneLikeCommentPost(commentId: string, likeComment: string): void
+    setOneCommentCountPost(postId: string, commentCount: string): void
 }
 
 
@@ -168,13 +182,16 @@ export interface OnePost {
     deleteOneComment(commentId: string): void
     setOneComment(oneComment: Comment, commentId: string): void
     addOneComment(oneComment: Comment): void
+
+    setOneLikeCommentPost(commentId: string, likeComment: string): void
+    setOneCommentCountPost(postId: string, commentCount: string): void
 }
 
 export interface Post {
     postId: string,
     time: string,
     text: string,
-    photoUrl: [],
+    photoUrl: PostPhoto[],
     likeCount: string
     commentCount: string,
     isLiked: boolean

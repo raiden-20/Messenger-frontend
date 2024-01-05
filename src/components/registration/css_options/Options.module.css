@@ -1,6 +1,6 @@
 .input {
-    padding: 4%;
-    min-height: 1vh;
+    padding: 5px 10px 5px 10px;
+    height: 33px;
     border-radius: 10px;
     border: 1px solid #BBC4CE;
     font-size: 1.2em;
@@ -9,7 +9,7 @@
     background-color: transparent;
 }
 
-.input_date::placeholder {
+.input_date::-webkit-input-placeholder {
     color: #5F6E78;
 }
 

@@ -86,6 +86,10 @@
     color: #5F6E78;
 }
 
+.friends_searching input:focus {
+    outline: none;
+}
+
 .friends_list {
     padding: 10px 0 15px 0;
 }

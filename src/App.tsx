@@ -9,7 +9,7 @@ import {
     AUTHORIZATION,
     REGISTRATION,
     REGISTRATION_FORGOT_PASSWORD,
-    REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL
+    REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL, SUCCESSFUL_SENT_MESSSAGE
 } from "./components/paths/authPath";
 import {PROFILE_OTHER_USER, PROFILE_USER} from "./components/paths/profilePath";
 import {SETTINGS} from "./components/paths/navigationPath";
@@ -28,6 +28,7 @@ const App = () => {
                         <Route path={REGISTRATION_RESTORE_ACCOUNT} element={<MainRegistrationContainer/>}/>
                         <Route path={SUCCESSFUL_ACTIVATION} element={<MainRegistrationContainer/>}/>
                         <Route path={SUCCESSFUL_CHANGE_EMAIL} element={<MainRegistrationContainer/>}/>
+                        <Route path={SUCCESSFUL_SENT_MESSSAGE} element={<MainRegistrationContainer/>}/>
                         <Route path='/dialogs' element={<MainBlogPagesComponent/>}/>
                         <Route path={PROFILE_USER} element={<MainBlogPagesComponent/>}/>
                         <Route path={PROFILE_USER_PHOTO} element={<MainBlogPagesComponent/>}/>

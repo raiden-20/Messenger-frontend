@@ -1,12 +1,12 @@
 .root {
-    height: 12vh;
     display: grid;
     grid-template-rows: 40% 45%;
-    row-gap: 15%;
+    row-gap: 15px;
     justify-items: center;
 }
 .root p {
     margin: 0;
+    height: 38px;
 }
 
 .button {
@@ -15,5 +15,6 @@
     color: #FFFFFF;
 
     width: 25%;
+    height: 42px;
     border-radius: 20px;
 }

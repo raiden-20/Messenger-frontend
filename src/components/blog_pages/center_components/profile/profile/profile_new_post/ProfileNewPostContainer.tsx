@@ -1,5 +1,4 @@
 import {connect} from "react-redux";
-import ProfileButtonCreatingPostComponent from "./ProfileButtonCreatingPostComponent";
 import {Dispatch} from "redux";
 import {StateCreatingPost} from "../../../../../../redux/interfaces/post/CreatePost";
 import {
@@ -11,6 +10,7 @@ import {
     setInputPostText, setPosts
 } from "../../../../../../redux/reducers/postReducer";
 import {Post} from "../../../../../../redux/interfaces/profile/post/post";
+import ProfileNewPostClass from "./ProfileNewPostClass";
 
 const mapStateToProps = (state: StateCreatingPost) => {
     return {
@@ -23,8 +23,8 @@ const mapStateToProps = (state: StateCreatingPost) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        setInputPostPhoto (input_postPhoto: File) {
-            dispatch(setInputPostPhoto(input_postPhoto))
+        setInputPostPhoto (input_postPhoto: File, flag: boolean) {
+            dispatch(setInputPostPhoto(input_postPhoto, flag))
         },
         setInputPostText (input_postText: string) {
             dispatch(setInputPostText(input_postText))
@@ -48,5 +48,5 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 
 }
 
-const ProfileButtonCreatingPostContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileButtonCreatingPostComponent)
+const ProfileButtonCreatingPostContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileNewPostClass)
 export default ProfileButtonCreatingPostContainer

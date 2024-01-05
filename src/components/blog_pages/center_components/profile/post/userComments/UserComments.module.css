@@ -1,6 +1,6 @@
 .root {
     width: 636px;
-    height: 722px;
+    max-height: 722px;
 
     border-radius: 20px;
     background-color: #fff;
@@ -8,6 +8,7 @@
 }
 
 .page_structure {
+    height: 92%;
     padding: 30px;
     display: grid;
     grid-template-rows: 50px auto 50px 150px;
@@ -16,6 +17,7 @@
 
 .post_gap {
     display: grid;
+    grid-template-rows: auto 20px;
     row-gap: 10px;
 }
 
@@ -54,6 +56,12 @@
     overflow-y: scroll;
     display: grid;
     row-gap: 20px;
+}
+
+.noComm {
+    display: grid;
+    align-items: center;
+    justify-items: center;
 }
 
 ::-webkit-scrollbar {

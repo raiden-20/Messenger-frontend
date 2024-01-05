@@ -2,16 +2,18 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import {PropsAuthAuth} from "../../../redux/interfaces/auth/authAuthorize";
 import {
-    REGISTRATION, REGISTRATION_FORGOT_PASSWORD
+    AUTHORIZATION,
+    REGISTRATION, REGISTRATION_FORGOT_PASSWORD, REGISTRATION_RESTORE_ACCOUNT
 } from "../../paths/authPath";
 import RegistrationOrAuthorisationComponent from "./RegistrationOrAuthorisationComponent";
 import {RegistrationOrAuthorizationAxios} from "../../axios/auth/AuthAxios";
+import {PROFILE_USER} from "../../paths/profilePath";
 const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
 
     const navigate = useNavigate()
     const authorise = () => {
         if (props.input_emailOrNickname !== '' && props.input_password !== '') {
-            RegistrationOrAuthorizationAxios({
+            let enter = RegistrationOrAuthorizationAxios({
                 input_email: props.input_email,
                 input_nickname: props.input_nickname,
                 input_password: props.input_password,
@@ -22,12 +24,28 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
                 setCode: props.setCode,
                 setMessage: props.setMessage
             })
+            enter.then(response => {
+                switch (response) {
+                    case 200: {
+                        navigate(PROFILE_USER)
+                        break
+                    }
+                    case 400: {
+                        navigate(AUTHORIZATION)
+                        break
+                    }
+                    case 403: {
+                        navigate(REGISTRATION_RESTORE_ACCOUNT)
+                        break
+                    }
+                }
+            })
         }
+
         props.setInputEmail('')
         props.setInputNickname('')
         props.setInputEmailOrNickname('')
         props.setInputPassword('')
-        // else
     }
 
     const forgotPassword = () => {
@@ -43,6 +61,10 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
         props.setInputPassword('')
         props.setInputPasswordShow('')
         props.setShowMessage(false)
+    }
+
+    const toRegistration = () => {
+        cleanMessageAndChangePath()
         navigate(REGISTRATION)
     }
 
@@ -51,15 +73,13 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
                                                  input_password={props.input_password}
                                                  input_emailOrNickname={props.input_emailOrNickname}
                                                  message={props.message}
-                                                 token={props.token}
                                                  setInputEmail={props.setInputEmail}
                                                  setInputPassword={props.setInputPassword}
                                                  setInputNickname={props.setInputNickname}
                                                  setInputEmailOrNickname={props.setInputEmailOrNickname}
                                                  setMessage={props.setMessage}
-                                                 setToken={props.setToken}
                                                  authorise={authorise}
-                                                 cleanMessageAndChangePath={cleanMessageAndChangePath}
+                                                 toRegistration={toRegistration}
                                                  forgotPassword={forgotPassword}
                                                  code={props.code}
                                                  setCode={props.setCode}

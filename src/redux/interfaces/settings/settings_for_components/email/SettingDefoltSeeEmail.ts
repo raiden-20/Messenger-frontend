@@ -6,6 +6,12 @@ export interface PropsChangeEmail{
     email: string;
 
     setButtonChangeEmailPressed(buttonChangeEmail : boolean) : void;
-    setEmail(email : string |null) : void;
+    setEmail(email : string) : void;
+}
+export interface StateChangeEmail{
+    buttonChangeEmail: boolean;
+    buttonChangePasswordFirstStep: boolean;
+    buttonChangePasswordSecondStep: boolean;
+    email: string;
 }
 

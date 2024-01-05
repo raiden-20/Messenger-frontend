@@ -1,20 +1,18 @@
 .rootChangeEmail {
     padding: 0 0 3% 0;
-    height: 12vh;
     width: 70%;
 }
 
 .form {
     height: 100%;
     display: grid;
-    grid-template-rows: 60% 35%;
-    row-gap: 10%;
+    grid-template-rows: auto 37px auto;
+    row-gap: 10px;
 }
 
 .form main {
-    height: 100%;
     padding: 0;
     display: grid;
     grid-template-rows: 45% 45%;
-    row-gap: 10%;
+    row-gap: 5px;
 }

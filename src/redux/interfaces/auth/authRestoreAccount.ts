@@ -1,10 +1,12 @@
 export interface StateAuthRestore {
-    auth: {
-        message: string
-    }
+    message: string
 }
 
 export interface PropsAuthRestore {
+    message: string
+    setMessage(message: string): void
+}
+export interface PropsAuthRestoreComponent {
     message: string
     setMessage(message: string): void
 }

@@ -4,4 +4,4 @@ export const REGISTRATION_FORGOT_PASSWORD : string ='/registration_forgot_passwo
 export const REGISTRATION_RESTORE_ACCOUNT : string ='/registration_restore_account'
 export const SUCCESSFUL_ACTIVATION : string ='/successful_activation'
 export const SUCCESSFUL_CHANGE_EMAIL : string ='/successful_change_email'
-export const ADD_NAME_SURNAME : string ='/add_name_surname'
+export const SUCCESSFUL_SENT_MESSSAGE : string ='/successful_sent_message'

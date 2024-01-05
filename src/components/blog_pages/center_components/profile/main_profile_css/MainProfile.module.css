@@ -1,7 +1,8 @@
 .info {
+    height: 100%;
     max-width: 615px;
     display: grid;
-    grid-template-rows: 15% 85%;
+    grid-template-rows: 144px auto;
 }
 
 .bio {
@@ -15,7 +16,7 @@
 .bio_row {
     height: 100%;
     display: grid;
-    grid-template-columns: 23% 55% 16%;
+    grid-template-columns: 23% 20% auto;
     column-gap: 3%;
 }
 

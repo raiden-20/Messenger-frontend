@@ -60,18 +60,22 @@ const MainUsersComponent = (props: PropsUsersComponent) => {
                 {location.pathname === FRIENDS_USER ? <MainFriendsComponent usersShortInfo={props.usersShortInfo}
                                                                             countFriends={props.countFriends}
                                                                             actionRequest={props.actionRequest}
-                                                                            whoOpened={props.whoOpened}/> :
+                                                                            whoOpened={props.whoOpened}
+                                                                            setUserNickname={props.setUserNickname}/> :
                 location.pathname === SUBSCRIPTIONS_USER ? <MainSubscriptionsComponent usersShortInfo={props.usersShortInfo}
                                                                                        countSubscriptions={props.countSubscriptions}
                                                                                        actionRequest={props.actionRequest}
-                                                                                       whoOpened={props.whoOpened}/> :
+                                                                                       whoOpened={props.whoOpened}
+                                                                                       setUserNickname={props.setUserNickname}/> :
                 location.pathname === SUBSCRIBERS_USER ? <MainSubscribersComponent usersShortInfo={props.usersShortInfo}
                                                                                    countSubscribers={props.countSubscribers}
                                                                                    actionRequest={props.actionRequest}
-                                                                                   whoOpened={props.whoOpened}/> :
+                                                                                   whoOpened={props.whoOpened}
+                                                                                   setUserNickname={props.setUserNickname}/> :
                     location.pathname === SEARCH ? <MainSearchComponent usersShortInfo={props.usersShortInfo}
                                                                         actionRequest={props.actionRequest}
-                                                                        whoOpened={props.whoOpened}/> : null}
+                                                                        whoOpened={props.whoOpened}
+                                                                        setUserNickname={props.setUserNickname}/> : null}
             </section>
         </div>
     )

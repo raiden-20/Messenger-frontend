@@ -22,7 +22,7 @@ const RegistrationOrAuthorisationComponent = (props: PropsAuthAuthComponent) => 
     }
 
     return (
-        <div>
+        <div className={reg.div}>
             <section className={reg.functional}>
                 <section className={reg.form}>
                     <section className={reg.inputs}>
@@ -42,7 +42,7 @@ const RegistrationOrAuthorisationComponent = (props: PropsAuthAuthComponent) => 
                         или
                         <hr></hr>
                     </section>
-                    <button type={'submit'} className={reg.registration_button} onClick={props.cleanMessageAndChangePath}>
+                    <button type={'submit'} className={reg.registration_button} onClick={props.toRegistration}>
                         Зарегистрироваться
                     </button>
                 </section>

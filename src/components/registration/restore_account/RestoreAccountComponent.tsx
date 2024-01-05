@@ -2,9 +2,9 @@ import React from 'react';
 import restore_css from './RestoreAccount.module.css'
 import option_css from '../css_options/Options.module.css'
 import {NavLink, useNavigate} from "react-router-dom";
-import {PropsAuthRestore} from "../../../redux/interfaces/auth/authRestoreAccount";
+import {PropsAuthRestoreComponent} from "../../../redux/interfaces/auth/authRestoreAccount";
 import {SUCCESSFUL_ACTIVATION} from "../../paths/authPath";
-const RestoreAccountComponent = (props: PropsAuthRestore) => {
+const RestoreAccountComponent = (props: PropsAuthRestoreComponent) => {
     const navigate = useNavigate()
 
     return (
@@ -12,11 +12,6 @@ const RestoreAccountComponent = (props: PropsAuthRestore) => {
              <header>
                  <strong>Восстановить аккаунт?</strong>
              </header>
-             <main>
-                 <section>
-                     Восстановить аккаунт бла бла бла письмо на почту с подтверждением
-                 </section>
-             </main>
              <footer>
                  <button className={option_css.main_page_button + ' ' + restore_css.button_restore}
                          onClick={() => navigate(SUCCESSFUL_ACTIVATION)}>

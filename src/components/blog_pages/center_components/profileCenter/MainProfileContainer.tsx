@@ -1,20 +1,12 @@
 import {connect} from "react-redux";
 import {StateUserProfile} from "../../../../redux/interfaces/profile/profileBase";
 import {Dispatch} from "redux";
-import {setId, setMessage, setNickname} from "../../../../redux/reducers/authReducer";
-import {
-    setAvatarUrl,
-    setBio,
-    setBirthDate,
-    setCoverUrl,
-    setName,
-    setStatus, setUserData
-} from "../../../../redux/reducers/profileReducer";
+import {setEmail, setId, setNickname} from "../../../../redux/reducers/authReducer";
+import {setUserData} from "../../../../redux/reducers/profileReducer";
 import MainProfileClass from "./MainProfileClass";
 
 const mapStateToProps = (state: StateUserProfile) => {
     return {
-        id: state.auth.id,
         name: state.profile.name,
         birthDate: state.profile.birthDate,
         nickname: state.auth.nickname,
@@ -23,7 +15,6 @@ const mapStateToProps = (state: StateUserProfile) => {
         coverUrl: state.profile.coverUrl,
         status: state.profile.status,
         message: state.auth.message,
-        token: state.auth.token
     }
 }
 
@@ -40,31 +31,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
                     status: string) {
             dispatch(setUserData(name, birthDate, bio, avatarUrl, coverUrl, status))
         },
-        setName(name: string) {
-            dispatch(setName(name))
-        },
-        setBirthDate(birthDate: string) {
-            dispatch(setBirthDate(birthDate))
-        },
         setNickname(nickname: string) {
             dispatch(setNickname(nickname))
         },
-        setMessage(message: string) {
-            dispatch(setMessage(message))
+        setEmail(email: string) {
+            dispatch(setEmail(email))
         },
-        setBio(bio: string) {
-            dispatch(setBio(bio))
-        },
-        setAvatarUrl(avatarUrl: string) {
-            dispatch(setAvatarUrl(avatarUrl))
-        },
-        setCoverUrl(coverUrl: string) {
-            dispatch(setCoverUrl(coverUrl))
-        },
-        setStatus(status: string) {
-            dispatch(setStatus(status))
-        },
-
     }
 }
 

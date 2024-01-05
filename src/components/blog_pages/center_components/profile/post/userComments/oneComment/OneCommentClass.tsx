@@ -1,9 +1,9 @@
 import {Component} from "react";
 import OneCommentComponent from "./OneCommentComponent";
 import {Comment, PropsComment} from "../../../../../../../redux/interfaces/profile/post/comments";
-import axios from "axios";
-import config from "../../../../../../paths/config";
-
+import {DeleteCommentAxios, LikeCommentAxios} from "../../../../../../axios/post/PostAxios";
+import {ProfileGetDataAxios} from "../../../../../../axios/profile/ProfileAxios";
+import {AuthDataAxios} from "../../../../../../axios/auth/AuthAxios";
 class OneCommentClass extends Component<PropsComment, Comment> {
     name = ''
     nickname = ''
@@ -11,75 +11,58 @@ class OneCommentClass extends Component<PropsComment, Comment> {
 
 
     likeComment = () => {
-        axios.put('http://localhost:8080/blog/comment/like',  {
+        let a = LikeCommentAxios({
             commentId: this.props.commentId
-        },config)
-            .then(response => {
-                switch (response.status) {
-                    case 200:
-                        let commentData: Comment = {
-                            commentId: this.props.commentId,
-                            userId: this.props.userId,
-                            text: this.props.text,
-                            time: this.props.time,
-                            countLikes: this.props.countLikes,
-                            isLiked: this.props.isLiked
-                        }
-                        commentData.isLiked = !this.props.isLiked;
-                        this.props.setOneComment(commentData, this.props.commentId)
-                }
-        }).catch(error => {
-            switch (error.response.status) {
-                case 403: {
-                    //bad token
-                    break
-                }
-                case 404: {
-                    //post doesn't exist
-                }
+        })
+        a.then(response => {
+            switch (response.status) {
+                case 200:
+                    this.props.setOneLikeCommentPost(this.props.commentId, this.props.isLiked ? (Number.parseInt(this.props.countLikes) - 1).toString() :
+                        (Number.parseInt(this.props.countLikes) + 1).toString())
             }
         })
     }
 
     deleteComment = () => {
-        axios.delete(`http://localhost:8080/blog/comment/${this.props.commentId}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.deleteOneComment(this.props.commentId)
-                    }
-                }
-            }).catch(error => {
-            switch (error.response.status) {
-                case 403: {
-                    //bad token
-                    break
-                }
-                case 404: {
-                    //comment doesn't exist
+        let a = DeleteCommentAxios({
+            commentId: this.props.commentId
+        })
+        a.then(response => {
+            switch (response.status) {
+                case 200 : {
+                    this.props.deleteOneComment(this.props.commentId)
                 }
             }
         })
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/auth/data/${this.props.userId}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.nickname = response.data.nickname
-                    }
-                }
+        debugger
+        let authDataPromise = AuthDataAxios({
+            id: this.props.userId as string
         })
-        axios.get(`http://localhost:8080/social/data/${this.props.userId}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.name = response.data.name
-                        this.avatarUrl = response.data.avatarUrl
-                    }
+        authDataPromise.then(response => {
+            debugger
+            switch (response[0]) {
+                case 200 : {
+                    this.nickname = response[1].nickname
                 }
-            })
+            }
+
+        })
+
+        let dataPromise = ProfileGetDataAxios({
+            id: this.props.userId as string
+        })
+        dataPromise.then(response => {
+            debugger
+            switch (response[0]) {
+                case 200 : {
+                    this.name = response[1].name
+                    this.avatarUrl = response[1].avatarUrl
+                }
+            }
+        })
     }
 
 

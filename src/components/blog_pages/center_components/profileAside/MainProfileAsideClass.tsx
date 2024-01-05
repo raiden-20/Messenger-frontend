@@ -6,58 +6,37 @@ import {
 } from "../../../../redux/interfaces/profile/profileBase";
 import './ProfileAsideFriends.css'
 import MainProfileAsideComponent from "./MainProfileAsideComponent";
-import axios from "axios";
-import config from "../../../paths/config";
+import {GetCountFriendsAxios, GetRandomFriendsAxios} from "../../../axios/users/UsersAxios";
+import {GetPhotoAxios, GetPhotoCountAxios} from "../../../axios/photo/PhotoAxios";
 
 class MainProfileAsideClass extends Component<PropsUserProfileAside, StateUserProfileAsideComponent>{
 
     componentDidMount() {
-        //photo
-        axios.get(`http://localhost:8080/blog/photo/count/${localStorage.getItem('idUser')}`, config)
-            .then(response =>{
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setCountPhoto(response.data)
-                    }
-                }
-            })
-
-        //friends
-        axios.get(`http://localhost:8080/social/relation/friends/random/${localStorage.getItem('idUser')}`, config)
-            .then(response => {
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setUsers(response.data)
-
-                        axios.get(`http://localhost:8080/social/count/friends/${localStorage.getItem('idUser')}`, config)
-                            .then(response => {
-                                switch (response.status) {
-                                    case 200 : {
-                                        this.props.setUserFriendsCount(response.data)
-                                    }
-                                }
-                            }).catch(error => {
-                            switch (error.response.status) {
-                                case 403: {
-                                    //плохой токен
-                                }
-                            }
-                        })
-                    }
-                }
-            }).catch(error => {
-                switch (error.response.status) {
-                    case 403: {
-                        //плохой токен
-                    }
-                }
+        GetPhotoCountAxios({
+            setCountPhoto: this.props.setCountPhoto
+        })
+        let photo = GetPhotoAxios({
+            id: localStorage.getItem('idUser') as string
+        })
+        photo.then(response => {
+            this.props.setPhotoUrl(response)
+        })
+        GetRandomFriendsAxios({
+            setUsers: this.props.setUsers
+        })
+        GetCountFriendsAxios({
+            setUserFriendsCount: this.props.setUserFriendsCount
         })
     }
 
     render() {
         return <MainProfileAsideComponent usersShortInfo={this.props.usersShortInfo}
                                           countFriends={this.props.countFriends}
-                                          countPhoto={this.props.countPhoto}/>;
+                                          countPhoto={this.props.countPhoto}
+                                          setChangeUserStatus={this.props.setChangeUserStatus}
+                                          photoUrl={this.props.photoUrl}
+                                          setUserNickname={this.props.setUserNickname}
+                                          setUserPhoto={this.props.setUserPhoto}/>;
     }
 
 

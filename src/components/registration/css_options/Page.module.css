@@ -14,13 +14,13 @@
     justify-self: end;
     align-self: center;
     grid-template-rows: 60px auto;
-    row-gap: 5%;
+    row-gap: 20px;
 
-    padding: 3% 4% 3% 4%;
+    padding: 3% 4% 50px 4%;
 
     border-radius: 20px;
     border: 1px solid #D5E0E5;
-    background-color: #F7F5FF;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .content form input::-webkit-input-placeholder {

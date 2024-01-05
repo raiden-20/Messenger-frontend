@@ -16,3 +16,7 @@ body {
     display: grid;
     justify-items: center;
 }
+
+.App button {
+    font-family: 'Inter', sans-serif;
+}

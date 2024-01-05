@@ -1,34 +1,30 @@
 import {Component} from "react";
 import {PropsPhotoProfile, StatePhotoProfileClass} from "../../../../../redux/interfaces/profile/photo/photoProfile";
 import PhotoProfileComponent from "./PhotoProfileComponent";
-import axios from "axios";
-import config from "../../../../paths/config";
+import {GetPhotoAxios, GetPhotoCountAxios} from "../../../../axios/photo/PhotoAxios";
+import {ProfileGetDataAxios} from "../../../../axios/profile/ProfileAxios";
 class PhotoProfileClass extends Component<PropsPhotoProfile, StatePhotoProfileClass> {
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/blog/photo/${localStorage.getItem('idUser')}`, config)
-            .then(response =>{
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setPhotoUrl(response.data)
-                    }
+        let dataPromise = ProfileGetDataAxios({
+            id: localStorage.getItem('idUser') as string
+        })
+        dataPromise.then(responseSocial => {
+            switch (responseSocial[0]) {
+                case 200 : {
+                    this.props.setName(responseSocial[1].name)
                 }
-            }).catch(error => {
-                switch (error.response.status){
-                    case 403 : {
-                        //bad token
-                    }
-                }
+            }
         })
 
-        axios.get(`http://localhost:8080/blog/photo/count/${localStorage.getItem('idUser')}`, config)
-            .then(response =>{
-                switch (response.status) {
-                    case 200 : {
-                        this.props.setCountPhoto(response.data)
-                    }
-                }
-            }).catch(error => {
+        let photo = GetPhotoAxios({
+            id: localStorage.getItem('idUser') as string
+        })
+        photo.then(response => {
+            this.props.setPhotoUrl(response)
+        })
+        GetPhotoCountAxios({
+            setCountPhoto: this.props.setCountPhoto
         })
     }
 

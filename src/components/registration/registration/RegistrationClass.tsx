@@ -25,6 +25,9 @@ class RegistrationClass extends Component<PropsAuthRegReg, StateAuthRegReg>{
                                 setMessage: this.props.setMessage,
                             })
                             this.clearInputData()
+                            if (localStorage.getItem('id') !== null) {
+                                return true
+                            }
                         } else {
                             this.props.setShowMessage(true)
                             this.props.setMessage('Пароли не совпадают')
@@ -44,7 +47,9 @@ class RegistrationClass extends Component<PropsAuthRegReg, StateAuthRegReg>{
         } else {
             this.props.setShowMessage(true)
             this.props.setMessage('Введите имя')
+            this.props.setCode(400)
         }
+        return false
     }
 
     clearInputData = () => {

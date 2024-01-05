@@ -8,15 +8,21 @@ export interface StateUserProfile {
         status: string
     }
     auth: {
-        id: string
         nickname: string;
         message: string
-        token: string
     }
 }
 
+export interface ProfileUser {
+    name: string;
+    avatarUrl: string
+    coverUrl: string
+    birthDate: string;
+    bio: string;
+    status: string
+}
+
 export interface PropsUserProfile{
-    id: string
     name: string;
     nickname: string;
     birthDate: string;
@@ -25,21 +31,18 @@ export interface PropsUserProfile{
     avatarUrl: string
     status: string
     message: string
-    token: string
 
-    setName(name: string): void
+    setUserData(name: string,
+                birthDate: string,
+                bio: string,
+                avatarUrl: string,
+                coverUrl: string,
+                status: string): void
     setNickname(nickname: string): void
-    setBirthDate(birthDate: string): void
-    setAvatarUrl(avatarUrl: string): void
-    setCoverUrl(coverUrl: string): void
-    setBio(bio: string): void
-    setStatus(status: string): void
-    setMessage(message: string): void
-    setId(id: string | null): void
+    setEmail(email: string): void
 }
 
 export interface PropsUserProfileComponent{
-    id: string
     name: string;
     nickname: string;
     birthDate: string;
@@ -48,17 +51,21 @@ export interface PropsUserProfileComponent{
     avatarUrl: string
     status: string
     message: string
-    token: string
 }
 
 export interface PropsUserProfileAside {
     usersShortInfo : []
     countFriends: number
     countPhoto: number
+    photoUrl: []
 
     setUsers(usersShortInfo: []): void
+    setPhotoUrl (photoUrl : []): void
     setUserFriendsCount(countFriends: number): void
     setCountPhoto(countPhoto: number): void
+    setChangeUserStatus(id: string, status: string): void
+    setUserNickname(id: string, nickname: string): void
+    setUserPhoto(id: string, photo : []): void
 }
 
 export interface StateUserProfileAside {
@@ -67,7 +74,8 @@ export interface StateUserProfileAside {
         countFriends: number
     }
     photo: {
-        countPhoto: number
+        countPhoto: number,
+        photoUrl: []
     }
 }
 
@@ -75,6 +83,7 @@ export interface StateUserProfileAsideComponent {
     usersShortInfo : [],
     countFriends: number
     countPhoto: number
+    photoUrl: []
 
 }
 
@@ -82,5 +91,10 @@ export interface PropsUserProfileAsideComponent {
     usersShortInfo : []
     countFriends: number
     countPhoto: number
+    photoUrl: []
+
+    setChangeUserStatus(id: string, status: string): void
+    setUserNickname(id: string, nickname: string): void
+    setUserPhoto(id: string, photo : []): void
 }
 

@@ -6,6 +6,8 @@ import {
     PropsSuccessfulActivation,
     PropsSuccessfulEmail
 } from "../../../redux/interfaces/auth/authSuccessfulActivation";
+import {SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL, SUCCESSFUL_SENT_MESSSAGE} from "../../paths/authPath";
+import SuccessfulSentMessageComponent from "./components/SuccessfulSentMessageComponent";
 
 const MainSuccessComponent = (props : PropsSuccessfulEmail & PropsSuccessfulActivation) => {
 
@@ -14,20 +16,15 @@ const MainSuccessComponent = (props : PropsSuccessfulEmail & PropsSuccessfulActi
     return (
         <div>
             <main>
-                {location.pathname === '/successful_activation' ? <SuccessfulActivationClass message={props.message}
-                                                                                             setMessage={props.setMessage}
-                                                                                             token={props.token}
-                                                                                             id={props.id}
-                                                                                             setId={props.setId}/> :
-                location.pathname === '/successful_change_email' ? <SuccessfulChangeEmailClass message={props.message}
-                                                                                               setMessage={props.setMessage}
-                                                                                               setEmail={props.setEmail}
-                                                                                               newEmail={props.newEmail}
-                                                                                               token={props.token}
-                                                                                               id={props.id}
-                                                                                               setId={props.setId}
-                                                                                               setToken={props.setToken}
-                                                                                               email={props.email}/> : null}
+                {location.pathname === SUCCESSFUL_ACTIVATION ? <SuccessfulActivationClass message={props.message}
+                                                                                          setMessage={props.setMessage}/> :
+                location.pathname === SUCCESSFUL_SENT_MESSSAGE ? <SuccessfulSentMessageComponent message={props.message}
+                                                                                                 setMessage={props.setMessage}/> :
+                location.pathname === SUCCESSFUL_CHANGE_EMAIL ? <SuccessfulChangeEmailClass message={props.message}
+                                                                                            setMessage={props.setMessage}
+                                                                                            setEmail={props.setEmail}
+                                                                                            newEmail={props.newEmail}
+                                                                                            email={props.email}/> : null}
             </main>
         </div>
     )

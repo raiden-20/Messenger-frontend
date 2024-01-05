@@ -1,20 +1,19 @@
 import {Component} from "react";
 import ProfileSettingComponent from "./ProfileSettingComponent";
-import axios from "axios";
 import {
     PropsProfileSettings,
     StateProfileSettingsClass
 } from "../../../../../../redux/interfaces/profile/settings/profileSettings";
-import config from "../../../../../paths/config";
+import {
+    DeleteAvatarPhotoAxios,
+    DeleteCoverPhotoAxios,
+    SetAvatarAxios,
+    SetCoverAxios
+} from "../../../../../axios/photo/PhotoAxios";
+import {ChangeNicknameAxios} from "../../../../../axios/auth/AuthAxios";
+import {ChangeProfileDataAxios} from "../../../../../axios/profile/ProfileAxios";
 
 class ProfileSettingClass extends Component<PropsProfileSettings, StateProfileSettingsClass> {
-
-    config = {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Content-Type': 'multipart/form-data; boundary=---------------------------123456789012345678901234567'
-        }
-    };
 
     deleteCoverUrl = ''
     deleteAvatarUrl = ''
@@ -26,129 +25,79 @@ class ProfileSettingClass extends Component<PropsProfileSettings, StateProfileSe
         this.deleteAvatarUrl = deleteAvatarUrl
     }
 
-
     constructor(props: PropsProfileSettings) {
         super(props)
         this.props.setInputName(this.props.name)
-        this.props.setInputBirthDate(this.props.birthDate)
+        if (this.props.birthDate !== null) {
+            let arr = this.props.birthDate.split('-')
+            this.props.setInputBirthDate(arr[0] + '-' + arr[1] + '-' + arr[2][0] + arr[2][1])
+        }
         this.props.setInputBio(this.props.bio)
         this.props.setInputNickname(this.props.nickname)
         if (this.props.avatarUrl !== '') {
             fetch(this.props.avatarUrl)
                 .then(response => response.blob())
                 .then(blob => {
-                    this.props.setInputAvatarUrl(new File([blob], 'avatar.jpg', { type: blob.type }))
+                    this.props.setInputAvatarUrl(new File([blob], 'avatar.jpg', {type: blob.type}))
                 });
         }
         if (this.props.coverUrl !== '') {
             fetch(this.props.coverUrl)
                 .then(response => response.blob())
                 .then(blob => {
-                    this.props.setInputCoverUrl(new File([blob], 'cover.jpg', { type: blob.type }))
+                    this.props.setInputCoverUrl(new File([blob], 'cover.jpg', {type: blob.type}))
                 });
         }
     }
 
     setAvatarToServer = () => {
         if (this.props.deleteAvatarFlag) {
-            axios.delete('http://localhost:8080/file/social', {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    'Content-Type': 'multipart/form-data; boundary=---------------------------123456789012345678901234567'
-
-        },
-                data: {
-                    url: this.deleteAvatarUrl,
-                    source: 'AVATAR'
-                }
-            }).then(response => {
-                this.props.setAvatarUrl('')
-                this.props.setDeleteAvatarFlag(false)
-            }).catch(error => {
-                debugger
+            DeleteAvatarPhotoAxios({
+                deleteAvatarUrl: this.deleteAvatarUrl,
+                setAvatarUrl: this.props.setAvatarUrl,
+                setDeleteAvatarFlag: this.props.setDeleteAvatarFlag
             })
         }
-        if (this.props.input_avatarUrl !== undefined || this.props.input_avatarUrl !== null) {
-            let formDataAvatar = new FormData()
-            formDataAvatar.append('file', this.props.input_avatarUrl)
-            formDataAvatar.append('url', 'undefined')
-            formDataAvatar.append('source', 'AVATAR')
-
-            axios.post('http://localhost:8080/file/social', formDataAvatar, this.config).then(response => {
-            }).catch(error => {
-                debugger
+        if (this.props.input_avatarUrl !== undefined) {
+            SetAvatarAxios( {
+                input_avatarUrl: this.props.input_avatarUrl,
+                setAvatarUrl: this.props.setAvatarUrl
             })
         }
     }
-
 
     setCoverToServer = () => {
         if (this.props.deleteCoverFlag) {
-            axios.delete('http://localhost:8080/file/social', {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    'Content-Type': undefined
-                },
-                data: {
-                    url: this.deleteCoverUrl,
-                    source: 'COVER'
-                }
-            }).then(response => {
-                this.props.setCoverUrl('')
-                this.props.setDeleteCoverFlag(false)
-            }).catch(error => {
-                debugger
+            DeleteCoverPhotoAxios({
+                deleteCoverUrl: this.deleteCoverUrl,
+                setCoverUrl: this.props.setCoverUrl,
+                setDeleteCoverFlag: this.props.setDeleteCoverFlag
             })
         }
-        if (this.props.input_coverUrl !== undefined || this.props.input_coverUrl !== null) {
-            let formDataCover = new FormData()
-            formDataCover.append('file', this.props.input_coverUrl)
-            formDataCover.append('url', 'undefined')
-            formDataCover.append('source', 'COVER')
-
-            axios.post('http://localhost:8080/file/social', formDataCover, this.config).then(response => {
-
-            }).catch(error => {
-                debugger
+        if (this.props.input_coverUrl !== undefined) {
+            SetCoverAxios({
+                input_coverUrl: this.props.input_coverUrl,
+                setCoverUrl: this.props.setCoverUrl
             })
         }
     }
 
-
     setData = () => {
-
         this.setAvatarToServer()
         this.setCoverToServer()
 
-        axios.post('http://localhost:8080/auth/change/nickname', {
-            "token": localStorage.getItem('token'),
-            "nickname": this.props.input_nickname
-        }, config).then(response => {
-            this.props.setNickname(this.props.input_nickname)
-            if (response.data.split(' ').length === 2) {
-                localStorage.setItem('token', response.data.split(' ')[1])
-            } else {
-                localStorage.setItem('token', response.data)
-            }
+        ChangeNicknameAxios({
+            input_nickname: this.props.input_nickname,
+            setNickname: this.props.setNickname,
+            setMessage: this.props.setMessage
+        })
 
-
-            axios.post('http://localhost:8080/social/data', {
-                name: this.props.input_name,
-                birthDate: this.props.input_birthDate,
-                bio: this.props.input_bio,
-            }, config)
-                .then(response => {
-                    switch (response.status) {
-                        case 200 : {
-                            this.props.setMessage('Данные изменены')
-                        }
-                    }
-                }).catch(error => {
-                debugger
-            })
-        }).catch(error => {
-            debugger
-            this.props.setMessage(error.message)
+        ChangeProfileDataAxios({
+            input_name: this.props.input_name,
+            input_birthDate: this.props.input_birthDate,
+            input_bio: this.props.input_bio,
+            setMessage: this.props.setMessage,
+            setButtonSettingPressed: this.props.setButtonSettingPressed
         })
     }
 

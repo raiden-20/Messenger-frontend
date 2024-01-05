@@ -10,9 +10,9 @@ import {PropsStatus} from "../../../../../redux/interfaces/friends/oneFriend";
 const ProfileOtherUserSettingsComponent = (props: PropsStatus) => {
     return (// todo status
         <section className={prof_oth_us.profile_icons}>
-            <img src={chatting} alt={'chat'}/>
             {props.status !== 'search' ? <UsersImagesComponent status={props.status}/> :
                 <SearchImagesComponent/>}
+            <img src={chatting} alt={'chat'}/>
         </section>
     )
 }

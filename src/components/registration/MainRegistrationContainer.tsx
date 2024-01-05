@@ -30,9 +30,7 @@ const mapStateToProps = (state : StateAuthReg & StateProfileNameSurname) => {
 
         message: state.auth.message,
         buttonShowMessage: state.auth.buttonShowMessage,
-        token: state.auth.token,
         code: state.auth.code,
-        id: state.auth.id,
 
         newEmail: state.auth.newEmail,
         email: state.auth.email
@@ -95,14 +93,8 @@ const mapDispatchToProps  = (dispatch : Dispatch) => {
         setShowMessage(buttonShowMessage: boolean) {
             dispatch(setShowMessage(buttonShowMessage))
         },
-        setToken(token: string) {
-            dispatch(setToken(token))
-        },
         setCode(code: number) {
             dispatch(setCode(code))
-        },
-        setId(id: string) {
-            dispatch(setId(id))
         }
     }
 }
