@@ -33,7 +33,6 @@ export const GetPhotoAxios = async (data: GetPhotoAxiosInterface) => {
 }
 
 export const DeleteAvatarPhotoAxios = (data: DeleteAvatarPhotoAxiosInterface) => {
-    debugger
     axios.delete(LOCALHOST + FILE + '/social', {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -107,13 +106,11 @@ export const GetPhotoCountAxios = (data: GetPhotoCountAxiosInterface) => {
 }
 
 export const SetPostPhotoAxios = (data: SetPostPhotoAxiosInterface) => {
-    debugger
     let formData = new FormData()
     formData.append('file', data.input_postPhoto.input_postPhoto)
     formData.append('postId', data.postId)
     axios.post(LOCALHOST + FILE + '/blog', formData, configFile)
         .then(response => {
-            debugger
         }).catch(error => {
         debugger
         alert(error)

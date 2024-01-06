@@ -25,20 +25,20 @@
 }
 
 .body {
-    display: grid;
-    grid-template-rows: 78px 50px auto;
-    row-gap: 20px;
+
+    grid-template-rows: auto 50px auto;
+    gap: 20px;
 
     padding: 20px 20px 20px 0;
 
 }
 
 .user {
-    max-height: 150px;
+    min-height: 78px;
     display: grid;
     grid-template-columns: 45px auto;
     column-gap: 5px;
-    padding: 10px 5px 5px 0;
+    padding: 15px 5px 15px 0;
 }
 
 .user_ava {
@@ -58,7 +58,7 @@
     color: #5F6E78;
 }
 .userPostData {
-    height: 78px;
+    min-height: 78px;
     display: grid;
     grid-template-rows: 19px auto 19px;
     row-gap: 10px;
@@ -107,14 +107,20 @@
     height: 17px;
 }
 
+.text {
+    width: 240px;
+    word-wrap: break-word;
+}
+
 .footer {
     display: grid;
     grid-template-columns: 45% 55%;
 }
 
 .comments {
+    max-height: 425px;
     padding: 0 0 10px 0;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 .settingComment {
@@ -123,7 +129,7 @@
 }
 
 .deleteComment {
-    position: relative;
+    position: absolute;
     left: 68%;
     width: 100px;
     height: 40px;

@@ -4,7 +4,6 @@ import {
     RegistrationSocialAxiosInterface
 } from "./profileInterface";
 import config from "../../paths/config";
-import {ProfileUser} from "../../../redux/interfaces/profile/profileBase";
 import {LOCALHOST, SOCIAL} from "../urls";
 
 export const RegistrationSocialAxios = (data: RegistrationSocialAxiosInterface) => {

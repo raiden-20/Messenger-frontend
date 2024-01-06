@@ -20,17 +20,18 @@ const OneCommentComponent = (props: PropsOneCommentComponent) => {
                         <div><strong>{props.name}</strong></div>
                         <div className={one_comment_css.nickname}>@{props.nickname}</div>
                     </section>
-                    <section>
-                        <button className={post_css.button + ' ' + post_css.setting_post}
-                                onMouseEnter={() => setMouseEnter(true)}>
-                            <img src={settings_post} alt={'settings post'}/>
-                        </button>
-                        {isMouseEnter ?
-                            <section className={one_comment_css.deleteComment} onMouseLeave={() => setMouseEnter(false)}>
-                                <button onClick={props.deleteComment} className={post_css.button}><strong>Удалить</strong>
-                                </button>
-                            </section> : null}
-                    </section>
+                    {props.userId === localStorage.getItem('id') ?
+                        <section onMouseLeave={() => setMouseEnter(false)}>
+                            <button className={post_css.button + ' ' + post_css.setting_post}
+                                    onMouseEnter={() => setMouseEnter(true)}>
+                                <img src={settings_post} alt={'settings post'}/>
+                            </button>
+                            {isMouseEnter ?
+                                <section className={one_comment_css.deleteComment} onMouseLeave={() => setMouseEnter(false)}>
+                                    <button onClick={props.deleteComment} className={post_css.button}><strong>Удалить</strong>
+                                    </button>
+                                </section> : null}
+                        </section> : null}
                 </section>
                 {props.text}
                 <section className={one_comment_css.footer}>
@@ -46,7 +47,7 @@ const OneCommentComponent = (props: PropsOneCommentComponent) => {
                                     :
                                     <img src={like_notLiked} className={post_css.icon} alt={'like is not liked'}/>
                                 }
-                                {props.countLikes}
+                                {props.likeCount}
                             </button>
                         </section>
                     </section>

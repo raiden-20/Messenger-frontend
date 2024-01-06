@@ -28,23 +28,23 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
             addOneComment: this.props.addOneComment
         })
         a.then(response => {
-            switch (response) {
+            switch (response[0]) {
                 case 200 : {
                     const now = new Date();
                     const dateString = now.toLocaleDateString();
                     let oneComment: Comment = {
-                        commentId: response.data,
+                        commentId: response[1],
                         userId: localStorage.getItem('idUser'),
                         text: this.props.input_comment,
                         time: dateString.split('.').join('-'),
-                        countLikes: '0',
+                        likeCount: '0',
                         isLiked: false,
                         name: this.props.name,
                         nickname: this.props.nickname,
                         avatarUrl: this.props.avatarUrl
                     }
                     this.props.addOneComment(oneComment)
-                    this.props.setOneCommentCountPost(this.props.postId, this.props.commentCount + 1)
+                    this.props.setOneCommentCountPost(this.props.postId, (Number.parseInt(this.props.commentCount) + 1).toString())
                     this.props.setInputPostComment('')
                 }
             }

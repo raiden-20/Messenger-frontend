@@ -28,6 +28,10 @@ class MainProfileClass extends Component<PropsUserProfile, StateUserProfile> {
                     this.props.setUserData(responseSocial[1].name, responseSocial[1].birthDate,
                         responseSocial[1].bio, responseSocial[1].avatarUrl,
                         responseSocial[1].coverUrl, responseSocial[1].status)
+                    break
+                }
+                case 401: {
+
                 }
             }
         })

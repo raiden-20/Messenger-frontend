@@ -12,7 +12,6 @@ class DefaultSeeEmailClass extends Component<PropsChangeEmail, StateChangeEmail>
             id: localStorage.getItem('id') as string
         })
         auth.then(response => {
-            debugger
             switch (response[0]) {
                 case 200 : {
                     this.props.setEmail(response[1].email)

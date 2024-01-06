@@ -1,5 +1,6 @@
 import {Post} from "../../../redux/interfaces/profile/post/post";
 import {Comment} from "../../../redux/interfaces/profile/post/comments";
+import {SetPhotoInterface} from "../photo/photoInterface";
 
 export interface GetPostsAxiosInterface {
     setPosts(posts : []): void
@@ -21,7 +22,7 @@ export interface NewPostAxiosInterface {
 export interface EditPostAxiosInterface {
     postId: string,
     input_postText: string,
-    input_postPhoto: [],
+    input_postPhoto: SetPhotoInterface[],
     setButtonCreatPostPressed(flag: boolean): void
     setOnePost(onePost: Post): void
 }

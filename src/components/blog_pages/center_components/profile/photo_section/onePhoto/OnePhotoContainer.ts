@@ -6,12 +6,11 @@ import {
     setComments,
     setOneComment,
     deleteOneComment,
-    setOnePost,
     addOneComment,
     setOneLikeCountPost,
     setOneLikeCommentPost,
     setOneCommentCountPost,
-    setOneCommentUserData
+    setOneCommentUserData, addOnePost, setPosts
 } from "../../../../../../redux/reducers/postReducer";
 import OnePhotoClass from "./OnePhotoClass";
 import {setButtonOpenPhoto} from "../../../../../../redux/reducers/photoReducer";
@@ -19,6 +18,7 @@ import {Comment} from "../../../../../../redux/interfaces/profile/post/comments"
 import {Post} from "../../../../../../redux/interfaces/profile/post/post";
 
 const mapStateToProps = (state: StatePostInPhoto) => {
+
     return {
         nickname: state.auth.nickname,
         postId: state.photo.postId,
@@ -26,7 +26,9 @@ const mapStateToProps = (state: StatePostInPhoto) => {
         name: state.profile.name,
         input_comment: state.post.input_comment,
         onePhotoUrl: state.photo.onePhotoUrl,
-        avatarUrl: state.profile.avatarUrl
+        avatarUrl: state.profile.avatarUrl,
+        // @ts-ignore
+        post: state.post.posts[0]
     }
 
 }
@@ -51,8 +53,11 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         deleteOneComment(commentId: string) {
             dispatch(deleteOneComment(commentId))
         },
-        setOnePost(onePost: Post) {
-            dispatch(setOnePost(onePost))
+        addOnePost(onePost: Post) {
+            dispatch(addOnePost(onePost))
+        },
+        setPosts(posts: []) {
+            dispatch(setPosts(posts))
         },
         setOneLikeCountPost(postId: string, likeCount: string) {
             dispatch(setOneLikeCountPost(postId, likeCount))

@@ -90,9 +90,7 @@
 
 .setting_choose {
     display: grid;
-    position: relative;
-    left: 850%;
-    bottom: 40%;
+    position: absolute;
 
     width: 139px;
     height: 83px;
@@ -185,9 +183,11 @@
 }
 
 .button {
+
+    height: 100%;
     display: flex;
     align-items: center;
-    gap: 5px;
+    column-gap: 5px;
     padding: 0;
     background-color: transparent;
     border: none;

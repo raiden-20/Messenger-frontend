@@ -1,5 +1,6 @@
 import {Comment} from "../interfaces/profile/post/comments";
 import {Post} from "../interfaces/profile/post/post";
+import {SetPhotoInterface} from "../../components/axios/photo/photoInterface";
 
 const SET_POSTS = 'SET_POSTS'
 const SET_COMMENTS = 'SET_COMMENTS'
@@ -27,7 +28,15 @@ const SET_POST_INPUT_TEXT = 'SET_POST_INPUT_TEXT'
 const SET_BUTTON_EDIT_POST = 'SET_BUTTON_EDIT_POST'
 
 const initialState = {
-    posts: [],
+    posts: [{
+        postId: '',
+        time: '1970-01-01',
+        text: '',
+        photoUrl: [],
+        likeCount: '',
+        commentCount: '',
+        isLiked: false
+    }],
     comments: [],
 
     input_postPhoto: [],
@@ -44,7 +53,6 @@ const postReducer = (state = initialState, action: any) => {
 
         case SET_POSTS : {
             stateCopy.posts = action.posts
-
             return stateCopy
         }
         case SET_COMMENTS : {
@@ -53,7 +61,6 @@ const postReducer = (state = initialState, action: any) => {
             return stateCopy
         }
         case SET_ONE_POST : {
-            debugger
             stateCopy= {...state, posts: [...state.posts]}
             for (let index = 0; index < stateCopy.posts.length; index++) {
                 // @ts-ignore
@@ -66,6 +73,7 @@ const postReducer = (state = initialState, action: any) => {
         }
         case SET_ONE_LIKE_COUNT_POST : {
             stateCopy= {...state, posts: [...state.posts]}
+            console.log(stateCopy.posts)
             for (let index = 0; index < stateCopy.posts.length; index++) {
                 // @ts-ignore
                 if (stateCopy.posts[index].postId === action.postId) {
@@ -83,7 +91,9 @@ const postReducer = (state = initialState, action: any) => {
                 // @ts-ignore
                 if (stateCopy.comments[index].commentId === action.commentId) {
                     // @ts-ignore
-                    stateCopy.comments[index].likeComment = action.likeComment
+                    stateCopy.comments[index].likeCount = action.likeComment
+                    // @ts-ignore
+                    stateCopy.comments[index].isLiked = !stateCopy.comments[index].isLiked;
                 }
             }
             return stateCopy
@@ -202,6 +212,7 @@ const postReducer = (state = initialState, action: any) => {
             // @ts-ignore
             stateCopy = {...state, input_postPhoto: [...state.input_postPhoto]}
             stateCopy.input_postPhotoUrl = []
+            stateCopy.input_postPhoto = []
 
             return stateCopy
         }

@@ -14,16 +14,21 @@ class OneUserDataClass extends Component<PropsOneUserDataClass, StateOneUserData
     avatarUrl = ''
 
     likeComment = () => {
-        let a = LikeCommentAxios({
-            commentId: this.props.commentId
-        })
-        a.then(response => {
-            switch (response.status) {
-                case 200:
-                    this.props.setOneLikeCommentPost(this.props.commentId, this.props.isLiked ? (Number.parseInt(this.props.countLikes) - 1).toString() :
-                        (Number.parseInt(this.props.countLikes) + 1).toString())
-            }
-        })
+        if (this.props.commentId === '') {
+            this.props.likePost()
+        } else {
+            let a = LikeCommentAxios({
+                commentId: this.props.commentId
+            })
+            a.then(response => {
+                switch (response) {
+                    case 200:
+                        this.props.setOneLikeCommentPost(this.props.commentId, this.props.isLiked ? (Number.parseInt(this.props.likeCount) - 1).toString() :
+                            (Number.parseInt(this.props.likeCount) + 1).toString())
+                }
+            })
+        }
+
     }
 
     deleteComment = () => {
@@ -31,9 +36,10 @@ class OneUserDataClass extends Component<PropsOneUserDataClass, StateOneUserData
             commentId: this.props.commentId
         })
         a.then(response => {
-            switch (response.status) {
+            switch (response) {
                 case 200 : {
                     this.props.deleteOneComment(this.props.commentId)
+                    this.props.setOneCommentCountPost(this.props.postId, (Number.parseInt(this.props.commentsCount) - 1).toString())
                 }
             }
         })
@@ -71,12 +77,14 @@ class OneUserDataClass extends Component<PropsOneUserDataClass, StateOneUserData
                                      name={this.props.name}
                                      nickname={this.props.nickname}
                                      isLike={this.props.isLiked}
-                                     likeCount={this.props.countLikes}
+                                     likeCount={this.props.likeCount}
                                      time={this.props.time}
                                      text={this.props.text}
                                      deleteComment={this.deleteComment}
                                      likeComment={this.likeComment}
-                                     commentsCount={this.props.commentsCount}/>
+                                     commentsCount={this.props.commentsCount}
+                                     commentId={this.props.commentId}
+                                     userId={this.props.userId}/>
     }
 }
 

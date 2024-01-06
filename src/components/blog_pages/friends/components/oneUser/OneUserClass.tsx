@@ -14,7 +14,6 @@ class OneUserClass extends Component<PropsOneFriend, StateOneFriend>{
             id: this.props.id
         })
         authDataPromise.then(response => {
-            debugger
             switch (response[0]) {
                 case 200 : {
                     this.props.setUserNickname(this.props.id, response[1].nickname)

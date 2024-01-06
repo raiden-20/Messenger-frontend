@@ -75,7 +75,7 @@ export interface PropsCreatePostButtonClass {
     addOnePost(onePost: Post): void
 }
 export interface PropsCreatePostButtonComponent {
-    input_postPhoto: [],
+    input_postPhoto: SetPhotoInterface[],
     input_postPhotoUrl: [],
     input_postText: '',
 

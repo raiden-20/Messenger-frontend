@@ -105,7 +105,7 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                                 <OneCommentClass userId={comment.userId}
                                                  text={comment.text}
                                                  time={comment.time}
-                                                 countLikes={comment.countLikes}
+                                                 likeCount={comment.likeCount}
                                                  isLiked={comment.isLiked}
                                                  commentId={comment.commentId}
                                                  deleteOneComment={props.deleteOneComment}
@@ -114,7 +114,9 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                                                  setOneCommentUserData={props.setOneCommentUserData}
                                                  avatarUrl={comment.avatarUrl}
                                                  name={comment.name}
-                                                 nickname={comment.nickname}/>
+                                                 nickname={comment.nickname}
+                                                 commentCount={props.commentCount}
+                                                 postId={props.postId}/>
                             )) :
                             <section className={post_comm_css.noComm}>
                                 <p>Нет комментарий...</p>

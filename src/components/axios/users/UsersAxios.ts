@@ -97,7 +97,6 @@ export const GetCountSubscribersAxios = (data: GetSubscribersCountInterface) => 
 export const GetSubscribersAxios = (data: GetUsersAxiosInterface) => {
     axios.get(LOCALHOST + SOCIAL + `/relation/subscribers/${localStorage.getItem('idUser')}`, config)
         .then(response => {
-            debugger
             switch (response.status) {
                 case 200 : {
                     data.setUsers(response.data)

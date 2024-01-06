@@ -15,10 +15,10 @@ class OneCommentClass extends Component<PropsComment, Comment> {
             commentId: this.props.commentId
         })
         a.then(response => {
-            switch (response.status) {
+            switch (response) {
                 case 200:
-                    this.props.setOneLikeCommentPost(this.props.commentId, this.props.isLiked ? (Number.parseInt(this.props.countLikes) - 1).toString() :
-                        (Number.parseInt(this.props.countLikes) + 1).toString())
+                    this.props.setOneLikeCommentPost(this.props.commentId, this.props.isLiked ? (Number.parseInt(this.props.likeCount) - 1).toString() :
+                        (Number.parseInt(this.props.likeCount) + 1).toString())
             }
         })
     }
@@ -28,9 +28,10 @@ class OneCommentClass extends Component<PropsComment, Comment> {
             commentId: this.props.commentId
         })
         a.then(response => {
-            switch (response.status) {
+            switch (response) {
                 case 200 : {
                     this.props.deleteOneComment(this.props.commentId)
+                    this.props.setOneCommentCountPost(this.props.postId, (Number.parseInt(this.props.commentCount) - 1).toString())
                 }
             }
         })
@@ -66,8 +67,9 @@ class OneCommentClass extends Component<PropsComment, Comment> {
 
     render() {
         return <OneCommentComponent text={this.props.text}
+                                    userId={this.props.userId}
                                     time={this.props.time}
-                                    countLikes={this.props.countLikes}
+                                    likeCount={this.props.likeCount}
                                     isLiked={this.props.isLiked}
                                     likeComment={this.likeComment}
                                     deleteComment={this.deleteComment}

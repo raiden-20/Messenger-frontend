@@ -8,8 +8,8 @@ import {
     setCountPhoto,
     setPostUrl, setOnePhotoUrl
 } from "../../../../../redux/reducers/photoReducer";
-import {setName} from "../../../../../redux/reducers/profileReducer";
-import {setOneCommentUserData} from "../../../../../redux/reducers/postReducer";
+import {setName, setUserData} from "../../../../../redux/reducers/profileReducer";
+import {setEmail, setNickname} from "../../../../../redux/reducers/authReducer";
 
 const mapStateToProps = (state: StatePhotoProfile) => {
     return {
@@ -25,8 +25,19 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         setPhotoUrl(photoUrl: []) {
             dispatch(setPhotoUrl(photoUrl))
         },
-        setName(name: string) {
-            dispatch(setName(name))
+        setEmail(email : string) {
+            dispatch(setEmail(email))
+        },
+        setNickname(nickname : string) {
+            dispatch(setNickname(nickname))
+        },
+        setUserData(name: string,
+                    birthDate: string,
+                    bio: string,
+                    avatarUrl: string,
+                    coverUrl: string,
+                    status: string) {
+            dispatch(setUserData(name, birthDate, bio, avatarUrl, coverUrl, status))
         },
         setCountPhoto(countPhoto: number) {
             dispatch(setCountPhoto(countPhoto))

@@ -10,10 +10,9 @@ import {
 } from "./postInterface";
 import {SetPostPhotoAxios} from "../photo/PhotoAxios";
 import {PostPhotoFile} from "../../../redux/interfaces/post/CreatePost";
-import {Comment} from "../../../redux/interfaces/profile/post/comments";
 import {BLOG, LOCALHOST} from "../urls";
 import {Post} from "../../../redux/interfaces/profile/post/post";
-import {response} from "express";
+import {SetPhotoInterface} from "../photo/photoInterface";
 
 export const GetPostsAxios = (data: GetPostsAxiosInterface) => {
     axios.get(LOCALHOST + BLOG + `/user/${localStorage.getItem('idUser')}`, config)
@@ -37,7 +36,6 @@ export const NewPostAxios = (data: NewPostAxiosInterface): boolean => {
             switch (response.status) {
                 case 200: {
                     data.setInputPostText('')
-                    debugger
                     for(let i = 0; i < data.input_postPhoto.length; i++) {
                         SetPostPhotoAxios({
                             input_postPhoto: data.input_postPhoto[i],
@@ -48,21 +46,22 @@ export const NewPostAxios = (data: NewPostAxiosInterface): boolean => {
                         postId: response.data
                     })
                     postData.then(response => {
-                        if (response !== null) {
-                            let onePost: Post = {
-                                postId: response.postId,
-                                time: response.time,
-                                text: response.text,
-                                photoUrl: response.photoUrl,
-                                likeCount: response.likeCount,
-                                commentCount: response.commentCount,
-                                isLiked: response.isLiked
+                        switch (response[0]) {
+                            case 200: {
+                                let onePost: Post = {
+                                    postId: response[1].postId,
+                                    time: response[1].time,
+                                    text: response[1].text,
+                                    photoUrl: response[1].photoUrl,
+                                    likeCount: response[1].likeCount,
+                                    commentCount: response[1].commentCount,
+                                    isLiked: response[1].isLiked
+                                }
+                                data.addOnePost(onePost)
+                                data.setButtonCreatPostPressed(false)
                             }
-                            data.addOnePost(onePost)
-                            data.setButtonCreatPostPressed(false)
                         }
                     })
-                    return true
                 }
             }
         }).catch(error => {
@@ -83,61 +82,25 @@ export const NewPostAxios = (data: NewPostAxiosInterface): boolean => {
 }
 
 export const GetPostDataAxios = async (data: GetPostDataAxiosInterface) => {
-    debugger
     return axios.get(LOCALHOST + BLOG + `/post/${data.postId}`, config)
         .then(response => {
-            switch (response.status) {
-                case 200: {
-                    return response.data
-                }
-            }
+            return [response.status, response.data]
         }).catch(error => {
         debugger
-        return error.response.status
+        return [error.response.status, '']
     })
 }
 
-export const EditPostAxios = (data: EditPostAxiosInterface) => {
-    axios.put(LOCALHOST + BLOG + `/post`, {
+export const EditPostAxios = async (data: EditPostAxiosInterface) => {
+    return axios.put(LOCALHOST + BLOG + `/post`, {
         postId: data.postId,
         text: data.input_postText
     },config)
         .then(response => {
-            switch (response.status) {
-                case 200 : {
-                    data.input_postPhoto.map((photo: PostPhotoFile) => {
-                        if (!photo.flag) {
-                            SetPostPhotoAxios({
-                                input_postPhoto: photo.file,
-                                postId:data.postId
-                            })
-                        }
-
-                    })
-
-                    let postData = GetPostDataAxios({
-                        postId: data.postId
-                    })
-                    postData.then(response => {
-                        if (response !== null) {
-                            let onePost: Post = {
-                                postId: response.postId,
-                                time: response.time,
-                                text: response.text,
-                                photoUrl: response.photoUrl,
-                                likeCount: response.likeCount,
-                                commentCount: response.commentCount,
-                                isLiked: response.isLiked
-                            }
-                            data.setOnePost(onePost)
-                            data.setButtonCreatPostPressed(false)
-                        }
-                    })
-                    return true
-                }
-            }
-        })
-    return false
+            return response.status
+        }).catch(error => {
+            return error.response.status
+    })
 }
 
 export const DeletePostAxios = async (data: DeletePostAxiosInterface) => {
@@ -185,7 +148,7 @@ export const SetCommentAxios = async (data: SetCommentAxiosInterface) => {
         text: data.input_comment
     }, config)
         .then(response => {
-            return response.status
+            return [response.status, response.data]
         }).catch(error => {
         switch (error.response.status) {
             case 403 : {
@@ -196,7 +159,7 @@ export const SetCommentAxios = async (data: SetCommentAxiosInterface) => {
                 // post doesn't exist
             }
         }
-        return error.response.status
+        return [error.response.status, '']
     })
 }
 

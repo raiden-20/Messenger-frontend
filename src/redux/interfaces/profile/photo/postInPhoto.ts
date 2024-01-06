@@ -3,6 +3,7 @@ import {Post} from "../post/post";
 
 export interface StatePostInPhoto {
     post: {
+        post: Post,
         comments: [],
         input_comment: string
     }
@@ -20,6 +21,7 @@ export interface StatePostInPhoto {
 }
 
 export interface StateOnePhotoClass {
+    posts: []
     postId: string,
     comments: [],
     input_comment: string
@@ -29,6 +31,7 @@ export interface StateOnePhotoClass {
     avatarUrl: string
 }
 export interface PropsOnePhotoClass {
+    post: Post
     postId: string,
     comments: [],
     input_comment: string
@@ -44,6 +47,8 @@ export interface PropsOnePhotoClass {
     addOneComment(oneComment: Comment): void
     deleteOneComment(commentId: string): void
     setOneComment(oneComment: Comment):void
+    addOnePost(onePost: Post): void
+    setPosts(posts: []): void
 
     setOneLikeCountPost(postId: string, likeCount: string): void
     setOneLikeCommentPost(commentId: string, likeComment: string): void
@@ -77,7 +82,9 @@ export interface PropsOnePostComponent {
 }
 
 export interface PropsOneUserComponent {
+    commentId: string
     avatarUrl: string
+    userId: string | null
     name: string
     nickname: string
     isLike: boolean
@@ -103,19 +110,20 @@ export interface StateOneUserDataClass {
     text: string
 }
 export interface PropsOneUserDataClass {
+    postId: string
     commentId: string
     userId: string | null
     avatarUrl: string
     name: string
     nickname: string
     isLiked: boolean
-    countLikes: string
+    likeCount: string
     commentsCount: string
     time: string
     text: string
 
     deleteOneComment(commentId: string): void
-
+    likePost(): void
     setOneLikeCommentPost(commentId: string, likeComment: string): void
     setOneCommentCountPost(postId: string, commentCount: string): void
     setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void

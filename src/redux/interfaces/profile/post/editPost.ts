@@ -1,8 +1,9 @@
 import {Post} from "./post";
+import {SetPhotoInterface} from "../../../../components/axios/photo/photoInterface";
 
 export interface StateEditPost {
     post : {
-        input_postPhoto: [],
+        input_postPhoto: SetPhotoInterface[],
         input_postPhotoUrl: [],
         input_postText: ''
     }
@@ -11,7 +12,7 @@ export interface StateEditPost {
 
 export interface PropsEditPost {
     postId: string,
-    input_postPhoto: [],
+    input_postPhoto: SetPhotoInterface[],
     input_postPhotoUrl: [],
     input_postText: '',
 

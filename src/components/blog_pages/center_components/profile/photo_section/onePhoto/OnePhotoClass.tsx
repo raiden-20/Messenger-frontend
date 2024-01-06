@@ -6,26 +6,27 @@ import {Comment} from "../../../../../../redux/interfaces/profile/post/comments"
 
 class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
 
-    text = ''
-    time = '1999-01-01'
-    isLiked = false
-    likeCount = '0'
-    commentCount = '0'
-    photoUrl = []
-
     componentDidMount() {
+
         let postData = GetPostDataAxios({
             postId: this.props.postId
         })
-
         postData.then(response => {
-            debugger
-            this.text = response.text
-            this.time = response.time
-            this.isLiked = response.isLiked
-            this.likeCount = response.likeCount
-            this.commentCount = response.commentCount
-            this.photoUrl = response.photoUrl
+            switch (response[0]) {
+                case 200: {
+                    let post = {
+                        postId: response[1].postId,
+                        time: response[1].time,
+                        text: response[1].text,
+                        photoUrl: response[1].photoUrl,
+                        likeCount: response[1].likeCount,
+                        commentCount: response[1].commentCount,
+                        isLiked: response[1].isLiked
+                    }
+                    this.props.setPosts([])
+                    this.props.addOnePost(post)
+                }
+            }
         })
 
         let a = GetCommentsAxios({
@@ -34,41 +35,45 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
         a.then(response => {
             switch (response[0]) {
                 case 200 : {
-                    debugger
                     this.props.setUserComments(response[1])
+                    console.log(response[1])
                 }
             }
         })
     }
 
     setComment = () => {
-        let a = SetCommentAxios({
-            postId: this.props.postId,
-            input_comment: this.props.input_comment,
-            addOneComment: this.props.addOneComment
-        })
-        a.then(response => {
-            switch (response) {
-                case 200 : {
-                    const now = new Date();
-                    const dateString = now.toLocaleDateString();
-                    let oneComment: Comment = {
-                        commentId: response.data,
-                        userId: localStorage.getItem('idUser'),
-                        text: this.props.input_comment,
-                        time: dateString.split('.').join('-'),
-                        countLikes: '0',
-                        isLiked: false,
-                        name: this.props.name,
-                        nickname: this.props.nickname,
-                        avatarUrl: this.props.avatarUrl
+        if (this.props.input_comment !== '') {
+            let a = SetCommentAxios({
+                postId: this.props.postId,
+                input_comment: this.props.input_comment,
+                addOneComment: this.props.addOneComment
+            })
+            a.then(response => {
+                switch (response[0]) {
+                    case 200 : {
+                        const now = new Date();
+                        let dateString = now.toLocaleDateString();
+                        const dateStringArr = dateString.split('.')
+                        dateString = dateStringArr[2] + '-' + dateStringArr[1] + '-' + dateStringArr[0]
+                        let oneComment: Comment = {
+                            commentId: response[1],
+                            userId: localStorage.getItem('idUser'),
+                            text: this.props.input_comment,
+                            time: dateString,
+                            likeCount: '0',
+                            isLiked: false,
+                            name: this.props.name,
+                            nickname: this.props.nickname,
+                            avatarUrl: this.props.avatarUrl
+                        }
+                        this.props.addOneComment(oneComment)
+                        this.props.setOneCommentCountPost(this.props.postId, (Number.parseInt(this.props.post.commentCount) + 1).toString())
+                        this.props.setInputPostComment('')
                     }
-                    this.props.addOneComment(oneComment)
-                    this.props.setOneCommentCountPost(this.props.postId, this.commentCount + 1)
-                    this.props.setInputPostComment('')
                 }
-            }
-        })
+            })
+        }
     }
     likePost = () => {
         let ax = LikePostAxios({
@@ -77,8 +82,8 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
         ax.then(response => {
             switch (response) {
                 case 200: {
-                    this.props.setOneLikeCountPost(this.props.postId, this.isLiked ? (Number.parseInt(this.likeCount) - 1).toString() :
-                        (Number.parseInt(this.likeCount) + 1).toString())
+                    this.props.setOneLikeCountPost(this.props.postId, this.props.post.isLiked ? (Number.parseInt(this.props.post.likeCount) - 1).toString() :
+                        (Number.parseInt(this.props.post.likeCount) + 1).toString())
                 }
             }
         })
@@ -94,11 +99,11 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
                                   setButtonOpenPhoto={this.props.setButtonOpenPhoto}
                                   onePhotoUrl={this.props.onePhotoUrl}
                                   avatarUrl={this.props.avatarUrl}
-                                  commentCount={this.commentCount}
-                                  isLiked={this.isLiked}
-                                  likeCount={this.likeCount}
-                                  text={this.text}
-                                  time={this.time}
+                                  isLiked={this.props.post.isLiked}
+                                  commentCount={this.props.post.commentCount}
+                                  likeCount={this.props.post.likeCount}
+                                  text={this.props.post.text}
+                                  time={this.props.post.time}
                                   setComment={this.setComment}
                                   likePost={this.likePost}
                                   deleteOneComment={this.props.deleteOneComment}

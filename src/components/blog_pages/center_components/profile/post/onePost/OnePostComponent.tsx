@@ -34,19 +34,21 @@ const OnePostComponent = (props: OnePost & Post) => {
                     <div className={post_css.name}>{props.name}</div>
                     <div className={post_css.userName}>{'@' + props.nickname}</div>
                 </section>
-                { localStorage.getItem('idUser') === localStorage.getItem('id') ?
-                    <button className={post_css.button + ' ' + post_css.setting_post}
-                            onMouseEnter={() => setMouseEnter(true)}>
-                        <img src={settings_post} alt={'settings post'}/>
-                    </button> : null
-                }
-
-                {isMouseEnter ?
-                    <section className={post_css.setting_choose} onMouseLeave={() => setMouseEnter(false)}>
-                        <button onClick={() => edit()} className={post_css.button}><strong>Изменить</strong></button>
-                        <button onClick={() => props.deletePost()} className={post_css.button}><strong>Удалить</strong>
+                {localStorage.getItem('idUser') === localStorage.getItem('id') ?
+                    <section onMouseLeave={() => setMouseEnter(false)}>
+                        <button className={post_css.button + ' ' + post_css.setting_post}
+                                onMouseEnter={() => setMouseEnter(true)}>
+                            <img src={settings_post} alt={'settings post'}/>
                         </button>
-                    </section> : null}
+                        {isMouseEnter ?
+                            <section className={post_css.setting_choose} onMouseLeave={() => setMouseEnter(false)}>
+                                <button onClick={() => edit()} className={post_css.button}><strong>Изменить</strong></button>
+                                <button onClick={() => props.deletePost()} className={post_css.button}><strong>Удалить</strong>
+                                </button>
+                            </section> : null}
+                    </section>
+                    : null
+                }
                 {props.buttonEditPost ? <EditPostContainer postId={props.postId}/> : null}
 
             </header>
@@ -71,13 +73,13 @@ const OnePostComponent = (props: OnePost & Post) => {
             <footer className={post_css.footer}>
                 <section className={post_css.like_comment}>
                     <section className={post_css.icon_count}>
-                            <button onClick={like_button} className={post_css.button}>
-                                {props.isLiked ?
-                                    <img src={like_isLiked} className={post_css.icon} alt={'like is liked'}/>
+                        <button onClick={like_button} className={post_css.button}>
+                            {props.isLiked ?
+                                <img src={like_isLiked} className={post_css.icon} alt={'like is liked'}/>
                                 :
-                                    <img src={like_notLiked} className={post_css.icon} alt={'like is not liked'}/>
-                                }
-                            </button>
+                                <img src={like_notLiked} className={post_css.icon} alt={'like is not liked'}/>
+                            }
+                        </button>
                         {props.likeCount}
                     </section>
                     <section className={post_css.icon_count}>

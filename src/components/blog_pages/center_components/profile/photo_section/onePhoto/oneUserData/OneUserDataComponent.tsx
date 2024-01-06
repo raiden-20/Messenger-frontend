@@ -24,17 +24,26 @@ const OneUserDataComponent = (props: PropsOneUserComponent) => {
                         <section><strong>{props.name}</strong></section>
                         <section className={onePhoto_css.nickname}>@{props.nickname}</section>
                     </section>
-                    <button className={post_css.button + ' ' + post_css.setting_post}
-                            onMouseEnter={() => setMouseEnter(true)}>
-                        <img src={settings_post} alt={'settings post'} className={onePhoto_css.settingComment}/>
-                    </button>
-                    {isMouseEnter ?
-                        <section className={onePhoto_css.deleteComment} onMouseLeave={() => setMouseEnter(false)}>
-                            <button onClick={() => props.deleteComment} className={post_css.button}><strong>Удалить</strong>
+                    {props.commentId !== '' && props.userId === localStorage.getItem('id') ?
+                        <section onMouseLeave={() => setMouseEnter(false)}>
+                            <button className={post_css.button + ' ' + post_css.setting_post}
+                                    onMouseEnter={() => setMouseEnter(true)}>
+                                <img src={settings_post} alt={'settings post'} className={onePhoto_css.settingComment}/>
                             </button>
-                        </section> : null}
+                            {isMouseEnter ?
+                                <section className={onePhoto_css.deleteComment} onMouseLeave={() => setMouseEnter(false)}>
+                                    <button onClick={props.deleteComment} className={post_css.button}><strong>Удалить</strong>
+                                    </button>
+                                </section> : null}
+                        </section>
+                        : null
+                    }
+
                 </section>
-                {props.text}
+                <section className={onePhoto_css.text}>
+                    {props.text}
+                </section>
+
                 <section className={onePhoto_css.footer}>
                     <section className={onePhoto_css.likeComments}>
                         <section>
@@ -45,14 +54,17 @@ const OneUserDataComponent = (props: PropsOneUserComponent) => {
                                 {props.likeCount}
                             </div>
                         </section>
-                        <section>
-                            <button className={onePhoto_css.button}>
-                                <img src={comment} alt={'comment'}/>
-                            </button>
-                            <div>
-                                {props.likeCount}
-                            </div>
-                        </section>
+                        {props.commentId === '' ?
+                            <section>
+                                <button className={onePhoto_css.button}>
+                                    <img src={comment} alt={'comment'}/>
+                                </button>
+                                <div>
+                                    {props.commentsCount}
+                                </div>
+                            </section> : null
+                        }
+
                     </section>
                     <TimeComponent time={props.time.split('-')}/>
                 </section>

@@ -1,12 +1,11 @@
 import {PostPhoto} from "../../post/CreatePost";
-import {Post} from "./post";
 
 export interface Comment {
     commentId: string
     userId: string | null,
     text: string,
     time: string
-    countLikes: string,
+    likeCount: string,
     isLiked: boolean
     name: string
     nickname: string
@@ -14,11 +13,13 @@ export interface Comment {
 }
 
 export interface PropsComment {
+    postId: string
+    commentCount: string
     commentId: string
     userId: string | null,
     text: string,
     time: string
-    countLikes: string,
+    likeCount: string,
     isLiked: boolean
     name: string
     nickname: string
@@ -115,9 +116,10 @@ export interface PropsUserCommentClass {
 }
 
 export interface PropsOneCommentComponent {
+    userId: string | null
     text: string,
     time: string,
-    countLikes: string,
+    likeCount: string,
     isLiked: boolean
 
     avatarUrl: string,
