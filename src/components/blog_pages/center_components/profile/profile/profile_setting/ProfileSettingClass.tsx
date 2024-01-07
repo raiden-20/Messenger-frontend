@@ -5,13 +5,10 @@ import {
     StateProfileSettingsClass
 } from "../../../../../../redux/interfaces/profile/settings/profileSettings";
 import {
-    DeleteAvatarPhotoAxios,
-    DeleteCoverPhotoAxios,
-    SetAvatarAxios,
-    SetCoverAxios
-} from "../../../../../axios/photo/PhotoAxios";
-import {ChangeNicknameAxios} from "../../../../../axios/auth/AuthAxios";
-import {ChangeProfileDataAxios} from "../../../../../axios/profile/ProfileAxios";
+    Photo
+} from "../../../../../../axios/photo/PhotoAxios";
+import {Auth} from "../../../../../../axios/auth/AuthAxios";
+import {Profile} from "../../../../../../axios/profile/ProfileAxios";
 
 class ProfileSettingClass extends Component<PropsProfileSettings, StateProfileSettingsClass> {
 
@@ -52,32 +49,94 @@ class ProfileSettingClass extends Component<PropsProfileSettings, StateProfileSe
 
     setAvatarToServer = () => {
         if (this.props.deleteAvatarFlag) {
-            DeleteAvatarPhotoAxios({
-                deleteAvatarUrl: this.deleteAvatarUrl,
-                setAvatarUrl: this.props.setAvatarUrl,
-                setDeleteAvatarFlag: this.props.setDeleteAvatarFlag
+            Photo.DeleteAvatarPhotoAxios({
+                deleteAvatarUrl: this.deleteAvatarUrl
+            }).then(response => {
+                switch (response) {
+                    case 200 : {
+                        this.props.setDeleteAvatarFlag(false)
+                        break
+                    }
+                    case 400 : {
+                        this.props.setMessage('Плохое имя файла, выберите другой')
+                        break
+                    }
+                    case 401: {
+                        // bad token
+                        break
+                    }
+                }
             })
         }
         if (this.props.input_avatarUrl !== undefined) {
-            SetAvatarAxios( {
-                input_avatarUrl: this.props.input_avatarUrl,
-                setAvatarUrl: this.props.setAvatarUrl
+            Photo.SetAvatarAxios( {
+                input_avatarUrl: this.props.input_avatarUrl
+            }).then(response => {
+                switch (response[0]) {
+                    case 200 : {
+                        this.props.setAvatarUrl(response[1])
+                        break
+                    }
+                    case 400 : {
+                        if (response[1] === 'File too big') {
+                            this.props.setMessage('Файл слишком большой')
+                        } else if (response[1] === 'Bad file name') {
+                            this.props.setMessage('Плохое имя файла, выберите другой')
+                        }
+                        break
+                    }
+                    case 401: {
+                        // bad token
+                        break
+                    }
+                }
             })
         }
     }
 
     setCoverToServer = () => {
         if (this.props.deleteCoverFlag) {
-            DeleteCoverPhotoAxios({
-                deleteCoverUrl: this.deleteCoverUrl,
-                setCoverUrl: this.props.setCoverUrl,
-                setDeleteCoverFlag: this.props.setDeleteCoverFlag
+            Photo.DeleteCoverPhotoAxios({
+                deleteCoverUrl: this.deleteCoverUrl
+            }).then(response => {
+                switch (response) {
+                    case 200 : {
+                        this.props.setDeleteCoverFlag(false)
+                        break
+                    }
+                    case 400 : {
+                        this.props.setMessage('Плохое имя файла, выберите другой')
+                        break
+                    }
+                    case 401: {
+                        // bad token
+                        break
+                    }
+                }
             })
         }
         if (this.props.input_coverUrl !== undefined) {
-            SetCoverAxios({
+            Photo.SetCoverAxios( {
                 input_coverUrl: this.props.input_coverUrl,
-                setCoverUrl: this.props.setCoverUrl
+            }).then(response => {
+                switch (response[0]) {
+                    case 200 : {
+                        this.props.setCoverUrl(response[1])
+                        break
+                    }
+                    case 400 : {
+                        if (response[1] === 'File too big') {
+                            this.props.setMessage('Файл слишком большой')
+                        } else if (response[1] === 'Bad file name') {
+                            this.props.setMessage('Плохое имя файла, выберите другой')
+                        }
+                        break
+                    }
+                    case 401: {
+                        // bad token
+                        break
+                    }
+                }
             })
         }
     }
@@ -86,24 +145,58 @@ class ProfileSettingClass extends Component<PropsProfileSettings, StateProfileSe
         this.setAvatarToServer()
         this.setCoverToServer()
 
-        ChangeNicknameAxios({
-            input_nickname: this.props.input_nickname,
-            setNickname: this.props.setNickname,
-            setMessage: this.props.setMessage
+        Auth.ChangeNicknameAxios({
+            input_nickname: this.props.input_nickname
+        }).then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setNickname(this.props.input_nickname)
+                    if (response[1].split(' ').length === 2) {
+                        localStorage.setItem('token', response[1].split(' ')[1])
+                    } else {
+                        localStorage.setItem('token', response[1])
+                    }
+                    break
+                }
+                case 400 : {
+                    // todo
+                    break
+                }
+                case 401: {
+                    // bad token
+                }
+            }
         })
 
-        ChangeProfileDataAxios({
+        Profile.ChangeProfileDataAxios({
             input_name: this.props.input_name,
             input_birthDate: this.props.input_birthDate,
-            input_bio: this.props.input_bio,
-            setMessage: this.props.setMessage,
-            setButtonSettingPressed: this.props.setButtonSettingPressed
+            input_bio: this.props.input_bio
+        }).then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setButtonSettingPressed(false)
+
+                    this.props.setUserData(this.props.input_name,
+                        this.props.input_birthDate,
+                        this.props.input_bio,
+                        this.props.avatarUrl,
+                        this.props.coverUrl, '')
+                    break
+                }
+                case 400 : {
+                    // todo
+                    break
+                }
+                case 401: {
+                    // bad token
+                }
+            }
         })
     }
 
     render() {
-        return <ProfileSettingComponent id={this.props.id}
-                                        message={this.props.message}
+        return <ProfileSettingComponent message={this.props.message}
                                         input_bio={this.props.input_bio}
                                         input_birthDate={this.props.input_birthDate}
                                         input_name={this.props.input_name}
@@ -121,7 +214,8 @@ class ProfileSettingClass extends Component<PropsProfileSettings, StateProfileSe
                                         avatarUrl={this.props.avatarUrl}
                                         coverUrl={this.props.coverUrl}
                                         setDeleteAvatarUrl={this.setDeleteAvatarUrl}
-                                        setDeleteCoverUrl={this.setDeleteCoverUrl}/>
+                                        setDeleteCoverUrl={this.setDeleteCoverUrl}
+                                        setMessage={this.props.setMessage}/>
     }
 }
 

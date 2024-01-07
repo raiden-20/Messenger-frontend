@@ -10,11 +10,11 @@ import {
     REGISTRATION,
     REGISTRATION_FORGOT_PASSWORD,
     REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL, SUCCESSFUL_SENT_MESSSAGE
-} from "./components/paths/authPath";
-import {PROFILE_OTHER_USER, PROFILE_USER} from "./components/paths/profilePath";
-import {SETTINGS} from "./components/paths/navigationPath";
-import {FRIENDS_USER, SEARCH, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "./components/paths/usersPath";
-import {PROFILE_USER_PHOTO} from "./components/paths/photoPath";
+} from "./paths/authPath";
+import {PROFILE_OTHER_USER, PROFILE_USER} from "./paths/profilePath";
+import {SETTINGS} from "./paths/navigationPath";
+import {FRIENDS_USER, SEARCH, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "./paths/usersPath";
+import {PROFILE_USER_PHOTO} from "./paths/photoPath";
 
 const App = () => {
     return (

@@ -7,14 +7,13 @@ import {
     setBirthDate, setButtonSettingPressed, setCoverUrl, setDeleteAvatarFlag, setDeleteCoverFlag, setInputAvatarUrl,
     setInputBio,
     setInputBirthDate, setInputCoverUrl, setInputName,
-    setName
+    setName, setUserData
 } from "../../../../../../redux/reducers/profileReducer";
-import {setId, setInputNickname, setMessage, setNickname, setToken} from "../../../../../../redux/reducers/authReducer";
+import {setId, setInputNickname, setMessage, setNickname} from "../../../../../../redux/reducers/authReducer";
 
 const mapStateToProps = (state: StateProfileSettings) => {
     return {
         message: state.auth.message,
-        id: state.auth.id,
         input_nickname: state.auth.input_nickname,
         nickname: state.auth.nickname,
         input_name: state.profile.input_name,
@@ -29,7 +28,7 @@ const mapStateToProps = (state: StateProfileSettings) => {
         coverUrl: state.profile.coverUrl,
 
         deleteAvatarFlag: state.profile.deleteAvatarFlag,
-        deleteCoverFlag: state.profile.deleteCoverFlag
+        deleteCoverFlag: state.profile.deleteCoverFlag,
     }
 }
 
@@ -40,6 +39,14 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         setName(name: string) {
             dispatch(setName(name))
+        },
+        setUserData(name: string,
+                       birthDate: string,
+                       bio: string,
+                       avatarUrl: string,
+                       coverUrl: string,
+                       status: string) {
+            dispatch(setUserData(name, birthDate, bio, avatarUrl, coverUrl, status))
         },
         setAvatarUrl(avatarUrl : string) {
           dispatch(setAvatarUrl(avatarUrl))
@@ -87,9 +94,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
             dispatch(setDeleteCoverFlag(deleteCoverFlag))
         },
 
-        setToken(token: string) {
-            dispatch(setToken(token))
-        }
     }
 }
 const ProfileSettingContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileSettingClass)

@@ -4,15 +4,29 @@ import {
     PropsSuccessfulEmail,
     StateSuccessfulSmth
 } from "../../../../redux/interfaces/auth/authSuccessfulActivation";
-import {SuccessfulChangeEmail} from "../../../axios/auth/AuthAxios";
+import {Auth} from "../../../../axios/auth/AuthAxios";
 
-class SuccessfulChangeEmailClass extends Component<PropsSuccessfulEmail, StateSuccessfulSmth>{
+class SuccessfulChangeEmailClass extends Component<PropsSuccessfulEmail, StateSuccessfulSmth> {
     componentDidMount() {
-        SuccessfulChangeEmail( {
-            newEmail: this.props.newEmail,
-
-            setMessage: this.props.setMessage,
-            setEmail: this.props.setEmail
+        Auth.SuccessfulChangeEmail({
+            newEmail: this.props.newEmail
+        }).then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setMessage('Пароль был успешно изменен!')
+                    this.props.setEmail( this.props.newEmail)
+                    localStorage.setItem('token', response[1])
+                    break
+                }
+                case 400 : {
+                    this.props.setMessage('Такого пользователя не существует')
+                    break
+                }
+                case 401 : {
+                    this.props.setMessage('Плохой токен')
+                    break
+                }
+            }
         })
     }
 

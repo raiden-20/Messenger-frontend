@@ -5,29 +5,36 @@ import {
     StateUserCommentClass
 } from "../../../../../../redux/interfaces/profile/post/comments";
 import UserCommentsComponent from "./UserCommentsComponent";
-import {GetCommentsAxios, SetCommentAxios} from "../../../../../axios/post/PostAxios";
+import {Blog} from "../../../../../../axios/post/PostAxios";
 class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommentClass> {
 
     componentDidMount() {
-        let a = GetCommentsAxios({
+        Blog.GetCommentsAxios({
             postId: this.props.postId,
-        })
-        a.then(response => {
+        }).then(response => {
             switch (response[0]) {
                 case 200 : {
                     this.props.setUserComments(response[1])
+                    break
+                }
+                case 401 : {
+                    //bad token
+                    break
+                }
+                case 400 : {
+                    // post doesn't exist
+                    break
                 }
             }
         })
     }
 
     sentComment = () => {
-        let a = SetCommentAxios({
+        Blog.SetCommentAxios({
             postId: this.props.postId,
             input_comment: this.props.input_comment,
             addOneComment: this.props.addOneComment
-        })
-        a.then(response => {
+        }).then(response => {
             switch (response[0]) {
                 case 200 : {
                     const now = new Date();
@@ -46,6 +53,15 @@ class UserCommentsClass extends Component<PropsUserCommentClass, StateUserCommen
                     this.props.addOneComment(oneComment)
                     this.props.setOneCommentCountPost(this.props.postId, (Number.parseInt(this.props.commentCount) + 1).toString())
                     this.props.setInputPostComment('')
+                    break
+                }
+                case 401 : {
+                    //bad token
+                    break
+                }
+                case 400 : {
+                    // post doesn't exist
+                    break
                 }
             }
         })

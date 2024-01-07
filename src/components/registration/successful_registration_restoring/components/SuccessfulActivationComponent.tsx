@@ -3,7 +3,7 @@ import success_reg_res_css from '../SuccessfulRegistrationRestoring.module.css'
 import {PropsSuccessfulActivationComponent
 } from "../../../../redux/interfaces/auth/authSuccessfulActivation";
 import {useNavigate} from "react-router-dom";
-import {AUTHORIZATION} from "../../../paths/authPath";
+import {AUTHORIZATION} from "../../../../paths/authPath";
 const SuccessfulActivationComponent = (props: PropsSuccessfulActivationComponent) => {
     const navigate = useNavigate()
     const toAuthorize = () => {

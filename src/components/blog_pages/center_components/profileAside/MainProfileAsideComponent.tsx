@@ -3,14 +3,14 @@ import {useNavigate} from "react-router-dom";
 
 import main_aside_css from "../profile/main_profile_css/MainProfileAside.module.css";
 import {PropsUserProfileAsideComponent} from "../../../../redux/interfaces/profile/profileBase";
-import {FRIENDS_USER} from "../../../paths/usersPath";
+import {FRIENDS_USER} from "../../../../paths/usersPath";
 import {PropsOneFriend2} from "../../../../redux/interfaces/friends/oneFriend";
 
 import default_profile_ava from '../../../../assets/images/default_profile_ava.svg'
 
 import './ProfileAsideFriends.css'
 import UserFriendsShortInfoClass from "./shortProfile/UserFriendsShortInfoClass";
-import {PROFILE_USER_PHOTO} from "../../../paths/photoPath";
+import {PROFILE_USER_PHOTO} from "../../../../paths/photoPath";
 import ProfileButtonCreatingPostComponent
     from "../profile/profile/profile_button_creating_post/ProfileButtonCreatingPostComponent";
 import {PhotoArr} from "../../../../redux/interfaces/profile/photo/photoProfile";

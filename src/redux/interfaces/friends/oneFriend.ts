@@ -45,7 +45,7 @@ export interface PropsOneFriend2{
     status: string,
     nickname: string,
     photo: []
-    setChangeUserStatus(id: string, status: string): void
+    setChangeUserStatus(id: string, status: string | null): void
     setUserPhoto(id: string, photo : {}): void
     setUserNickname(id: string, nickname: string): void
 }
@@ -69,7 +69,7 @@ export interface PropsOneFriendComponent2{
     avatarUrl: string,
     status: string,
     photo: []
-    changeFriendStatus(): void
+    changeFriendStatus(action: string): void
 }
 
 export interface PropsStatus {

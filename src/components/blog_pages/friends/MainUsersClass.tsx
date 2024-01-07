@@ -2,13 +2,8 @@ import React, {Component} from "react";
 import {PropsUsers, StateUsers} from "../../../redux/interfaces/friends/friends";
 import MainUsersComponent from "./MainUsersComponent";
 import {
-    ActionUsersAxios,
-    GetCountFriendsAxios, GetCountSubscribersAxios, GetCountSubscriptionsAxios,
-    GetFriendsAxios,
-    GetSearchAxios,
-    GetSubscribersAxios,
-    GetSubscriptionsAxios
-} from "../../axios/users/UsersAxios";
+    ActionUsersAxios, Users
+} from "../../../axios/users/UsersAxios";
 
 class MainUsersClass extends Component<PropsUsers, StateUsers> {
 
@@ -16,83 +11,180 @@ class MainUsersClass extends Component<PropsUsers, StateUsers> {
         super(props)
 
         console.log(this.props)
-        GetFriendsAxios({
-            setUsers: this.props.setUsers
-        })
+        Users.GetFriendsAxios()
+            .then(response => {
+                switch (response[0]) {
+                    case 200 : {
+                        this.props.setUsers(response[1])
+                        break
+                    }
+                    case 401 : {
+                        //плохой токен
+                        break
+                    }
+                }
+            })
     }
 
     componentDidMount() {
-        GetCountFriendsAxios({
-            setUserFriendsCount: this.props.setUserFriendsCount
-        })
-        GetCountSubscriptionsAxios({
-            setUserSubscriptionsCount: this.props.setUserSubscriptionsCount
-        })
-        GetCountSubscribersAxios({
-            setUserSubscribersCount: this.props.setUserSubscribersCount
-        })
+        Users.GetCountFriendsAxios()
+            .then(response => {
+                switch (response[0]) {
+                    case 200 : {
+                        this.props.setUserFriendsCount(response[1])
+                        break
+                    }
+                    case 401 : {
+                        //плохой токен
+                        break
+                    }
+                }
+            })
+        Users.GetCountSubscriptionsAxios()
+            .then(response => {
+                switch (response[0]) {
+                    case 200 : {
+                        this.props.setUserSubscriptionsCount(response[1])
+                        break
+                    }
+                    case 401 : {
+                        //плохой токен
+                        break
+                    }
+                }
+            })
+        Users.GetCountSubscribersAxios()
+            .then(response => {
+                switch (response[0]) {
+                    case 200 : {
+                        this.props.setUserSubscribersCount(response[1])
+                        break
+                    }
+                    case 401 : {
+                        //плохой токен
+                        break
+                    }
+                }
+            })
     }
 
     getFriends() {
-        GetFriendsAxios({
-            setUsers: this.props.setUsers
+        Users.GetFriendsAxios()
+            .then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setUsers(response[1])
+                    break
+                }
+                case 401 : {
+                    //плохой токен
+                    break
+                }
+            }
         })
     }
 
     getSubscriptions() {
-        GetSubscriptionsAxios({
-            setUsers: this.props.setUsers
+        Users.GetSubscriptionsAxios()
+            .then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setUsers(response[1])
+                    break
+                }
+                case 401 : {
+                    //плохой токен
+                    break
+                }
+            }
         })
     }
 
     getSubscribers() {
-        GetSubscribersAxios({
-            setUsers: this.props.setUsers
+        Users.GetSubscribersAxios()
+            .then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setUsers(response[1])
+                    break
+                }
+                case 401 : {
+                    //плохой токен
+                    break
+                }
+            }
         })
     }
     getSearch() {
-        GetSearchAxios({
-            setUsers: this.props.setUsers
+        Users.GetSearchAxios()
+            .then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setUsers(response[1])
+                    break
+                }
+                case 401 : {
+                    //плохой токен
+                    break
+                }
+            }
         })
     }
 
     actionRequest = (idOtherUser: string, action : string) => {
         action = action.toUpperCase()
-        let actionAx = ActionUsersAxios({
+        ActionUsersAxios({
             idOtherUser: idOtherUser,
             action: action
-        })
-        actionAx.then(response => {
+        }).then(response => {
             debugger
-            switch (action) {
-                case 'CREATE': {
-                    this.props.setChangeUserStatus(idOtherUser, 'SEND_FIRST')
-                    this.props.setUserSubscriptionsCount(this.props.countSubscriptions + 1)
+            switch (response[0]) {
+                case 200 : {
+                    switch (action) {
+                        case 'CREATE': {
+                            this.props.setChangeUserStatus(idOtherUser, 'SEND_FIRST')
+                            this.props.setUserSubscriptionsCount(this.props.countSubscriptions + 1)
+                            break
+                        }
+                        case 'DELETE_FRIEND': {
+                            this.props.setChangeUserStatus(idOtherUser, 'SEND_SECOND')
+                            this.props.setUserFriendsCount(this.props.countFriends - 1)
+                            this.props.setUserSubscribersCount(this.props.countSubscribers + 1)
+                            break
+                        }
+                        case 'ACCEPT': {
+                            this.props.setChangeUserStatus(idOtherUser, 'FRIENDS')
+                            this.props.setUserSubscribersCount(this.props.countSubscribers - 1)
+                            this.props.setUserFriendsCount(this.props.countFriends + 1)
+                            break
+                        }
+                        case 'REJECT': {
+                            this.props.setChangeUserStatus(idOtherUser, null)
+                            this.props.setUserSubscribersCount(this.props.countSubscribers - 1)
+                            break
+                        }
+                        case 'DELETE_REQUEST': {
+                            this.props.setChangeUserStatus(idOtherUser, null)
+                            this.props.setUserSubscriptionsCount(this.props.countSubscriptions - 1)
+                            break
+                        }
+                    }
                     break
                 }
-                case 'DELETE_FRIEND': {
-                    this.props.setChangeUserStatus(idOtherUser, 'SEND_SECOND')
-                    this.props.setUserFriendsCount(this.props.countFriends - 1)
-                    this.props.setUserSubscribersCount(this.props.countSubscribers + 1)
+                case 401 : {
+                    // bad token
                     break
                 }
-                case 'ACCEPT': {
-                    this.props.setChangeUserStatus(idOtherUser, 'FRIENDS')
-                    this.props.setUserSubscribersCount(this.props.countSubscribers - 1)
-                    this.props.setUserFriendsCount(this.props.countFriends + 1)
+                case 404 : {
+                    // user doesn't exist
                     break
                 }
-                case 'REJECT': {
-                    this.props.setChangeUserStatus(idOtherUser, null)
-                    this.props.setUserSubscribersCount(this.props.countSubscribers - 1)
-                    break
-                }
-                case 'DELETE_REQUEST': {
-                    this.props.setChangeUserStatus(idOtherUser, null)
-                    this.props.setUserSubscriptionsCount(this.props.countSubscriptions - 1)
+                case 400 : {
+                    // relation has already exist
                     break
                 }
             }
+
         })
     }
 

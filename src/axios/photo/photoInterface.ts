@@ -3,33 +3,19 @@ export interface GetPhotoAxiosInterface {
 }
 
 export interface DeleteAvatarPhotoAxiosInterface {
-    deleteAvatarUrl: string,
-
-    setAvatarUrl(avatarUrl: string): void
-    setDeleteAvatarFlag(flag: boolean): void
+    deleteAvatarUrl: string
 }
 
 export interface SetAvatarAxiosInterface {
     input_avatarUrl: File
-
-    setAvatarUrl(avatarUrl : string): void
 }
 
 export interface DeleteCoverPhotoAxiosInterface {
-    deleteCoverUrl: string,
-
-    setCoverUrl(avatarUrl: string): void
-    setDeleteCoverFlag(flag: boolean): void
+    deleteCoverUrl: string
 }
 
 export interface SetCoverAxiosInterface {
     input_coverUrl: File
-
-    setCoverUrl(coverUrl : string): void
-}
-
-export interface GetPhotoCountAxiosInterface {
-    setCountPhoto(countPhoto: number): void
 }
 
 export interface SetPhotoInterface {
@@ -38,7 +24,7 @@ export interface SetPhotoInterface {
 }
 
 export interface SetPostPhotoAxiosInterface {
-    input_postPhoto: SetPhotoInterface,
+    input_postPhoto: File,
     postId: string
 }
 

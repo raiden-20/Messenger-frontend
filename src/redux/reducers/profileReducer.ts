@@ -18,6 +18,8 @@ const SET_DELETE_AVATAR_FLAG = 'SET_DELETE_AVATAR_FLAG'
 const SET_DELETE_COVER_FLAG = 'SET_DELETE_COVER_FLAG'
 
 const SET_BUTTON_SETTING_PRESSED = 'SET_BUTTON_SETTING_PRESSED'
+
+
 const initialState = {
     name: "",
     birthDate: "",
@@ -34,7 +36,9 @@ const initialState = {
     isButtonSettingPressed: false,
 
     deleteAvatarFlag: false,
-    deleteCoverFlag: false
+    deleteCoverFlag: false,
+
+
 }
 
 const profileReducer = (state = initialState, action: any) => {
@@ -132,7 +136,6 @@ const profileReducer = (state = initialState, action: any) => {
 
             return stateCopy
         }
-
         default : {
             return stateCopy
         }

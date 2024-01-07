@@ -2,33 +2,49 @@ import {Component} from "react";
 import OnePostComponent from "./OnePostComponent";
 import {PropsOnePostClass, StateOnePostClass} from "../../../../../../redux/interfaces/profile/post/post";
 import {PostPhoto} from "../../../../../../redux/interfaces/post/CreatePost";
-import {DeletePostAxios, GetCommentsAxios, LikePostAxios} from "../../../../../axios/post/PostAxios";
+import {Blog} from "../../../../../../axios/post/PostAxios";
 
 class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
 
     componentDidMount() {
 
-        let a = GetCommentsAxios({
+        Blog.GetCommentsAxios({
             postId: this.props.post.postId,
-        })
-        a.then(response => {
+        }).then(response => {
             switch (response[0]) {
                 case 200 : {
                     this.props.setUserComments(response[1])
+                    break
+                }
+                case 401 : {
+                    //bad token
+                    break
+                }
+                case 400 : {
+                    // post doesn't exist
+                    break
                 }
             }
         })
     }
 
     like = () => {
-        let ax = LikePostAxios({
+        Blog.LikePostAxios({
             postId: this.props.post.postId
-        })
-        ax.then(response => {
-            switch (response) {
+        }).then(response => {
+            switch (response[0]) {
                 case 200: {
                     this.props.setOneLikeCountPost(this.props.post.postId, this.props.post.isLiked ? (Number.parseInt(this.props.post.likeCount) - 1).toString() :
                         (Number.parseInt(this.props.post.likeCount) + 1).toString())
+                    break
+                }
+                case 401: {
+                    // bad token
+                    break
+                }
+                case 400: {
+                    // todo post doesn't exist
+                    break
                 }
             }
         })
@@ -47,15 +63,18 @@ class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
     }
 
     deletePost = () =>{
-        let ax = DeletePostAxios({
-            postId: this.props.post.postId,
-            deleteOnePost: this.props.deleteOnePost
-        })
-        ax.then(response => {
-            switch (response) {
+        Blog.DeletePostAxios({
+            postId: this.props.post.postId
+        }).then(response => {
+            switch (response[0]) {
                 case 200: {
                     this.props.deleteOnePost(this.props.post.postId)
                     this.props.setButtonEditPostClick(false)
+                    break
+                }
+                case 400: {
+                    // todo post doesn't exist
+                    break
                 }
             }
         })

@@ -5,11 +5,11 @@ import {
 import React, {useState} from "react";
 import default_ava from '../../../../../../assets/images/default_profile_ava.svg'
 import default_cover from '../../../../../../assets/images/default_cover.jpg'
+import ErrorComponent from "../../../settings/components/error/ErrorComponent";
 
 const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
     const [imageAvatarSrc, setImageAvatarSrc] = useState(props.avatarUrl);
     const [imageCoverSrc, setImageCoverSrc] = useState(props.coverUrl);
-
 
 
     const setName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +42,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                     props.setDeleteCoverFlag(true)
                 }
             } else {
-                //todo вывод ошибки
+                props.setMessage('Большой размер файла')
             }
 
         }
@@ -67,7 +67,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                     props.setDeleteAvatarFlag(true)
                 }
             } else {
-                //todo вывод ошибки
+                props.setMessage('Большой размер файла')
             }
         }
     }
@@ -165,9 +165,10 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
                                 <button className={prof_setting.save} type={'submit'} onClick={props.setData}>Сохранить</button>
                             </footer>
                         </section>
-
+                        {props.message !== '' ?
+                            <ErrorComponent message={props.message}/> : null
+                        }
                     </section>
-                    {props.message}
                 </section>
             </section>
         </div>

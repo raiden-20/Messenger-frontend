@@ -6,27 +6,79 @@ import {
 } from "../../../../redux/interfaces/profile/profileBase";
 import './ProfileAsideFriends.css'
 import MainProfileAsideComponent from "./MainProfileAsideComponent";
-import {GetCountFriendsAxios, GetRandomFriendsAxios} from "../../../axios/users/UsersAxios";
-import {GetPhotoAxios, GetPhotoCountAxios} from "../../../axios/photo/PhotoAxios";
+import {Users} from "../../../../axios/users/UsersAxios";
+import {Photo} from "../../../../axios/photo/PhotoAxios";
 
 class MainProfileAsideClass extends Component<PropsUserProfileAside, StateUserProfileAsideComponent>{
 
     componentDidMount() {
-        GetPhotoCountAxios({
-            setCountPhoto: this.props.setCountPhoto
+        Photo.GetPhotoCountAxios().then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setCountPhoto(response[1])
+                    break
+                }
+                case 400 : {
+                    // todo на стр пользователя не сущ
+                    break
+                }
+                case 401: {
+                    // bad token
+                    break
+                }
+            }
         })
-        let photo = GetPhotoAxios({
+
+        Photo.GetPhotoAxios({
             id: localStorage.getItem('idUser') as string
+        }).then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setPhotoUrl(response[1])
+                    break
+                }
+                case 400 : {
+                    // todo на стр пользователя не сущ
+                    break
+                }
+                case 401: {
+                    // bad token
+                    break
+                }
+            }
+
         })
-        photo.then(response => {
-            this.props.setPhotoUrl(response)
-        })
-        GetRandomFriendsAxios({
-            setUsers: this.props.setUsers
-        })
-        GetCountFriendsAxios({
-            setUserFriendsCount: this.props.setUserFriendsCount
-        })
+        Users.GetRandomFriendsAxios()
+            .then(response => {
+                switch (response[0]) {
+                    case 200 : {
+                        this.props.setUsers(response[1])
+                        break
+                    }
+                    case 400 : {
+                        // todo на стр пользователя не сущ
+                        break
+                    }
+                    case 401: {
+                        // bad token
+                        break
+                    }
+                }
+            })
+        Users.GetCountFriendsAxios()
+            .then(response => {
+                switch (response[0]) {
+                    case 200 : {
+                        this.props.setUserFriendsCount(response[1])
+                        break
+                    }
+                    case 401 : {
+                        //плохой токен
+                        break
+                    }
+                }
+            })
+
     }
 
     render() {

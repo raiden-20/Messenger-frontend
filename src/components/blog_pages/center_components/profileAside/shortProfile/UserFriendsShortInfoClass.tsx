@@ -1,27 +1,67 @@
 import {Component} from "react";
 import {PropsOneFriend2, StateOneFriend2} from "../../../../../redux/interfaces/friends/oneFriend";
 import UserFriendsShortInfoComponent from "./UserFriendsShortInfoComponent";
-import {ActionUsersAxios} from "../../../../axios/users/UsersAxios";
-import {AuthDataAxios} from "../../../../axios/auth/AuthAxios";
-import {GetPhotoAxios} from "../../../../axios/photo/PhotoAxios";
+import {ActionUsersAxios} from "../../../../../axios/users/UsersAxios";
+import {Auth} from "../../../../../axios/auth/AuthAxios";
+import {Photo} from "../../../../../axios/photo/PhotoAxios";
 
 class UserFriendsShortInfoClass extends Component<PropsOneFriend2, StateOneFriend2> {
 
-    changeFriendStatus = () => {
+    changeFriendStatus = (action: string) => {
+        action = action.toUpperCase()
         let actionAx = ActionUsersAxios({
             idOtherUser: this.props.id,
-            action: 'DELETE',
+            action: action,
         })
-        actionAx.then(() => {
-            this.props.setChangeUserStatus(this.props.id, 'SEND_SECOND')
+        actionAx.then(response => {
+            debugger
+            switch (response[0]) {
+                case 200 : {
+                    switch (action) {
+                        case 'CREATE': {
+                            this.props.setChangeUserStatus(this.props.id, 'SEND_FIRST')
+                            break
+                        }
+                        case 'DELETE_FRIEND': {
+                            this.props.setChangeUserStatus(this.props.id, 'SEND_SECOND')
+                            break
+                        }
+                        case 'ACCEPT': {
+                            this.props.setChangeUserStatus(this.props.id, 'FRIENDS')
+                            break
+                        }
+                        case 'REJECT': {
+                            this.props.setChangeUserStatus(this.props.id, null)
+                            break
+                        }
+                        case 'DELETE_REQUEST': {
+                            this.props.setChangeUserStatus(this.props.id, null)
+                            break
+                        }
+                    }
+                    break
+                }
+                case 401 : {
+                    // bad token
+                    break
+                }
+                case 404 : {
+                    // user doesn't exist
+                    break
+                }
+                case 400 : {
+                    // relation has already exist
+                    break
+                }
+            }
+
         })
     }
 
     componentDidMount() {
-        let authDataPromise = AuthDataAxios({
+        Auth.AuthDataAxios({
             id: this.props.id
-        })
-        authDataPromise.then(response => {
+        }).then(response => {
             debugger
             switch (response[0]) {
                 case 200 : {
@@ -29,11 +69,23 @@ class UserFriendsShortInfoClass extends Component<PropsOneFriend2, StateOneFrien
                 }
             }
         })
-        let photo = GetPhotoAxios({
+        Photo.GetPhotoAxios({
             id: this.props.id
-        })
-        photo.then(response => {
-            this.props.setUserPhoto(this.props.id, response)
+        }).then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setUserPhoto(this.props.id, response[1])
+                    break
+                }
+                case 400 : {
+                    // todo на стр пользователя не сущ
+                    break
+                }
+                case 401: {
+                    // bad token
+                    break
+                }
+            }
         })
     }
 

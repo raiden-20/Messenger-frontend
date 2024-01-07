@@ -3,7 +3,7 @@ import chatting from "../../../../../assets/images/other/chat_with_user.svg";
 import React from "react";
 import {PropsOneFriendComponent} from "../../../../../redux/interfaces/friends/oneFriend";
 import {useNavigate} from "react-router-dom";
-import {PROFILE_OTHER_USER, SET_NEW_URL_PROFILE} from "../../../../paths/profilePath";
+import {PROFILE_OTHER_USER, SET_NEW_URL_PROFILE} from "../../../../../paths/profilePath";
 import default_ava from '../../../../../assets/images/default_profile_ava.svg'
 import check_mark from '../../../../../assets/images/friends/check_mark.svg'
 import delete_mark from '../../../../../assets/images/friends/delete_mark.svg'

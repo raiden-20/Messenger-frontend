@@ -6,11 +6,11 @@ import MainCenterComponents from "./center_components/MainCenterComponents";
 
 import main_css from './MainBlogsPages.module.css'
 import NavigationContainer from "./navigation/NavigationContainer";
-import {PROFILE_OTHER_USER, PROFILE_USER} from "../paths/profilePath";
-import {SETTINGS} from "../paths/navigationPath";
-import {FRIENDS_USER, SEARCH, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "../paths/usersPath";
+import {PROFILE_OTHER_USER, PROFILE_USER} from "../../paths/profilePath";
+import {SETTINGS} from "../../paths/navigationPath";
+import {FRIENDS_USER, SEARCH, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "../../paths/usersPath";
 import MainUsersContainer from "./friends/MainUsersContainer";
-import {PROFILE_USER_PHOTO} from "../paths/photoPath";
+import {PROFILE_USER_PHOTO} from "../../paths/photoPath";
 import PhotoProfileContainer from "./center_components/profile/photo_section/PhotoProfileContainer";
 
 const MainBlogPagesComponent = () => {

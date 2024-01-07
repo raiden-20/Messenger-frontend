@@ -1,28 +1,30 @@
 import {Component} from "react";
 import {PropsPhotoProfile, StatePhotoProfileClass} from "../../../../../redux/interfaces/profile/photo/photoProfile";
 import PhotoProfileComponent from "./PhotoProfileComponent";
-import {GetPhotoAxios, GetPhotoCountAxios} from "../../../../axios/photo/PhotoAxios";
-import {ProfileGetDataAxios} from "../../../../axios/profile/ProfileAxios";
-import {AuthDataAxios} from "../../../../axios/auth/AuthAxios";
+import {Photo} from "../../../../../axios/photo/PhotoAxios";
+import {Profile} from "../../../../../axios/profile/ProfileAxios";
+import {Auth} from "../../../../../axios/auth/AuthAxios";
 class PhotoProfileClass extends Component<PropsPhotoProfile, StatePhotoProfileClass> {
 
     componentDidMount() {
-        let authDataPromise = AuthDataAxios({
+        Auth.AuthDataAxios({
             id: localStorage.getItem('idUser') as string
-        })
-        authDataPromise.then(response => {
+        }).then(response => {
             switch (response[0]) {
                 case 200 : {
                     this.props.setNickname(response[1].nickname)
                     this.props.setEmail(response[1].email)
+                    break
+                }
+                case 401: {
+
                 }
             }
         })
 
-        let dataPromise = ProfileGetDataAxios({
+        Profile.ProfileGetDataAxios({
             id: localStorage.getItem('idUser') as string
-        })
-        dataPromise.then(responseSocial => {
+        }).then(responseSocial => {
             switch (responseSocial[0]) {
                 case 200 : {
                     this.props.setUserData(responseSocial[1].name,
@@ -31,18 +33,53 @@ class PhotoProfileClass extends Component<PropsPhotoProfile, StatePhotoProfileCl
                         responseSocial[1].avatarUrl,
                         responseSocial[1].coverUrl,
                         responseSocial[1].status)
+                    break
+                }
+                case 400: {
+                    // user doesn't exist
+                    break
+                }
+                case 401: {
+                    // bad token
+                    break
                 }
             }
         })
 
-        let photo = GetPhotoAxios({
+        Photo.GetPhotoAxios({
             id: localStorage.getItem('idUser') as string
+        }).then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setPhotoUrl(response[1])
+                    break
+                }
+                case 400 : {
+                    // todo на стр пользователя не сущ
+                    break
+                }
+                case 401: {
+                    // bad token
+                    break
+                }
+            }
+
         })
-        photo.then(response => {
-            this.props.setPhotoUrl(response)
-        })
-        GetPhotoCountAxios({
-            setCountPhoto: this.props.setCountPhoto
+        Photo.GetPhotoCountAxios().then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    this.props.setCountPhoto(response[1])
+                    break
+                }
+                case 400 : {
+                    // todo на стр пользователя не сущ
+                    break
+                }
+                case 401: {
+                    // bad token
+                    break
+                }
+            }
         })
     }
 

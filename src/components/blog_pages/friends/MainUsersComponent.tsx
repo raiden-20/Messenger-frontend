@@ -3,7 +3,7 @@ import main_css from "./MainUsers.module.css";
 import search_svg from "../../../assets/images/friends/search.svg";
 import search_header from '../../../assets/images/friends/search_header.svg'
 import {PropsUsersComponent} from "../../../redux/interfaces/friends/friends";
-import {FRIENDS_USER, SEARCH, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "../../paths/usersPath";
+import {FRIENDS_USER, SEARCH, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "../../../paths/usersPath";
 import MainFriendsComponent from "./components/tabs/friends/MainFriendsComponent";
 import MainSubscriptionsComponent from "./components/tabs/subscriptions/MainSubscriptionsComponent";
 import MainSubscribersComponent from "./components/tabs/subscribers/MainSubscribersComponent";

@@ -6,7 +6,7 @@ import {
     setInputPostPhoto,
     setInputPostPhotoDelete,
     setInputPostPhotoUrl,
-    setInputPostText, setOnePost
+    setInputPostText, setMessage, setOnePost
 } from "../../../../../../redux/reducers/postReducer";
 import EditPostClass from "./EditPostClass";
 import {StateEditPost} from "../../../../../../redux/interfaces/profile/post/editPost";
@@ -17,6 +17,7 @@ const mapStateToProps = (state: StateEditPost) => {
         input_postText : state.post.input_postText,
         input_postPhoto: state.post.input_postPhoto,
         input_postPhotoUrl: state.post.input_postPhotoUrl,
+        message: state.post.message
     }
 }
 
@@ -42,7 +43,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         },
         setOnePost(onePost: Post) {
             dispatch(setOnePost(onePost))
-        }
+        },
+        setMessage(message: string) {
+            dispatch(setMessage(message))
+        },
     }
 
 }

@@ -14,7 +14,7 @@ import {
     REGISTRATION,
     REGISTRATION_FORGOT_PASSWORD,
     REGISTRATION_RESTORE_ACCOUNT, SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL, SUCCESSFUL_SENT_MESSSAGE
-} from "../paths/authPath";
+} from "../../paths/authPath";
 import {PropsProfileNameSurname} from "../../redux/interfaces/profile/profileAddNameSurname";
 import MainSuccessComponent from "./successful_registration_restoring/MainSuccessComponent";
 

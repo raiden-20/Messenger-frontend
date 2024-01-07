@@ -1,6 +1,6 @@
 import {Comment} from "../interfaces/profile/post/comments";
 import {Post} from "../interfaces/profile/post/post";
-import {SetPhotoInterface} from "../../components/axios/photo/photoInterface";
+import {SetPhotoInterface} from "../../axios/photo/photoInterface";
 
 const SET_POSTS = 'SET_POSTS'
 const SET_COMMENTS = 'SET_COMMENTS'
@@ -26,6 +26,7 @@ const SET_POST_INPUT_COMMENT = 'SET_POST_INPUT_COMMENT'
 const SET_POST_INPUT_TEXT = 'SET_POST_INPUT_TEXT'
 
 const SET_BUTTON_EDIT_POST = 'SET_BUTTON_EDIT_POST'
+const SET_MESSAGE = 'SET_MESSAGE'
 
 const initialState = {
     posts: [{
@@ -45,6 +46,7 @@ const initialState = {
     input_comment: '',
 
     buttonEditPost: false,
+    message: ''
 }
 
 const postReducer = (state = initialState, action: any) => {
@@ -235,6 +237,13 @@ const postReducer = (state = initialState, action: any) => {
             return stateCopy
         }
 
+        case SET_MESSAGE : {
+            stateCopy.message = action.message
+
+            return stateCopy
+        }
+
+
         default : {
             return stateCopy
         }
@@ -334,10 +343,15 @@ export const setInputPostComment = (input_comment: string) => {
     }
 }
 
-
 export const setButtonEditPostClick = (buttonEditPost: boolean) => {
     return {
         type: SET_BUTTON_EDIT_POST, buttonEditPost
+    }
+}
+
+export const setMessage = (message: string) => {
+    return {
+        type: SET_MESSAGE, message
     }
 }
 

@@ -4,7 +4,7 @@ import { PropsDeleteAccountComponent
 import DeleteAccountWindow from "./DeleteAccountWindow";
 import delete_window from "./DeleteAccountWindow.module.css";
 import {useNavigate} from "react-router-dom";
-import {AUTHORIZATION} from "../../../../../paths/authPath";
+import {AUTHORIZATION} from "../../../../../../paths/authPath";
 
 const DeleteAccountComponent = (props: PropsDeleteAccountComponent) => {
     const [isDeleteAccountWindow, setDeleteAccountWindow] = useState(false)

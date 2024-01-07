@@ -1,5 +1,5 @@
-import {Post} from "../../../redux/interfaces/profile/post/post";
-import {Comment} from "../../../redux/interfaces/profile/post/comments";
+import {Post} from "../../redux/interfaces/profile/post/post";
+import {Comment} from "../../redux/interfaces/profile/post/comments";
 import {SetPhotoInterface} from "../photo/photoInterface";
 
 export interface GetPostsAxiosInterface {
@@ -11,25 +11,17 @@ export interface GetPostDataAxiosInterface {
 }
 
 export interface NewPostAxiosInterface {
-    input_postText: string,
-    input_postPhoto: [],
-
-    addOnePost(onePost: Post | null): void
-    setInputPostText(input_postText: string): void
-    setButtonCreatPostPressed(flag: boolean): void
+    input_postText: string
 }
 
 export interface EditPostAxiosInterface {
     postId: string,
     input_postText: string,
-    input_postPhoto: SetPhotoInterface[],
-    setButtonCreatPostPressed(flag: boolean): void
-    setOnePost(onePost: Post): void
+    input_postPhoto: SetPhotoInterface[]
 }
 
 export interface DeletePostAxiosInterface {
-    postId: string,
-    deleteOnePost(postId: string): void
+    postId: string
 }
 
 export interface LikePostAxiosInterface {

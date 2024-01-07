@@ -2,16 +2,15 @@ import {
     PropsChangeEmail, StateChangeEmail
 } from "../../../../../../../../redux/interfaces/settings/settings_for_components/email/SettingDefoltSeeEmail";
 import React, {Component} from "react";
-import {AuthDataAxios} from "../../../../../../../axios/auth/AuthAxios";
+import {Auth} from "../../../../../../../../axios/auth/AuthAxios";
 import DefaultSeeEmailComponent from "./DefaultSeeEmailComponent";
 
 class DefaultSeeEmailClass extends Component<PropsChangeEmail, StateChangeEmail>{
 
     componentDidMount() {
-        let auth = AuthDataAxios({
+        Auth.AuthDataAxios({
             id: localStorage.getItem('id') as string
-        })
-        auth.then(response => {
+        }).then(response => {
             switch (response[0]) {
                 case 200 : {
                     this.props.setEmail(response[1].email)

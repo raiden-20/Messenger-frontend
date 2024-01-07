@@ -4,7 +4,7 @@ import {
     PropsSuccessfulActivationComponent
 } from "../../../../redux/interfaces/auth/authSuccessfulActivation";
 import {useNavigate} from "react-router-dom";
-import {AUTHORIZATION} from "../../../paths/authPath";
+import {AUTHORIZATION} from "../../../../paths/authPath";
 
 const SuccessfulSentMessageComponent = (props: PropsSuccessfulActivationComponent) => {
     const navigate = useNavigate()

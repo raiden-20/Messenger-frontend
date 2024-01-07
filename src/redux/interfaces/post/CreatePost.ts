@@ -1,5 +1,5 @@
 import {Post} from "../profile/post/post";
-import {SetPhotoInterface} from "../../../components/axios/photo/photoInterface";
+import {SetPhotoInterface} from "../../../axios/photo/photoInterface";
 
 export interface PropsCreatePost {
     input_postPhoto: [],
@@ -21,9 +21,10 @@ export interface PostPhotoFile {
 
 export interface StateCreatingPost {
     post: {
-        input_postPhoto: [],
+        input_postPhoto: SetPhotoInterface[],
         input_postPhotoUrl: [],
-        input_postText: ''
+        input_postText: '',
+        message: string
     }
 }
 
@@ -55,29 +56,26 @@ export interface PropsCreatePostButton {
 
 }
 export interface PropsCreatePostButtonClass {
-    input_postPhoto: [],
+    input_postPhoto: SetPhotoInterface[],
     input_postPhotoUrl: [],
     input_postText: '',
+    message: string
 
     setInputPostPhoto(input_postPhoto: File, flag: boolean): void
-
     setInputPostText(input_postText: string): void
-
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
-
     setInputPostPhotoDelete(index: number): void
-
     setInputPostAllPhotoDelete(): void
-
     setButtonCreatPostPressed(flag: boolean): void
-
     setPosts(posts: []): void
     addOnePost(onePost: Post): void
+    setMessage(message: string): void
 }
 export interface PropsCreatePostButtonComponent {
     input_postPhoto: SetPhotoInterface[],
     input_postPhotoUrl: [],
     input_postText: '',
+    message: string
 
     setInputPostPhoto(input_postPhoto: File, flag: boolean): void
     setInputPostText(input_postText: string): void
@@ -86,4 +84,5 @@ export interface PropsCreatePostButtonComponent {
     setInputPostAllPhotoDelete(): void
     setButtonCreatPostPressed(flag: boolean): void
     setNewPost(): boolean
+    setMessage(message: string): void
 }

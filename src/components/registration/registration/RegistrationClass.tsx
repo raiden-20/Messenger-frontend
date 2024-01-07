@@ -1,55 +1,61 @@
 import React, {Component} from "react";
 import {PropsAuthRegReg, StateAuthRegReg} from "../../../redux/interfaces/auth/authRegistration";
 import RegistrationComponent from "./RegistrationComponent";
-import {RegistrationAxios} from "../../axios/auth/AuthAxios";
+import {Auth} from "../../../axios/auth/AuthAxios";
+import {Profile} from "../../../axios/profile/ProfileAxios";
 
-class RegistrationClass extends Component<PropsAuthRegReg, StateAuthRegReg>{
-    authentication = () => { // todo убрать кучу if
-        if (this.props.input_name !== '') {
-            if (this.props.input_email !== '' && this.props.input_nickname !== '' &&
-                this.props.input_password !== '' && this.props.input_confirmPassword !== '') {
-                if (this.props.input_password.length >= 8) {
-                    if (this.props.input_email.split('').includes('@')) {
-                        if (this.props.input_password === this.props.input_confirmPassword) {
-                            RegistrationAxios({
-                                input_email : this.props.input_email,
-                                input_nickname: this.props.input_nickname,
-                                input_password: this.props.input_password,
-                                input_confirmPassword: this.props.input_confirmPassword,
+class RegistrationClass extends Component<PropsAuthRegReg, StateAuthRegReg> {
+    authentication = () => {
+        let flag = false
+        Auth.RegistrationAxios({
+            input_email: this.props.input_email,
+            input_nickname: this.props.input_nickname,
+            input_password: this.props.input_password,
+            input_confirmPassword: this.props.input_confirmPassword
+        }).then(response => {
+            switch (response[0]) {
+                case 201 : {
+                    if (response[1] !== null) {
+                        localStorage.setItem('id', response[1])
 
-                                input_name: this.props.input_name,
-                                input_birthDate: this.props.input_birthDate,
-
-                                setShowMessage: this.props.setShowMessage,
-                                setCode: this.props.setCode,
-                                setMessage: this.props.setMessage,
-                            })
-                            this.clearInputData()
-                            if (localStorage.getItem('id') !== null) {
-                                return true
-                            }
-                        } else {
-                            this.props.setShowMessage(true)
-                            this.props.setMessage('Пароли не совпадают')
-                            this.props.setCode(400)
-                        }
-                    } else {
-                        this.props.setShowMessage(true)
-                        this.props.setMessage('Неверный ввод email')
-                        this.props.setCode(400)
+                        flag = true
                     }
-                } else {
-                    this.props.setShowMessage(true)
-                    this.props.setMessage('Пароль должен содержать 8 и более символов')
-                    this.props.setCode(400)
+                    break
                 }
+                case 400 : {
+                    if (response[1] === "Password mismatch") {
+                        this.props.setMessage('Пароли не соответствуют')
+                    }
+                    break
+                }
+                case 409 : {
+                    if (response[1] === "This email is already in use") {
+                        this.props.setMessage('Данный email уже используется')
+                    } else if (response[1] === 'This nickname is already in use') {
+                        this.props.setMessage('Имя пользователя уже занято')
+                    }
+                    break
+                }
+                default:
             }
-        } else {
-            this.props.setShowMessage(true)
-            this.props.setMessage('Введите имя')
-            this.props.setCode(400)
+        })
+        if (flag) {
+            Profile.RegistrationSocialAxios({
+                input_name: this.props.input_name,
+                input_birthDate: this.props.input_birthDate
+            }).then(response => {
+                switch (response) {
+                    case 200: {
+                        break
+                    }
+                    case 400: {
+                        this.props.setMessage('Ошибка регистрации (пользователя не существует)')
+                    }
+                }
+            })
         }
-        return false
+        this.clearInputData()
+        return localStorage.getItem('id') !== null;
     }
 
     clearInputData = () => {

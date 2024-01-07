@@ -1,14 +1,23 @@
 import {Component} from "react";
 import {PropsPost, StatePostsClass} from "../../../../../../redux/interfaces/profile/post/post";
 import PostComponent from "./PostComponent";
-import {GetPostsAxios} from "../../../../../axios/post/PostAxios";
+import {Blog} from "../../../../../../axios/post/PostAxios";
 
 class PostClass extends Component<PropsPost, StatePostsClass> {
 
 
     componentDidMount() {
-        GetPostsAxios({
-            setPosts: this.props.setPosts
+        Blog.GetPostsAxios().then(response => {
+            switch (response[0]) {
+                case 200: {
+                    this.props.setPosts(response[1])
+                    break
+                }
+                case 400: {
+                    // todo user doesn't exist
+                    break
+                }
+            }
         })
     }
 

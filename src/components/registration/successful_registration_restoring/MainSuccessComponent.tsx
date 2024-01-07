@@ -6,7 +6,7 @@ import {
     PropsSuccessfulActivation,
     PropsSuccessfulEmail
 } from "../../../redux/interfaces/auth/authSuccessfulActivation";
-import {SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL, SUCCESSFUL_SENT_MESSSAGE} from "../../paths/authPath";
+import {SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL, SUCCESSFUL_SENT_MESSSAGE} from "../../../paths/authPath";
 import SuccessfulSentMessageComponent from "./components/SuccessfulSentMessageComponent";
 
 const MainSuccessComponent = (props : PropsSuccessfulEmail & PropsSuccessfulActivation) => {

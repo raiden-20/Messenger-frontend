@@ -4,9 +4,9 @@ import {
     PropsOneUserDataClass,
     StateOneUserDataClass
 } from "../../../../../../../redux/interfaces/profile/photo/postInPhoto";
-import {DeleteCommentAxios, LikeCommentAxios} from "../../../../../../axios/post/PostAxios";
-import {AuthDataAxios} from "../../../../../../axios/auth/AuthAxios";
-import {ProfileGetDataAxios} from "../../../../../../axios/profile/ProfileAxios";
+import {Blog} from "../../../../../../../axios/post/PostAxios";
+import {Auth} from "../../../../../../../axios/auth/AuthAxios";
+import {Profile} from "../../../../../../../axios/profile/ProfileAxios";
 
 class OneUserDataClass extends Component<PropsOneUserDataClass, StateOneUserDataClass> {
     name = ''
@@ -17,14 +17,23 @@ class OneUserDataClass extends Component<PropsOneUserDataClass, StateOneUserData
         if (this.props.commentId === '') {
             this.props.likePost()
         } else {
-            let a = LikeCommentAxios({
+            Blog.LikeCommentAxios({
                 commentId: this.props.commentId
-            })
-            a.then(response => {
-                switch (response) {
-                    case 200:
+            }).then(response => {
+                switch (response[0]) {
+                    case 200: {
                         this.props.setOneLikeCommentPost(this.props.commentId, this.props.isLiked ? (Number.parseInt(this.props.likeCount) - 1).toString() :
                             (Number.parseInt(this.props.likeCount) + 1).toString())
+                        break
+                    }
+                    case 401 : {
+                        //bad token
+                        break
+                    }
+                    case 400 : {
+                        // post doesn't exist
+                        break
+                    }
                 }
             })
         }
@@ -32,24 +41,31 @@ class OneUserDataClass extends Component<PropsOneUserDataClass, StateOneUserData
     }
 
     deleteComment = () => {
-        let a = DeleteCommentAxios({
+        Blog.DeleteCommentAxios({
             commentId: this.props.commentId
-        })
-        a.then(response => {
-            switch (response) {
+        }).then(response => {
+            switch (response[0]) {
                 case 200 : {
                     this.props.deleteOneComment(this.props.commentId)
                     this.props.setOneCommentCountPost(this.props.postId, (Number.parseInt(this.props.commentsCount) - 1).toString())
+                    break
+                }
+                case 401 : {
+                    //bad token
+                    break
+                }
+                case 400 : {
+                    // post doesn't exist
+                    break
                 }
             }
         })
     }
 
     componentDidMount() {
-        let authDataPromise = AuthDataAxios({
+        Auth.AuthDataAxios({
             id: this.props.userId as string
-        })
-        authDataPromise.then(response => {
+        }).then(response => {
             switch (response[0]) {
                 case 200 : {
                     this.nickname = response[1].nickname
@@ -58,15 +74,23 @@ class OneUserDataClass extends Component<PropsOneUserDataClass, StateOneUserData
 
         })
 
-        let dataPromise = ProfileGetDataAxios({
+        Profile.ProfileGetDataAxios({
             id: this.props.userId as string
-        })
-        dataPromise.then(response => {
+        }).then(response => {
             switch (response[0]) {
                 case 200 : {
                     this.name = response[1].name
                     this.avatarUrl = response[1].avatarUrl
                     this.props.setOneCommentUserData(this.props.commentId, this.name, this.nickname, this.avatarUrl)
+                    break
+                }
+                case 400: {
+                    // user doesn't exist
+                    break
+                }
+                case 401: {
+                    // bad token
+                    break
                 }
             }
         })

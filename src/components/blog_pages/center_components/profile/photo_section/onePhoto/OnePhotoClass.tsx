@@ -1,17 +1,16 @@
 import {Component} from "react";
 import {PropsOnePhotoClass, StateOnePhotoClass} from "../../../../../../redux/interfaces/profile/photo/postInPhoto";
 import OnePhotoComponent from "./OnePhotoComponent";
-import {GetCommentsAxios, GetPostDataAxios, LikePostAxios, SetCommentAxios} from "../../../../../axios/post/PostAxios";
+import {Blog} from "../../../../../../axios/post/PostAxios";
 import {Comment} from "../../../../../../redux/interfaces/profile/post/comments";
 
 class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
 
     componentDidMount() {
 
-        let postData = GetPostDataAxios({
+        Blog.GetPostDataAxios({
             postId: this.props.postId
-        })
-        postData.then(response => {
+        }).then(response => {
             switch (response[0]) {
                 case 200: {
                     let post = {
@@ -25,18 +24,34 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
                     }
                     this.props.setPosts([])
                     this.props.addOnePost(post)
+                    break
+                }
+                case 401 : {
+                    //bad token
+                    break
+                }
+                case 400 : {
+                    // post doesn't exist
                 }
             }
         })
 
-        let a = GetCommentsAxios({
+        Blog.GetCommentsAxios({
             postId: this.props.postId,
-        })
-        a.then(response => {
+        }).then(response => {
             switch (response[0]) {
                 case 200 : {
                     this.props.setUserComments(response[1])
                     console.log(response[1])
+                    break
+                }
+                case 401 : {
+                    //bad token
+                    break
+                }
+                case 400 : {
+                    // post doesn't exist
+                    break
                 }
             }
         })
@@ -44,12 +59,11 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
 
     setComment = () => {
         if (this.props.input_comment !== '') {
-            let a = SetCommentAxios({
+            Blog.SetCommentAxios({
                 postId: this.props.postId,
                 input_comment: this.props.input_comment,
                 addOneComment: this.props.addOneComment
-            })
-            a.then(response => {
+            }).then(response => {
                 switch (response[0]) {
                     case 200 : {
                         const now = new Date();
@@ -70,20 +84,37 @@ class OnePhotoClass extends Component<PropsOnePhotoClass, StateOnePhotoClass> {
                         this.props.addOneComment(oneComment)
                         this.props.setOneCommentCountPost(this.props.postId, (Number.parseInt(this.props.post.commentCount) + 1).toString())
                         this.props.setInputPostComment('')
+                        break
+                    }
+                    case 401 : {
+                        //bad token
+                        break
+                    }
+                    case 400 : {
+                        // post doesn't exist
+                        break
                     }
                 }
             })
         }
     }
     likePost = () => {
-        let ax = LikePostAxios({
+        Blog.LikePostAxios({
             postId: this.props.postId
-        })
-        ax.then(response => {
-            switch (response) {
+        }).then(response => {
+            switch (response[0]) {
                 case 200: {
                     this.props.setOneLikeCountPost(this.props.postId, this.props.post.isLiked ? (Number.parseInt(this.props.post.likeCount) - 1).toString() :
                         (Number.parseInt(this.props.post.likeCount) + 1).toString())
+                    break
+                }
+                case 401: {
+                    // bad token
+                    break
+                }
+                case 400: {
+                    // todo post doesn't exist
+                    break
                 }
             }
         })

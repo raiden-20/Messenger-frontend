@@ -3,7 +3,7 @@ import photo_css from './PhotoProfile.module.css'
 import goBack from '../../../../../assets/images/photo/goBack.svg'
 import noPhoto from '../../../../../assets/images/photo/no_photo.svg'
 import {useNavigate} from "react-router-dom";
-import {PROFILE_OTHER_USER} from "../../../../paths/profilePath";
+import {PROFILE_OTHER_USER} from "../../../../../paths/profilePath";
 import OnePhotoContainer from "./onePhoto/OnePhotoContainer";
 
 const PhotoProfileComponent = (props: PropsPhotoProfileComponent) => {

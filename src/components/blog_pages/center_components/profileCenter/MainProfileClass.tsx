@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import {PropsUserProfile, StateUserProfile} from "../../../../redux/interfaces/profile/profileBase";
 import MainProfileComponent from "./MainProfileComponent";
-import {AuthDataAxios} from "../../../axios/auth/AuthAxios";
-import {ProfileGetDataAxios} from "../../../axios/profile/ProfileAxios";
+import {Auth} from "../../../../axios/auth/AuthAxios";
+import {Profile} from "../../../../axios/profile/ProfileAxios";
 
 class MainProfileClass extends Component<PropsUserProfile, StateUserProfile> {
 
     componentDidMount() {
-        let authDataPromise = AuthDataAxios({
+        Auth.AuthDataAxios({
             id: localStorage.getItem('idUser') as string
-        })
-        authDataPromise.then(response => {
+        }).then(response => {
             switch (response[0]) {
                 case 200 : {
                     this.props.setNickname(response[1].nickname)
@@ -19,10 +18,9 @@ class MainProfileClass extends Component<PropsUserProfile, StateUserProfile> {
             }
         })
 
-        let dataPromise = ProfileGetDataAxios({
+        Profile.ProfileGetDataAxios({
             id: localStorage.getItem('idUser') as string
-        })
-        dataPromise.then(responseSocial => {
+        }).then(responseSocial => {
             switch (responseSocial[0]) {
                 case 200 : {
                     this.props.setUserData(responseSocial[1].name, responseSocial[1].birthDate,
@@ -30,8 +28,13 @@ class MainProfileClass extends Component<PropsUserProfile, StateUserProfile> {
                         responseSocial[1].coverUrl, responseSocial[1].status)
                     break
                 }
+                case 400: {
+                    // user doesn't exist
+                    break
+                }
                 case 401: {
-
+                    // bad token
+                    break
                 }
             }
         })

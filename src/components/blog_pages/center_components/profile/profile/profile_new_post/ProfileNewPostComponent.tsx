@@ -7,10 +7,12 @@ import React from "react";
 import {
     PropsCreatePostButtonComponent
 } from "../../../../../../redux/interfaces/post/CreatePost";
+import ErrorComponent from "../../../settings/components/error/ErrorComponent";
 
 const ProfileNewPostComponent = (props: PropsCreatePostButtonComponent) => {
 
     const setFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+        props.setMessage('')
         if (props.input_postPhotoUrl.length < 6) {
             if (event.target.files !== null) {
                 const file = event.target.files[0];
@@ -25,11 +27,11 @@ const ProfileNewPostComponent = (props: PropsCreatePostButtonComponent) => {
                     reader.readAsDataURL(file);
                     props.setInputPostPhoto(event.target.files[0], false)
                 } else {
-                    //todo вывод ошибки
+                    props.setMessage('Большой размер файла')
                 }
             }
         } else {
-            // todo error
+            props.setMessage('Достигнут лимит фото')
         }
 
     }
@@ -48,6 +50,7 @@ const ProfileNewPostComponent = (props: PropsCreatePostButtonComponent) => {
         props.setInputPostAllPhotoDelete()
         props.setInputPostText('')
         props.setButtonCreatPostPressed(false)
+        props.setMessage('')
     }
     const setNewPost = () => {
         if (props.setNewPost()) {
@@ -88,6 +91,9 @@ const ProfileNewPostComponent = (props: PropsCreatePostButtonComponent) => {
                             </section>
                         </footer>
                     </section>
+                    {props.message !== '' ?
+                        <ErrorComponent message={props.message}/> : null
+                    }
                 </section>
             </section>
         </div>
