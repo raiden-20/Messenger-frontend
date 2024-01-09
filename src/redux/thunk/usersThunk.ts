@@ -140,7 +140,6 @@ export const GetUserFromListAuthData = (id: string) => {
         Auth.AuthDataAxios({
             id: id
         }).then(response => {
-            debugger
             switch (response[0]) {
                 case 200 : {
                     dispatch(setUserNickname(id, response[1].nickname))

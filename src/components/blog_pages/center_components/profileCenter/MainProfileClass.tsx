@@ -7,6 +7,8 @@ class MainProfileClass extends Component<PropsUserProfile, StateUserProfile> {
     componentDidMount() {
         this.props.AuthGetData(localStorage.getItem('idUser') as string)
         this.props.ProfileData(localStorage.getItem('idUser') as string)
+        this.props.MyProfileData()
+        this.props.AuthGetMyData()
     }
 
     render() {

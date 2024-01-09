@@ -6,6 +6,8 @@ import {
     PropsAuthAuthComponent
 } from "../../../redux/interfaces/auth/authAuthorize";
 import ErrorRegistrationComponent from "../registration/options/error_registration/ErrorRegistrationComponent";
+import {PROFILE_USER} from "../../../paths/profilePath";
+import {AUTHORIZATION, REGISTRATION_RESTORE_ACCOUNT} from "../../../paths/authPath";
 const RegistrationOrAuthorisationComponent = (props: PropsAuthAuthComponent) => {
 
     const setInputEmailOrNickname = (event: React.ChangeEvent<HTMLInputElement>) => {

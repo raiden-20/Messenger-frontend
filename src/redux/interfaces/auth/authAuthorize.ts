@@ -47,6 +47,7 @@ export interface PropsAuthAuthComponent{
     input_emailOrNickname: string
     message: string
     buttonShowMessage: boolean;
+    code: number
 
     setInputEmail(input_email: string | null): void;
     setInputPassword(input_password: string | null): void;

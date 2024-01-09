@@ -3,6 +3,7 @@ const SET_USER_DATA = 'SET_USER_DATA'
 const SET_EMAIL_DATA = 'SET_EMAIL_DATA'
 const SET_NEW_EMAIL = 'SET_NEW_EMAIL'
 const SET_NICKNAME_DATA = 'SET_NICKNAME_DATA'
+const SET_MY_NICKNAME_DATA = 'SET_MY_NICKNAME_DATA'
 const SET_PASSWORD_DATA = 'SET_PASSWORD_DATA'
 
 
@@ -21,6 +22,7 @@ const initialState = {
     email: "",
     newEmail: "",
     nickname: "",
+    myNickname: '',
     password: 0,
 
     input_email: "",
@@ -60,6 +62,11 @@ const authReducer = (state = initialState, action : any) => {
 
         case SET_NICKNAME_DATA : {
             stateCopy.nickname = action.nickname
+
+            return stateCopy
+        }
+        case SET_MY_NICKNAME_DATA : {
+            stateCopy.myNickname = action.myNickname
 
             return stateCopy
         }
@@ -150,6 +157,11 @@ export const setNewEmail = (newEmail : string) => {
 export const setNickname = (nickname : string) => {
     return {
         type: SET_NICKNAME_DATA, nickname
+    }
+}
+export const setMyNickname = (myNickname : string) => {
+    return {
+        type: SET_MY_NICKNAME_DATA, myNickname
     }
 }
 export const setPassword = (password : string) => {

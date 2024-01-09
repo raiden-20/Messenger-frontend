@@ -1,6 +1,14 @@
 import {Dispatch} from "redux";
 import {Auth} from "../../axios/auth/AuthAxios";
-import {setCode, setEmail, setMessage, setNewEmail, setNickname, setShowMessage} from "../reducers/authReducer";
+import {
+    setCode,
+    setEmail,
+    setMessage,
+    setMyNickname,
+    setNewEmail,
+    setNickname,
+    setShowMessage
+} from "../reducers/authReducer";
 import {Profile} from "../../axios/profile/ProfileAxios";
 import {
     setButtonChangePasswordFirstStepPressed,
@@ -189,6 +197,19 @@ export const AuthGetData = (id: string) => {
                 case 200 : {
                     dispatch(setNickname(response[1].nickname))
                     dispatch(setEmail(response[1].email))
+                }
+            }
+        })
+    }
+}
+export const AuthGetMyData = () => {
+    return (dispatch: Dispatch) => {
+        Auth.AuthDataAxios({
+            id: localStorage.getItem('id') as string
+        }).then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    dispatch(setMyNickname(response[1].nickname))
                 }
             }
         })

@@ -25,7 +25,7 @@ const OneUserCommentComponent = (props: PropsOneUserComponent) => {
                         <section className={onePhoto_css.nickname}>@{props.nickname}</section>
                     </section>
                     {props.commentId !== '' && props.userId === localStorage.getItem('id') ?
-                        <section onMouseLeave={() => setMouseEnter(false)}>
+                        <section onMouseLeave={() => setMouseEnter(false)} >
                             <button className={post_css.button + ' ' + post_css.setting_post}
                                     onMouseEnter={() => setMouseEnter(true)}>
                                 <img src={settings_post} alt={'settings post'} className={onePhoto_css.settingComment}/>

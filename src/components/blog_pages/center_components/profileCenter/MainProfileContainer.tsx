@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
 import {StateUserProfile} from "../../../../redux/interfaces/profile/profileBase";
 import MainProfileClass from "./MainProfileClass";
-import {AuthGetData} from "../../../../redux/thunk/authThunk";
-import {ProfileData} from "../../../../redux/thunk/profileThunk";
+import {AuthGetData, AuthGetMyData} from "../../../../redux/thunk/authThunk";
+import {MyProfileData, ProfileData} from "../../../../redux/thunk/profileThunk";
 
 const mapStateToProps = (state: StateUserProfile) => {
     return {
@@ -19,7 +19,9 @@ const mapStateToProps = (state: StateUserProfile) => {
 
 const mapDispatchToProps = {
     AuthGetData,
-    ProfileData
+    ProfileData,
+    MyProfileData,
+    AuthGetMyData
 }
 
 const MainProfileContainer = connect(mapStateToProps, mapDispatchToProps)(MainProfileClass)

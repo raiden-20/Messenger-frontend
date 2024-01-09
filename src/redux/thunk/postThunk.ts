@@ -2,7 +2,7 @@ import {Dispatch} from "redux";
 import {Blog} from "../../axios/post/PostAxios";
 import {
     addOneComment,
-    addOnePost, deleteOneComment, deleteOnePost, setButtonEditPostClick,
+    addOnePost, deleteOneComment, deleteOnePost, setButtonCreatePostClick, setButtonEditPostClick,
     setComments, setInputPostAllPhotoDelete,
     setInputPostComment, setInputPostText, setMessage,
     setOneCommentCountPost, setOneCommentUserData, setOneLikeCommentPost, setOneLikeCountPost, setOnePost,
@@ -166,7 +166,7 @@ export const EditPost = (postId: string, input_postText: string, input_postPhoto
 
                     dispatch(setInputPostAllPhotoDelete())
                     dispatch(setInputPostText(''))
-                    dispatch(setButtonEditPostClick(false))
+                    dispatch(setButtonEditPostClick(postId, false))
                     dispatch(setMessage(''))
 
                     break
@@ -233,12 +233,12 @@ export const CreatePost = (input_postText: string, input_postPhoto: SetPhotoInte
                                         isLiked: response[1].isLiked
                                     }
                                     dispatch(addOnePost(onePost))
-                                    dispatch(setButtonEditPostClick(false))
+                                    dispatch(setButtonCreatePostClick(false))
 
                                 }
                             }
                         })
-                    }, 3000);
+                    }, 4000);
                     break
                 }
                 case 400: {
@@ -295,7 +295,7 @@ export const SetComment = (postId: string, input_comment: string,
 
                     let oneComment: Comment = {
                         commentId: response[1],
-                        userId: localStorage.getItem('idUser'),
+                        userId: localStorage.getItem('id'),
                         text: input_comment,
                         time: dateString,
                         likeCount: '0',
@@ -329,6 +329,7 @@ export const LikePost = (postId: string, isLiked: boolean, likeCount: string) =>
         }).then(response => {
             switch (response[0]) {
                 case 200: {
+
                     dispatch(setOneLikeCountPost(postId, isLiked ? (Number.parseInt(likeCount) - 1).toString() :
                         (Number.parseInt(likeCount) + 1).toString()))
                     break
@@ -378,7 +379,7 @@ export const DeletePost = (postId: string) => {
             switch (response[0]) {
                 case 200: {
                     dispatch(deleteOnePost(postId))
-                    dispatch(setButtonEditPostClick(false))
+                    //dispatch(setButtonEditPostClick(false)) todo
                     break
                 }
                 case 400: {

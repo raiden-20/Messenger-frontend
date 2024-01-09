@@ -4,9 +4,18 @@ import {PropsOnePostClass, StateOnePostClass} from "../../../../../../redux/inte
 import {PostPhoto} from "../../../../../../redux/interfaces/post/CreatePost";
 
 class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
+    buttonEditPostOne = false
+
 
     componentDidMount() {
+        this.props.GetPosts()
+
         this.props.GetCommentsToPost(this.props.post.postId)
+        for (let i = 0; i < this.props.buttonEditPost.length; i++) {
+            if (this.props.buttonEditPost[i].postId === this.props.post.postId) {
+                this.buttonEditPostOne = this.props.buttonEditPost[i].flag
+            }
+        }
     }
 
     like = () => {
@@ -23,6 +32,12 @@ class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
                 })
         ))
         this.props.setInputPostText(this.props.post.text)
+        this.props.setButtonEditPostClick(this.props.post.postId, true)
+        this.setButtonChange(true)
+    }
+
+    setButtonChange = (flag: boolean) => {
+        this.buttonEditPostOne = flag
     }
 
     deletePost = () =>{
@@ -44,10 +59,10 @@ class OnePostClass extends Component<PropsOnePostClass, StateOnePostClass> {
                                  comments={this.props.comments}
                                  deletePost={this.deletePost}
                                  editPost={this.editPost}
-                                 setButtonEditPostClick={this.props.setButtonEditPostClick}
-                                 buttonEditPost={this.props.buttonEditPost}
+                                 buttonEditPost={this.buttonEditPostOne}
                                  input_comment={this.props.input_comment}
-                                 setInputPostComment={this.props.setInputPostComment}/>
+                                 setInputPostComment={this.props.setInputPostComment}
+                                 setButtonChange={this.setButtonChange}/>
     }
 }
 

@@ -12,7 +12,10 @@ import './ProfileAsideFriends.css'
 import {PROFILE_USER_PHOTO} from "../../../../paths/photoPath";
 import {PhotoArr} from "../../../../redux/interfaces/profile/photo/photoProfile";
 import UserFriendsShortInfoContainer from "./shortProfile/UserFriendsShortInfoContainer";
-import ProfileButtonCreatingPostContainer from "../profile/profile/profile_new_post/ProfileNewPostContainer";
+import ProfileButtonCreatingPostComponent
+    from "../profile/profile/profile_button_creating_post/ProfileButtonCreatingPostComponent";
+import ProfileButtonCreatingPostContainer
+    from "../profile/profile/profile_button_creating_post/ProfileCreatingNewPostContainer";
 
 const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
 

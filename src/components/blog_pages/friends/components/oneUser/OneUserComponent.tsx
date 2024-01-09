@@ -12,10 +12,8 @@ import UsersImagesComponent from "./imagesForWhoOpened/UsersImagesComponent";
 const OneUserComponent = (props: PropsOneFriendComponent) => {
     const navigation = useNavigate()
     const toProfile = () => {
-        debugger
         localStorage.setItem('idUser', props.id)
         SET_NEW_URL_PROFILE(props.id)
-        console.log(PROFILE_OTHER_USER)
         navigation(PROFILE_OTHER_USER)
     }
 

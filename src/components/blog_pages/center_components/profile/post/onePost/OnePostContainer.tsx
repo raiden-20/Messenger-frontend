@@ -7,17 +7,26 @@ import {
     setInputPostPhotoUrl,
     setInputPostText,} from "../../../../../../redux/reducers/postReducer";
 import OnePostClass from "./OnePostClass";
-import {DeletePost, GetCommentsToPost, LikePost} from "../../../../../../redux/thunk/postThunk";
+import {
+    DeletePost,
+    GetCommentsToPost,
+    GetPosts,
+    LikePost
+} from "../../../../../../redux/thunk/postThunk";
 
 const mapStateToProps = (state : StateOnePost) => {
     return {
+        myName: state.profile.myName,
+        myNickname: state.auth.myNickname,
+        myAvatarUrl: state.profile.myAvatarUrl,
         name: state.profile.name,
         nickname: state.auth.nickname,
         avatarUrl: state.profile.avatarUrl,
         message: state.auth.message,
         comments: state.post.comments,
+        input_comment: state.post.input_comment,
         buttonEditPost: state.post.buttonEditPost,
-        input_comment: state.post.input_comment
+        posts: state.post.posts
     }
 }
 
@@ -30,8 +39,9 @@ const mapDispatchToProps = {
     setInputPostText,
     setInputPostComment,
     setButtonEditPostClick,
+    GetPosts
 }
 
-const PostContainer = connect(mapStateToProps, mapDispatchToProps)(OnePostClass)
+const OnePostContainer = connect(mapStateToProps, mapDispatchToProps)(OnePostClass)
 
-export default PostContainer
+export default OnePostContainer

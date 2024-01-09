@@ -13,20 +13,28 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
     const authorise = () => {
         if (props.input_emailOrNickname !== '' && props.input_password !== '') {
             props.Authorization(props.input_email, props.input_nickname, props.input_password)
-            switch (props.code) {
-                case 200 : {
-                    navigate(PROFILE_USER)
-                    break
-                }
-                case 400 : {
-                    navigate(AUTHORIZATION)
-                    break
-                }
-                case 403 : {
-                    navigate(REGISTRATION_RESTORE_ACCOUNT)
-                    break
-                }
+            if (localStorage.getItem('idUser') !== null) {
+                navigate(PROFILE_USER)
+            } else if (localStorage.getItem('id') !== null) {
+                navigate(REGISTRATION_RESTORE_ACCOUNT)
+            } else {
+                navigate(AUTHORIZATION)
             }
+            //
+            // switch (props.code) {
+            //     case 200 : {
+            //         navigate(PROFILE_USER)
+            //         break
+            //     }
+            //     case 400 : {
+            //         navigate(AUTHORIZATION)
+            //         break
+            //     }
+            //     case 403 : {
+            //         navigate(REGISTRATION_RESTORE_ACCOUNT)
+            //         break
+            //     }
+            // }
         }
         cleanMessageAndChangePath()
     }
@@ -47,7 +55,8 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
         navigate(REGISTRATION)
     }
 
-    return <RegistrationOrAuthorisationComponent input_email={props.input_email}
+    return (
+        <RegistrationOrAuthorisationComponent input_email={props.input_email}
                                                  input_nickname={props.input_nickname}
                                                  input_password={props.input_password}
                                                  input_emailOrNickname={props.input_emailOrNickname}
@@ -60,7 +69,9 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
                                                  toRegistration={toRegistration}
                                                  forgotPassword={forgotPassword}
                                                  buttonShowMessage={props.buttonShowMessage}
-                                                 input_passwordShow={props.input_passwordShow}/>
+                                                 input_passwordShow={props.input_passwordShow}
+                                              code={props.code}/>
+    )
 }
 
 export default RegistrationOrAuthorisationClass

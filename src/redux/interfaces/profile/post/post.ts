@@ -1,49 +1,58 @@
 import {Comment} from "./comments";
 import {PostPhoto} from "../../post/CreatePost";
-import {DeletePost, GetCommentsToPost, LikePost} from "../../../thunk/postThunk";
-import {setInputPostPhoto, setInputPostPhotoUrl} from "../../../reducers/postReducer";
+import {DeletePost, GetCommentsToPost, GetOnePostData, LikePost} from "../../../thunk/postThunk";
+import {setButtonCreatePostClick, setInputPostPhoto, setInputPostPhotoUrl} from "../../../reducers/postReducer";
 
 export interface StatePost {
     post: {
         posts: [],
-        buttonEditPost: boolean
+        buttonCreatePost: boolean
     }
 
 }
 
+export interface Edit {
+    postId: string,
+    flag: boolean
+}
+
 export interface StateOnePost {
     auth : {
+        myNickname: string,
         nickname: string
         message: string
     }
     profile : {
+        myName: string,
         name: string,
+        myAvatarUrl: string
         avatarUrl: string
     }
 
     post: {
         comments: [],
-        buttonEditPost: boolean
+        posts: [],
+        buttonEditPost: Edit[]
         input_comment: string
     }
 }
 
 export interface PropsPost {
-    buttonEditPost: boolean
+    buttonCreatePost: boolean
     posts: []
     GetPosts(): void
-    setButtonEditPostClick(flag: boolean): void
+    setButtonCreatePostClick(flag: boolean): void
 }
 
 export interface StatePostsClass {
     posts: [],
-    buttonEditPost: boolean
+    buttonCreatePost: boolean
 }
 
 export interface PropsPostComponent {
-    buttonEditPost: boolean
+    buttonCreatePost: boolean
     posts: []
-    setButtonEditPostClick(flag: boolean): void
+    setButtonCreatePostClick(flag: boolean): void
 }
 
 export interface PropsOnePostComponent {
@@ -86,11 +95,12 @@ export interface StateOnePostClass {
     post: Post
     comments: [],
     input_comment: string
-    buttonEditPost: boolean
+    buttonEditPost: Edit[]
 
     commentName : string,
     commentNickname: string,
     commentAvatarUrl: string,
+    posts: []
 }
 export interface PropsOnePostClass {
     name: string,
@@ -100,18 +110,20 @@ export interface PropsOnePostClass {
     post: Post
     comments: [],
     input_comment: string
-    buttonEditPost: boolean
+    buttonEditPost: Edit[],
+    posts: Post[]
 
     GetCommentsToPost(postId: string): void
     LikePost(postId: string, isLiked: boolean, likeCount: string): void
     DeletePost(postId: string): void
+    GetPosts(): void
 
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostPhoto(input_postPhoto: File, flag: boolean): void
 
     setInputPostText(input_postText: string): void
     setInputPostComment(input_comment: string): void
-    setButtonEditPostClick(flag: boolean): void
+    setButtonEditPostClick(postId: string, flag: boolean): void
 }
 
 
@@ -144,12 +156,11 @@ export interface OnePost {
     buttonEditPost: boolean
 
     setInputPostComment(input_comment: string): void
+    setButtonChange(flag: boolean): void
 
     like(): void
     deletePost(): void
     editPost(): void
-
-    setButtonEditPostClick(flag: boolean): void
 }
 
 export interface Post {

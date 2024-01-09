@@ -1,6 +1,5 @@
 import {Comment} from "../interfaces/profile/post/comments";
 import {Post} from "../interfaces/profile/post/post";
-import {SetPhotoInterface} from "../../axios/photo/photoInterface";
 
 const SET_POSTS = 'SET_POSTS'
 const SET_COMMENTS = 'SET_COMMENTS'
@@ -26,6 +25,7 @@ const SET_POST_INPUT_COMMENT = 'SET_POST_INPUT_COMMENT'
 const SET_POST_INPUT_TEXT = 'SET_POST_INPUT_TEXT'
 
 const SET_BUTTON_EDIT_POST = 'SET_BUTTON_EDIT_POST'
+const SET_BUTTON_CREATE_POST = 'SET_BUTTON_CREATE_POST'
 const SET_MESSAGE = 'SET_MESSAGE'
 
 const initialState = {
@@ -45,7 +45,8 @@ const initialState = {
     input_postText: '',
     input_comment: '',
 
-    buttonEditPost: false,
+    buttonEditPost: [],
+    buttonCreatePost: false,
     message: ''
 }
 
@@ -54,7 +55,20 @@ const postReducer = (state = initialState, action: any) => {
     switch (action.type) {
 
         case SET_POSTS : {
+            stateCopy.buttonEditPost = []
             stateCopy.posts = action.posts
+            for (let index = 0; index < stateCopy.posts.length; index++) {
+                // @ts-ignore
+                stateCopy.buttonEditPost.push({
+                    postId: stateCopy.posts[index].postId,
+                    flag: false
+                })
+
+                // if (stateCopy.posts[index].postId === action.onePost.postId) {
+                //     // @ts-ignore
+                //     stateCopy.posts[index] = action.onePost
+                // }
+            }
             return stateCopy
         }
         case SET_COMMENTS : {
@@ -160,6 +174,7 @@ const postReducer = (state = initialState, action: any) => {
                 // @ts-ignore
                 if (stateCopy.posts[index].postId === action.postId) {
                     stateCopy.posts.splice(index, 1)
+                    stateCopy.buttonEditPost.splice(index, 1)
                     break
                 }
             }
@@ -228,11 +243,21 @@ const postReducer = (state = initialState, action: any) => {
 
             return stateCopy
         }
-
-
-
         case SET_BUTTON_EDIT_POST : {
-            stateCopy.buttonEditPost = action.buttonEditPost
+            stateCopy= {...state, buttonEditPost: [...state.buttonEditPost]}
+            for (let index = 0; index < stateCopy.buttonEditPost.length; index++) {
+                // @ts-ignore
+                if (stateCopy.buttonEditPost[index].postId === action.postId) {
+                    // @ts-ignore
+                    stateCopy.buttonEditPost[index].flag = action.flag
+                    break
+                }
+            }
+
+            return stateCopy
+        }
+        case SET_BUTTON_CREATE_POST : {
+            stateCopy.buttonCreatePost = action.buttonCreatePost
 
             return stateCopy
         }
@@ -242,8 +267,6 @@ const postReducer = (state = initialState, action: any) => {
 
             return stateCopy
         }
-
-
         default : {
             return stateCopy
         }
@@ -343,9 +366,14 @@ export const setInputPostComment = (input_comment: string) => {
     }
 }
 
-export const setButtonEditPostClick = (buttonEditPost: boolean) => {
+export const setButtonEditPostClick = (postId: string, flag: boolean) => {
     return {
-        type: SET_BUTTON_EDIT_POST, buttonEditPost
+        type: SET_BUTTON_EDIT_POST, postId, flag
+    }
+}
+export const setButtonCreatePostClick = (buttonCreatePost: boolean) => {
+    return {
+        type: SET_BUTTON_CREATE_POST, buttonCreatePost
     }
 }
 

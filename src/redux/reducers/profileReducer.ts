@@ -1,4 +1,5 @@
 const SET_USER_DATA = 'SET_USER_DATA'
+const SET_MY_DATA = 'SET_MY_DATA'
 
 const SET_USER_NAME = 'SET_USER_NAME'
 const SET_USER_BIRTH_DATE = 'SET_USER_BIRTH_DATE'
@@ -22,6 +23,12 @@ const SET_INPUT_CLEAR_DATA = 'SET_INPUT_CLEAR_DATA'
 
 
 const initialState = {
+    myName: "",
+    myBirthDate: "",
+    myBio: "",
+    myAvatarUrl: "",
+    myCoverUrl: "",
+
     name: "",
     birthDate: "",
     bio: "",
@@ -52,6 +59,15 @@ const profileReducer = (state = initialState, action: any) => {
             stateCopy.avatarUrl = action.avatarUrl
             stateCopy.coverUrl = action.coverUrl
             stateCopy.status = action.status
+
+            return stateCopy
+        }
+        case SET_MY_DATA : {
+            stateCopy.myName = action.myName
+            stateCopy.myBirthDate = action.myBirthDate
+            stateCopy.myBio = action.myBio
+            stateCopy.myAvatarUrl = action.myAvatarUrl
+            stateCopy.myCoverUrl = action.myCoverUrl
 
             return stateCopy
         }
@@ -160,6 +176,15 @@ export const setUserData = (name: string,
                             status: string) => {
     return {
         type: SET_USER_DATA, name, birthDate, bio, avatarUrl, coverUrl, status
+    }
+}
+export const setMyData = (name: string,
+                            birthDate: string,
+                            bio: string,
+                            avatarUrl: string,
+                            coverUrl: string) => {
+    return {
+        type: SET_MY_DATA, name, birthDate, bio, avatarUrl, coverUrl
     }
 }
 

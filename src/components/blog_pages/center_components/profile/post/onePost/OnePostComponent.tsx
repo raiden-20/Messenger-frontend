@@ -13,14 +13,10 @@ import UserCommentsContainer from "../userComments/UserCommentsContainer";
 
 const OnePostComponent = (props: OnePost & Post) => {
     const [isMouseEnter, setMouseEnter] = useState(false)
+    const [isButtonClickToPostWithComments, setButtonClickToPostWithComments] = useState(false)
 
     const like_button = () => {
         props.like()
-    }
-
-    const edit = () => {
-        props.editPost()
-        props.setButtonEditPostClick(true)
     }
 
     return (
@@ -41,14 +37,14 @@ const OnePostComponent = (props: OnePost & Post) => {
                         </button>
                         {isMouseEnter ?
                             <section className={post_css.setting_choose} onMouseLeave={() => setMouseEnter(false)}>
-                                <button onClick={() => edit()} className={post_css.button}><strong>Изменить</strong></button>
+                                <button onClick={() => props.editPost()} className={post_css.button}><strong>Изменить</strong></button>
                                 <button onClick={() => props.deletePost()} className={post_css.button}><strong>Удалить</strong>
                                 </button>
                             </section> : null}
                     </section>
                     : null
                 }
-                {props.buttonEditPost ? <EditPostContainer postId={props.postId}/> : null}
+                {props.buttonEditPost ? <EditPostContainer postId={props.postId}  setButtonChange={props.setButtonChange}/> : null}
 
             </header>
             <section className={post_css.post}>
@@ -82,17 +78,17 @@ const OnePostComponent = (props: OnePost & Post) => {
                         {props.likeCount}
                     </section>
                     <section className={post_css.icon_count}>
-                        <button className={post_css.button} onClick={() => props.setButtonEditPostClick(true)}>
+                        <button className={post_css.button} onClick={() => setButtonClickToPostWithComments(true)}>
                             <img src={comment} className={post_css.icon} alt={'comment icon'}/>
                         </button>
-                        {props.buttonEditPost ? <UserCommentsContainer setButtonCommentClick={props.setButtonEditPostClick}
-                                                                     commentCount={props.commentCount}
-                                                                     postId={props.postId}
-                                                                     isLiked={props.isLiked}
-                                                                     likeCount={props.likeCount}
-                                                                     text={props.text}
-                                                                     time={props.time}
-                                                                     photoUrl={props.photoUrl}/> : null}
+                        {isButtonClickToPostWithComments ? <UserCommentsContainer setButtonClickToPostWithComments={setButtonClickToPostWithComments}
+                                                                                  commentCount={props.commentCount}
+                                                                                  postId={props.postId}
+                                                                                  isLiked={props.isLiked}
+                                                                                  likeCount={props.likeCount}
+                                                                                  text={props.text}
+                                                                                  time={props.time}
+                                                                                  photoUrl={props.photoUrl}/> : null}
                         {props.commentCount}
                     </section>
                 </section>

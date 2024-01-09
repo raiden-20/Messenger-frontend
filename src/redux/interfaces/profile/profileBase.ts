@@ -1,8 +1,3 @@
-import {AuthGetData} from "../../thunk/authThunk";
-import {ProfileData} from "../../thunk/profileThunk";
-import {GetPhoto, GetPhotoCount} from "../../thunk/photoThunk";
-import {ActionUser, GetFriendsCount, GetRandomFriends, GetUserFromListAuthData} from "../../thunk/usersThunk";
-
 export interface StateUserProfile {
     profile : {
         name: string;
@@ -39,6 +34,8 @@ export interface PropsUserProfile{
 
     AuthGetData(id: string): void
     ProfileData(id: string): void
+    MyProfileData(): void
+    AuthGetMyData(): void
 }
 
 export interface PropsUserProfileComponent{

@@ -11,8 +11,12 @@ class ProfileNewPostClass extends Component<PropsCreatePostButtonClass, StateCre
         this.props.CreatePost(this.props.input_postText, this.props.input_postPhoto)
     }
 
+    changePost = () => {
+        this.props.setButtonCreatePostClick(false)
+    }
+
     render() {
-        return <ProfileNewPostComponent setButtonEditPostClick={this.props.setButtonEditPostClick}
+        return <ProfileNewPostComponent changePost={this.changePost}
                                         setInputPostPhoto={this.props.setInputPostPhoto}
                                         setInputPostText={this.props.setInputPostText}
                                         input_postPhoto={this.props.input_postPhoto}

@@ -1,5 +1,6 @@
 import {PostPhoto} from "../../post/CreatePost";
 import {GetCommentsToPost, SetComment} from "../../../thunk/postThunk";
+import {setButtonEditPostClick} from "../../../reducers/postReducer";
 
 export interface Comment {
     commentId: string
@@ -35,10 +36,8 @@ export interface PropsComment {
 
 export interface PropsUserComment {
     like(): void
-    setButtonCommentClick(flag: boolean): void
+    setButtonClickToPostWithComments(flag: boolean): void
     setInputPostComment(input_comment: string): void
-    edit(): void
-    deletePost(): void
     like_button(): void
     setComment(): void
 
@@ -54,7 +53,6 @@ export interface PropsUserComment {
     name: string,
     nickname: string
     avatarUrl: string
-    buttonEditPost: boolean
     input_comment: string
 }
 
@@ -63,8 +61,10 @@ export interface StateUserCommentClass {
     name: string,
     nickname: string
     avatarUrl: string
+    myName: string,
+    myNickname: string
+    myAvatarUrl: string
     message: string
-    buttonEditPost: boolean
 
     postId: string,
     time: string,
@@ -90,7 +90,7 @@ export interface PropsUserCommentClass {
                name: string, nickname: string, avatarUrl: string,
                commentCount: string): void
 
-    setButtonCommentClick(flag: boolean): void
+    setButtonClickToPostWithComments(flag: boolean): void
     setInputPostComment(input_comment: string): void
 
     postId: string,
@@ -104,7 +104,9 @@ export interface PropsUserCommentClass {
     name: string,
     nickname: string
     avatarUrl: string
-    buttonEditPost: boolean
+    myName: string,
+    myNickname: string
+    myAvatarUrl: string
     input_comment: string
 }
 

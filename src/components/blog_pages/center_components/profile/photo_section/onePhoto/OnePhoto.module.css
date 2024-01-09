@@ -58,6 +58,7 @@
     color: #5F6E78;
 }
 .userPostData {
+    position: relative;
     min-height: 78px;
     display: grid;
     grid-template-rows: 19px auto 19px;
@@ -130,7 +131,7 @@
 
 .deleteComment {
     position: absolute;
-    left: 68%;
+    right: 10px;
     width: 100px;
     height: 40px;
     background-color: #fff;

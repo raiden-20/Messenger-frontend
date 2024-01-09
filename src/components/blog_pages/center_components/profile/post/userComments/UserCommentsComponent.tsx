@@ -1,11 +1,9 @@
 import prof_setting from "../../profile/profile_setting/ProfileSetting.module.css";
-import React, {useState} from "react";
+import React from "react";
 import {Comment, PropsUserComment} from "../../../../../../redux/interfaces/profile/post/comments";
 import post_comm_css from './UserComments.module.css'
 import post_css from "../postMain/Post.module.css";
 import default_profile_ava from "../../../../../../assets/images/default_profile_ava.svg";
-import settings_post from "../../../../../../assets/images/post/settings_post.svg";
-import EditPostContainer from "../editPost/EditPostContainer";
 import like_isLiked from "../../../../../../assets/images/post/like_isLiked.svg";
 import like_notLiked from "../../../../../../assets/images/post/like_notLiked.svg";
 import comment from "../../../../../../assets/images/post/comment.svg";
@@ -15,16 +13,16 @@ import {PostPhoto} from "../../../../../../redux/interfaces/post/CreatePost";
 import OneUserCommentContainer from "../oneUserComment/OneUserCommentContainer";
 
 const UserCommentsComponent = (props: PropsUserComment) => {
-    const [isMouseEnter, setMouseEnter] = useState(false)
 
     const setInputComment = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         props.setInputPostComment(event.target.value)
     }
 
+
     return (
         <div>
             <section className={prof_setting.location_edit_window}>
-                <section className={prof_setting.overflay} onClick={() => props.setButtonCommentClick(false)}></section>
+                <section className={prof_setting.overflay} onClick={() => props.setButtonClickToPostWithComments(false)}></section>
                 <section className={post_comm_css.root}>
                     <section className={post_comm_css.page_structure}>
                         <header>
@@ -35,21 +33,6 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                                 <div className={post_css.name}>{props.name}</div>
                                 <div className={post_css.userName}>{'@' + props.nickname}</div>
                             </section>
-                            <button className={post_css.button + ' ' + post_css.setting_post}
-                                    onMouseEnter={() => setMouseEnter(true)}>
-                                <img src={settings_post} alt={'settings post'}/>
-                            </button>
-                            {isMouseEnter ?
-                                <section className={post_css.setting_choose} onMouseLeave={() => setMouseEnter(false)}>
-                                    <button onClick={() => props.edit()} className={post_css.button}><strong>Изменить</strong></button>
-                                    <button onClick={() => props.deletePost()} className={post_css.button}><strong>Удалить</strong>
-                                    </button>
-                                </section> : null}
-                            {props.buttonEditPost ? <EditPostContainer postId={props.postId}/> : null}
-                            {
-                                localStorage.getItem('userId') === localStorage.getItem('id') ?
-                                <img src={settings_post} alt={'settings post'}/> : null
-                            }
                         </header>
                         <section className={post_comm_css.post_gap}>
                             <section className={post_css.post}>

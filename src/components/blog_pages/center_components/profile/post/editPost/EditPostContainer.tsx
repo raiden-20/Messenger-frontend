@@ -1,5 +1,4 @@
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
 import {
     setButtonEditPostClick,
     setInputPostAllPhotoDelete,
@@ -17,7 +16,7 @@ const mapStateToProps = (state: StateEditPost) => {
         input_postText : state.post.input_postText,
         input_postPhoto: state.post.input_postPhoto,
         input_postPhotoUrl: state.post.input_postPhotoUrl,
-        message: state.post.message
+        message: state.post.message,
     }
 }
 

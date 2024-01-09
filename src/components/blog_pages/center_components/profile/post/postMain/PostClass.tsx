@@ -10,9 +10,9 @@ class PostClass extends Component<PropsPost, StatePostsClass> {
     }
 
     render() {
-        return <PostComponent setButtonEditPostClick={this.props.setButtonEditPostClick}
+        return <PostComponent setButtonCreatePostClick={this.props.setButtonCreatePostClick}
                               posts={this.props.posts}
-                              buttonEditPost={this.props.buttonEditPost}/>
+                              buttonCreatePost={this.props.buttonCreatePost}/>
     }
 }
 

@@ -1,4 +1,5 @@
 import {SetPhotoInterface} from "../../../../axios/photo/photoInterface";
+import {Edit} from "./post";
 
 export interface StateButtonCreatePost{
     post : {
@@ -30,12 +31,12 @@ export interface PropsEditPost {
 
     EditPost(postId: string, input_postText: string, input_postPhoto: SetPhotoInterface[], deletePhotoPostUrl: string[]): void
 
-    setButtonEditPostClick(flag: boolean): void
     setInputPostPhoto(input_postPhoto: File, flag: boolean): void
     setInputPostText(input_postText: string): void
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
-    setButtonEditPostClick(flag: boolean): void
+    setButtonEditPostClick(postId: string, flag: boolean): void
     setInputPostPhotoDelete(index: number): void
     setInputPostAllPhotoDelete(): void
     setMessage(message: string): void
+    setButtonChange(flag: boolean): void
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import {Post, PropsPostComponent} from "../../../../../../redux/interfaces/profile/post/post";
 import post from './Post.module.css'
-import ProfileButtonCreatingPostContainer from "../../profile/profile_new_post/ProfileNewPostContainer";
 import OnePostContainer from "../onePost/OnePostContainer";
+import ProfileNewPostContainer from "../../profile/profile_new_post/ProfileNewPostContainer";
 
 const PostComponent = (props: PropsPostComponent) => {
 
@@ -21,12 +21,12 @@ const PostComponent = (props: PropsPostComponent) => {
             <div className={post.noPost}>
                 <p>
                     Пока что здесь ничего нет... Не хотите
-                    <button className={post.link} onClick={() => props.setButtonEditPostClick(true)}>
+                    <button className={post.link} onClick={() => props.setButtonCreatePostClick(true)}>
                         поделиться
                     </button>
                     чем-нибудь?
                 </p>
-                {props.buttonEditPost ? <ProfileButtonCreatingPostContainer/> : null}
+                {props.buttonCreatePost ? <ProfileNewPostContainer/> : null}
             </div>
         )
     }

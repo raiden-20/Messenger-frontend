@@ -54,8 +54,6 @@
 .comments_arr {
     height: 100%;
     overflow-y: scroll;
-    display: grid;
-    row-gap: 20px;
 }
 
 .noComm {
