@@ -13,6 +13,8 @@ export interface PropsAuthForgotPassword{
     buttonShowMessage: boolean
     code: number
 
+    ForgotPassword(input_email: string): void
+
     setInputEmail(input_email: string | null): void;
     setShowMessage(buttonShowMessage: boolean): void;
     setMessage(message: string): void;

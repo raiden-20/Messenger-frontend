@@ -5,12 +5,13 @@ export interface PropsNewPassword {
 
     message: string;
 
+    SetNewPassword(input_code: string, input_password: string): void
+
     setInputPassword(input_password : string | null) : void;
     setInputPasswordConfirm(input_passwordConfirm : string | null) : void;
     setInputCode(input_code : string | null) : void;
     setButtonChangePasswordSecondStepPressed(buttonChangePasswordSecondStep : boolean) : void;
     setMessage(message : string) : void;
-    setPassword(password : string) : void;
 }
 export interface StateNewPassword {
     input_password: string;
@@ -30,7 +31,6 @@ export interface PropsNewPasswordComponent {
     setInputCode(input_code : string | null) : void;
     setButtonChangePasswordSecondStepPressed(buttonChangePasswordSecondStep : boolean) : void;
     setMessage(message : string) : void;
-    setPassword(password : string) : void;
     saveButtonActionSecondStep(): void
 }
 

@@ -49,13 +49,11 @@ const ProfileNewPostComponent = (props: PropsCreatePostButtonComponent) => {
     const cancel = () => {
         props.setInputPostAllPhotoDelete()
         props.setInputPostText('')
-        props.setButtonCreatPostPressed(false)
+        props.setButtonEditPostClick(false)
         props.setMessage('')
     }
     const setNewPost = () => {
-        if (props.setNewPost()) {
-            cancel()
-        }
+        props.setNewPost()
     }
 
 

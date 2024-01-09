@@ -17,7 +17,6 @@ export interface NewPostAxiosInterface {
 export interface EditPostAxiosInterface {
     postId: string,
     input_postText: string,
-    input_postPhoto: SetPhotoInterface[]
 }
 
 export interface DeletePostAxiosInterface {
@@ -31,7 +30,6 @@ export interface LikePostAxiosInterface {
 export interface SetCommentAxiosInterface {
     postId: string
     input_comment: string,
-    addOneComment(oneComment: Comment): void
 }
 
 export interface GetCommentsAxiosInterface {

@@ -4,7 +4,7 @@ import {
     StateChangePassword
 } from "../../../../../../redux/interfaces/settings/SettingsChangePassword";
 import DefaultSeePassword from "./components/default_see_password/DefaultSeePassword";
-import ChangeOldPasswordForm from "./components/change_old_password/ChangeOldPasswordForm";
+import CheckOldPasswordForm from "./components/change_old_password/CheckOldPasswordForm";
 import NewPasswordForm from "./components/new_password_form/NewPasswordForm";
 
 class ChangePassword extends Component<PropsChangePassword, StateChangePassword> {
@@ -21,17 +21,17 @@ class ChangePassword extends Component<PropsChangePassword, StateChangePassword>
                                      setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}
                                      message={this.props.message}
                                      setMessage={this.props.setMessage}
-                                     setPassword={this.props.setPassword}/>
+                                     SetNewPassword={this.props.SetNewPassword}/>
                     : !this.props.buttonChangePasswordFirstStep ?
                             <DefaultSeePassword buttonChangeEmail={this.props.buttonChangeEmail}
                                                 setButtonChangePasswordFirstStepPressed={this.props.setButtonChangePasswordFirstStepPressed}/>
-                            : <ChangeOldPasswordForm input_password={this.props.input_password}
-                                                     setButtonChangePasswordFirstStepPressed={this.props.setButtonChangePasswordFirstStepPressed}
-                                                     setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}
-                                                     setInputPassword={this.props.setInputPassword}
-                                                     password={this.props.password}
-                                                     message={this.props.message}
-                                                     setMessage={this.props.setMessage}/>
+                            : <CheckOldPasswordForm input_password={this.props.input_password}
+                                                    setButtonChangePasswordFirstStepPressed={this.props.setButtonChangePasswordFirstStepPressed}
+                                                    setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}
+                                                    setInputPassword={this.props.setInputPassword}
+                                                    message={this.props.message}
+                                                    setMessage={this.props.setMessage}
+                                                    CheckOldPassword={this.props.CheckOldPassword}/>
                 }
             </div>
         )

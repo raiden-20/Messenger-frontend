@@ -8,9 +8,7 @@ const NavigationMoreSection = (props: PropsExit) => {
     const navigation = useNavigate()
 
     const enter = () => {
-        props.setToken('')
         props.setData({
-            id: '',
             email: '',
             nickname: '',
             password: ''})

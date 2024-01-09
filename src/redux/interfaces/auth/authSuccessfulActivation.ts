@@ -1,3 +1,5 @@
+import {ChangeEmailMessage} from "../../thunk/authThunk";
+
 export interface StateSuccessfulSmth {
     auth: {
         message: string
@@ -8,21 +10,31 @@ export interface StateSuccessfulSmth {
     }
 }
 
+export interface SuccessClass {
+    setMessage(message: string): void
+    AccountActivationMessage(): void
+    ChangeEmailMessage(newEmail: string): void
+
+    message: string
+    newEmail: string
+    email: string
+}
+
 export interface PropsSuccessfulEmail {
     message: string
     newEmail: string
     email: string
 
-    setMessage(message: string): void
-    setEmail(email: string): void
+    ChangeEmailMessage(newEmail: string): void
 }
 
 export interface PropsSuccessfulActivation {
     message: string
-    setMessage(message: string): void
+    AccountActivationMessage(): void
+    toAuthorize(): void
 }
 
 export interface PropsSuccessfulActivationComponent {
     message: string
-    setMessage(message: string): void
+    toAuthorize(): void
 }

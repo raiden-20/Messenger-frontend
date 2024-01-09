@@ -17,6 +17,16 @@ const RegistrationForgotPasswordComponent = (props: PropsAuthForgotPasswordCompo
         props.setInputEmail(event.target.value)
     }
 
+    const sendPassword = () => {
+        if (props.input_email !== null) {
+            if (!props.input_email.split('').includes('@')) {
+                props.setMessage('Неправильный формат email')
+            } else {
+                props.sendPassword()
+            }
+        }
+    }
+
     return (
         <div className={reg.div}>
             <section className={reg_forgot_css.functional}>
@@ -29,7 +39,7 @@ const RegistrationForgotPasswordComponent = (props: PropsAuthForgotPasswordCompo
                         <input type={'text'} className={options_reg.input} onChange={setInputEmail}
                                value={props.input_email} placeholder={'Электронный адрес'}/>
                     </section>
-                    <button type={'submit'} className={options_reg.main_page_button} onClick={props.sendPassword}>Сбросить пароль</button>
+                    <button type={'submit'} className={options_reg.main_page_button} onClick={sendPassword}>Сбросить пароль</button>
                 </section>
             </section>
             {props.buttonShowMessage ? props.code === 200 ? <SuccessfulRegistrationComponent message={props.message}/> :

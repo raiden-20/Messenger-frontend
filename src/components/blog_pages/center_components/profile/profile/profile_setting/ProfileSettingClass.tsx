@@ -49,150 +49,29 @@ class ProfileSettingClass extends Component<PropsProfileSettings, StateProfileSe
 
     setAvatarToServer = () => {
         if (this.props.deleteAvatarFlag) {
-            Photo.DeleteAvatarPhotoAxios({
-                deleteAvatarUrl: this.deleteAvatarUrl
-            }).then(response => {
-                switch (response) {
-                    case 200 : {
-                        this.props.setDeleteAvatarFlag(false)
-                        break
-                    }
-                    case 400 : {
-                        this.props.setMessage('Плохое имя файла, выберите другой')
-                        break
-                    }
-                    case 401: {
-                        // bad token
-                        break
-                    }
-                }
-            })
+            this.props.DeleteAvatar(this.deleteAvatarUrl)
         }
         if (this.props.input_avatarUrl !== undefined) {
-            Photo.SetAvatarAxios( {
-                input_avatarUrl: this.props.input_avatarUrl
-            }).then(response => {
-                switch (response[0]) {
-                    case 200 : {
-                        this.props.setAvatarUrl(response[1])
-                        break
-                    }
-                    case 400 : {
-                        if (response[1] === 'File too big') {
-                            this.props.setMessage('Файл слишком большой')
-                        } else if (response[1] === 'Bad file name') {
-                            this.props.setMessage('Плохое имя файла, выберите другой')
-                        }
-                        break
-                    }
-                    case 401: {
-                        // bad token
-                        break
-                    }
-                }
-            })
+            this.props.SetAvatar(this.props.input_avatarUrl)
         }
     }
 
     setCoverToServer = () => {
         if (this.props.deleteCoverFlag) {
-            Photo.DeleteCoverPhotoAxios({
-                deleteCoverUrl: this.deleteCoverUrl
-            }).then(response => {
-                switch (response) {
-                    case 200 : {
-                        this.props.setDeleteCoverFlag(false)
-                        break
-                    }
-                    case 400 : {
-                        this.props.setMessage('Плохое имя файла, выберите другой')
-                        break
-                    }
-                    case 401: {
-                        // bad token
-                        break
-                    }
-                }
-            })
+            this.props.DeleteCover(this.deleteCoverUrl)
         }
         if (this.props.input_coverUrl !== undefined) {
-            Photo.SetCoverAxios( {
-                input_coverUrl: this.props.input_coverUrl,
-            }).then(response => {
-                switch (response[0]) {
-                    case 200 : {
-                        this.props.setCoverUrl(response[1])
-                        break
-                    }
-                    case 400 : {
-                        if (response[1] === 'File too big') {
-                            this.props.setMessage('Файл слишком большой')
-                        } else if (response[1] === 'Bad file name') {
-                            this.props.setMessage('Плохое имя файла, выберите другой')
-                        }
-                        break
-                    }
-                    case 401: {
-                        // bad token
-                        break
-                    }
-                }
-            })
+            this.props.SetCover(this.props.input_coverUrl)
         }
     }
 
     setData = () => {
         this.setAvatarToServer()
         this.setCoverToServer()
+        this.props.ChangeNickname(this.props.input_nickname)
+        this.props.ChangeProfileData(this.props.input_name, this.props.input_birthDate, this.props.input_bio,
+            this.props.avatarUrl, this.props.coverUrl )
 
-        Auth.ChangeNicknameAxios({
-            input_nickname: this.props.input_nickname
-        }).then(response => {
-            switch (response[0]) {
-                case 200 : {
-                    this.props.setNickname(this.props.input_nickname)
-                    if (response[1].split(' ').length === 2) {
-                        localStorage.setItem('token', response[1].split(' ')[1])
-                    } else {
-                        localStorage.setItem('token', response[1])
-                    }
-                    break
-                }
-                case 400 : {
-                    // todo
-                    break
-                }
-                case 401: {
-                    // bad token
-                }
-            }
-        })
-
-        Profile.ChangeProfileDataAxios({
-            input_name: this.props.input_name,
-            input_birthDate: this.props.input_birthDate,
-            input_bio: this.props.input_bio
-        }).then(response => {
-            switch (response[0]) {
-                case 200 : {
-                    this.props.setButtonSettingPressed(false)
-
-                    this.props.setUserData(this.props.input_name,
-                        this.props.input_birthDate,
-                        this.props.input_bio,
-                        this.props.avatarUrl,
-                        this.props.coverUrl, '')
-                    break
-                }
-                case 400 : {
-                    // todo
-                    break
-                }
-                case 401: {
-                    // bad token
-                }
-            }
-        })
     }
 
     render() {

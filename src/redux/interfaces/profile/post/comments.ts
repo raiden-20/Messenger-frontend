@@ -1,4 +1,5 @@
 import {PostPhoto} from "../../post/CreatePost";
+import {GetCommentsToPost, SetComment} from "../../../thunk/postThunk";
 
 export interface Comment {
     commentId: string
@@ -33,19 +34,13 @@ export interface PropsComment {
 }
 
 export interface PropsUserComment {
+    like(): void
     setButtonCommentClick(flag: boolean): void
-    setUserComments(comments: []): void
     setInputPostComment(input_comment: string): void
     edit(): void
     deletePost(): void
     like_button(): void
     setComment(): void
-
-    deleteOneComment(commentId: string): void
-
-    setOneLikeCommentPost(commentId: string, likeComment: string): void
-    setOneCommentCountPost(postId: string, commentCount: string): void
-    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
 
 
     postId: string,
@@ -59,7 +54,6 @@ export interface PropsUserComment {
     name: string,
     nickname: string
     avatarUrl: string
-    message: string
     buttonEditPost: boolean
     input_comment: string
 }
@@ -84,20 +78,20 @@ export interface StateUserCommentClass {
 }
 
 export interface PropsUserCommentClass {
+    GetCommentsToPost(postId: string): void
+    LikePost(postId: string, isLiked: boolean, likeCount: string): void
+    DeletePost(postId: string): void
+
+    setInputPostPhotoUrl(input_postPhotoUrl: string): void
+    setInputPostPhoto(input_postPhoto: File, flag: boolean): void
+    setInputPostText(input_postText: string): void
+
+    SetComment(postId: string, input_comment: string,
+               name: string, nickname: string, avatarUrl: string,
+               commentCount: string): void
+
     setButtonCommentClick(flag: boolean): void
-    setUserComments(comments: []): void
     setInputPostComment(input_comment: string): void
-    edit(): void
-    deletePost(): void
-    like_button(): void
-
-    deleteOneComment(commentId: string): void
-    setOneComment(oneComment: Comment, commentId: string): void
-    addOneComment(oneComment: Comment): void
-
-    setOneLikeCommentPost(commentId: string, likeComment: string): void
-    setOneCommentCountPost(postId: string, commentCount: string): void
-    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
 
     postId: string,
     time: string,
@@ -110,7 +104,6 @@ export interface PropsUserCommentClass {
     name: string,
     nickname: string
     avatarUrl: string
-    message: string
     buttonEditPost: boolean
     input_comment: string
 }

@@ -2,9 +2,8 @@ import React from 'react';
 import restore_css from './RestoreAccount.module.css'
 import option_css from '../css_options/Options.module.css'
 import {NavLink, useNavigate} from "react-router-dom";
-import {PropsAuthRestoreComponent} from "../../../redux/interfaces/auth/authRestoreAccount";
 import {SUCCESSFUL_ACTIVATION} from "../../../paths/authPath";
-const RestoreAccountComponent = (props: PropsAuthRestoreComponent) => {
+const RestoreAccountComponent = () => {
     const navigate = useNavigate()
 
     return (

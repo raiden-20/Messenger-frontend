@@ -18,7 +18,6 @@ const RegistrationOrAuthorisationComponent = (props: PropsAuthAuthComponent) => 
     }
     const setInputPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         props.setInputPassword(event.target.value)
-        props.setInputPasswordShow(event.target.value.split('').map(() => '*').join(''))
     }
 
     return (
@@ -48,7 +47,7 @@ const RegistrationOrAuthorisationComponent = (props: PropsAuthAuthComponent) => 
                 </section>
             </section>
             <section className={prof.message}>
-                {props.code !== 200 && props.buttonShowMessage ? <ErrorRegistrationComponent message={props.message}/> : null}
+                {props.message !== '' && props.buttonShowMessage ? <ErrorRegistrationComponent message={props.message}/> : null}
             </section>
         </div>
 

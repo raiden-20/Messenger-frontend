@@ -22,9 +22,9 @@ const App = () => {
             <section className={app.page}>
                 <Router>
                     <Routes>
-                        <Route path={AUTHORIZATION} element={<MainRegistrationContainer/>}/>
+                        <Route path={AUTHORIZATION} element={<MainRegistrationContainer />}/>
                         <Route path={REGISTRATION} element={<MainRegistrationContainer/>}/>
-                        <Route path={REGISTRATION_FORGOT_PASSWORD} element={<MainRegistrationContainer/>}/>
+                        <Route path={REGISTRATION_FORGOT_PASSWORD} element={<MainRegistrationContainer />}/>
                         <Route path={REGISTRATION_RESTORE_ACCOUNT} element={<MainRegistrationContainer/>}/>
                         <Route path={SUCCESSFUL_ACTIVATION} element={<MainRegistrationContainer/>}/>
                         <Route path={SUCCESSFUL_CHANGE_EMAIL} element={<MainRegistrationContainer/>}/>

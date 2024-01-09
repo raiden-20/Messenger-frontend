@@ -9,11 +9,10 @@ import {PropsOneFriend2} from "../../../../redux/interfaces/friends/oneFriend";
 import default_profile_ava from '../../../../assets/images/default_profile_ava.svg'
 
 import './ProfileAsideFriends.css'
-import UserFriendsShortInfoClass from "./shortProfile/UserFriendsShortInfoClass";
 import {PROFILE_USER_PHOTO} from "../../../../paths/photoPath";
-import ProfileButtonCreatingPostComponent
-    from "../profile/profile/profile_button_creating_post/ProfileButtonCreatingPostComponent";
 import {PhotoArr} from "../../../../redux/interfaces/profile/photo/photoProfile";
+import UserFriendsShortInfoContainer from "./shortProfile/UserFriendsShortInfoContainer";
+import ProfileButtonCreatingPostContainer from "../profile/profile/profile_new_post/ProfileNewPostContainer";
 
 const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
 
@@ -46,23 +45,20 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
                                      className={'friendPhoto' + i} alt={'user_ava'} onMouseEnter={() => setMouseEnter(true)}/>
                                 {isMouseEnter ?
                                 <section className={main_aside_css.shortInfoSection + ' friendMiniProfile' + i} onMouseLeave={() => setMouseEnter(false)}>
-                                    <UserFriendsShortInfoClass id={user.id}
-                                                               name={user.name}
-                                                               bio={user.bio}
-                                                               avatarUrl={user.avatarUrl}
-                                                               status={user.status}
-                                                               setChangeUserStatus={props.setChangeUserStatus}
-                                                               nickname={user.nickname}
-                                                               setUserNickname={props.setUserNickname}
-                                                               setUserPhoto={props.setUserPhoto}
-                                                               photo={user.photo}/>
+                                    <UserFriendsShortInfoContainer id={user.id}
+                                                                   name={user.name}
+                                                                   bio={user.bio}
+                                                                   avatarUrl={user.avatarUrl}
+                                                                   status={user.status}
+                                                                   nickname={user.nickname}
+                                                                   photo={user.photo}/>
                                 </section> : null}
                             </section>)}
                     </section>
                 </section>
             </section>
             <section>
-                {localStorage.getItem('idUser') === localStorage.getItem('id') ? <ProfileButtonCreatingPostComponent/> : null}
+                {localStorage.getItem('idUser') === localStorage.getItem('id') ? <ProfileButtonCreatingPostContainer/> : null}
             </section>
         </aside>
     )

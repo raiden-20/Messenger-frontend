@@ -61,21 +61,21 @@ const MainUsersComponent = (props: PropsUsersComponent) => {
                                                                             countFriends={props.countFriends}
                                                                             actionRequest={props.actionRequest}
                                                                             whoOpened={props.whoOpened}
-                                                                            setUserNickname={props.setUserNickname}/> :
+                                                                            GetUserFromListAuthData={props.GetUserFromListAuthData}/> :
                 location.pathname === SUBSCRIPTIONS_USER ? <MainSubscriptionsComponent usersShortInfo={props.usersShortInfo}
                                                                                        countSubscriptions={props.countSubscriptions}
                                                                                        actionRequest={props.actionRequest}
                                                                                        whoOpened={props.whoOpened}
-                                                                                       setUserNickname={props.setUserNickname}/> :
+                                                                                       GetUserFromListAuthData={props.GetUserFromListAuthData}/> :
                 location.pathname === SUBSCRIBERS_USER ? <MainSubscribersComponent usersShortInfo={props.usersShortInfo}
                                                                                    countSubscribers={props.countSubscribers}
                                                                                    actionRequest={props.actionRequest}
                                                                                    whoOpened={props.whoOpened}
-                                                                                   setUserNickname={props.setUserNickname}/> :
+                                                                                   GetUserFromListAuthData={props.GetUserFromListAuthData}/> :
                     location.pathname === SEARCH ? <MainSearchComponent usersShortInfo={props.usersShortInfo}
                                                                         actionRequest={props.actionRequest}
                                                                         whoOpened={props.whoOpened}
-                                                                        setUserNickname={props.setUserNickname}/> : null}
+                                                                        GetUserFromListAuthData={props.GetUserFromListAuthData}/> : null}
             </section>
         </div>
     )

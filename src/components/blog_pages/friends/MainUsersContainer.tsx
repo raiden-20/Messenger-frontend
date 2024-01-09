@@ -1,14 +1,15 @@
 import {StateUsers} from "../../../redux/interfaces/friends/friends";
-import {Dispatch} from "redux";
-import {
-    setChangeUserStatus,
-    setUserFriendsCount,
-    setUsers, setUserNickname,
-    setUserSubscribersCount,
-    setUserSubscriptionsCount, setWhoOpened
-} from "../../../redux/reducers/usersReducer";
+import {setWhoOpened} from "../../../redux/reducers/usersReducer";
 import {connect} from "react-redux";
 import MainUsersClass from "./MainUsersClass";
+import {
+    ActionUser,
+    GetFriends,
+    GetFriendsCount, GetSearch, GetSubscribers,
+    GetSubscribersCount,
+    GetSubscriptions,
+    GetSubscriptionsCount, GetUserFromListAuthData
+} from "../../../redux/thunk/usersThunk";
 
 const mapStateToProps = (state : StateUsers) => {
     return {
@@ -20,30 +21,17 @@ const mapStateToProps = (state : StateUsers) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        setUsers(usersShortInfo: []) {
-            dispatch(setUsers(usersShortInfo))
-        },
-        setUserNickname(id: string, nickname: string) {
-            dispatch(setUserNickname(id, nickname))
-        },
-        setUserSubscriptionsCount(countSubscriptions: number) {
-            dispatch(setUserSubscriptionsCount(countSubscriptions))
-        },
-        setUserFriendsCount(countFriends: number) {
-            dispatch(setUserFriendsCount(countFriends))
-        },
-        setUserSubscribersCount(countSubscribers: number) {
-            dispatch(setUserSubscribersCount(countSubscribers))
-        },
-        setWhoOpened(whoOpened: string) {
-            dispatch(setWhoOpened(whoOpened))
-        },
-        setChangeUserStatus(id: string, status: string | null) {
-            dispatch(setChangeUserStatus(id, status))
-        }
-    }
+const mapDispatchToProps = {
+    GetFriends,
+    setWhoOpened,
+    GetFriendsCount,
+    GetSubscriptionsCount,
+    GetSubscribersCount,
+    GetSubscriptions,
+    GetSubscribers,
+    GetSearch,
+    ActionUser,
+    GetUserFromListAuthData
 }
 
 const MainUsersContainer = connect(mapStateToProps, mapDispatchToProps)(MainUsersClass)

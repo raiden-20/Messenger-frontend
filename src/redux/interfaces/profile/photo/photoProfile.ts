@@ -1,3 +1,7 @@
+import {AuthGetData} from "../../../thunk/authThunk";
+import {ProfileData} from "../../../thunk/profileThunk";
+import {GetPhoto, GetPhotoCount} from "../../../thunk/photoThunk";
+
 export interface StatePhotoProfile {
     profile: {
         name: string
@@ -22,19 +26,14 @@ export interface PropsPhotoProfile {
     photoUrl: []
     isButtonOpenPhotoPressed: boolean,
 
-    setPhotoUrl(photoUrl : []): void
-    setUserData(name: string,
-                birthDate: string,
-                bio: string,
-                avatarUrl: string,
-                coverUrl: string,
-                status: string): void
-    setCountPhoto(countPhoto : number): void
+    AuthGetData(id: string): void
+    ProfileData(id: string): void
+    GetPhoto(): void
+    GetPhotoCount(): void
+
     setButtonOpenPhoto(isButtonOpenPhotoPressed : boolean): void
     setPostUrl(postId: string): void
     setOnePhotoUrl(onePhotoUrl : string): void
-    setEmail(email : string): void
-    setNickname(nickname : string): void
 }
 export interface PropsPhotoProfileComponent {
     name: string

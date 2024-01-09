@@ -22,7 +22,7 @@ const MainSubscriptionsComponent = (props: PropsSubscriptionsComponent) => {
                                                                     changeFriendStatus={changeFriendStatus}
                                                                     whoOpened={props.whoOpened}
                                                                     status={user.status}
-                                                                    setUserNickname={props.setUserNickname}/>)}
+                                                                    GetUserFromListAuthData={props.GetUserFromListAuthData}/>)}
         </section>
     )
 }

@@ -1,9 +1,8 @@
 import {connect} from "react-redux";
 import {StateUserProfile} from "../../../../redux/interfaces/profile/profileBase";
-import {Dispatch} from "redux";
-import {setEmail, setId, setNickname} from "../../../../redux/reducers/authReducer";
-import {setUserData} from "../../../../redux/reducers/profileReducer";
 import MainProfileClass from "./MainProfileClass";
+import {AuthGetData} from "../../../../redux/thunk/authThunk";
+import {ProfileData} from "../../../../redux/thunk/profileThunk";
 
 const mapStateToProps = (state: StateUserProfile) => {
     return {
@@ -18,26 +17,9 @@ const mapStateToProps = (state: StateUserProfile) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        setId(id: string) {
-            dispatch(setId(id))
-        },
-        setUserData(name: string,
-                    birthDate: string,
-                    bio: string,
-                    avatarUrl: string,
-                    coverUrl: string,
-                    status: string) {
-            dispatch(setUserData(name, birthDate, bio, avatarUrl, coverUrl, status))
-        },
-        setNickname(nickname: string) {
-            dispatch(setNickname(nickname))
-        },
-        setEmail(email: string) {
-            dispatch(setEmail(email))
-        },
-    }
+const mapDispatchToProps = {
+    AuthGetData,
+    ProfileData
 }
 
 const MainProfileContainer = connect(mapStateToProps, mapDispatchToProps)(MainProfileClass)

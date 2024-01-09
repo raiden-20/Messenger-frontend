@@ -8,11 +8,10 @@ import OnePhotoContainer from "./onePhoto/OnePhotoContainer";
 
 const PhotoProfileComponent = (props: PropsPhotoProfileComponent) => {
     const navigation = useNavigate()
-
     const openPhoto = (postId: string, url: string) => {
         props.setOnePhotoUrl(url)
         props.setButtonOpenPhoto(true)
-        props.setPostUrl(postId)
+        props.setPostUrl(postId) // todo какое нахуй postUrl
     }
 
     return (

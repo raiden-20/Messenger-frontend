@@ -1,3 +1,7 @@
+import {DeleteAvatar, DeleteCover, SetAvatar, SetCover} from "../../../thunk/photoThunk";
+import {ChangeNickname} from "../../../thunk/authThunk";
+import {ChangeProfileData} from "../../../thunk/profileThunk";
+
 export interface StateButtonPressed {
     profile: {
         isButtonSettingPressed: boolean
@@ -75,12 +79,14 @@ export interface PropsProfileSettings {
     deleteAvatarFlag: boolean,
     deleteCoverFlag: boolean,
 
-    setName(name: string): void
-    setAvatarUrl(avatarUrl : string): void
-    setCoverUrl(coverUrl : string): void
-    setNickname(nickname: string): void
-    setBirthDate(nickname: string): void
-    setNickname(nickname: string): void
+    DeleteAvatar(deleteAvatarUrl: string): void
+    SetAvatar(input_avatarUrl: File): void
+    DeleteCover(deleteCoverUrl: string): void
+    SetCover(input_coverUrl: File): void
+    ChangeNickname(input_nickname: string): void
+    ChangeProfileData(input_name: string, input_birthDate: string,
+                      input_bio: string, avatarUrl: string, coverUrl: string): void
+
     setMessage(message: string): void
     setInputName(input_name: string): void
     setInputBirthDate(input_birthDate: string): void
@@ -91,12 +97,6 @@ export interface PropsProfileSettings {
     setButtonSettingPressed(isButtonSettingPressed: boolean): void
     setDeleteAvatarFlag(deleteAvatarFlag: boolean): void
     setDeleteCoverFlag(deleteCoverFlag: boolean): void
-    setUserData(name: string,
-                birthDate: string,
-                bio: string,
-                avatarUrl: string,
-                coverUrl: string,
-                status: string): void
 }
 
 

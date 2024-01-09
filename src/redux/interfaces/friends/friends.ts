@@ -1,3 +1,12 @@
+import {
+    ActionUser,
+    GetFriends,
+    GetFriendsCount, GetSubscribers,
+    GetSubscribersCount,
+    GetSubscriptions,
+    GetSubscriptionsCount, GetUserFromListAuthData
+} from "../../thunk/usersThunk";
+
 export interface StateUsers {
     users : {
         usersShortInfo : [],
@@ -15,13 +24,19 @@ export interface PropsUsers {
     countSubscribers: number
     whoOpened: string
 
-    setUsers(usersShortInfo: []):void
-    setUserNickname(id: string, nickname: string): void
-    setUserFriendsCount(countFriends: number): void
-    setUserSubscriptionsCount(countSubscriptions: number): void
-    setUserSubscribersCount(countSubscribers: number): void
+    GetFriends(): void
+    GetSubscriptions(): void
+    GetSubscribers(): void
+    GetSearch(): void
+
+    ActionUser(id: string, action: string): void
+    GetUserFromListAuthData(id: string): void
+
+    GetFriendsCount(): void
+    GetSubscriptionsCount(): void
+    GetSubscribersCount(): void
+
     setWhoOpened(whoOpened: string): void
-    setChangeUserStatus(id: string, status: string | null): void
 
 }
 
@@ -37,7 +52,7 @@ export interface PropsUsersComponent {
     getSubscriptions(): void
     getSearch(): void
     actionRequest(idOtherUser: string, action: string): void
-    setUserNickname(id: string, nickname: string): void
+    GetUserFromListAuthData(id: string): void
 
     setWhoOpened(whoOpened: string): void
 }
@@ -47,14 +62,14 @@ export interface PropsFriendsComponent{
     countFriends: number
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void
-    setUserNickname(id: string, nickname: string): void
+    GetUserFromListAuthData(id: string): void
 
 }
 export interface PropsSearchComponent{
     usersShortInfo : []
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void
-    setUserNickname(id: string, nickname: string): void
+    GetUserFromListAuthData(id: string): void
 
 }
 export interface PropsSubscribersComponent{
@@ -62,12 +77,12 @@ export interface PropsSubscribersComponent{
     countSubscribers: number
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void
-    setUserNickname(id: string, nickname: string): void
+    GetUserFromListAuthData(id: string): void
 }
 export interface PropsSubscriptionsComponent{
     usersShortInfo : []
     countSubscriptions: number
     whoOpened: string
     actionRequest(idOtherUser: string, action: string): void
-    setUserNickname(id: string, nickname: string): void
+    GetUserFromListAuthData(id: string): void
 }

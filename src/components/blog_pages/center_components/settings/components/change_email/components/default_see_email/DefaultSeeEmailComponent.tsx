@@ -2,10 +2,10 @@ import settings_css from "../../../../Settings.module.css";
 import settings_el_css from '../../../ChangeSettingsElements.module.css'
 import setting_pencil from "../../../../../../../../assets/images/other/setting_pencil.svg";
 import {
-    PropsChangeEmail
+    PropsChangeEmailClass, PropsChangeEmailComponent
 } from "../../../../../../../../redux/interfaces/settings/settings_for_components/email/SettingDefoltSeeEmail";
 
-const DefaultSeeEmailComponent = (props: PropsChangeEmail) => {
+const DefaultSeeEmailComponent = (props: PropsChangeEmailComponent) => {
     const changeButtonChangeEmail = () => {
         if (!props.buttonChangePasswordFirstStep && !props.buttonChangePasswordSecondStep) {
             props.setButtonChangeEmailPressed(true)

@@ -6,7 +6,7 @@ import post_comm_css from "../../post/userComments/UserComments.module.css";
 import post_css from "../../post/postMain/Post.module.css";
 import sent_comment from "../../../../../../assets/images/post/sent_comment.svg";
 import {Comment} from "../../../../../../redux/interfaces/profile/post/comments";
-import OneUserDataClass from "./oneUserData/OneUserDataClass";
+import OneUserCommentContainer from "../../post/oneUserComment/OneUserCommentContainer";
 
 const OnePhotoComponent = (props: PropsOnePostComponent) => {
 
@@ -22,22 +22,17 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
                     <img src={props.onePhotoUrl} alt={'user_photo'}/>
                 </section>
                 <section className={onePhoto_css.body}>
-                    <OneUserDataClass commentId={''}
-                                      userId={localStorage.getItem('idUser')}
-                                      avatarUrl={props.avatarUrl}
-                                      name={props.name}
-                                      nickname={props.nickname}
-                                      isLiked={props.isLiked}
-                                      likeCount={props.likeCount}
-                                      time={props.time}
-                                      text={props.text}
-                                      commentsCount={props.commentCount}
-                                      deleteOneComment={props.deleteOneComment}
-                                      setOneCommentCountPost={props.setOneCommentCountPost}
-                                      setOneLikeCommentPost={props.setOneLikeCommentPost}
-                                      setOneCommentUserData={props.setOneCommentUserData}
-                                      likePost={props.likePost}
-                                      postId={props.postId}/>
+                    <OneUserCommentContainer commentId={''}
+                                             userId={localStorage.getItem('idUser')}
+                                             avatarUrl={props.avatarUrl}
+                                             name={props.name}
+                                             nickname={props.nickname}
+                                             isLiked={props.isLiked}
+                                             likeCount={props.likeCount}
+                                             time={props.time}
+                                             text={props.text}
+                                             commentsCount={props.commentCount}
+                                             likePost={props.likePost}/>
                     <section className={post_comm_css.section_writeComment}>
                             <textarea placeholder={'Написать комментарий'} value={props.input_comment}
                                       onChange={setInputComment}></textarea>
@@ -47,22 +42,17 @@ const OnePhotoComponent = (props: PropsOnePostComponent) => {
                     </section>
                     <section className={onePhoto_css.comments}>
                         {props.comments.map((oneComment: Comment) => (
-                            <OneUserDataClass commentId={oneComment.commentId}
-                                              avatarUrl={oneComment.avatarUrl}
-                                              name={oneComment.name}
-                                              nickname={oneComment.nickname}
-                                              isLiked={oneComment.isLiked}
-                                              likeCount={oneComment.likeCount}
-                                              time={oneComment.time}
-                                              text={oneComment.text}
-                                              commentsCount={props.commentCount}
-                                              deleteOneComment={props.deleteOneComment}
-                                              userId={oneComment.userId}
-                                              setOneCommentCountPost={props.setOneCommentCountPost}
-                                              setOneLikeCommentPost={props.setOneLikeCommentPost}
-                                              setOneCommentUserData={props.setOneCommentUserData}
-                                              likePost={props.likePost}
-                                              postId={props.postId}/>
+                            <OneUserCommentContainer commentId={oneComment.commentId}
+                                                     avatarUrl={oneComment.avatarUrl}
+                                                     name={oneComment.name}
+                                                     nickname={oneComment.nickname}
+                                                     isLiked={oneComment.isLiked}
+                                                     likeCount={oneComment.likeCount}
+                                                     time={oneComment.time}
+                                                     text={oneComment.text}
+                                                     userId={oneComment.userId}
+                                                     commentsCount={props.commentCount}
+                                                     likePost={props.likePost}/>
                         ))}
                     </section>
                 </section>

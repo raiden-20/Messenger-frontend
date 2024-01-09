@@ -1,13 +1,8 @@
 import {StateUserProfileAside} from "../../../../redux/interfaces/profile/profileBase";
-import {Dispatch} from "redux";
 import {connect} from "react-redux";
-import {
-    setChangeUserStatus,
-    setUserFriendsCount, setUserNickname, setUserPhoto,
-    setUsers
-} from "../../../../redux/reducers/usersReducer";
 import MainProfileAsideClass from "./MainProfileAsideClass";
-import {setCountPhoto, setPhotoUrl} from "../../../../redux/reducers/photoReducer";
+import {GetPhoto, GetPhotoCount} from "../../../../redux/thunk/photoThunk";
+import {GetFriendsCount, GetRandomFriends,} from "../../../../redux/thunk/usersThunk";
 
     const mapStateToProps = (state : StateUserProfileAside) => {
         return {
@@ -19,30 +14,11 @@ import {setCountPhoto, setPhotoUrl} from "../../../../redux/reducers/photoReduce
         }
     }
 
-    const mapDispatchToProps = (dispatch: Dispatch) => {
-        return {
-            setUsers(users: []) {
-                dispatch(setUsers(users))
-            },
-            setUserNickname(id: string, nickname: string) {
-                dispatch(setUserNickname(id, nickname))
-            },
-            setPhotoUrl (photoUrl : []) {
-                dispatch(setPhotoUrl(photoUrl))
-            },
-            setUserFriendsCount(countFriends: number) {
-                dispatch(setUserFriendsCount(countFriends))
-            },
-            setCountPhoto(countPhoto: number) {
-                dispatch(setCountPhoto(countPhoto))
-            },
-            setChangeUserStatus(id: string, status: string) {
-                dispatch(setChangeUserStatus(id, status))
-            },
-            setUserPhoto(id: string, photo : []) {
-                dispatch(setUserPhoto(id, photo))
-            },
-        }
+    const mapDispatchToProps = {
+        GetPhotoCount,
+        GetPhoto,
+        GetRandomFriends,
+        GetFriendsCount,
     }
 
 const MainProfileAsideContainer = connect(mapStateToProps, mapDispatchToProps)(MainProfileAsideClass)

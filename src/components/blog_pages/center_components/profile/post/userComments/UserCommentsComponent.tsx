@@ -11,8 +11,8 @@ import like_notLiked from "../../../../../../assets/images/post/like_notLiked.sv
 import comment from "../../../../../../assets/images/post/comment.svg";
 import TimeComponent from "../time/TimeComponent";
 import sent_comment from '../../../../../../assets/images/post/sent_comment.svg'
-import OneCommentClass from "./oneComment/OneCommentClass";
 import {PostPhoto} from "../../../../../../redux/interfaces/post/CreatePost";
+import OneUserCommentContainer from "../oneUserComment/OneUserCommentContainer";
 
 const UserCommentsComponent = (props: PropsUserComment) => {
     const [isMouseEnter, setMouseEnter] = useState(false)
@@ -60,7 +60,7 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                                                 props.photoUrl.length === 4 ? post_css.input_photo4 :
                                                     props.photoUrl.length === 5 || props.photoUrl.length === 6 ? post_css.input_photo5 : '' :
                                         post_css.input_photo0}>
-                                    {props.photoUrl.map((url: PostPhoto, i: number) => (
+                                    {props.photoUrl.map((url: PostPhoto) => (
                                         <section>
                                             <img src={url.url} alt={'input img'} className={post_css.one_photo}/>
                                         </section>
@@ -101,22 +101,18 @@ const UserCommentsComponent = (props: PropsUserComment) => {
                         </section>
                         <section className={post_comm_css.comments_arr}>
                             {props.comments.length > 0 ?
-                                props.comments.map((comment: Comment) => (
-                                <OneCommentClass userId={comment.userId}
-                                                 text={comment.text}
-                                                 time={comment.time}
-                                                 likeCount={comment.likeCount}
-                                                 isLiked={comment.isLiked}
-                                                 commentId={comment.commentId}
-                                                 deleteOneComment={props.deleteOneComment}
-                                                 setOneCommentCountPost={props.setOneCommentCountPost}
-                                                 setOneLikeCommentPost={props.setOneLikeCommentPost}
-                                                 setOneCommentUserData={props.setOneCommentUserData}
-                                                 avatarUrl={comment.avatarUrl}
-                                                 name={comment.name}
-                                                 nickname={comment.nickname}
-                                                 commentCount={props.commentCount}
-                                                 postId={props.postId}/>
+                                props.comments.map((oneComment: Comment) => (
+                                    <OneUserCommentContainer commentId={oneComment.commentId}
+                                                             avatarUrl={oneComment.avatarUrl}
+                                                             name={oneComment.name}
+                                                             nickname={oneComment.nickname}
+                                                             isLiked={oneComment.isLiked}
+                                                             likeCount={oneComment.likeCount}
+                                                             time={oneComment.time}
+                                                             text={oneComment.text}
+                                                             userId={oneComment.userId}
+                                                             commentsCount={props.commentCount}
+                                                             likePost={props.like}/>
                             )) :
                             <section className={post_comm_css.noComm}>
                                 <p>Нет комментарий...</p>

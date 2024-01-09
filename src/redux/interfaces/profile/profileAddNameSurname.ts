@@ -11,7 +11,6 @@ export interface PropsProfileNameSurname{
 
     message: string
 
-    setName(name: string | null): void
     setInputName(name: string  | null): void
 
     setMessage(message: string): void

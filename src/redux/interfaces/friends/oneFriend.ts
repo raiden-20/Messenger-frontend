@@ -1,3 +1,5 @@
+import {GetUserFromListAuthData, GetUserFromListPhoto} from "../../thunk/usersThunk";
+
 export interface User {
     id: string,
     name: string,
@@ -34,7 +36,7 @@ export interface PropsOneFriend{
     status: string,
     whoOpened: string
     changeFriendStatus(idOtherUser: string, action: string): void
-    setUserNickname(id: string, nickname: string): void
+    GetUserFromListAuthData(id: string): void
 }
 
 export interface PropsOneFriend2{
@@ -45,9 +47,10 @@ export interface PropsOneFriend2{
     status: string,
     nickname: string,
     photo: []
-    setChangeUserStatus(id: string, status: string | null): void
-    setUserPhoto(id: string, photo : {}): void
-    setUserNickname(id: string, nickname: string): void
+
+    ActionUser(id: string, action: string): void
+    GetUserFromListAuthData(i: string): void
+    GetUserFromListPhoto(i: string): void
 }
 
 export interface PropsOneFriendComponent{

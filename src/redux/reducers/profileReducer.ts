@@ -18,6 +18,7 @@ const SET_DELETE_AVATAR_FLAG = 'SET_DELETE_AVATAR_FLAG'
 const SET_DELETE_COVER_FLAG = 'SET_DELETE_COVER_FLAG'
 
 const SET_BUTTON_SETTING_PRESSED = 'SET_BUTTON_SETTING_PRESSED'
+const SET_INPUT_CLEAR_DATA = 'SET_INPUT_CLEAR_DATA'
 
 
 const initialState = {
@@ -121,6 +122,15 @@ const profileReducer = (state = initialState, action: any) => {
 
             return stateCopy
         }
+        case SET_INPUT_CLEAR_DATA : {
+            stateCopy.input_name = ""
+            stateCopy.input_avatarUrl = File
+            stateCopy.input_coverUrl = File
+            stateCopy.input_birthDate = ""
+            stateCopy.input_bio = ""
+
+            return stateCopy
+        }
         case SET_BUTTON_SETTING_PRESSED : {
             stateCopy.isButtonSettingPressed = action.isButtonSettingPressed
 
@@ -206,6 +216,11 @@ export const setInputAvatarUrl = (input_avatarUrl: File) => {
 export const setInputCoverUrl = (input_coverUrl: File) => {
     return {
         type: SET_INPUT_USER_COVER_URL, input_coverUrl
+    }
+}
+export const setInputClearDataProfile = () => {
+    return {
+        type: SET_INPUT_CLEAR_DATA
     }
 }
 export const setButtonSettingPressed = (isButtonSettingPressed: boolean) => {

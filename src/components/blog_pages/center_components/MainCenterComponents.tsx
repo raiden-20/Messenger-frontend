@@ -1,14 +1,16 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
 
+import MainProfileContainer from "./profileCenter/MainProfileContainer";
+import MainSettingContainer from "./settings/MainSettingContainer";
+import MainProfileAsideContainer from "./profileAside/MainProfileAsideContainer";
 import MainSettingsAside from "./settings/MainSettingsAside";
 
 import main_css from "./MainCenterComponents.module.css";
-import MainProfileContainer from "./profileCenter/MainProfileContainer";
+
 import {PROFILE_OTHER_USER, PROFILE_USER} from "../../../paths/profilePath";
 import {SETTINGS} from "../../../paths/navigationPath";
-import MainSettingContainer from "./settings/MainSettingContainer";
-import MainProfileAsideContainer from "./profileAside/MainProfileAsideContainer";
+
 
 const MainCenterComponents = () => {
     const location = useLocation()

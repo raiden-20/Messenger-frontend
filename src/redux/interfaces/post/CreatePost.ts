@@ -1,5 +1,7 @@
 import {Post} from "../profile/post/post";
 import {SetPhotoInterface} from "../../../axios/photo/photoInterface";
+import {CreatePost} from "../../thunk/postThunk";
+import {setButtonEditPostClick} from "../../reducers/postReducer";
 
 export interface PropsCreatePost {
     input_postPhoto: [],
@@ -24,7 +26,8 @@ export interface StateCreatingPost {
         input_postPhoto: SetPhotoInterface[],
         input_postPhotoUrl: [],
         input_postText: '',
-        message: string
+        message: string,
+        buttonEditPost: boolean
     }
 }
 
@@ -61,15 +64,15 @@ export interface PropsCreatePostButtonClass {
     input_postText: '',
     message: string
 
+    CreatePost(input_postText: string, input_postPhoto: SetPhotoInterface[]): void
+
     setInputPostPhoto(input_postPhoto: File, flag: boolean): void
     setInputPostText(input_postText: string): void
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostPhotoDelete(index: number): void
     setInputPostAllPhotoDelete(): void
-    setButtonCreatPostPressed(flag: boolean): void
-    setPosts(posts: []): void
-    addOnePost(onePost: Post): void
-    setMessage(message: string): void
+    setButtonEditPostClick(flag: boolean): void
+    setMessage(message:string): void
 }
 export interface PropsCreatePostButtonComponent {
     input_postPhoto: SetPhotoInterface[],
@@ -82,7 +85,7 @@ export interface PropsCreatePostButtonComponent {
     setInputPostPhotoUrl(input_postPhotoUrl: string): void
     setInputPostPhotoDelete(index: number): void
     setInputPostAllPhotoDelete(): void
-    setButtonCreatPostPressed(flag: boolean): void
-    setNewPost(): boolean
+    setButtonEditPostClick(flag: boolean): void
+    setNewPost(): void
     setMessage(message: string): void
 }

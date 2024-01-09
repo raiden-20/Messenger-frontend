@@ -24,12 +24,10 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail &
                         <section className={settings_css.leg_container}>
                             <legend> <strong>Электронный адрес</strong> </legend>
                                 <ChangeEmail email={this.props.email}
-                                             password={this.props.password}
                                              input_email={this.props.input_email}
                                              input_password={this.props.input_password}
                                              setInputPassword={this.props.setInputPassword}
                                              setInputEmail={this.props.setInputEmail}
-                                             setPassword={this.props.setPassword}
                                              buttonChangeEmail={this.props.buttonChangeEmail}
                                              setButtonChangeEmailPressed={this.props.setButtonChangeEmailPressed}
                                              buttonChangePasswordFirstStep={this.props.buttonChangePasswordFirstStep}
@@ -37,16 +35,15 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail &
                                              message={this.props.message}
                                              setMessage={this.props.setMessage}
                                              setNewEmail={this.props.setNewEmail}
-                                             setEmail={this.props.setEmail}/>
+                                             AuthGetData={this.props.AuthGetData}
+                                             ChangeEmail={this.props.ChangeEmail}/>
                         </section>
                         <section className={settings_css.leg_container}>
                             <legend><strong>Пароль</strong></legend>
                                 <ChangePassword buttonChangeEmail={this.props.buttonChangeEmail}
-                                                password={this.props.password}
                                                 input_password={this.props.input_password}
                                                 input_code={this.props.input_code}
                                                 setInputPassword={this.props.setInputPassword}
-                                                setPassword={this.props.setPassword}
                                                 setInputCode={this.props.setInputCode}
                                                 input_passwordConfirm={this.props.input_passwordConfirm}
                                                 setInputPasswordConfirm={this.props.setInputPasswordConfirm}
@@ -55,7 +52,9 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail &
                                                 setButtonChangePasswordFirstStepPressed={this.props.setButtonChangePasswordFirstStepPressed}
                                                 setButtonChangePasswordSecondStepPressed={this.props.setButtonChangePasswordSecondStepPressed}
                                                 message={this.props.message}
-                                                setMessage={this.props.setMessage}/>
+                                                setMessage={this.props.setMessage}
+                                                CheckOldPassword={this.props.CheckOldPassword}
+                                                SetNewPassword={this.props.SetNewPassword}/>
 
                         </section>
                         <section className={settings_css.leg_container}>
@@ -64,9 +63,8 @@ class SettingsAccount extends Component<PropsChangePassword & PropsChangeEmail &
                         </section>
                     </main>
                     <footer>
-                        <DeleteAccountClass password={this.props.password}
-                                            setMessage={this.props.setMessage}
-                                            message={this.props.message}/>
+                        <DeleteAccountClass message={this.props.message}
+                                            DeleteAccount={this.props.DeleteAccount}/>
                     </footer>
                 </section>
             </section>

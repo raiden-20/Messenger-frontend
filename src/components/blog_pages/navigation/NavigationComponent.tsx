@@ -12,7 +12,7 @@ import more_close from '../../../assets/images/icons_navigation/more_close.svg'
 import more_open from '../../../assets/images/icons_navigation/more_open.svg'
 import {PropsNavigation} from "../../../redux/interfaces/navigation/navigationMain";
 import NavigationMoreSection from "./components/NavigationMoreSection";
-import {PROFILE_OTHER_USER, PROFILE_USER} from "../../../paths/profilePath";
+import {PROFILE_USER} from "../../../paths/profilePath";
 import {FRIENDS_USER} from "../../../paths/usersPath";
 import {SETTINGS} from "../../../paths/navigationPath";
 
@@ -79,9 +79,7 @@ const NavigationComponent = (props: PropsNavigation) => {
                         </section>
                     </section>
                     {props.buttonMoreSection ? (
-                        <NavigationMoreSection token={props.token}
-                                               setToken={props.setToken}
-                                               setData={props.setData}/> ): null}
+                        <NavigationMoreSection setData={props.setData}/> ): null}
 
                 </section>
 

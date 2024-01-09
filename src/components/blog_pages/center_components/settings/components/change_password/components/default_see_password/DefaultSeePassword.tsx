@@ -15,7 +15,7 @@ const DefaultSeePassword = (props : PropsChangePasswordD) => {
 
     return (
         <section className={settings_css.section_and_edit}>
-            ❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤
+            ***************
             <button onClick={changeButtonChangePassword} className={settings_el_css.section_and_edit_button}>
                 <img src={setting_pencil} className={settings_el_css.section_and_edit_img}
                      alt={'setting pencil'}/>

@@ -1,13 +1,10 @@
 export interface StateDeleteAccount{
-    token : string
-    password: string
     message: string
 }
 export interface PropsDeleteAccount{
-    password: string
     message: string
 
-    setMessage(message: string): void
+    DeleteAccount(): void
 }
 export interface PropsDeleteAccountComponent{
     delete(): void

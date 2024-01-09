@@ -7,12 +7,11 @@ import comment from "../../../../../../assets/images/post/comment.svg";
 import React, {useState} from "react";
 import {OnePost, Post} from "../../../../../../redux/interfaces/profile/post/post";
 import TimeComponent from "../time/TimeComponent";
-import UserCommentsClass from "../userComments/UserCommentsClass";
 import EditPostContainer from "../editPost/EditPostContainer";
 import {PostPhoto} from "../../../../../../redux/interfaces/post/CreatePost";
+import UserCommentsContainer from "../userComments/UserCommentsContainer";
 
 const OnePostComponent = (props: OnePost & Post) => {
-    const [buttonCommentClick, setButtonCommentClick] = useState(false)
     const [isMouseEnter, setMouseEnter] = useState(false)
 
     const like_button = () => {
@@ -83,35 +82,17 @@ const OnePostComponent = (props: OnePost & Post) => {
                         {props.likeCount}
                     </section>
                     <section className={post_css.icon_count}>
-                        <button className={post_css.button} onClick={() => setButtonCommentClick(true)}>
+                        <button className={post_css.button} onClick={() => props.setButtonEditPostClick(true)}>
                             <img src={comment} className={post_css.icon} alt={'comment icon'}/>
                         </button>
-                        {buttonCommentClick ? <UserCommentsClass comments={props.comments}
-                                                                 setButtonCommentClick={setButtonCommentClick}
-                                                                 setUserComments={props.setUserComments}
-                                                                 commentCount={props.commentCount}
-                                                                 postId={props.postId}
-                                                                 isLiked={props.isLiked}
-                                                                 likeCount={props.likeCount}
-                                                                 text={props.text}
-                                                                 time={props.time}
-                                                                 avatarUrl={props.avatarUrl}
-                                                                 buttonEditPost={props.buttonEditPost}
-                                                                 message={props.message}
-                                                                 name={props.name}
-                                                                 nickname={props.nickname}
-                                                                 deletePost={props.deletePost}
-                                                                 edit={edit}
-                                                                 like_button={like_button}
-                                                                 input_comment={props.input_comment}
-                                                                 setInputPostComment={props.setInputPostComment}
-                                                                 deleteOneComment={props.deleteOneComment}
-                                                                 setOneComment={props.setOneComment}
-                                                                 addOneComment={props.addOneComment}
-                                                                 photoUrl={props.photoUrl}
-                                                                 setOneCommentCountPost={props.setOneCommentCountPost}
-                                                                 setOneLikeCommentPost={props.setOneLikeCommentPost}
-                                                                 setOneCommentUserData={props.setOneCommentUserData}/> : null}
+                        {props.buttonEditPost ? <UserCommentsContainer setButtonCommentClick={props.setButtonEditPostClick}
+                                                                     commentCount={props.commentCount}
+                                                                     postId={props.postId}
+                                                                     isLiked={props.isLiked}
+                                                                     likeCount={props.likeCount}
+                                                                     text={props.text}
+                                                                     time={props.time}
+                                                                     photoUrl={props.photoUrl}/> : null}
                         {props.commentCount}
                     </section>
                 </section>

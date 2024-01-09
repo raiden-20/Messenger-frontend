@@ -6,8 +6,6 @@ export interface StateExit{
 }
 
 export interface PropsExit{
-    token: string
-    setToken(token: string): void
     setData(data: object): void
 
 }

@@ -1,4 +1,3 @@
-import {Comment} from "../post/comments";
 import {Post} from "../post/post";
 
 export interface StatePostInPhoto {
@@ -16,6 +15,12 @@ export interface StatePostInPhoto {
     }
     photo: {
         onePhotoUrl: string
+        postId: string,
+    }
+}
+
+export interface StateOneComment {
+    photo: {
         postId: string,
     }
 }
@@ -40,20 +45,15 @@ export interface PropsOnePhotoClass {
     onePhotoUrl: string
     avatarUrl: string
 
+    GetOnePostData(postId: string): void
+    GetCommentsToPost(postId: string): void
+    SetComment(postId: string, input_comment: string,
+               name: string, nickname: string, avatarUrl: string,
+               commentCount: string): void
+    LikePost(postId: string, isLiked: boolean, likeCount: string): void
+
     setInputPostComment(input_comment : string): void
     setButtonOpenPhoto(isButtonOpenPhotoPressed : boolean): void
-    setUserComments(comments: []): void
-
-    addOneComment(oneComment: Comment): void
-    deleteOneComment(commentId: string): void
-    setOneComment(oneComment: Comment):void
-    addOnePost(onePost: Post): void
-    setPosts(posts: []): void
-
-    setOneLikeCountPost(postId: string, likeCount: string): void
-    setOneLikeCommentPost(commentId: string, likeComment: string): void
-    setOneCommentCountPost(postId: string, commentCount: string): void
-    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
 }
 
 export interface PropsOnePostComponent {
@@ -75,10 +75,6 @@ export interface PropsOnePostComponent {
     setButtonOpenPhoto(isButtonOpenPhotoPressed : boolean): void
     setComment(): void
     likePost(): void
-    deleteOneComment(commentId: string): void
-    setOneLikeCommentPost(commentId: string, likeComment: string): void
-    setOneCommentCountPost(postId: string, commentCount: string): void
-    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
 }
 
 export interface PropsOneUserComponent {
@@ -122,10 +118,9 @@ export interface PropsOneUserDataClass {
     time: string
     text: string
 
-    deleteOneComment(commentId: string): void
     likePost(): void
-    setOneLikeCommentPost(commentId: string, likeComment: string): void
-    setOneCommentCountPost(postId: string, commentCount: string): void
-    setOneCommentUserData(commentId: string, name: string, nickname: string, avatarUrl: string): void
+    LikeComment(commentId: string, isLiked: boolean, likeCount: string): void
+    DeleteComment(commentId: string, postId: string, commentsCount: string): void
+    GetOneCommentData(userId: string, commentId: string): void
 }
 

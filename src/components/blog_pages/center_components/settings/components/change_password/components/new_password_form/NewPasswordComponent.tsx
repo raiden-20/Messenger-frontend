@@ -24,6 +24,16 @@ const NewPasswordComponent = (props: PropsNewPasswordComponent) => {
         props.setButtonChangePasswordSecondStepPressed(false)
     }
 
+    const send = () => {
+        if (props.input_password != null && props.input_passwordConfirm != null) {
+            if (props.input_password === props.input_passwordConfirm) {
+                props.saveButtonActionSecondStep()
+            } else {
+                props.setMessage('Пароли не совпадают')
+            }
+        }
+    }
+
     return (
         <div className={change_private_css.rootNewPassword}>
             <section className={change_private_css.newPasswordForm}>
@@ -39,7 +49,7 @@ const NewPasswordComponent = (props: PropsNewPasswordComponent) => {
                            className={change_el_css.input} required/>
                 </section>
                 <section className={change_el_css.buttons}>
-                    <button onClick={props.saveButtonActionSecondStep} className={change_el_css.button_save + ' ' + change_el_css.button}>
+                    <button onClick={send} className={change_el_css.button_save + ' ' + change_el_css.button}>
                         Сохранить
                     </button>
                     <button onClick={cancelButtonActionSecondStep} className={change_el_css.button_cancel + ' ' + change_el_css.button}>

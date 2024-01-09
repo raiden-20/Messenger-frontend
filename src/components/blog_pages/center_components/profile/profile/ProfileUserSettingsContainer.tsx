@@ -11,13 +11,8 @@ const mapStateToProps = (state: StateButtonPressed) => {
 
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        setButtonSettingPressed(isButtonSettingPressed :boolean) {
-            dispatch(setButtonSettingPressed(isButtonSettingPressed))
-        }
-    }
-
+const mapDispatchToProps = {
+    setButtonSettingPressed
 }
 
 const ProfileUserSettingsContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileUserSettingsComponent)

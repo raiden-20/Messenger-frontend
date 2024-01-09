@@ -1,51 +1,18 @@
 import {Component} from "react";
 import {PropsPost, StatePostsClass} from "../../../../../../redux/interfaces/profile/post/post";
 import PostComponent from "./PostComponent";
-import {Blog} from "../../../../../../axios/post/PostAxios";
 
 class PostClass extends Component<PropsPost, StatePostsClass> {
 
 
     componentDidMount() {
-        Blog.GetPostsAxios().then(response => {
-            switch (response[0]) {
-                case 200: {
-                    this.props.setPosts(response[1])
-                    break
-                }
-                case 400: {
-                    // todo user doesn't exist
-                    break
-                }
-            }
-        })
+        this.props.GetPosts()
     }
 
     render() {
-        return <PostComponent name={this.props.name}
-                              nickname={this.props.nickname}
-                              avatarUrl={this.props.avatarUrl}
-                              message={this.props.message}
-                              setMessage={this.props.setMessage}
+        return <PostComponent setButtonEditPostClick={this.props.setButtonEditPostClick}
                               posts={this.props.posts}
-                              comments={this.props.comments}
-                              setUserComments={this.props.setUserComments}
-                              setInputPostPhoto={this.props.setInputPostPhoto}
-                              setInputPostPhotoUrl={this.props.setInputPostPhotoUrl}
-                              setInputPostText={this.props.setInputPostText}
-                              setButtonEditPostClick={this.props.setButtonEditPostClick}
-                              buttonEditPost={this.props.buttonEditPost}
-                              input_comment={this.props.input_comment}
-                              setInputPostComment={this.props.setInputPostComment}
-                              deleteOneComment={this.props.deleteOneComment}
-                              deleteOnePost={this.props.deleteOnePost}
-                              setOneComment={this.props.setOneComment}
-                              addOneComment={this.props.addOneComment}
-                              setOnePost={this.props.setOnePost}
-                              setOneCommentCountPost={this.props.setOneCommentCountPost}
-                              setOneLikeCommentPost={this.props.setOneLikeCommentPost}
-                              setOneLikeCountPost={this.props.setOneLikeCountPost}
-                              setOneCommentUserData={this.props.setOneCommentUserData}/>
+                              buttonEditPost={this.props.buttonEditPost}/>
     }
 }
 

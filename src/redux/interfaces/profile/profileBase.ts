@@ -1,3 +1,8 @@
+import {AuthGetData} from "../../thunk/authThunk";
+import {ProfileData} from "../../thunk/profileThunk";
+import {GetPhoto, GetPhotoCount} from "../../thunk/photoThunk";
+import {ActionUser, GetFriendsCount, GetRandomFriends, GetUserFromListAuthData} from "../../thunk/usersThunk";
+
 export interface StateUserProfile {
     profile : {
         name: string;
@@ -32,14 +37,8 @@ export interface PropsUserProfile{
     status: string
     message: string
 
-    setUserData(name: string,
-                birthDate: string,
-                bio: string,
-                avatarUrl: string,
-                coverUrl: string,
-                status: string): void
-    setNickname(nickname: string): void
-    setEmail(email: string): void
+    AuthGetData(id: string): void
+    ProfileData(id: string): void
 }
 
 export interface PropsUserProfileComponent{
@@ -59,13 +58,10 @@ export interface PropsUserProfileAside {
     countPhoto: number
     photoUrl: []
 
-    setUsers(usersShortInfo: []): void
-    setPhotoUrl (photoUrl : []): void
-    setUserFriendsCount(countFriends: number): void
-    setCountPhoto(countPhoto: number): void
-    setChangeUserStatus(id: string, status: string): void
-    setUserNickname(id: string, nickname: string): void
-    setUserPhoto(id: string, photo : []): void
+    GetPhotoCount(): void
+    GetPhoto(): void
+    GetRandomFriends(): void
+    GetFriendsCount(): void
 }
 
 export interface StateUserProfileAside {
@@ -92,9 +88,5 @@ export interface PropsUserProfileAsideComponent {
     countFriends: number
     countPhoto: number
     photoUrl: []
-
-    setChangeUserStatus(id: string, status: string): void
-    setUserNickname(id: string, nickname: string): void
-    setUserPhoto(id: string, photo : []): void
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 
 import settings_css from "./Settings.module.css";
 
-const MainSettingsAside = () => {
+const MainSettingsAside = () => { // todo исправить
     return (
         <section className={settings_css.nav_settings}>
             <section>

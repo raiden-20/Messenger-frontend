@@ -1,15 +1,10 @@
-import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {StatePhotoProfile} from "../../../../../redux/interfaces/profile/photo/photoProfile";
 import PhotoProfileClass from "./PhotoProfileClass";
-import {
-    setPhotoUrl,
-    setButtonOpenPhoto,
-    setCountPhoto,
-    setPostUrl, setOnePhotoUrl
-} from "../../../../../redux/reducers/photoReducer";
-import {setName, setUserData} from "../../../../../redux/reducers/profileReducer";
-import {setEmail, setNickname} from "../../../../../redux/reducers/authReducer";
+import {setButtonOpenPhoto, setPostUrl, setOnePhotoUrl} from "../../../../../redux/reducers/photoReducer";
+import {AuthGetData} from "../../../../../redux/thunk/authThunk";
+import {ProfileData} from "../../../../../redux/thunk/profileThunk";
+import {GetPhoto, GetPhotoCount} from "../../../../../redux/thunk/photoThunk";
 
 const mapStateToProps = (state: StatePhotoProfile) => {
     return {
@@ -20,39 +15,14 @@ const mapStateToProps = (state: StatePhotoProfile) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        setPhotoUrl(photoUrl: []) {
-            dispatch(setPhotoUrl(photoUrl))
-        },
-        setEmail(email : string) {
-            dispatch(setEmail(email))
-        },
-        setNickname(nickname : string) {
-            dispatch(setNickname(nickname))
-        },
-        setUserData(name: string,
-                    birthDate: string,
-                    bio: string,
-                    avatarUrl: string,
-                    coverUrl: string,
-                    status: string) {
-            dispatch(setUserData(name, birthDate, bio, avatarUrl, coverUrl, status))
-        },
-        setCountPhoto(countPhoto: number) {
-            dispatch(setCountPhoto(countPhoto))
-        },
-        setButtonOpenPhoto(isButtonOpenPhotoPressed: boolean) {
-            dispatch(setButtonOpenPhoto(isButtonOpenPhotoPressed))
-        },
-        setPostUrl(postId: string) {
-            dispatch(setPostUrl(postId))
-        },
-        setOnePhotoUrl(onePhotoUrl: string) {
-            dispatch(setOnePhotoUrl(onePhotoUrl))
-        },
-    }
-
+const mapDispatchToProps = {
+    AuthGetData,
+    ProfileData,
+    GetPhoto,
+    GetPhotoCount,
+    setButtonOpenPhoto,
+    setPostUrl,
+    setOnePhotoUrl
 }
 
 const PhotoProfileContainer = connect(mapStateToProps, mapDispatchToProps)(PhotoProfileClass)

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {PropsOneFriend, StateOneFriend} from "../../../../../redux/interfaces/friends/oneFriend";
 import OneUserComponent from "./OneUserComponent";
-import {Auth} from "../../../../../axios/auth/AuthAxios";
 
 class OneUserClass extends Component<PropsOneFriend, StateOneFriend>{
 
@@ -10,15 +9,7 @@ class OneUserClass extends Component<PropsOneFriend, StateOneFriend>{
     }
 
     componentDidMount() {
-        Auth.AuthDataAxios({
-            id: this.props.id
-        }).then(response => {
-            switch (response[0]) {
-                case 200 : {
-                    this.props.setUserNickname(this.props.id, response[1].nickname)
-                }
-            }
-        })
+    this.props.GetUserFromListAuthData(this.props.id)
     }
 
     render() {

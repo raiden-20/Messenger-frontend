@@ -4,6 +4,8 @@ export interface PropsChangeEmail{
 
     message: string
 
+    ChangeEmail(input_password: string, input_email: string): void
+
     setButtonChangeEmailPressed(buttonChangeEmail : boolean) : void;
     setInputPassword(input_password : string | null) : void;
     setInputEmail(input_email : string | null) : void;

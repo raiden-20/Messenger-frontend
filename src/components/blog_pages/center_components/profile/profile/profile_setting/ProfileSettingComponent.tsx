@@ -21,7 +21,6 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
     const setBio = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         props.setInputBio(event.target.value)
     }
-
     const setCover = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files !== null) {
             const file = event.target.files[0];
@@ -44,9 +43,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
             } else {
                 props.setMessage('Большой размер файла')
             }
-
         }
-
     }
     const setAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files !== null) {
@@ -71,11 +68,9 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
             }
         }
     }
-
     const setBirthDate = (event: React.ChangeEvent<HTMLInputElement>) => {
         props.setInputBirthDate(event.target.value)
     }
-
     const deleteInputCover = () => {
         setImageCoverSrc('')
         props.setInputCoverUrl(null)
@@ -94,7 +89,6 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
         }
 
     }
-
     const cancel = () => {
         props.setButtonSettingPressed(false)
         props.setInputName('')
