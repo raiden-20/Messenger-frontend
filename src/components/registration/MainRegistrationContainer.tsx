@@ -34,7 +34,8 @@ const mapStateToProps = (state: StateAuthReg & StateProfileNameSurname) => {
         code: state.auth.code,
 
         newEmail: state.auth.newEmail,
-        email: state.auth.email
+        email: state.auth.email,
+        isFetching: state.auth.isFetching
     }
 
 }

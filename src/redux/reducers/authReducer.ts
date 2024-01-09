@@ -17,6 +17,7 @@ const SET_INPUT_CLEAR_DATA = 'SET_INPUT_CLEAR_DATA'
 const SET_MESSAGE = 'SET_MESSAGE'
 const SET_SHOW_MESSAGE = 'SET_SHOW_MESSAGE'
 const SET_CODE = 'SET_CODE'
+const SET_IS_FETCHING = 'SET_IS_FETCHING'
 
 const initialState = {
     email: "",
@@ -33,7 +34,8 @@ const initialState = {
 
     message: '',
     buttonShowMessage: false,
-    code: 0
+    code: 0,
+    isFetching: false
 }
 
 const authReducer = (state = initialState, action : any) => {
@@ -132,6 +134,11 @@ const authReducer = (state = initialState, action : any) => {
 
             return stateCopy
         }
+        case SET_IS_FETCHING : {
+            stateCopy.isFetching = action.isFetching
+
+            return stateCopy
+        }
 
         default : {
             return stateCopy
@@ -213,6 +220,11 @@ export const setShowMessage = (buttonShowMessage : boolean) => {
 export const setCode = (code : number) => {
     return {
         type: SET_CODE, code
+    }
+}
+export const setIsFetching = (isFetching : boolean) => {
+    return {
+        type: SET_IS_FETCHING, isFetching
     }
 }
 

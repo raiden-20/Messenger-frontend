@@ -8,7 +8,7 @@ import SearchImagesComponent from "../../../friends/components/oneUser/imagesFor
 import {PropsStatus} from "../../../../../redux/interfaces/friends/oneFriend";
 
 const ProfileOtherUserSettingsComponent = (props: PropsStatus) => {
-    return (// todo status
+    return (
         <section className={prof_oth_us.profile_icons}>
             {props.status !== 'search' ? <UsersImagesComponent status={props.status}/> :
                 <SearchImagesComponent/>}

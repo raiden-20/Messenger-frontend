@@ -13,28 +13,13 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
     const authorise = () => {
         if (props.input_emailOrNickname !== '' && props.input_password !== '') {
             props.Authorization(props.input_email, props.input_nickname, props.input_password)
-            if (localStorage.getItem('idUser') !== null) {
+            if (localStorage.getItem('idUser') !== '') {
                 navigate(PROFILE_USER)
-            } else if (localStorage.getItem('id') !== null) {
+            } else if (localStorage.getItem('id') !== '') {
                 navigate(REGISTRATION_RESTORE_ACCOUNT)
             } else {
                 navigate(AUTHORIZATION)
             }
-            //
-            // switch (props.code) {
-            //     case 200 : {
-            //         navigate(PROFILE_USER)
-            //         break
-            //     }
-            //     case 400 : {
-            //         navigate(AUTHORIZATION)
-            //         break
-            //     }
-            //     case 403 : {
-            //         navigate(REGISTRATION_RESTORE_ACCOUNT)
-            //         break
-            //     }
-            // }
         }
         cleanMessageAndChangePath()
     }

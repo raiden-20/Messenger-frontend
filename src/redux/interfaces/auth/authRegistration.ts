@@ -1,6 +1,3 @@
-import {AccountActivationMessage, Authorization, ForgotPassword, Registration} from "../../thunk/authThunk";
-import {setInputClearData} from "../../reducers/authReducer";
-
 export interface StateAuthReg {
     auth : {
         input_email: string;
@@ -16,7 +13,8 @@ export interface StateAuthReg {
         buttonShowMessage: boolean
         code: number
         email: string
-        newEmail: string
+        newEmail: string,
+        isFetching: boolean
     }
     profile : {
         input_birthDate : string
@@ -38,7 +36,7 @@ export interface PropsAuthReg{
     buttonShowMessage: boolean
     code: number
     email: string
-
+    isFetching: boolean
     newEmail: string
 
     Authorization(input_email: string, input_nickname: string, input_password: string): void

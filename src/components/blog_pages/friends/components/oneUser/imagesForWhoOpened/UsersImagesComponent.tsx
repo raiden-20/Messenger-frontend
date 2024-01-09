@@ -2,7 +2,7 @@ import fpart from '../../../../../../assets/images/friends/1part.svg'
 import deleteMark from '../../../../../../assets/images/friends/delete_mark.svg'
 import img_visible_css from './ImagesVisible.module.css'
 import {PropsStatus} from "../../../../../../redux/interfaces/friends/oneFriend";
-const UsersImagesComponent = (props: PropsStatus) => {// todo тоже поменять названия статусов
+const UsersImagesComponent = (props: PropsStatus) => {
     return (
         <div className={img_visible_css.div}>
            <section className={img_visible_css.button}>

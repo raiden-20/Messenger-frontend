@@ -11,7 +11,7 @@ const PhotoProfileComponent = (props: PropsPhotoProfileComponent) => {
     const openPhoto = (postId: string, url: string) => {
         props.setOnePhotoUrl(url)
         props.setButtonOpenPhoto(true)
-        props.setPostUrl(postId) // todo какое нахуй postUrl
+        props.setPostUrl(postId)
     }
 
     return (

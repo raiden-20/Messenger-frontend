@@ -22,6 +22,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
         props.setInputBio(event.target.value)
     }
     const setCover = (event: React.ChangeEvent<HTMLInputElement>) => {
+        props.setMessage('')
         if (event.target.files !== null) {
             const file = event.target.files[0];
             if (event.target.files[0].size <= 2097152) {
@@ -46,6 +47,7 @@ const ProfileSettingsComponent = (props: PropsProfileSettingsComponent) => {
         }
     }
     const setAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
+        props.setMessage('')
         if (event.target.files !== null) {
             const file = event.target.files[0];
             if (event.target.files[0].size <= 2097152) {

@@ -18,7 +18,7 @@ const mapStateToProps = (state: StatePostInPhoto) => {
         onePhotoUrl: state.photo.onePhotoUrl,
         avatarUrl: state.profile.avatarUrl,
         // @ts-ignore
-        post: state.post.posts[0] // todo разобраться
+        post: state.post.posts[0],
     }
 }
 

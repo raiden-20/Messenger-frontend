@@ -17,9 +17,10 @@ import {
     AUTHORIZATION, REGISTRATION, REGISTRATION_FORGOT_PASSWORD, REGISTRATION_RESTORE_ACCOUNT,
     SUCCESSFUL_ACTIVATION, SUCCESSFUL_CHANGE_EMAIL, SUCCESSFUL_SENT_MESSSAGE
 } from "../../paths/authPath";
+import LoaderComponent from "../loader/LoaderComponent";
 
 
-const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
+const Registration_main = (props: PropsAuthReg & PropsProfileNameSurname) => {
     const navigate = useNavigate()
 
     const clickToHeader = () => {
@@ -31,82 +32,90 @@ const Registration_main = (props : PropsAuthReg & PropsProfileNameSurname) => {
     }
 
     const location = useLocation()
-    return (
-        <div className={page_reg.div}>
-            <section className={page_reg.content}>
-                <header className={options_reg.header} onClick={clickToHeader}>
-                    <button onClick={clickToHeader} className={options_reg.button_header}>
-                        СимОн
-                    </button>
-                </header>
-                {location.pathname === AUTHORIZATION ? <RegistrationOrAuthorisationClass input_email={props.input_email}
-                                                                                         input_nickname={props.input_nickname}
-                                                                                         input_password={props.input_password}
-                                                                                         setInputEmail={props.setInputEmail}
-                                                                                         setInputNickname={props.setInputNickname}
-                                                                                         setInputPassword={props.setInputPassword}
-                                                                                         message={props.message}
-                                                                                         setMessage={props.setMessage}
-                                                                                         input_emailOrNickname={props.input_emailOrNickname}
-                                                                                         setInputEmailOrNickname={props.setInputEmailOrNickname}
-                                                                                         code={props.code}
-                                                                                         buttonShowMessage={props.buttonShowMessage}
-                                                                                         setShowMessage={props.setShowMessage}
-                                                                                         input_passwordShow={props.input_passwordShow}
-                                                                                         Authorization={props.Authorization}
-                                                                                         setInputClearData={props.setInputClearData}/> :
-                location.pathname === REGISTRATION ? <RegistrationClass input_email={props.input_email}
-                                                                        input_nickname={props.input_nickname}
-                                                                        input_password={props.input_password}
-                                                                        input_confirmPassword={props.input_confirmPassword}
-                                                                        setInputEmail={props.setInputEmail}
-                                                                        setInputNickname={props.setInputNickname}
-                                                                        setInputPassword={props.setInputPassword}
-                                                                        setInputConfirmPassword={props.setInputConfirmPassword}
-                                                                        message={props.message}
-                                                                        setMessage={props.setMessage}
-                                                                        input_emailOrNickname={props.input_emailOrNickname}
-                                                                        setInputEmailOrNickname={props.setInputEmailOrNickname}
-                                                                        code={props.code}
-                                                                        buttonShowMessage={props.buttonShowMessage}
-                                                                        setShowMessage={props.setShowMessage}
-                                                                        input_name={props.input_name}
-                                                                        setInputName={props.setInputName}
-                                                                        input_birthDate={props.input_birthDate}
-                                                                        setInputBirthDate={props.setInputBirthDate}
-                                                                        setInputClearData={props.setInputClearData}
-                                                                        setInputClearDataProfile={props.setInputClearDataProfile}
-                                                                        Registration={props.Registration}/> :
-                location.pathname === REGISTRATION_FORGOT_PASSWORD ? <RegistrationForgotPasswordClass input_email={props.input_email}
-                                                                                                      setInputEmail={props.setInputEmail}
-                                                                                                      message={props.message}
-                                                                                                      setMessage={props.setMessage}
-                                                                                                      code={props.code}
-                                                                                                      setCode={props.setCode}
-                                                                                                      buttonShowMessage={props.buttonShowMessage}
-                                                                                                      setShowMessage={props.setShowMessage}
-                                                                                                      ForgotPassword={props.ForgotPassword}/> :
-                location.pathname === REGISTRATION_RESTORE_ACCOUNT ? <RestoreAccountComponent/> :
-                location.pathname === SUCCESSFUL_ACTIVATION ? <MainSuccessComponent message={props.message}
-                                                                                    setMessage={props.setMessage}
-                                                                                    newEmail={props.newEmail}
-                                                                                    email={props.email}
-                                                                                    AccountActivationMessage={props.AccountActivationMessage}
-                                                                                    ChangeEmailMessage={props.ChangeEmailMessage}/> :
-                location.pathname === SUCCESSFUL_SENT_MESSSAGE ? <MainSuccessComponent message={props.message}
-                                                                                       setMessage={props.setMessage}
-                                                                                       newEmail={props.newEmail}
-                                                                                       email={props.email}
-                                                                                       AccountActivationMessage={props.AccountActivationMessage}
-                                                                                       ChangeEmailMessage={props.ChangeEmailMessage}/> :
-                location.pathname === SUCCESSFUL_CHANGE_EMAIL ? <MainSuccessComponent message={props.message}
-                                                                                      setMessage={props.setMessage}
-                                                                                      newEmail={props.newEmail}
-                                                                                      email={props.email}
-                                                                                      AccountActivationMessage={props.AccountActivationMessage}
-                                                                                      ChangeEmailMessage={props.ChangeEmailMessage}/> : null}
-            </section>
-        </div>
+    return (<>
+            {props.isFetching ? <LoaderComponent/> : null}
+            <div className={page_reg.div}>
+                <section className={page_reg.content}>
+                    <header className={options_reg.header} onClick={clickToHeader}>
+                        <button onClick={clickToHeader} className={options_reg.button_header}>
+                            СимОн
+                        </button>
+                    </header>
+                    {location.pathname === AUTHORIZATION ?
+                        <RegistrationOrAuthorisationClass input_email={props.input_email}
+                                                          input_nickname={props.input_nickname}
+                                                          input_password={props.input_password}
+                                                          setInputEmail={props.setInputEmail}
+                                                          setInputNickname={props.setInputNickname}
+                                                          setInputPassword={props.setInputPassword}
+                                                          message={props.message}
+                                                          setMessage={props.setMessage}
+                                                          input_emailOrNickname={props.input_emailOrNickname}
+                                                          setInputEmailOrNickname={props.setInputEmailOrNickname}
+                                                          code={props.code}
+                                                          buttonShowMessage={props.buttonShowMessage}
+                                                          setShowMessage={props.setShowMessage}
+                                                          input_passwordShow={props.input_passwordShow}
+                                                          Authorization={props.Authorization}
+                                                          setInputClearData={props.setInputClearData}/> :
+                        location.pathname === REGISTRATION ? <RegistrationClass input_email={props.input_email}
+                                                                                input_nickname={props.input_nickname}
+                                                                                input_password={props.input_password}
+                                                                                input_confirmPassword={props.input_confirmPassword}
+                                                                                setInputEmail={props.setInputEmail}
+                                                                                setInputNickname={props.setInputNickname}
+                                                                                setInputPassword={props.setInputPassword}
+                                                                                setInputConfirmPassword={props.setInputConfirmPassword}
+                                                                                message={props.message}
+                                                                                setMessage={props.setMessage}
+                                                                                input_emailOrNickname={props.input_emailOrNickname}
+                                                                                setInputEmailOrNickname={props.setInputEmailOrNickname}
+                                                                                code={props.code}
+                                                                                buttonShowMessage={props.buttonShowMessage}
+                                                                                setShowMessage={props.setShowMessage}
+                                                                                input_name={props.input_name}
+                                                                                setInputName={props.setInputName}
+                                                                                input_birthDate={props.input_birthDate}
+                                                                                setInputBirthDate={props.setInputBirthDate}
+                                                                                setInputClearData={props.setInputClearData}
+                                                                                setInputClearDataProfile={props.setInputClearDataProfile}
+                                                                                Registration={props.Registration}/> :
+                            location.pathname === REGISTRATION_FORGOT_PASSWORD ?
+                                <RegistrationForgotPasswordClass input_email={props.input_email}
+                                                                 setInputEmail={props.setInputEmail}
+                                                                 message={props.message}
+                                                                 setMessage={props.setMessage}
+                                                                 code={props.code}
+                                                                 setCode={props.setCode}
+                                                                 buttonShowMessage={props.buttonShowMessage}
+                                                                 setShowMessage={props.setShowMessage}
+                                                                 ForgotPassword={props.ForgotPassword}/> :
+                                location.pathname === REGISTRATION_RESTORE_ACCOUNT ? <RestoreAccountComponent/> :
+                                    location.pathname === SUCCESSFUL_ACTIVATION ?
+                                        <MainSuccessComponent message={props.message}
+                                                              setMessage={props.setMessage}
+                                                              newEmail={props.newEmail}
+                                                              email={props.email}
+                                                              AccountActivationMessage={props.AccountActivationMessage}
+                                                              ChangeEmailMessage={props.ChangeEmailMessage}/> :
+                                        location.pathname === SUCCESSFUL_SENT_MESSSAGE ?
+                                            <MainSuccessComponent message={props.message}
+                                                                  setMessage={props.setMessage}
+                                                                  newEmail={props.newEmail}
+                                                                  email={props.email}
+                                                                  AccountActivationMessage={props.AccountActivationMessage}
+                                                                  ChangeEmailMessage={props.ChangeEmailMessage}/> :
+                                            location.pathname === SUCCESSFUL_CHANGE_EMAIL ?
+                                                <MainSuccessComponent message={props.message}
+                                                                      setMessage={props.setMessage}
+                                                                      newEmail={props.newEmail}
+                                                                      email={props.email}
+                                                                      AccountActivationMessage={props.AccountActivationMessage}
+                                                                      ChangeEmailMessage={props.ChangeEmailMessage}/> : null}
+                </section>
+            </div>
+        </>
+
     )
 }
 

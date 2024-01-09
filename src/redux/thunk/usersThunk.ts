@@ -9,18 +9,21 @@ import {
 } from "../reducers/usersReducer";
 import {Auth} from "../../axios/auth/AuthAxios";
 import {Photo} from "../../axios/photo/PhotoAxios";
+import {setCode, setIsFetching} from "../reducers/authReducer";
 
 export const GetRandomFriends = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Users.GetRandomFriendsAxios()
             .then(response => {
+                dispatch(setIsFetching(false))
                 switch (response[0]) {
                     case 200 : {
                         dispatch(setUsers(response[1]))
                         break
                     }
                     case 400 : {
-                        // todo на стр пользователя не сущ
+                        dispatch(setCode(404))
                         break
                     }
                     case 401 : {
@@ -34,8 +37,10 @@ export const GetRandomFriends = () => {
 
 export const GetFriendsCount = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Users.GetCountFriendsAxios()
             .then(response => {
+                dispatch(setIsFetching(false))
                 switch (response[0]) {
                     case 200 : {
                         dispatch(setUserFriendsCount(response[1]))
@@ -51,8 +56,10 @@ export const GetFriendsCount = () => {
 }
 export const GetSubscriptionsCount = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Users.GetCountSubscriptionsAxios()
             .then(response => {
+                dispatch(setIsFetching(false))
                 switch (response[0]) {
                     case 200 : {
                         dispatch(setUserSubscriptionsCount(response[1]))
@@ -68,8 +75,10 @@ export const GetSubscriptionsCount = () => {
 }
 export const GetSubscribersCount = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Users.GetCountSubscribersAxios()
             .then(response => {
+                dispatch(setIsFetching(false))
                 switch (response[0]) {
                     case 200 : {
                         dispatch(setUserSubscribersCount(response[1]))
@@ -86,10 +95,12 @@ export const GetSubscribersCount = () => {
 
 export const ActionUser = (id: string, action: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Users.ActionUsersAxios({
             idOtherUser: id,
             action: action,
         }).then(response => {
+            dispatch(setIsFetching(false))
             debugger
             switch (response[0]) {
                 case 200 : {
@@ -122,7 +133,7 @@ export const ActionUser = (id: string, action: string) => {
                     break
                 }
                 case 404 : {
-                    // user doesn't exist
+                    dispatch(setCode(404))
                     break
                 }
                 case 400 : {
@@ -137,9 +148,11 @@ export const ActionUser = (id: string, action: string) => {
 
 export const GetUserFromListAuthData = (id: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.AuthDataAxios({
             id: id
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     dispatch(setUserNickname(id, response[1].nickname))
@@ -156,16 +169,18 @@ export const GetUserFromListAuthData = (id: string) => {
 
 export const GetUserFromListPhoto = (id: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Photo.GetPhotoAxios({
             id: id
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     dispatch(setUserPhoto(id, response[1]))
                     break
                 }
                 case 400 : {
-                    // todo на стр пользователя не сущ
+                    dispatch(setCode(404))
                     break
                 }
                 case 401 : {
@@ -179,8 +194,10 @@ export const GetUserFromListPhoto = (id: string) => {
 
 export const GetFriends = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Users.GetFriendsAxios()
             .then(response => {
+                dispatch(setIsFetching(false))
                 switch (response[0]) {
                     case 200 : {
                         dispatch(setUsers(response[1]))
@@ -196,8 +213,10 @@ export const GetFriends = () => {
 }
 export const GetSubscriptions = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Users.GetSubscriptionsAxios()
             .then(response => {
+                dispatch(setIsFetching(false))
                 switch (response[0]) {
                     case 200 : {
                         dispatch(setUsers(response[1]))
@@ -213,8 +232,10 @@ export const GetSubscriptions = () => {
 }
 export const GetSubscribers = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Users.GetSubscribersAxios()
             .then(response => {
+                dispatch(setIsFetching(false))
                 switch (response[0]) {
                     case 200 : {
                         dispatch(setUsers(response[1]))
@@ -230,8 +251,10 @@ export const GetSubscribers = () => {
 }
 export const GetSearch = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Users.GetSearchAxios()
             .then(response => {
+                dispatch(setIsFetching(false))
                 switch (response[0]) {
                     case 200 : {
                         dispatch(setUsers(response[1]))

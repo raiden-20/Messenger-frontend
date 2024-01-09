@@ -8,10 +8,10 @@ import {ChangeEmailMessage} from "../../../../redux/thunk/authThunk";
 
 class SuccessfulChangeEmailClass extends Component<PropsSuccessfulEmail, StateSuccessfulSmth> {
     componentDidMount() {
-        ChangeEmailMessage(this.props.newEmail) // todo подумать, мб перенести сразу где смена email, много ненужного здесь
+        ChangeEmailMessage(this.props.newEmail)
     }
 
-    render() { //todo вынести
+    render() {
         return (
             <div className={success_reg_res_css.root}>
                 <p>{this.props.message}</p>

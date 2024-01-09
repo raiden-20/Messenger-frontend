@@ -1,4 +1,5 @@
 export const AUTHORIZATION : string ='/'
+export const NOT_EXIST : string ='/404'
 export const REGISTRATION : string ='/registration'
 export const REGISTRATION_FORGOT_PASSWORD : string ='/registration_forgot_password'
 export const REGISTRATION_RESTORE_ACCOUNT : string ='/registration_restore_account'

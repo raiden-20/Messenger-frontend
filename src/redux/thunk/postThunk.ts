@@ -15,17 +15,20 @@ import {Post} from "../interfaces/profile/post/post";
 import {PostPhoto} from "../interfaces/post/CreatePost";
 import {Photo} from "../../axios/photo/PhotoAxios";
 import {SetPhotoInterface} from "../../axios/photo/photoInterface";
+import {setCode, setIsFetching} from "../reducers/authReducer";
 
 export const GetPosts = () => {
     return (dispatch : Dispatch) => {
+        dispatch(setIsFetching(true))
         Blog.GetPostsAxios().then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200: {
                     dispatch(setPosts(response[1]))
                     break
                 }
                 case 400: {
-                    // todo user doesn't exist
+                    dispatch(setCode(404))
                     break
                 }
                 case 401 : {
@@ -39,9 +42,11 @@ export const GetPosts = () => {
 
 export const GetOnePostData = (postId: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Blog.GetPostDataAxios({
             postId: postId
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200: {
                     let post = {
@@ -62,7 +67,7 @@ export const GetOnePostData = (postId: string) => {
                     break
                 }
                 case 400 : {
-                    // post doesn't exist
+                    dispatch(setCode(404))
                 }
             }
         })
@@ -71,6 +76,7 @@ export const GetOnePostData = (postId: string) => {
 
 export const EditPost = (postId: string, input_postText: string, input_postPhoto: SetPhotoInterface[], deletePhotoPostUrl: string[]) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Blog.EditPostAxios({
             postId: postId,
             input_postText:  input_postText
@@ -155,6 +161,7 @@ export const EditPost = (postId: string, input_postText: string, input_postPhoto
                         Blog.GetPostDataAxios({
                             postId: postId
                         }).then(response => {
+                            dispatch(setIsFetching(false))
                             switch (response[0]) {
                                 case 200: {
                                     onePost.photoUrl = response[1].photoUrl
@@ -163,7 +170,6 @@ export const EditPost = (postId: string, input_postText: string, input_postPhoto
                         })
                     }, 3000)
                     dispatch(setOnePost(onePost))
-
                     dispatch(setInputPostAllPhotoDelete())
                     dispatch(setInputPostText(''))
                     dispatch(setButtonEditPostClick(postId, false))
@@ -172,7 +178,7 @@ export const EditPost = (postId: string, input_postText: string, input_postPhoto
                     break
                 }
                 case 400 : {
-                    //todo post doesn't exist
+                    dispatch(setCode(404))
                     break
                 }
                 case 401 : {
@@ -186,6 +192,7 @@ export const EditPost = (postId: string, input_postText: string, input_postPhoto
 
 export const CreatePost = (input_postText: string, input_postPhoto: SetPhotoInterface[]) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Blog.NewPostAxios({
             input_postText: input_postText
         }).then(response => {
@@ -221,6 +228,7 @@ export const CreatePost = (input_postText: string, input_postPhoto: SetPhotoInte
                         Blog.GetPostDataAxios({
                             postId: response[1]
                         }).then(response => {
+                            dispatch(setIsFetching(false))
                             switch (response[0]) {
                                 case 200: {
                                     let onePost: Post = {
@@ -257,9 +265,11 @@ export const CreatePost = (input_postText: string, input_postPhoto: SetPhotoInte
 
 export const GetCommentsToPost = (postId: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Blog.GetCommentsAxios({
             postId: postId,
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     dispatch(setComments(response[1]))
@@ -270,7 +280,7 @@ export const GetCommentsToPost = (postId: string) => {
                     break
                 }
                 case 400 : {
-                    // post doesn't exist
+                    dispatch(setCode(404))
                     break
                 }
             }
@@ -282,10 +292,12 @@ export const SetComment = (postId: string, input_comment: string,
                            name: string, nickname: string, avatarUrl: string,
                            commentCount: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Blog.SetCommentAxios({
             postId: postId,
             input_comment: input_comment
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     const now = new Date();
@@ -314,7 +326,7 @@ export const SetComment = (postId: string, input_comment: string,
                     break
                 }
                 case 400 : {
-                    // post doesn't exist
+                    dispatch(setCode(404))
                     break
                 }
             }
@@ -324,12 +336,13 @@ export const SetComment = (postId: string, input_comment: string,
 
 export const LikePost = (postId: string, isLiked: boolean, likeCount: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Blog.LikePostAxios({
             postId: postId
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200: {
-
                     dispatch(setOneLikeCountPost(postId, isLiked ? (Number.parseInt(likeCount) - 1).toString() :
                         (Number.parseInt(likeCount) + 1).toString()))
                     break
@@ -339,7 +352,7 @@ export const LikePost = (postId: string, isLiked: boolean, likeCount: string) =>
                     break
                 }
                 case 400: {
-                    // todo post doesn't exist
+                    dispatch(setCode(404))
                     break
                 }
             }
@@ -349,9 +362,11 @@ export const LikePost = (postId: string, isLiked: boolean, likeCount: string) =>
 
 export const LikeComment = (commentId: string, isLiked: boolean, likeCount: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Blog.LikeCommentAxios({
             commentId: commentId
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200: {
                     dispatch(setOneLikeCommentPost(commentId, isLiked ? (Number.parseInt(likeCount) - 1).toString() :
@@ -363,7 +378,7 @@ export const LikeComment = (commentId: string, isLiked: boolean, likeCount: stri
                     break
                 }
                 case 400 : {
-                    // post doesn't exist
+                    dispatch(setCode(404))
                     break
                 }
             }
@@ -373,17 +388,18 @@ export const LikeComment = (commentId: string, isLiked: boolean, likeCount: stri
 
 export const DeletePost = (postId: string) => {
     return (dispatch: Dispatch) =>{
+        dispatch(setIsFetching(true))
         Blog.DeletePostAxios({
             postId: postId
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200: {
                     dispatch(deleteOnePost(postId))
-                    //dispatch(setButtonEditPostClick(false)) todo
                     break
                 }
                 case 400: {
-                    // todo post doesn't exist
+                    dispatch(setCode(404))
                     break
                 }
                 case 401 : {
@@ -397,9 +413,11 @@ export const DeletePost = (postId: string) => {
 
 export const DeleteComment = (commentId: string, postId: string, commentsCount: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Blog.DeleteCommentAxios({
             commentId: commentId
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     dispatch(deleteOneComment(commentId))
@@ -411,7 +429,7 @@ export const DeleteComment = (commentId: string, postId: string, commentsCount: 
                     break
                 }
                 case 400 : {
-                    // post doesn't exist
+                    dispatch(setCode(404))
                     break
                 }
             }
@@ -421,6 +439,7 @@ export const DeleteComment = (commentId: string, postId: string, commentsCount: 
 
 export const GetOneCommentData = (userId: string, commentId: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.AuthDataAxios({
             id: userId as string
         }).then(response => {
@@ -429,6 +448,7 @@ export const GetOneCommentData = (userId: string, commentId: string) => {
                     Profile.ProfileGetDataAxios({
                         id: userId as string
                     }).then(responseSocial => {
+                        dispatch(setIsFetching(false))
                         switch (responseSocial[0]) {
                             case 200 : {
                                 dispatch(setOneCommentUserData(commentId, responseSocial[1].name,
@@ -436,7 +456,7 @@ export const GetOneCommentData = (userId: string, commentId: string) => {
                                 break
                             }
                             case 400: {
-                                // user doesn't exist
+                                dispatch(setCode(404))
                                 break
                             }
                             case 401 : {

@@ -2,7 +2,7 @@ import {Dispatch} from "redux";
 import {Auth} from "../../axios/auth/AuthAxios";
 import {
     setCode, setData,
-    setEmail,
+    setEmail, setIsFetching,
     setMessage,
     setMyNickname,
     setNewEmail,
@@ -18,11 +18,13 @@ import {setMyData, setUserData} from "../reducers/profileReducer";
 
 export const Authorization = (input_email: string, input_nickname: string, input_password: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.RegistrationOrAuthorizationAxios({
             input_email: input_email,
             input_nickname: input_nickname,
             input_password: input_password
         }).then(response => {
+            dispatch(setIsFetching(false))
             dispatch(setShowMessage(true))
             dispatch(setCode(response[0]))
             dispatch(setMessage(response[1]))
@@ -62,7 +64,7 @@ export const Authorization = (input_email: string, input_nickname: string, input
 export const Registration = (input_email: string, input_nickname: string, input_password: string, input_confirmPassword: string,
                              input_name: string, input_birthDate: string) => {
     return (dispatch : Dispatch) => {
-        let flag = false
+        dispatch(setIsFetching(true))
         Auth.RegistrationAxios({
             input_email: input_email,
             input_nickname: input_nickname,
@@ -73,8 +75,20 @@ export const Registration = (input_email: string, input_nickname: string, input_
                 case 201 : {
                     if (response[1] !== null) {
                         localStorage.setItem('id', response[1])
-
-                        flag = true
+                        Profile.RegistrationSocialAxios({
+                            input_name: input_name,
+                            input_birthDate: input_birthDate
+                        }).then(response => {
+                            dispatch(setIsFetching(false))
+                            switch (response) {
+                                case 200: {
+                                    break
+                                }
+                                case 400: {
+                                    dispatch(setMessage('Ошибка регистрации (пользователя не существует)'))
+                                }
+                            }
+                        })
                     }
                     break
                 }
@@ -95,30 +109,16 @@ export const Registration = (input_email: string, input_nickname: string, input_
                 default:
             }
         })
-
-        if (flag) {
-            Profile.RegistrationSocialAxios({
-                input_name: input_name,
-                input_birthDate: input_birthDate
-            }).then(response => {
-                switch (response) {
-                    case 200: {
-                        break
-                    }
-                    case 400: {
-                        dispatch(setMessage('Ошибка регистрации (пользователя не существует)'))
-                    }
-                }
-            })
-        }
     }
 }
 
 export const ForgotPassword = (input_email: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.ForgotPasswordAxios({
             input_email: input_email
         }).then(response => {
+            dispatch(setIsFetching(false))
             dispatch(setShowMessage(true))
             switch (response) {
                 case 200: {
@@ -144,8 +144,10 @@ export const ForgotPassword = (input_email: string) => {
 
 export const AccountActivationMessage = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.ActivationAccountAxios()
             .then(response => {
+                dispatch(setIsFetching(false))
                 switch (response[0]) {
                     case 200 : {
                         dispatch(setMessage('Ваш аккаунт был успешно активирован! Для продолжения войдите в аккаунт'))
@@ -167,9 +169,11 @@ export const AccountActivationMessage = () => {
 
 export const ChangeEmailMessage = (newEmail: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.SuccessfulChangeEmail({
             newEmail: newEmail
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     dispatch(setMessage('Пароль был успешно изменен!'))
@@ -177,7 +181,7 @@ export const ChangeEmailMessage = (newEmail: string) => {
                     break
                 }
                 case 400 : {
-                    dispatch(setMessage('Такого пользователя не существует'))
+                    dispatch(setCode(404))
                     break
                 }
                 case 401 : {
@@ -191,9 +195,11 @@ export const ChangeEmailMessage = (newEmail: string) => {
 
 export const AuthGetData = (id: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.AuthDataAxios({
             id: id
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     dispatch(setNickname(response[1].nickname))
@@ -210,9 +216,11 @@ export const AuthGetData = (id: string) => {
 }
 export const AuthGetMyData = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.AuthDataAxios({
             id: localStorage.getItem('id') as string
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     dispatch(setMyNickname(response[1].nickname))
@@ -229,10 +237,12 @@ export const AuthGetMyData = () => {
 
 export const ChangeEmail = (input_password: string, input_email: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.ChangeEmailAxios( {
             input_password: input_password,
             input_email: input_email
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     dispatch(setMessage('На Вашу почту было отправлено письмо с подтверждением бла бла бла'))
@@ -263,9 +273,11 @@ export const ChangeEmail = (input_password: string, input_email: string) => {
 
 export const CheckOldPassword = (input_password: string) => {
     return (dispatch : Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.ChangeOldPasswordAxios( {
             input_password: input_password
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     if (response[1] === "Check your mailbox to confirm new password") {
@@ -278,7 +290,7 @@ export const CheckOldPassword = (input_password: string) => {
                 }
                 case 400 : {
                     if (response[1] === "User doesn't exist") {
-                        dispatch(setMessage('Пользователя не существует'))
+                        dispatch(setCode(404))
                     } else if (response[1] === "Password mismatch") {
                         dispatch(setMessage('Неверный пароль'))
                     }
@@ -301,10 +313,12 @@ export const CheckOldPassword = (input_password: string) => {
 
 export const SetNewPassword = (input_code: string, input_password: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.NewPasswordAxios( {
             input_code: input_code,
             input_password: input_password
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     localStorage.setItem('password', input_password)
@@ -317,7 +331,7 @@ export const SetNewPassword = (input_code: string, input_password: string) => {
                 }
                 case 400 : {
                     if (response[1] === "User doesn't exist") {
-                        dispatch(setMessage('Пользователя не существует'))
+                        dispatch(setCode(404))
                     } else if (response[1] === "Code doesn't match") {
                         dispatch(setMessage('Неверный код'))
                     } else if (response[1] === "The code is not relevant") {
@@ -337,7 +351,9 @@ export const SetNewPassword = (input_code: string, input_password: string) => {
 
 export const DeleteAccount = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.DeleteProfileAxios().then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     if (response[1] === "Account is blocked") {
@@ -352,7 +368,7 @@ export const DeleteAccount = () => {
                 }
                 case 400 : {
                     if (response[1] === "User doesn't exist") {
-                        dispatch(setMessage('Пользователя не существует'))
+                        dispatch(setCode(404))
                     }
                     break
                 }
@@ -371,9 +387,11 @@ export const DeleteAccount = () => {
 
 export const ChangeNickname = (input_nickname: string) => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.ChangeNicknameAxios({
             input_nickname: input_nickname
         }).then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     dispatch(setNickname(input_nickname))
@@ -385,7 +403,7 @@ export const ChangeNickname = (input_nickname: string) => {
                     break
                 }
                 case 400 : {
-                    // todo
+                    dispatch(setCode(404))
                     break
                 }
                 case 401 : {
@@ -399,7 +417,9 @@ export const ChangeNickname = (input_nickname: string) => {
 
 export const Logout = () => {
     return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true))
         Auth.LogoutAxios().then(response => {
+            dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
                     localStorage.setItem('token', '')
