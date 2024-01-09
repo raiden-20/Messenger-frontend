@@ -1,3 +1,5 @@
+import {Logout} from "../../thunk/authThunk";
+
 export interface StateNavigation{
     navigation : {
         buttonMoreSection : boolean
@@ -10,7 +12,7 @@ export interface StateNavigation{
 export interface PropsNavigation{
     buttonMoreSection : boolean
 
-    setData(data: object): void
+    Logout(): void
     setButtonMoreSection(buttonMoreSection : boolean) : void
 
 }

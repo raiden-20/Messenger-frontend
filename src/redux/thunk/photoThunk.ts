@@ -16,8 +16,8 @@ export const GetPhotoCount = () => {
                     // todo на стр пользователя не сущ
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -39,8 +39,8 @@ export const GetPhoto = () => {
                     // todo на стр пользователя не сущ
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -63,8 +63,8 @@ export const DeleteAvatar = (deleteAvatarUrl: string) => {
                     dispatch(setMessage('Плохое имя файла, выберите другой')) // todo мб сделать отдельные чообщения profile
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -90,8 +90,8 @@ export const SetAvatar = (input_avatarUrl: File) => {
                     }
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -113,8 +113,8 @@ export const DeleteCover = (deleteCoverUrl: string) => {
                     dispatch(setMessage('Плохое имя файла, выберите другой'))
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -140,8 +140,8 @@ export const SetCover = (input_coverUrl: File) => {
                     }
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }

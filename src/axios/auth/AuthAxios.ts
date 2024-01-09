@@ -133,6 +133,15 @@ export const Auth = {
         } catch (error: any) {
             return [error.response.status, error.response.data];
         }
+    },
+
+    async LogoutAxios() {
+        try {
+            const response = await axios.post(LOCALHOST + AUTH + '/auth/exit', config)
+            return [response.status, response.data];
+        } catch (error: any) {
+            return [error.response.status, error.response.data];
+        }
     }
 }
 

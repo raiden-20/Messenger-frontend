@@ -12,10 +12,14 @@ import {FRIENDS_USER, SEARCH, SUBSCRIBERS_USER, SUBSCRIPTIONS_USER} from "../../
 import MainUsersContainer from "./friends/MainUsersContainer";
 import {PROFILE_USER_PHOTO} from "../../paths/photoPath";
 import PhotoProfileContainer from "./center_components/profile/photo_section/PhotoProfileContainer";
+import TokenIsntActualContainer from "./tokenIsn'tActual/TokenIsntActualContainer";
 
 const MainBlogPagesComponent = () => {
 
     const location = useLocation()
+    if (localStorage.getItem('token') === null) {
+        return <TokenIsntActualContainer/>
+    }
     return (
         <div className={main_css.div}>
             <section className={main_css.page}>

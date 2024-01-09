@@ -79,7 +79,7 @@ const NavigationComponent = (props: PropsNavigation) => {
                         </section>
                     </section>
                     {props.buttonMoreSection ? (
-                        <NavigationMoreSection setData={props.setData}/> ): null}
+                        <NavigationMoreSection Logout={props.Logout}/> ): null}
 
                 </section>
 

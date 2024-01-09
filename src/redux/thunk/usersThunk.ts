@@ -23,8 +23,8 @@ export const GetRandomFriends = () => {
                         // todo на стр пользователя не сущ
                         break
                     }
-                    case 401: {
-                        // bad token
+                    case 401 : {
+                        localStorage.setItem('token', '')
                         break
                     }
                 }
@@ -42,7 +42,7 @@ export const GetFriendsCount = () => {
                         break
                     }
                     case 401 : {
-                        //плохой токен
+                        localStorage.setItem('token', '')
                         break
                     }
                 }
@@ -59,7 +59,7 @@ export const GetSubscriptionsCount = () => {
                         break
                     }
                     case 401 : {
-                        //плохой токен
+                        localStorage.setItem('token', '')
                         break
                     }
                 }
@@ -76,7 +76,7 @@ export const GetSubscribersCount = () => {
                         break
                     }
                     case 401 : {
-                        //плохой токен
+                        localStorage.setItem('token', '')
                         break
                     }
                 }
@@ -118,7 +118,7 @@ export const ActionUser = (id: string, action: string) => {
                     break
                 }
                 case 401 : {
-                    // bad token
+                    localStorage.setItem('token', '')
                     break
                 }
                 case 404 : {
@@ -143,6 +143,11 @@ export const GetUserFromListAuthData = (id: string) => {
             switch (response[0]) {
                 case 200 : {
                     dispatch(setUserNickname(id, response[1].nickname))
+                    break
+                }
+                case 401 : {
+                    localStorage.setItem('token', '')
+                    break
                 }
             }
         })
@@ -163,8 +168,8 @@ export const GetUserFromListPhoto = (id: string) => {
                     // todo на стр пользователя не сущ
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -182,7 +187,7 @@ export const GetFriends = () => {
                         break
                     }
                     case 401 : {
-                        //плохой токен
+                        localStorage.setItem('token', '')
                         break
                     }
                 }
@@ -199,7 +204,7 @@ export const GetSubscriptions = () => {
                         break
                     }
                     case 401 : {
-                        //плохой токен
+                        localStorage.setItem('token', '')
                         break
                     }
                 }
@@ -216,7 +221,7 @@ export const GetSubscribers = () => {
                         break
                     }
                     case 401 : {
-                        //плохой токен
+                        localStorage.setItem('token', '')
                         break
                     }
                 }
@@ -233,7 +238,7 @@ export const GetSearch = () => {
                         break
                     }
                     case 401 : {
-                        //плохой токен
+                        localStorage.setItem('token', '')
                         break
                     }
                 }

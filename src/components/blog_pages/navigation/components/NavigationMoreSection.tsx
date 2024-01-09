@@ -8,14 +8,7 @@ const NavigationMoreSection = (props: PropsExit) => {
     const navigation = useNavigate()
 
     const enter = () => {
-        props.setData({
-            email: '',
-            nickname: '',
-            password: ''})
-        //todo также тут будет потом и обнуление профиля и тд
-        localStorage.setItem('token', '')
-        localStorage.setItem('id', '')
-        localStorage.setItem('password', '')
+        props.Logout()
         navigation(AUTHORIZATION)
     }
 

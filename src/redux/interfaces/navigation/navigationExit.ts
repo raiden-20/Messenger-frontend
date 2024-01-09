@@ -1,3 +1,5 @@
+import {Logout} from "../../thunk/authThunk";
+
 export interface StateExit{
     auth : {
         token: string
@@ -6,7 +8,7 @@ export interface StateExit{
 }
 
 export interface PropsExit{
-    setData(data: object): void
+    Logout(): void
 
 }
 

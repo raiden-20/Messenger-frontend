@@ -19,8 +19,8 @@ export const MyProfileData = () => {
                     // user doesn't exist
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -44,8 +44,8 @@ export const ProfileData = (id: string) => {
                     // user doesn't exist
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -72,8 +72,9 @@ export const ChangeProfileData = (input_name: string, input_birthDate: string,
                     // todo
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
+                    break
                 }
             }
         })

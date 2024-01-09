@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 import {Auth} from "../../axios/auth/AuthAxios";
 import {
-    setCode,
+    setCode, setData,
     setEmail,
     setMessage,
     setMyNickname,
@@ -14,6 +14,7 @@ import {
     setButtonChangePasswordFirstStepPressed,
     setButtonChangePasswordSecondStepPressed
 } from "../reducers/settingsReducer";
+import {setMyData, setUserData} from "../reducers/profileReducer";
 
 export const Authorization = (input_email: string, input_nickname: string, input_password: string) => {
     return (dispatch: Dispatch) => {
@@ -59,7 +60,7 @@ export const Authorization = (input_email: string, input_nickname: string, input
 }
 
 export const Registration = (input_email: string, input_nickname: string, input_password: string, input_confirmPassword: string,
-                             input_name: string, input_birthDate: string) =>{
+                             input_name: string, input_birthDate: string) => {
     return (dispatch : Dispatch) => {
         let flag = false
         Auth.RegistrationAxios({
@@ -130,7 +131,7 @@ export const ForgotPassword = (input_email: string) => {
                     break
                 }
                 case 401: {
-                    dispatch(setMessage('Плохой токен'))
+                    localStorage.setItem('token', '')
                     break
                 }
                 case 409: {
@@ -180,7 +181,7 @@ export const ChangeEmailMessage = (newEmail: string) => {
                     break
                 }
                 case 401 : {
-                    dispatch(setMessage('Плохой токен, перезайдите в аккаунт и повторите действия заново'))
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -197,6 +198,11 @@ export const AuthGetData = (id: string) => {
                 case 200 : {
                     dispatch(setNickname(response[1].nickname))
                     dispatch(setEmail(response[1].email))
+                    break
+                }
+                case 401 : {
+                    localStorage.setItem('token', '')
+                    break
                 }
             }
         })
@@ -210,6 +216,11 @@ export const AuthGetMyData = () => {
             switch (response[0]) {
                 case 200 : {
                     dispatch(setMyNickname(response[1].nickname))
+                    break
+                }
+                case 401 : {
+                    localStorage.setItem('token', '')
+                    break
                 }
             }
         })
@@ -237,7 +248,7 @@ export const ChangeEmail = (input_password: string, input_email: string) => {
                     break
                 }
                 case 401 : {
-                    dispatch(setMessage('Плохой токен'))
+                    localStorage.setItem('token', '')
                     break
                 }
                 case 409 : {
@@ -274,7 +285,7 @@ export const CheckOldPassword = (input_password: string) => {
                     break
                 }
                 case 401 : {
-                    dispatch(setMessage('Плохой токен'))
+                    localStorage.setItem('token', '')
                     break
                 }
                 case 409 : {
@@ -315,7 +326,7 @@ export const SetNewPassword = (input_code: string, input_password: string) => {
                     break
                 }
                 case 401 : {
-                    dispatch(setMessage('Плохой токен'))
+                    localStorage.setItem('token', '')
                     break
                 }
                 default:
@@ -346,7 +357,7 @@ export const DeleteAccount = () => {
                     break
                 }
                 case 401 : {
-                    dispatch(setMessage('Плохой токен'))
+                    localStorage.setItem('token', '')
                     break
                 }
                 case 403: {
@@ -377,10 +388,39 @@ export const ChangeNickname = (input_nickname: string) => {
                     // todo
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
+                    break
                 }
             }
+        })
+    }
+}
+
+export const Logout = () => {
+    return (dispatch: Dispatch) => {
+        Auth.LogoutAxios().then(response => {
+            switch (response[0]) {
+                case 200 : {
+                    localStorage.setItem('token', '')
+                    localStorage.setItem('id', '')
+                    localStorage.setItem('idUser', '')
+                    localStorage.setItem('email', '')
+                    localStorage.setItem('password', '')
+                    dispatch(setData({
+                        email: '',
+                        nickname: '',
+                        password: ''}))
+                    dispatch(setUserData('', '', '', '', '', ''))
+                    dispatch(setMyData('', '', '', '', ''))
+                    break
+                }
+                case 401 : {
+                    localStorage.setItem('token', '')
+                    break
+                }
+            }
+
         })
     }
 }

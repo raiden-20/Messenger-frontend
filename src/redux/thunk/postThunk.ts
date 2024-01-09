@@ -28,8 +28,8 @@ export const GetPosts = () => {
                     // todo user doesn't exist
                     break
                 }
-                case 401: {
-                    // todo token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -58,7 +58,7 @@ export const GetOnePostData = (postId: string) => {
                     break
                 }
                 case 401 : {
-                    //bad token
+                    localStorage.setItem('token', '')
                     break
                 }
                 case 400 : {
@@ -176,7 +176,7 @@ export const EditPost = (postId: string, input_postText: string, input_postPhoto
                     break
                 }
                 case 401 : {
-                    //todo token
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -245,8 +245,8 @@ export const CreatePost = (input_postText: string, input_postPhoto: SetPhotoInte
                     dispatch(setMessage('Лимит символов 1000'))
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -266,7 +266,7 @@ export const GetCommentsToPost = (postId: string) => {
                     break
                 }
                 case 401 : {
-                    //bad token
+                    localStorage.setItem('token', '')
                     break
                 }
                 case 400 : {
@@ -310,7 +310,7 @@ export const SetComment = (postId: string, input_comment: string,
                     break
                 }
                 case 401 : {
-                    //bad token
+                    localStorage.setItem('token', '')
                     break
                 }
                 case 400 : {
@@ -334,8 +334,8 @@ export const LikePost = (postId: string, isLiked: boolean, likeCount: string) =>
                         (Number.parseInt(likeCount) + 1).toString()))
                     break
                 }
-                case 401: {
-                    // bad token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
                 case 400: {
@@ -359,7 +359,7 @@ export const LikeComment = (commentId: string, isLiked: boolean, likeCount: stri
                     break
                 }
                 case 401 : {
-                    //bad token
+                    localStorage.setItem('token', '')
                     break
                 }
                 case 400 : {
@@ -386,8 +386,8 @@ export const DeletePost = (postId: string) => {
                     // todo post doesn't exist
                     break
                 }
-                case 401: {
-                    // todo token
+                case 401 : {
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -407,7 +407,7 @@ export const DeleteComment = (commentId: string, postId: string, commentsCount: 
                     break
                 }
                 case 401 : {
-                    //bad token
+                    localStorage.setItem('token', '')
                     break
                 }
                 case 400 : {
@@ -439,8 +439,8 @@ export const GetOneCommentData = (userId: string, commentId: string) => {
                                 // user doesn't exist
                                 break
                             }
-                            case 401: {
-                                // bad token
+                            case 401 : {
+                                localStorage.setItem('token', '')
                                 break
                             }
                         }
