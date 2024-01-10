@@ -21,7 +21,6 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
 
     const navigation = useNavigate()
     const [isMouseEnter, setMouseEnter] = useState(false)
-
     return (
         <aside className={main_aside_css.aside}>
             <section className={main_aside_css.photo} onClick={() => navigation(PROFILE_USER_PHOTO)}>
@@ -43,11 +42,11 @@ const MainProfileAsideComponent = (props: PropsUserProfileAsideComponent) => {
                 <section className={main_aside_css.friendsSector}>
                     <section className={main_aside_css.friendsAva}>
                         {props.usersShortInfo.map( (user:PropsOneFriend2, i) =>
-                            <section className={main_aside_css.friendPhoto + ' friendPhotoSection' + i}>
+                            <section className={main_aside_css.friendPhoto + ' friendPhotoSection' + i}  onMouseLeave={() => setMouseEnter(false)}>
                                 <img src={user.avatarUrl === '' ? default_profile_ava : user.avatarUrl}
                                      className={'friendPhoto' + i} alt={'user_ava'} onMouseEnter={() => setMouseEnter(true)}/>
                                 {isMouseEnter ?
-                                <section className={main_aside_css.shortInfoSection + ' friendMiniProfile' + i} onMouseLeave={() => setMouseEnter(false)}>
+                                <section className={main_aside_css.shortInfoSection + ' friendMiniProfile' + i} onMouseEnter={() => setMouseEnter(true)}>
                                     <UserFriendsShortInfoContainer id={user.id}
                                                                    name={user.name}
                                                                    bio={user.bio}

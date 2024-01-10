@@ -36,7 +36,6 @@ export const ProfileData = (id: string) => {
         Profile.ProfileGetDataAxios({
             id: id
         }).then(responseSocial => {
-            debugger
             dispatch(setIsFetching(false))
             switch (responseSocial[0]) {
                 case 200 : {

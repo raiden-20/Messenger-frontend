@@ -1,4 +1,4 @@
-import {Logout} from "../../thunk/authThunk";
+import {Logout, LogoutClear} from "../../thunk/authThunk";
 
 export interface StateNavigation{
     navigation : {
@@ -12,7 +12,7 @@ export interface StateNavigation{
 export interface PropsNavigation{
     buttonMoreSection : boolean
 
-    Logout(): void
+    LogoutClear(): void
     setButtonMoreSection(buttonMoreSection : boolean) : void
 
 }

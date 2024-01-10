@@ -2,7 +2,7 @@ import {Post} from "../post/post";
 
 export interface StatePostInPhoto {
     post: {
-        post: Post,
+        onePost: Post,
         comments: [],
         input_comment: string
     }
@@ -26,7 +26,7 @@ export interface StateOneComment {
 }
 
 export interface StateOnePhotoClass {
-    posts: []
+    onePost: Post
     postId: string,
     comments: [],
     input_comment: string
@@ -36,7 +36,7 @@ export interface StateOnePhotoClass {
     avatarUrl: string
 }
 export interface PropsOnePhotoClass {
-    post: Post
+    onePost: Post
     postId: string,
     comments: [],
     input_comment: string
@@ -46,6 +46,7 @@ export interface PropsOnePhotoClass {
     avatarUrl: string
 
     GetOnePostData(postId: string): void
+    GetPosts(): void
     GetCommentsToPost(postId: string): void
     SetComment(postId: string, input_comment: string,
                name: string, nickname: string, avatarUrl: string,

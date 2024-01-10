@@ -15,6 +15,7 @@ import NavigationMoreSection from "./components/NavigationMoreSection";
 import {PROFILE_USER} from "../../../paths/profilePath";
 import {FRIENDS_USER} from "../../../paths/usersPath";
 import {SETTINGS} from "../../../paths/navigationPath";
+import {LogoutClear} from "../../../redux/thunk/authThunk";
 
 const NavigationComponent = (props: PropsNavigation) => {
     const navigation = useNavigate()
@@ -79,7 +80,7 @@ const NavigationComponent = (props: PropsNavigation) => {
                         </section>
                     </section>
                     {props.buttonMoreSection ? (
-                        <NavigationMoreSection Logout={props.Logout}/> ): null}
+                        <NavigationMoreSection LogoutClear={props.LogoutClear}/> ): null}
 
                 </section>
 

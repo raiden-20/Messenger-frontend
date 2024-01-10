@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import {PropsAuthAuth} from "../../../redux/interfaces/auth/authAuthorize";
 import {
-    AUTHORIZATION,
     REGISTRATION, REGISTRATION_FORGOT_PASSWORD, REGISTRATION_RESTORE_ACCOUNT
 } from "../../../paths/authPath";
 import RegistrationOrAuthorisationComponent from "./RegistrationOrAuthorisationComponent";
@@ -13,13 +12,15 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
     const authorise = () => {
         if (props.input_emailOrNickname !== '' && props.input_password !== '') {
             props.Authorization(props.input_email, props.input_nickname, props.input_password)
-            if (localStorage.getItem('idUser') !== '') {
-                navigate(PROFILE_USER)
-            } else if (localStorage.getItem('id') !== '') {
-                navigate(REGISTRATION_RESTORE_ACCOUNT)
-            } else {
-                navigate(AUTHORIZATION)
-            }
+            // debugger
+            // if (localStorage.getItem('token') !== '' && localStorage.getItem('token') !== null) {
+            //     debugger
+            //     navigate(PROFILE_USER)
+            // } else if (localStorage.getItem('id') !== '' && localStorage.getItem('id') === null) {
+            //     navigate(REGISTRATION_RESTORE_ACCOUNT)
+            // } else {
+            //     navigate(AUTHORIZATION)
+            // }
         }
         cleanMessageAndChangePath()
     }
@@ -38,6 +39,17 @@ const RegistrationOrAuthorisationClass = (props : PropsAuthAuth) => {
     const toRegistration = () => {
         cleanMessageAndChangePath()
         navigate(REGISTRATION)
+    }
+
+    switch (props.code) {
+        case 200 : {
+            navigate(PROFILE_USER)
+            break
+        }
+        case 403: {
+            navigate(REGISTRATION_RESTORE_ACCOUNT)
+            break
+        }
     }
 
     return (

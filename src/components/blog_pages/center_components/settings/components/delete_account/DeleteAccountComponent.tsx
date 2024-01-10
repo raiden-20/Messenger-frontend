@@ -13,9 +13,11 @@ const DeleteAccountComponent = (props: PropsDeleteAccountComponent) => {
 
     const deleteAccount = () => {
         props.delete()
-        if (localStorage.getItem('token') === '') {
-            navigation(AUTHORIZATION)
-        }
+        debugger
+    }
+
+    if (localStorage.getItem('token') === '') {
+        navigation(AUTHORIZATION)
     }
 
     return (

@@ -160,15 +160,15 @@ export const EditPost = (postId: string, input_postText: string, input_postPhoto
                     setTimeout(() => {
                         Blog.GetPostDataAxios({
                             postId: postId
-                        }).then(response => {
+                        }).then(responseBlog => {
                             dispatch(setIsFetching(false))
-                            switch (response[0]) {
+                            switch (responseBlog[0]) {
                                 case 200: {
-                                    onePost.photoUrl = response[1].photoUrl
+                                    onePost.photoUrl = responseBlog[1].photoUrl
                                 }
                             }
                         })
-                    }, 3000)
+                    }, 5000)
                     dispatch(setOnePost(onePost))
                     dispatch(setInputPostAllPhotoDelete())
                     dispatch(setInputPostText(''))
@@ -246,7 +246,7 @@ export const CreatePost = (input_postText: string, input_postPhoto: SetPhotoInte
                                 }
                             }
                         })
-                    }, 4000);
+                    }, 5000);
                     break
                 }
                 case 400: {
@@ -341,8 +341,10 @@ export const LikePost = (postId: string, isLiked: boolean, likeCount: string) =>
             postId: postId
         }).then(response => {
             dispatch(setIsFetching(false))
+
             switch (response[0]) {
                 case 200: {
+
                     dispatch(setOneLikeCountPost(postId, isLiked ? (Number.parseInt(likeCount) - 1).toString() :
                         (Number.parseInt(likeCount) + 1).toString()))
                     break

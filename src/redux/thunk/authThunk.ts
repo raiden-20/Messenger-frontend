@@ -15,8 +15,11 @@ import {
     setButtonChangePasswordSecondStepPressed
 } from "../reducers/settingsReducer";
 import {setMyData, setUserData} from "../reducers/profileReducer";
+import {PROFILE_USER} from "../../paths/profilePath";
+import {REGISTRATION_RESTORE_ACCOUNT} from "../../paths/authPath";
 
 export const Authorization = (input_email: string, input_nickname: string, input_password: string) => {
+    debugger
     return (dispatch: Dispatch) => {
         dispatch(setIsFetching(true))
         Auth.RegistrationOrAuthorizationAxios({
@@ -28,6 +31,7 @@ export const Authorization = (input_email: string, input_nickname: string, input
             dispatch(setShowMessage(true))
             dispatch(setCode(response[0]))
             dispatch(setMessage(response[1]))
+            debugger
             switch (response[0]) {
                 case 200 : {
                     dispatch(setShowMessage(false))
@@ -41,6 +45,7 @@ export const Authorization = (input_email: string, input_nickname: string, input
                     localStorage.setItem('id', response[1].id)
                     localStorage.setItem('idUser', response[1].id)
                     localStorage.setItem('password', input_password)
+                    dispatch(setCode(200))
                     break
                 }
                 case 400 : {
@@ -54,6 +59,7 @@ export const Authorization = (input_email: string, input_nickname: string, input
                 case 403 : {
                     dispatch(setMessage('Аккаунт не активирован'))
                     localStorage.setItem('id', response[1])
+                    dispatch(setCode(403))
                     break
                 }
             }
@@ -171,11 +177,12 @@ export const ChangeEmailMessage = (newEmail: string) => {
     return (dispatch: Dispatch) => {
         dispatch(setIsFetching(true))
         Auth.SuccessfulChangeEmail({
-            newEmail: newEmail
+            newEmail: localStorage.getItem('newEmail') as string
         }).then(response => {
             dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
+                    localStorage.setItem('newEmail', '')
                     dispatch(setMessage('Пароль был успешно изменен!'))
                     localStorage.setItem('token', response[1])
                     break
@@ -238,6 +245,7 @@ export const AuthGetMyData = () => {
 export const ChangeEmail = (input_password: string, input_email: string) => {
     return (dispatch: Dispatch) => {
         dispatch(setIsFetching(true))
+
         Auth.ChangeEmailAxios( {
             input_password: input_password,
             input_email: input_email
@@ -247,6 +255,7 @@ export const ChangeEmail = (input_password: string, input_email: string) => {
                 case 200 : {
                     dispatch(setMessage('На Вашу почту было отправлено письмо с подтверждением бла бла бла'))
                     dispatch(setNewEmail(input_email)) // todo хрень, подумать как считывать
+                    localStorage.setItem('newEmail', input_email)
                     break
                 }
                 case 400 : {
@@ -327,6 +336,8 @@ export const SetNewPassword = (input_code: string, input_password: string) => {
                     } else {
                         localStorage.setItem('token', response[1])
                     }
+                    dispatch(setMessage(''))
+                    dispatch(setButtonChangePasswordSecondStepPressed(false))
                     break
                 }
                 case 400 : {
@@ -354,10 +365,17 @@ export const DeleteAccount = () => {
         dispatch(setIsFetching(true))
         Auth.DeleteProfileAxios().then(response => {
             dispatch(setIsFetching(false))
+            debugger
             switch (response[0]) {
                 case 200 : {
                     if (response[1] === "Account is blocked") {
                         dispatch(setMessage(''))
+                        dispatch(setData({
+                            email: '',
+                            nickname: '',
+                            password: ''}))
+                        dispatch(setUserData('', '', '', '', '', ''))
+                        dispatch(setMyData('', '', '', '', ''))
                         localStorage.setItem('email', '')
                         localStorage.setItem('token', '')
                         localStorage.setItem('password', '')
@@ -378,6 +396,7 @@ export const DeleteAccount = () => {
                 }
                 case 403: {
                     dispatch(setMessage('Аккаунт уже заблокирован'))
+                    localStorage.setItem('token', '')
                     break
                 }
             }
@@ -422,17 +441,19 @@ export const Logout = () => {
             dispatch(setIsFetching(false))
             switch (response[0]) {
                 case 200 : {
-                    localStorage.setItem('token', '')
-                    localStorage.setItem('id', '')
-                    localStorage.setItem('idUser', '')
-                    localStorage.setItem('email', '')
-                    localStorage.setItem('password', '')
                     dispatch(setData({
                         email: '',
                         nickname: '',
                         password: ''}))
                     dispatch(setUserData('', '', '', '', '', ''))
                     dispatch(setMyData('', '', '', '', ''))
+
+                    localStorage.setItem('token', '')
+                    localStorage.setItem('id', '')
+                    localStorage.setItem('idUser', '')
+                    localStorage.setItem('email', '')
+                    localStorage.setItem('password', '')
+
                     break
                 }
                 case 401 : {
@@ -442,5 +463,22 @@ export const Logout = () => {
             }
 
         })
+    }
+}
+
+export const LogoutClear = () => {
+    return (dispatch: Dispatch) => {
+        dispatch(setData({
+            email: '',
+            nickname: '',
+            password: ''}))
+        dispatch(setUserData('', '', '', '', '', ''))
+        dispatch(setMyData('', '', '', '', ''))
+
+        localStorage.setItem('token', '')
+        localStorage.setItem('id', '')
+        localStorage.setItem('idUser', '')
+        localStorage.setItem('email', '')
+        localStorage.setItem('password', '')
     }
 }

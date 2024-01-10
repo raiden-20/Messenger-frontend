@@ -1,4 +1,4 @@
-import {Logout} from "../../thunk/authThunk";
+import {Logout, LogoutClear} from "../../thunk/authThunk";
 
 export interface StateExit{
     auth : {
@@ -8,7 +8,7 @@ export interface StateExit{
 }
 
 export interface PropsExit{
-    Logout(): void
+    LogoutClear(): void
 
 }
 

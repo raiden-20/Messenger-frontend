@@ -57,6 +57,7 @@ const authReducer = (state = initialState, action : any) => {
             return stateCopy
         }
         case SET_NEW_EMAIL : {
+            debugger
             stateCopy.newEmail = action.newEmail
 
             return stateCopy

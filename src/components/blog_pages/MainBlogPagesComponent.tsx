@@ -20,7 +20,7 @@ import LoaderComponent from "../loader/LoaderComponent";
 const MainBlogPagesComponent = (props: PropsCode) => {
 
     const location = useLocation()
-    if (localStorage.getItem('token') === null) {
+    if (localStorage.getItem('token') === '' && localStorage.getItem('id') !== '') {
         return <TokenIsntActualContainer/>
     } else if (props.code === 404) {
         return <PageNotExistComponent/>

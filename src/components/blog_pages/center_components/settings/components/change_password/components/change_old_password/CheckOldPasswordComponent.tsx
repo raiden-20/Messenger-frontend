@@ -22,7 +22,7 @@ const CheckOldPasswordComponent = (props : PropsOldPasswordComponent) => {
                 <legend>Подтвердите Ваш пароль. Вам будет выслан код на электронный адрес бла бла бла
                 </legend>
                 <main>
-                    <input value={props.input_password} onChange={sendInputPassword}
+                    <input type={'password'} value={props.input_password} onChange={sendInputPassword}
                            className={change_el_css.input} placeholder={'Пароль'} required/>
                     <section>
                         <button onClick={props.saveButtonActionFirstStep} className={change_el_css.button_save + ' ' + change_el_css.button}>

@@ -8,7 +8,7 @@ const NavigationMoreSection = (props: PropsExit) => {
     const navigation = useNavigate()
 
     const enter = () => {
-        props.Logout()
+        props.LogoutClear()
         navigation(AUTHORIZATION)
     }
 

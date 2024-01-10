@@ -5,7 +5,13 @@ import {
 } from "../../../../../../redux/reducers/postReducer";
 import OnePhotoClass from "./OnePhotoClass";
 import {setButtonOpenPhoto} from "../../../../../../redux/reducers/photoReducer";
-import {GetCommentsToPost, GetOnePostData, LikePost, SetComment} from "../../../../../../redux/thunk/postThunk";
+import {
+    GetCommentsToPost,
+    GetOnePostData,
+    GetPosts,
+    LikePost,
+    SetComment
+} from "../../../../../../redux/thunk/postThunk";
 
 const mapStateToProps = (state: StatePostInPhoto) => {
 
@@ -18,12 +24,13 @@ const mapStateToProps = (state: StatePostInPhoto) => {
         onePhotoUrl: state.photo.onePhotoUrl,
         avatarUrl: state.profile.avatarUrl,
         // @ts-ignore
-        post: state.post.posts[0],
+        onePost: state.post.onePost
     }
 }
 
 const mapDispatchToProps = {
     GetOnePostData,
+    GetPosts,
     GetCommentsToPost,
     SetComment,
     LikePost,

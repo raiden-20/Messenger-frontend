@@ -3,7 +3,7 @@ import {setButtonMoreSection} from "../../../redux/reducers/navigationReducer";
 import {connect} from "react-redux";
 import NavigationComponent from "./NavigationComponent";
 import {setData} from "../../../redux/reducers/authReducer";
-import {Logout} from "../../../redux/thunk/authThunk";
+import {Logout, LogoutClear} from "../../../redux/thunk/authThunk";
 
 const mapStateToProps = (state : PropsNavigation & StateNavigation) => {
     return {
@@ -14,7 +14,7 @@ const mapStateToProps = (state : PropsNavigation & StateNavigation) => {
 
 const mapDispatchToProps = {
     setButtonMoreSection,
-    Logout
+    LogoutClear
 }
 
 const NavigationContainer = connect(mapStateToProps, mapDispatchToProps)(NavigationComponent)

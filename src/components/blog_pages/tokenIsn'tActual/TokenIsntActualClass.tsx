@@ -4,12 +4,8 @@ import {PropsTokenClass, StateTokenClass} from "../../../redux/interfaces/token"
 
 class TokenIsntActualClass extends Component<PropsTokenClass, StateTokenClass> {
 
-    exit() {
-        this.props.Logout()
-    }
-
     render() {
-        return <TokenIsntActualComponent exit={this.exit}/>
+        return <TokenIsntActualComponent LogoutClear={this.props.LogoutClear}/>
     }
 }
 

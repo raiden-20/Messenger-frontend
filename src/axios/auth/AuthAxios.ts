@@ -137,7 +137,11 @@ export const Auth = {
 
     async LogoutAxios() {
         try {
-            const response = await axios.post(LOCALHOST + AUTH + '/auth/exit', config)
+            debugger
+            const response = await axios.post(LOCALHOST + AUTH + '/exit', {
+                token: localStorage.getItem('token')
+            }, config)
+            debugger
             return [response.status, response.data];
         } catch (error: any) {
             return [error.response.status, error.response.data];

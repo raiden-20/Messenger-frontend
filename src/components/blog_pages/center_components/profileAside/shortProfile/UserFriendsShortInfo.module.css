@@ -1,7 +1,7 @@
 .page{
     padding: 15px;
     display: grid;
-    grid-template-rows: 70px auto 85px;
+    grid-template-rows: 70px auto;
     row-gap: 3%;
 }
 
@@ -13,6 +13,16 @@
 .header_img {
     width: 70px;
     height: 70px;
+}
+.header_img img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+}
+
+.nickname {
+    color: rgba(95, 110, 120, 1);
 }
 
 .functional {

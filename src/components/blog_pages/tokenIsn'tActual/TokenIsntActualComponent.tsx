@@ -8,7 +8,7 @@ import {AUTHORIZATION} from "../../../paths/authPath";
 const TokenIsntActualComponent = (props: PropsTokenComponent) => {
     const navigate = useNavigate()
     const exit = () => {
-        props.exit()
+        props.LogoutClear()
         navigate(AUTHORIZATION)
     }
 

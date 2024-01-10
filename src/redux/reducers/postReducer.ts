@@ -38,6 +38,15 @@ const initialState = {
         commentCount: '',
         isLiked: false
     }],
+    onePost: {
+        postId: '',
+        time: '1970-01-01',
+        text: '',
+        photoUrl: [],
+        likeCount: '',
+        commentCount: '',
+        isLiked: false
+    },
     comments: [],
 
     input_postPhoto: [],
@@ -158,6 +167,7 @@ const postReducer = (state = initialState, action: any) => {
             stateCopy= {...state, posts: [...state.posts]}
             // @ts-ignore
             stateCopy.posts.push(action.onePost)
+            stateCopy.onePost = action.onePost
             return stateCopy
         }
         case ADD_ONE_COMMENT : {

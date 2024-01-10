@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import TokenIsntActualClass from "./TokenIsntActualClass";
-import {Logout} from "../../../redux/thunk/authThunk";
+import {LogoutClear} from "../../../redux/thunk/authThunk";
 
 const mapStateToProps = () => {
     return {
@@ -8,7 +8,7 @@ const mapStateToProps = () => {
 }
 
 const mapDispatchToProps = {
-    Logout
+    LogoutClear
 }
 
 const TokenIsntActualContainer = connect(mapStateToProps, mapDispatchToProps)(TokenIsntActualClass)
